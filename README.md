@@ -5,6 +5,7 @@
 ### Features
  - sign in / sign up
  - light / dark theme
+ - deploy into ghpages using routeHash and github environment variables for secret keys
 
 
 ### To-do
