@@ -1,0 +1,50 @@
+@reference "tailwindcss";
+@reference "./index.css";
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer base {
+  .button-primary {
+    @apply block w-full py-4 rounded-full bg-primary text-white font-semibold hover:opacity-90;
+    @apply shadow-xl;
+  }
+
+  .button-secondary {
+    @apply block w-full py-4 rounded-full bg-secondary text-black font-semibold hover:opacity-90;
+    @apply shadow-xl;
+  }
+
+  .link {
+    @apply inline text-primary;
+  }
+
+  .input {
+    @apply border border-primary rounded-xl p-3;
+  }
+
+  .valid {
+    @apply border-secondary;
+  }
+
+  .invalid, .invalid:focus {
+    @apply border-primary; 
+  }
+
+  body h1 {
+    @apply text-4xl font-bold mb-6;
+  }
+
+  .card {
+    @apply flex flex-col items-center justify-center m-5 min-w-60;
+    @apply border-0 shadow-2xl p-6 rounded-3xl;
+  }
+}
+

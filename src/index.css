@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer theme {
+  :root, :host {
+    @variant dark {
+  --color-background: #242424;
+  --color-primary: #39c0b4;
+  --color-secondary: #fff;
+  --color-terciary: oklch(92.8% 0.006 264.531);
+  --color-font: oklch(92.8% 0.006 264.531);
+    }
+  }
+}
+
+@theme {
+  --color-background: rgba(255, 255, 255, 0.87);
+  --color-primary: #39c0b4;
+  --color-secondary: oklch(92.8% 0.006 264.531);;
+  --color-terciary: oklch(35.654% 0.00174 285.97);
+  --color-font: oklch(16.842% 0.00002 271.152);
+} 
+
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--color-font);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
