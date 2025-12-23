@@ -3,6 +3,25 @@
     "explore routes hassle": "Explora rutas RC sin complicaciones",
     "plan record share": "Planifica, graba y comparte tus aventuras de radiocontrol como nunca antes. Crawlear te permite capturar tus rutas directamente desde los datos GPS o importarlas desde tu app de seguimiento favorita, mapeando automáticamente cada curva y subida. Explora senderos públicos creados por otros entusiastas, encuentra nuevos lugares para conducir y crea tu propia colección de rutas, todo desde una interfaz intuitiva basada en mapas, diseñada para la comunidad de radiocontrol.",
     "getstarted": "Comienza",
-    "why crawlear": "¿Por qué utilizar Crawlear.com?"
+    "why crawlear": "¿Por qué utilizar Crawlear.com?",
+    "capture your route": "Captura tu ruta",
+    "log your routes": "Registra tus rutas con la funcionalidad GPS o impórtalas desde otras aplicaciones.",
+    "find new trails": "Encuentra nuevos senderos",
+    "browse public routes": "Explora rutas públicas y descubre nuevos lugares para explorar.",
+    "share with others": "Comparte con otros",
+    "share favourites": "Comparte tus favoritos con otros y conecta con la comunidad.",
+    "ready to explore": "¿Preparado para explorar?",
+    "join crawlear": "Únete a Crawlear y empieza a compartir tus rutas hoy mismo."
+  },
+  "login": {
+    "signin": "Iniciar sesión",
+    "signup": "Regístrate",
+    "sign in to explore": "Inicie sesión para explorar, crear y organizar sus próximas rutas de crawler o volver a la ",
+    "landing": "página principal",
+    "dont have account": "¿No tienes una cuenta?"
+  },
+  "register": {
+    "create an account": "Crea una cuenta para explorar, crear y organizar tus próximas rutas de rastreo o volver a "
   }
+
 }

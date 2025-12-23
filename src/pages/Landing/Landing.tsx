@@ -4,7 +4,9 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useTranslation } from 'react-i18next';
 
-import featuresData from './assets/data/features.config';
+import locationImage from './assets/images/location.png';
+import personasImage from './assets/images/personas.png';
+import mountainImage from './assets/images/mountain.png';
 import mapImage from './assets/images/mapa.png';
 
 const Landing = () => {
@@ -25,19 +27,27 @@ const Landing = () => {
             <section className="my-10 mx-auto py-4 px-20 flex w-full justify-center flex-wrap items-center">
                 <h1>{ t('main.why crawlear') }</h1>
                 <div className="flex flex-wrap" >
-                    {featuresData.map((f, i) => (
-                    <div key={i} className="card flex-1">
-                        <img src={f.img} />
-                        <h1>{f.title}</h1>
-                        <p className="text-xl">{f.text}</p>
+                    <div className="card flex-1">
+                        <img src={locationImage} />
+                        <h1>{ t('main.capture your route') }</h1>
+                        <p className="text-xl">{ t('main.log your routes') }</p>
                     </div>
-                    ))}
+                    <div className="card flex-1">
+                        <img src={personasImage} />
+                        <h1>{ t('main.find new trails') }</h1>
+                        <p className="text-xl">{ t('main.browse public routes') }</p>
+                    </div>
+                    <div className="card flex-1">
+                        <img src={mountainImage} />
+                        <h1>{ t('main.share with others') }</h1>
+                        <p className="text-xl">{ t('main.share favourites') }</p>
+                    </div>
                 </div>
             </section>
             <section className="bg-primary w-full p-15 text-secondary">
-                <h1>Ready to explore?</h1>
-                <p>Join Crawlear and start to share your routes today.</p>
-                <NavLink to="/login" className="button-secondary max-w-50 mx-auto mt-20">Get started</NavLink>
+                <h1>{ t('main.ready to explore') }</h1>
+                <p>{ t('main.join crawlear') }</p>
+                <NavLink to="/login" className="button-secondary max-w-50 mx-auto mt-20">{ t('main.getstarted') }</NavLink>
             </section>
         </main>
         <Footer />
