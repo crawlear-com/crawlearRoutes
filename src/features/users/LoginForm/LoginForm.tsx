@@ -9,7 +9,7 @@ const LoginForm = () => {
     const { t } = useTranslation(["landing"]);
 
     return (<>
-        <div className="w-full max-w-sm m-auto items-center px-20">
+        <div className="w-full max-w-sm m-auto items-center px-20 sm:px-0">
             <h2 className="text-3xl font-bold text-primary mb-2 text-center">{ t("login.signin") }</h2>
             <p className="text-center mb-6">
                 { t("login.sign in to explore") }

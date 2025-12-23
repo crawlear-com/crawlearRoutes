@@ -27,7 +27,7 @@
   }
 
   .input {
-    @apply border border-primary rounded-xl p-3;
+    @apply border border-primary rounded-xl p-3 sm:min-w-80;
   }
 
   .valid {

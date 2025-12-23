@@ -21,7 +21,8 @@
     "dont have account": "¿No tienes una cuenta?"
   },
   "register": {
-    "create an account": "Crea una cuenta para explorar, crear y organizar tus próximas rutas de rastreo o volver a "
+    "create an account": "Crea una cuenta para explorar, crear y organizar tus próximas rutas de rastreo o volver a ",
+    "already have an account": "¿Ya tienes una cuenta?"
   }
 
 }
