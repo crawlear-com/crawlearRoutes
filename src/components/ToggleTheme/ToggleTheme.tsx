@@ -6,10 +6,10 @@ import { setTheme } from "./store/slice/themeSlice";
 const ToggleTheme = ({ className }: ToggleThemeProps) => {
     const [isLightTheme, setIsLightTheme] = useState(true);
     const dispatch = useDispatch();
-    
+
     const toggleTheme = () => {
       setIsLightTheme(!isLightTheme);
-      dispatch(setTheme(isLightTheme ? "light" : "dark"));
+      dispatch(setTheme(!isLightTheme ? "light" : "dark"));
       document.documentElement.classList.toggle('dark');
     }
 

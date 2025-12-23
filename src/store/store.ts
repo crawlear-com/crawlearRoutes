@@ -4,7 +4,7 @@ import themeReducer from '../components/ToggleTheme/store/slice/themeSlice';
 
 export const store = configureStore({
   reducer: {
-    themeSlice: themeReducer,
+    theme: themeReducer,
     user: userReducer
   }
 });

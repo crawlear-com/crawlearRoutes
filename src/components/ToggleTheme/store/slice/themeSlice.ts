@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 
 const themeSlice = createSlice({
-  name: 'user',
+  name: 'theme',
   initialState,
   reducers: {
     setTheme: (state, action: PayloadAction<string>) => {
