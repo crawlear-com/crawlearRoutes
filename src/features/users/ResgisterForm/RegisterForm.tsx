@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
     const [ name, setName, email, setEmail, password, setPassword, repassword, setRepassword, onSubmitRegisterForm ] = useRegisterForm();
-    const { t } = useTranslation(["landing"]);
+    const { t } = useTranslation(["landing"]);
 
     return (<div className="w-full max-w-sm m-auto items-center px-20">
         <h2 className="text-3xl font-bold text-primary mb-2 text-center">{ t("login.signup") }</h2>
