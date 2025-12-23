@@ -1,0 +1,27 @@
+{
+  "main": {
+    "explore routes hassle": "Explora rutas RC sense complicacions",
+    "plan record share": "Planifica, registra i comparteix les teves aventures amb RC com mai abans. Crawlear et permet capturar les teves rutes directament des de les dades del GPS o importar-les des de la teva aplicació de seguiment preferida, cartografiant automàticament cada revolt i pujada. Explora rutes públiques creades per altres entusiastes, troba nous llocs per conduir i crea la teva col·lecció personal de rutes, tot des d'una interfície intuïtiva basada en mapes dissenyada per a la comunitat RC.",
+    "getstarted": "Comença",
+    "why crawlear": "¿Per què utilitzar Crawlear.com?",
+    "capture your route": "Captura la teva ruta",
+    "log your routes": "Registra les teves rutes amb la funcionalitat GPS o importa-les des d'altres aplicacions.",
+    "find new trails": "Troba nous camins",
+    "browse public routes": "Navega per rutes públiques i descobreix nous llocs per explorar.",
+    "share with others": "Comparteix amb altres",
+    "share favourites": "Comparteix amb altres els teus favorits i conecta amb la comunitat.",
+    "ready to explore": "¿Preparat per explorar?",
+    "join crawlear": "Uneix-te a Crawlear i comença a compartir les teves rutes avui mateix."
+  },
+  "login": {
+    "signin": "Inicieu sessió",
+    "signup": "Registra't",
+    "sign in to explore": "Inicia la sessió per explorar, crear i organitzar les teves properes rutes de crawler o torna a la ",
+    "landing": "pàgina principal",
+    "dont have account": "¿No tens un compte?"
+  },
+  "register": {
+    "create an account": "Crea un compte per explorar, crear i organitzar les teves properes rutes de rastrejador o torna a la ",
+    "already have an account": "Ja tens un compte?"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "main": {
+    "explore routes hassle": "Explore RC routes without the hassle",
+    "plan record share": "Plan, record, and share your RC adventures like never before. Crawlear lets you capture your routes directly from GPS data or import them from your favorite tracking app, automatically mapping every twist and climb. Explore public trails created by other enthusiasts, find new places to drive, and build your personal collection of routes — all from one intuitive, map-based interface designed for the RC community.",
+    "getstarted": "Get started",
+    "why crawlear": "Why use Crawlear.com?",
+    "capture your route": "Capture your route",
+    "log your routes": "Log your routes with GPS functionality or import them form other apps.",
+    "find new trails": "Find new trails",
+    "browse public routes": "Browse public routes and discover new places to explore.",
+    "share with others": "Share with others",
+    "share favourites": "Share your favourites and connect with the community.",
+    "ready to explore": "Ready to explore?",
+    "join crawlear": "Join Crawlear and start to share your routes today."
+  },
+  "login": {
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "sign in to explore": "Sign in to explore, create and organize your next crawler routes or go back to ",
+    "landing": "landing",
+    "dont have account": "Don't have an account?"
+  },
+  "register": {
+    "create an account": "Create an account to explore, create and organize your next crawler routes or go back to ",
+    "already have an account": "Already have an account?"
+  }
+}
