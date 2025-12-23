@@ -1,14 +1,15 @@
 import { useState } from "react";
-
-type ToggleThemeProps = {
-  className: string
-};
+import { useDispatch } from "react-redux";
+import type { ToggleThemeProps } from "./ToggleTheme.types";
+import { setTheme } from "./store/slice/themeSlice";
 
 const ToggleTheme = ({ className }: ToggleThemeProps) => {
     const [isLightTheme, setIsLightTheme] = useState(true);
+    const dispatch = useDispatch();
     
     const toggleTheme = () => {
       setIsLightTheme(!isLightTheme);
+      dispatch(setTheme(isLightTheme ? "light" : "dark"));
       document.documentElement.classList.toggle('dark');
     }
 
