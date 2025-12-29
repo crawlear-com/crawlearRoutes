@@ -10,7 +10,7 @@
 
 ### To-do
 
-- dinamyc imports to code split
+- dinamyc imports to split code
 
 ## Install and run
 
