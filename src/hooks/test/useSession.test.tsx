@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from "vitest";
 import { waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { renderWithProviders } from "../../../test/test-utils";
+import { renderWithProviders } from "../../test/test-utils";
 
 import TestComponent from "./testComponents/UseSessionTestComponent";
 import { setSession } from "../../features/users/store/slice/userSlice";

@@ -5,12 +5,12 @@
 ### Features
  - sign in / sign up
  - light / dark theme
+ - multilanguage support with react-i18next and lazy load of language data
  - deploy into ghpages using routeHash and github environment variables for secret keys
 
-
 ### To-do
-- multilanguage support with react-i18next
-- dinamyc imports to code split
+
+- dinamyc imports to split code
 
 ## Install and run
 
