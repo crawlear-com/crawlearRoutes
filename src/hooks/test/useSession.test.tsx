@@ -6,7 +6,7 @@ import { renderWithProviders } from "../../test/test-utils";
 import TestComponent from "./testComponents/UseSessionTestComponent";
 import { setSession } from "../../features/users/store/slice/userSlice";
 import { sessionData } from "./testComponents/sessionData";
-import supabaseClient from "../../helpers/supabaseClient";
+import supabaseClient from "../../database/supabaseClient";
 
 vi.mock("../../helpers/supabaseClient", () => {
   return {

@@ -7,7 +7,7 @@ const selectUserSession = createSelector(
 
 const selectUserUUID = createSelector(
   (state) => state.user,
-  (user) => user.session?.id
+  (user) => user.session?.user?.id
 );
 
 const selectUserDisplayName = createSelector(
