@@ -1,6 +1,6 @@
-import MapPointPicker from "../../maps/MapPointPicker";
+import MapPointPicker from "../../maps/SimpleMap/SimpleMap";
 import type { RouteCardProps } from "./RouteCard.types";
-import markerImage from '../../maps/MapPointPicker/assets/images/marker-icon.png';
+import markerImage from '../../maps/SimpleMap/assets/images/marker-icon.png';
 import { v4 as uuidv4 } from 'uuid';
 
 const RouteCard = ({ route }: RouteCardProps) => {

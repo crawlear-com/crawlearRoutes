@@ -6,7 +6,7 @@ import type { GeoPoint } from '../../../../types/Route.types'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
-function useMapPointPicker(id: string, point: GeoPoint): void {
+function useSimpleMap(id: string, point: GeoPoint): void {
     const markers = React.useRef<Array<L.Layer>>([]);
     const map = React.useRef<L.Map | null>(null);
 
@@ -48,4 +48,4 @@ function useMapPointPicker(id: string, point: GeoPoint): void {
     }, [point, addPropsPoints])
   }
 
-export default useMapPointPicker;
+export default useSimpleMap;

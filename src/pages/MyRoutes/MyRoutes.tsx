@@ -8,7 +8,7 @@ import useMyRoutes from "../../features/routes/RoutesList/hooks/useMyRoutes";
 import useMyLikedRoutes from "../../features/routes/RoutesList/hooks/useMyLikedRoutes";
 
 const MyRoutes = () => {
-  const myRoutesCard = (route: Route) => <RouteCard route={ route } />;
+  const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;
   const [ totalMyRoutes, myRoutes ] = useMyRoutes();
   const [ likedRoutes ] = useMyLikedRoutes();
   useGuard();
