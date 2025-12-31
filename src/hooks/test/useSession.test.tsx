@@ -8,7 +8,7 @@ import { setSession } from "../../features/users/store/slice/userSlice";
 import { sessionData } from "./testComponents/sessionData";
 import supabaseClient from "../../database/supabaseClient";
 
-vi.mock("../../helpers/supabaseClient", () => {
+vi.mock("../../database/supabaseClient", () => {
   return {
     default: {
       auth: {
