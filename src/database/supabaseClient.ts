@@ -18,4 +18,15 @@ const getMyRoutes = async (uuid: string) => {
     }
 }
 
-export { getMyRoutes };
+const getLikesFromUser = async (uuid: string) => {
+  const { data, error } = await supabaseClient.rpc('likesByUser', { 
+    in_uid: uuid 
+  }); 
+
+  if(!error) {
+      return data;
+  } else {
+    throw new Error('Error accessing getting liked routes from user');
+  }
+}
+export { getMyRoutes, getLikesFromUser };

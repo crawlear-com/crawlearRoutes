@@ -2,9 +2,7 @@ import type { Route } from '../../../types/Route.types';
 import type { RoutesListProps } from './RoutesList.types';
 
 const RoutesList = ({ card, totalRoutes, routes }: RoutesListProps) => {
-  //const [totalRoutes, routeList] = useMyRoutes();
-
-  return (<div className="w-[90%] mx-auto my-15 text-right">
+  return (<div className="w-[90%] mx-auto mb-15 text-right">
     <div className="flex justify-end items-center mb-5 m-auto">
       <input className="flex-2 justify-self-start border border-gray-500 shadow mx-2 px-1" 
         placeholder="Filter routes..." type="text" />

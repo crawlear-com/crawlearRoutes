@@ -4,8 +4,8 @@ import useMapPointPicker from './hooks/useMapPointPicker';
 interface MapPointPickerProps {
     id: string,
     className?: string,
-    width?: number,
-    height?: number,
+    width?: string,
+    height?: string ,
     point: GeoPoint
 }
 
@@ -18,7 +18,7 @@ function MapPointPicker({ id, point, className, width, height }: MapPointPickerP
     useMapPointPicker(id, point);
 
     return <div className={ className } >
-        <div id={`map${id}`} className={`rounded-2xl w-[${width}rem] h-[${height}rem]`}></div>
+        <div id={`map${id}`} className={`rounded-2xl ${width} ${height}`}></div>
     </div>
 
 }

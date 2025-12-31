@@ -29,6 +29,7 @@ function useMapPointPicker(id: string, point: GeoPoint): void {
       const newMap = L.map(`map${id}`).fitBounds(ARROUND_BARCELONA);
 
       newMap.zoomControl.remove();
+      newMap.scrollWheelZoom.disable();
       newMap.dragging.disable();
       newMap.doubleClickZoom.disable();
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
