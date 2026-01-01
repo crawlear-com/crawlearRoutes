@@ -7,6 +7,7 @@
  - light / dark theme
  - multilanguage support with react-i18next and lazy load of language data
  - deploy into ghpages using routeHash and github environment variables for secret keys
+ - toast notifications and errors (https://react-hot-toast.com/)
 
 ### To-do
 

@@ -1,0 +1,51 @@
+import * as React from 'react'
+import 'leaflet-gpx'
+import * as L from 'leaflet'
+import { iconRoute } from '../Icons'
+import type { GeoPoint } from '../../../../types/Route.types'
+
+const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
+
+function useSimpleMap(id: string, point: GeoPoint): void {
+    const markers = React.useRef<Array<L.Layer>>([]);
+    const map = React.useRef<L.Map | null>(null);
+
+    function removePreviousMarkers(removeCircle: boolean) {
+      markers.current.forEach((marker, index) => {
+        if(index === 0 && removeCircle || index > 0) {
+          marker.remove();
+        }
+      })
+    }
+
+    const addPropsPoints = React.useCallback(() => {
+      removePreviousMarkers(false);
+      if (point) {
+          L.marker([point.lon, point.lat], { icon: iconRoute }).addTo(map.current!);
+      }
+    }, [point]);
+
+    React.useEffect(() => {
+      const newMap = L.map(`map${id}`).fitBounds(ARROUND_BARCELONA);
+
+      newMap.zoomControl.remove();
+      newMap.scrollWheelZoom.disable();
+      newMap.dragging.disable();
+      newMap.doubleClickZoom.disable();
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+      }).addTo(newMap);
+      map.current = newMap;
+      
+      return () => {
+        newMap.off()
+        newMap.remove()
+      }
+    }, [id]);
+
+    React.useEffect(() => {
+      addPropsPoints()
+    }, [point, addPropsPoints])
+  }
+
+export default useSimpleMap;
