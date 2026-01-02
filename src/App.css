@@ -22,6 +22,10 @@
     @apply shadow-xl;
   }
 
+  .card {
+    @apply rounded-2xl shadow-2xl mb-10 p-5 content-end text-left cursor-pointer;
+  }
+
   .link {
     @apply inline text-primary;
   }
@@ -43,8 +47,12 @@
   }
 
   .card {
-    @apply flex flex-col items-center justify-center m-5 min-w-60;
+    @apply min-w-60;
     @apply border-0 shadow-2xl p-6 rounded-3xl;
+  }
+
+  .container {
+    @apply w-[90%] mx-auto;
   }
 }
 

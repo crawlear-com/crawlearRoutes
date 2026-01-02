@@ -13,13 +13,16 @@ const RoutesPaginator = ({ currentPage, totalItems, onPageClick }: RoutesPaginat
   }
 
   for(let i=0; i<totalPages; i++) {
-    pages.push(<span className={`${ currentPage === i ? "font-bold underline" : "cursor-pointer" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
+    pages.push(<span className={`${ currentPage === i ? "font-bold" : "cursor-pointer underline" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
   }
 
-  return (<div className="">  
-    { currentPage-1 >= 0 ? <span className="cursor-pointer" data-page={Math.max(currentPage-1, 0)} onClick={ onPageEventHandler }>&lt;</span> : <></> }
-    { pages }
-    { currentPage +1 < totalPages ? <span className="cursor-pointer" data-page={Math.min(currentPage+1, totalPages)} onClick={ onPageEventHandler }>&gt;</span> : <></> }
+  return (<div className="flex container"> 
+    <span className="flex-2 text-left mx-auto">Total: { totalItems }</span>
+    <span className="flex-2 text-right">
+      { currentPage-1 >= 0 ? <span className="cursor-pointer" data-page={Math.max(currentPage-1, 0)} onClick={ onPageEventHandler }>&lt;</span> : <></> }
+      { pages }
+      { currentPage +1 < totalPages ? <span className="cursor-pointer" data-page={Math.min(currentPage+1, totalPages)} onClick={ onPageEventHandler }>&gt;</span> : <></> }
+    </span>
   </div>);
 }
 

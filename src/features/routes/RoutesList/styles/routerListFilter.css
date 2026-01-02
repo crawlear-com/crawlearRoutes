@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+@layer base {
+  .button-primary.orderBy {
+    @apply w-auto mx-1 cursor-pointer no-underline;
+  }
+
+  .button-primary.orderBy.selected {
+    @apply opacity-50;
+  }
+}
