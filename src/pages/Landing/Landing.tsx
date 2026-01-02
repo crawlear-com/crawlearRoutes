@@ -27,17 +27,17 @@ const Landing = () => {
             <section className="my-10 mx-auto py-4 px-20 flex w-full justify-center flex-wrap items-center">
                 <h1>{ t('main.why crawlear') }</h1>
                 <div className="flex flex-wrap" >
-                    <div className="card flex-1">
+                    <div className="card landingCard">
                         <img src={locationImage} />
                         <h1>{ t('main.capture your route') }</h1>
                         <p className="text-xl">{ t('main.log your routes') }</p>
                     </div>
-                    <div className="card flex-1">
+                    <div className="card landingCard">
                         <img src={personasImage} />
                         <h1>{ t('main.find new trails') }</h1>
                         <p className="text-xl">{ t('main.browse public routes') }</p>
                     </div>
-                    <div className="card flex-1">
+                    <div className="card landingCard">
                         <img src={mountainImage} />
                         <h1>{ t('main.share with others') }</h1>
                         <p className="text-xl">{ t('main.share favourites') }</p>

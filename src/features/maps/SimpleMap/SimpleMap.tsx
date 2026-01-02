@@ -6,7 +6,7 @@ function SimpleMap({ id, point, className, width, height }: SimpleMapProps):Reac
     useMapPointPicker(id, point);
 
     return <div className={ className } >
-        <div id={`map${id}`} className={`rounded-2xl ${width} ${height}`}></div>
+        <div id={`map${id}`} className={`rounded-2xl ${width} ${height} -z-50`}></div>
     </div>
 
 }
