@@ -47,7 +47,7 @@
   }
 
   .card {
-    @apply min-w-60;
+    @apply min-w-60 bg-secondary text-black;
     @apply border-0 shadow-2xl p-6 rounded-3xl;
   }
 

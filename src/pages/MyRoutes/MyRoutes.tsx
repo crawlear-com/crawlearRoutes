@@ -10,16 +10,18 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 const MyRoutes = () => {
   useGuard();
   
-  return (<main className="">
+  return (<>
     <Header />
-    <div className="flex w-full mx-10 mt-20 mb-10">
-      <SimpleMap id="Search" point={{lat: 0, lon: 0}} className="mx-5" width="w-sm" height="h-96" />
-      <div className="w-sm"><FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" /></div>
+    <div className="flex mx-0 sm:mx-10 sm:mt-20 mb-10 flex-col sm:flex-row">
+      <SimpleMap id="Search" point={{lat: 0, lon: 0}} className="w-full sm:w-[50%] mr-5" height="h-96 sm:h-full" />
+      <div className="w-full sm:w-[50%]"><FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" /></div>
     </div>
-    <RoutesFromUser />
-    <LikesFromUser />
+    <div className="flex mx-0 sm:mx-10 sm:mt-20 mb-10 flex-col sm:flex-row gap-10">
+      <RoutesFromUser />
+      <LikesFromUser />
+    </div>
     <Footer />
-  </main>);
+  </>);
 }
 
 export default MyRoutes;
