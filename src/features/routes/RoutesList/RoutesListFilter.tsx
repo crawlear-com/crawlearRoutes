@@ -7,7 +7,7 @@ const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange }: Ro
   const [orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler, onQueryChangeHandler,
     onCollapseClick, orderDirIcon] = useRoutesListFilter(onOrderByClick, onOrderDirClick, onQueryChange);
 
-  return (<div className="container flex justify-end items-center mx-auto">
+  return (<div className="container flex justify-end items-center mx-auto mb-2">
       <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
       <input className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`} 
         onChange={ onQueryChangeHandler }
