@@ -14,7 +14,7 @@ const RoutesFromUser = () => {
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;
   const [ currentPage, totalRoutes, routes, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ] = useRoutesProvider(getMyRoutesFull);
 
-  return (<div>
+  return (<div className="w-full sm:w-[50%]">
     <h1 className="mr-3 inline-block">My routes</h1><button className="text-xl button-primary w-auto px-2 inline">+</button>
     <RoutesListFilter onOrderByClick= { onOrderByClick} onOrderDirClick= { onOrderDirClick} onQueryChange={onQueryChange} />
     <RoutesPaginator currentPage = { currentPage } totalItems = { totalRoutes } onPageClick={ onPageClick } />
