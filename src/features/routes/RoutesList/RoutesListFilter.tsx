@@ -41,7 +41,7 @@ const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange }: Ro
   }
   const orderDirIcon = (orderDir === ASC ? '⬆': '⬇');
 
-  return (<div className="container flex justify-end items-center my-5 mx-auto">
+  return (<div className="container flex justify-end items-center mx-auto">
       <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
       <input className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1"}`} 
         onChange={ onQueryChangeHandler }

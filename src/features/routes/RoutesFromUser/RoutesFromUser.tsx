@@ -15,7 +15,7 @@ const RoutesFromUser = () => {
   const [ currentPage, totalRoutes, routes, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ] = useRoutesProvider(getMyRoutesFull);
 
   return (<>
-    <h1 className="mr-3 mt-5 inline-block">My routes</h1><button className="text-xl button-primary w-auto px-2 inline">+</button>
+    <h1 className="mr-3 inline-block">My routes</h1><button className="text-xl button-primary w-auto px-2 inline">+</button>
     <RoutesListFilter onOrderByClick= { onOrderByClick} onOrderDirClick= { onOrderDirClick} onQueryChange={onQueryChange} />
     <RoutesPaginator currentPage = { currentPage } totalItems = { totalRoutes } onPageClick={ onPageClick } />
     <RoutesList card={ myRoutesCard } routes={ routes } />

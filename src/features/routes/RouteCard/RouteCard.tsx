@@ -9,7 +9,7 @@ const RouteCard = ({ route }: RouteCardProps) => {
     <div className="row-start-2 row-end-3 col-start-1 col-end-2  max-h-5"><img src={markerImage} className="w-3 h-3 inline mr-1" />{ route.distance }km</div>
     <div className="row-start-2 row-end-3 col-start-2 col-end-3  max-h-5">{ route.durationTime }mins</div>
     <div className="row-start-3 row-end-4 col-start-2 col-end-3  max-h-5">
-      <span className="bg-primary text-white rounded-xl px-1  max-h-5">{ route.difficulty } moderate</span>
+      <span className="bg-primary text-white rounded font-bold px-2  max-h-5">{ route.difficulty } moderate</span>
     </div>
     <div className="row-start-3 row-end-4 col-start-1 col-end-2  max-h-5">{ route.likes } Likes</div>    
     

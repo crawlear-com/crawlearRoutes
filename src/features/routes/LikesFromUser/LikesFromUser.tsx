@@ -15,7 +15,7 @@ const LikesFromUser = () => {
   const [ currentPage, totalRoutes, routes, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ] = useRoutesProvider(getLikesFromUserFull);
   
   return (<>
-    <h1 className="mr-3 mt-25 inline-block">Favourite routes</h1>
+    <h1 className="mr-3 mt-10 inline-block">Favourite routes</h1>
     <RoutesListFilter onOrderByClick= { onOrderByClick} onOrderDirClick= { onOrderDirClick} onQueryChange={onQueryChange} />
     <RoutesPaginator currentPage = { currentPage } totalItems = { totalRoutes } onPageClick={ onPageClick } />
     <RoutesList card={ myRoutesCard } routes={ routes } />
