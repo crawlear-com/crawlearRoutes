@@ -1,5 +1,5 @@
 import { ITEMS_PAGE } from "../../../database/supabaseClient";
-import type { RoutesPaginatorProps } from "./RoutesPaginator.types";
+import type { RoutesPaginatorProps } from "./types/RoutesPaginator.types";
 
 const RoutesPaginator = ({ currentPage, totalItems, onPageClick }: RoutesPaginatorProps) => {
   const pages: Array<React.JSX.Element> = [];

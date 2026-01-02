@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { selectUserUUID } from '../../features/users/store/selectors/userSelectors';
 import type { RoutesDataFromProvider } from './RoutesDataFromProvider.types';
 
+const BOUNCING_TIMEOUT = 1000;
+
 const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   order_dir: string, query: string) => Promise<RoutesDataFromProvider>): 
   [ number, number, Array<Route>, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
@@ -32,7 +34,7 @@ const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
     }
     setBouncingTimeout(setTimeout(() => {
       setQuery(query);
-    }, 1000));
+    }, BOUNCING_TIMEOUT));
   }
   React.useEffect(() => {
     if (uuid) {
