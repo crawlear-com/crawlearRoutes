@@ -5,13 +5,19 @@
 ### Features
  - sign in / sign up
  - light / dark theme
+ - responsive design
  - multilanguage support with react-i18next and lazy load of language data
  - deploy into ghpages using routeHash and github environment variables for secret keys
  - toast notifications and errors (https://react-hot-toast.com/)
+ - redux (user session, theme)
 
 ### To-do
 
 - dinamyc imports to split code
+- deploy home server // crawlear.com
+- toast async
+- create route
+- MapPointerClick
 
 ## Install and run
 

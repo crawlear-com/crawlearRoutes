@@ -11,11 +11,13 @@
     "share with others": "Comparteix amb altres",
     "share favourites": "Comparteix amb altres els teus favorits i conecta amb la comunitat.",
     "ready to explore": "¿Preparat per explorar?",
-    "join crawlear": "Uneix-te a Crawlear i comença a compartir les teves rutes avui mateix."
+    "join crawlear": "Uneix-te a Crawlear i comença a compartir les teves rutes avui mateix.",
+    "my routes": "Les meves routes"
   },
   "login": {
     "signin": "Inicieu sessió",
     "signup": "Registra't",
+    "signout": "Desconectar",
     "sign in to explore": "Inicia la sessió per explorar, crear i organitzar les teves properes rutes de crawler o torna a la ",
     "landing": "pàgina principal",
     "dont have account": "¿No tens un compte?"

@@ -16,7 +16,7 @@ const MyRoutes = () => {
       <SimpleMap id="Search" point={{lat: 0, lon: 0}} className="w-full sm:w-[50%]" height="h-96 sm:h-full" />
       <div className="w-full sm:w-[50%]"><FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" /></div>
     </div>
-    <div className="flex mx-5 sm:mx-10 sm:mt-20 mb-10 flex-col sm:flex-row gap-5">
+    <div className="flex mx-5 sm:mx-10 sm:mt-20 mb-10 flex-col lg:flex-row gap-5">
       <RoutesFromUser />
       <LikesFromUser />
     </div>
