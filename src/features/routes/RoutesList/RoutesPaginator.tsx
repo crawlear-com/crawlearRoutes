@@ -16,7 +16,7 @@ const RoutesPaginator = ({ currentPage, totalItems, onPageClick }: RoutesPaginat
     pages.push(<span className={`${ currentPage === i ? "font-bold" : "cursor-pointer underline" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
   }
 
-  return (<div className="flex container"> 
+  return (<div className="flex container mb-5"> 
     <span className="flex-2 text-left mx-auto">Total: { totalItems }</span>
     <span className="flex-2 text-right">
       { currentPage-1 >= 0 ? <span className="cursor-pointer" data-page={Math.max(currentPage-1, 0)} onClick={ onPageEventHandler }>&lt;</span> : <></> }

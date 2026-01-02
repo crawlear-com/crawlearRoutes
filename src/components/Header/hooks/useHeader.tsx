@@ -13,9 +13,9 @@ const useHeader = (): [ boolean, string, string, boolean, () => void,
     const displayName = useSelector(selectUserDisplayName);
     const [ isOpen, setIsOpen ] = React.useState(false);
     const contentClass = `row-start-2 col-start-1 col-end-3 mt-5 z-1
-        rounded border border-primary sm:border-0 p-5 sm:p-0 sm:mt-0 bg-background sm:bg-transparent 
-        ${!isUserLogged ? "hidden" : (isOpen ? "block" : "hidden sm:block")}
-        sm:row-start-1 sm:col-start-2 sm:col-end-3 sm:justify-self-end`;
+        rounded border border-primary md:border-0 p-5 md:p-0 md:mt-0 bg-background md:bg-transparent 
+        ${!isUserLogged ? "hidden" : (isOpen ? "block" : "hidden md:block")}
+        md:row-start-1 md:col-start-2 md:col-end-3 md:justify-self-end`;
     const menuOnClick = () => {
         setIsOpen(!isOpen);
     }

@@ -9,7 +9,7 @@ const BOUNCING_TIMEOUT = 1000;
 
 const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   order_dir: string, query: string) => Promise<RoutesDataFromProvider>): 
-  [ number, number, Array<Route>, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
+  [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
   
   const [ routes, setRoutes ] = React.useState<Array<Route>>([]);
   const [ totalRoutes, setTotalRoutes ] = React.useState<number>(0);
@@ -18,6 +18,7 @@ const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   const [ orderDir, setOrderDir ] = React.useState<string>('asc');
   const [ query, setQuery ] = React.useState<string>('');
   const [ bouncingTimeout, setBouncingTimeout ] = React.useState(0);
+  const [ isLoading, setIsLoading ] = React.useState(false);
   const uuid = useSelector(selectUserUUID);
   const onPageClick = (page: number) => {
     setCurrentPage(page);
@@ -38,22 +39,25 @@ const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   }
   React.useEffect(() => {
     if (uuid) {
+      setIsLoading(true);
       const getData = async () => {
-        try {
-          const data =  await rpc(uuid, currentPage + 1, orderBy, orderDir, query);
+        const promise = rpc(uuid, currentPage + 1, orderBy, orderDir, query);
 
+        promise.then((data) => {
           setRoutes(data.routes);
           setTotalRoutes(data.total_count);
-        } catch(e: unknown) {
+          setIsLoading(false);
+        }).catch((e: unknown) => {
           toast.error((e as Error).message)
-        }
-      }
+          setIsLoading(false);
+        });
+      };
 
       getData();
     }
   }, [uuid, currentPage, rpc, orderBy, orderDir, query]);
 
-  return [ currentPage, totalRoutes, routes, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ];
+  return [ currentPage, totalRoutes, routes, isLoading, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ];
 }
 
 export default useRoutesProvider;
