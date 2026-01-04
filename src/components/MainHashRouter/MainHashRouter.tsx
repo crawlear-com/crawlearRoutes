@@ -18,7 +18,6 @@ const MainHashRouter = () => {
           <Route path="*" element={<NotFound404 />} />
         </Routes>
       </HashRouter>
-
 }
 
 export default MainHashRouter;
