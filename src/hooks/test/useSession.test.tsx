@@ -64,10 +64,20 @@ describe("useSession (with renderWithProviders)", () => {
   });
 
   it("does nothing when session does not exist", async () => {
+    (supabaseClient.auth.getSession as Mock).mockResolvedValue({ data: { session: null }});
+
     renderWithProviders(<MemoryRouter><TestComponent /></MemoryRouter>);
 
     await waitFor(() => {
-      expect(dispatchMock).not.toHaveBeenCalled();
+      expect(dispatchMock).toHaveBeenCalledTimes(2);
+      expect(dispatchMock.mock.calls[0]).toEqual([{
+        "payload": true,
+        "type": "user/setIsLoading",
+      }]);
+      expect(dispatchMock.mock.calls[1]).toEqual([{
+        "payload": false,
+        "type": "user/setIsLoading",
+      }]);
       expect(navigateMock).not.toHaveBeenCalled();
     });
   });
