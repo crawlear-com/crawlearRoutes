@@ -12,10 +12,13 @@ const userSlice = createSlice({
     },
     cleanSession: (state) => {
         state.session = null;
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     }
   }
 })
 
 export { userSlice };
-export const { setSession, cleanSession } = userSlice.actions
+export const { setSession, cleanSession,setIsLoading } = userSlice.actions
 export default userSlice.reducer

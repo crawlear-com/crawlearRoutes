@@ -1,4 +1,3 @@
-import useGuard from "../../../hooks/useGuard";
 import RouteCard from "../RouteCard/RouteCard";
 import RoutesList from "../RoutesList/RoutesList";
 import { getLikesFromUserFull } from "../../../database/MyRoutesRpc";
@@ -11,7 +10,6 @@ import RoutesListFilter from "../RoutesList/RoutesListFilter";
 import Spinner from "../../../components/Spinner/Spinner";
 
 const LikesFromUser = () => {
-  useGuard();
   const { t } = useTranslation(['myRoutes']);
 
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;
