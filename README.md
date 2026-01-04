@@ -10,6 +10,7 @@
  - deploy into ghpages using routeHash and github environment variables for secret keys
  - toast notifications and errors (https://react-hot-toast.com/)
  - redux (user session, theme)
+ - private routes using React router v7
 
 ### To-do
 
@@ -17,7 +18,6 @@
 - deploy home server // crawlear.com
 - toast async
 - create route
-- MapPointerClick
 
 ## Install and run
 

@@ -1,10 +1,10 @@
 import { XMLParser } from 'fast-xml-parser'
-import type { GpxInfo } from './GpxRouteMap.types';
-import type { RoutePoint } from './GpxRouteMap.types';
+import type { GpxInfo } from '../GpxRouteMap.types';
+import type { RoutePoint } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
 
-import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder';
-import type { GpxData } from '../../../types/Gpx.types';
+import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
+import type { GpxData } from '../../../../types/Gpx.types';
 
 const parseGpxString = (gpx: string) => {
     let result;
