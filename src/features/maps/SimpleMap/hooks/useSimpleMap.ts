@@ -1,25 +1,15 @@
 import * as React from 'react'
-import 'leaflet-gpx'
 import * as L from 'leaflet'
+import 'leaflet-gpx'
 import { iconRoute } from '../Icons'
 import type { GeoPoint } from '../../../../types/Route.types'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
 function useSimpleMap(id: string, point: GeoPoint): void {
-    const markers = React.useRef<Array<L.Layer>>([]);
     const map = React.useRef<L.Map | null>(null);
 
-    function removePreviousMarkers(removeCircle: boolean) {
-      markers.current.forEach((marker, index) => {
-        if(index === 0 && removeCircle || index > 0) {
-          marker.remove();
-        }
-      })
-    }
-
     const addPropsPoints = React.useCallback(() => {
-      removePreviousMarkers(false);
       if (point) {
           L.marker([point.lon, point.lat], { icon: iconRoute }).addTo(map.current!);
       }
