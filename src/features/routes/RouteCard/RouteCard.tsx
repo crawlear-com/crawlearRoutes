@@ -1,6 +1,6 @@
 import SimpleMap from "../../maps/SimpleMap/SimpleMap";
 import type { RouteCardProps } from "./RouteCard.types";
-import markerImage from '../../maps/SimpleMap/assets/images/marker-icon.png';
+import markerImage from './assets/images/marker-icon.png';
 import { v4 as uuidv4 } from 'uuid';
 
 const RouteCard = ({ route }: RouteCardProps) => {
