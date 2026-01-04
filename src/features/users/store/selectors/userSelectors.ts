@@ -15,4 +15,9 @@ const selectUserDisplayName = createSelector(
   (user) => user.session?.user.user_metadata.displayName
 );
 
-export { selectUserSession, selectUserUUID, selectUserDisplayName };
+const selectIsLoading = createSelector(
+  (state) => state.user,
+  (user) => user.isLoading
+);
+
+export { selectUserSession, selectUserUUID, selectUserDisplayName, selectIsLoading };

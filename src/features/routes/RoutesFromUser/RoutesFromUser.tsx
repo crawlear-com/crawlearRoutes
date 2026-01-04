@@ -1,4 +1,3 @@
-import useGuard from "../../../hooks/useGuard";
 import RouteCard from "../RouteCard/RouteCard";
 import RoutesList from "../RoutesList/RoutesList";
 import { getMyRoutesFull } from "../../../database/MyRoutesRpc";
@@ -11,7 +10,6 @@ import Spinner from "../../../components/Spinner/Spinner";
 import type { Route } from "../../../types/Route.types";
 
 const RoutesFromUser = () => {
-  useGuard();
   const { t } = useTranslation(['myRoutes']);
 
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;

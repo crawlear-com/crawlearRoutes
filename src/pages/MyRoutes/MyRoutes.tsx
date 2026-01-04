@@ -1,6 +1,5 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import useGuard from "../../hooks/useGuard";
 import RoutesFromUser from "../../features/routes/RoutesFromUser/RoutesFromUser";
 import LikesFromUser from "../../features/routes/LikesFromUser/LikesFromUser";
 //import SimpleMap from "../../features/maps/SimpleMap/SimpleMap";
@@ -12,12 +11,10 @@ import type { GeoPoint } from "../../types/Route.types";
 //<SimpleMap id="Search" point={{lat: 0, lon: 0}} className="w-full sm:w-[50%]" height="h-96 sm:h-full" />
 
 const MyRoutes = () => {
-  useGuard();
-  
-const onFileLoaded = (fileContent: string, routePoint: GeoPoint) => {
-  console.log(fileContent);
-  console.log(routePoint);
-}
+  const onFileLoaded = (fileContent: string, routePoint: GeoPoint) => {
+    console.log(fileContent);
+    console.log(routePoint);
+  }
 
   return (<>
     <Header />

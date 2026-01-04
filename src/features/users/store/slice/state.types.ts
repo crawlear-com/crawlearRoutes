@@ -2,11 +2,13 @@ import type { Session } from "@supabase/supabase-js"
 
 
 interface UserState {
-  session: Session | null
+  session: Session | null,
+  isLoading: boolean
 }
 
 const initialState: UserState = {
-  session: null
+  session: null,
+  isLoading: true
 }
 
 export { type UserState, initialState };
