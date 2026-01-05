@@ -20,24 +20,24 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
       })
     }
 
-    const mapClick = React.useCallback((e: L.LeafletMouseEvent) => {
-      const bounds: L.LatLngBounds | undefined = map.current?.getBounds();
-      if (bounds) {
-        const latGrad = (bounds.getNorthEast().lat - bounds.getSouthWest().lat)
-        removePreviousMarkers(true);
-        markers.current = [];
-        circleMarkerAttribs.radius = latGrad * RADIUS_SCALE;
+    React.useEffect(() => {
+      const mapClick = (e: L.LeafletMouseEvent) => {
+        const bounds: L.LatLngBounds | undefined = map.current?.getBounds();
+        if (bounds) {
+          const latGrad = (bounds.getNorthEast().lat - bounds.getSouthWest().lat)
+          removePreviousMarkers(true);
+          markers.current = [];
+          circleMarkerAttribs.radius = latGrad * RADIUS_SCALE;
 
-        const circle = L.circle([e.latlng.lat, e.latlng.lng], circleMarkerAttribs).addTo(map.current!);
-        markers.current.push(circle);
+          const circle = L.circle([e.latlng.lat, e.latlng.lng], circleMarkerAttribs).addTo(map.current!);
+          markers.current.push(circle);
 
-        if (map.current && onMapClick) {
-          onMapClick(e.latlng, map.current.getBounds());
+          if (map.current && onMapClick) {
+            onMapClick(e.latlng, map.current.getBounds());
+          }
         }
       }
-    }, [onMapClick]);
 
-    React.useEffect(() => {
       const newMap = L.map('mappicker').fitBounds(ARROUND_BARCELONA)
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
@@ -51,7 +51,7 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
         newMap.off()
         newMap.remove()
       }
-    }, [mapClick])
+    }, [onMapClick])
     
     const addPropsPoints = React.useCallback(() => {
       let max: GeoPoint = { lat: -90, lon: -180 }

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectIsLoading, selectUserSession } from '../../users/store/selectors/userSelectors';
-import Spinner from '../../../components/Spinner/Spinner';
-import useSession from '../../../hooks/useSession';
+import { selectIsLoading, selectUserSession } from '../../features/users/store/selectors/userSelectors';
+import Spinner from '../Spinner/Spinner';
+import useSession from '../../hooks/useSession';
 
 export const PrivateRoute: React.FC = () => {
   useSession();
