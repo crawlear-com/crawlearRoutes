@@ -1,6 +1,8 @@
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 import type { RoutesDataFromProvider } from "./hooks/RoutesDataFromProvider.types";
 
+const MAX_ROWS = 30;
+
 const getMyRoutesFull = async (uuid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string): Promise<RoutesDataFromProvider> => {
     const { data, error } = await supabaseClient.rpc('routesByOwner', { 
@@ -37,8 +39,8 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
     }
 }
 
-const getRoutesInView = async (minLat: number, minLon: number, maxLat: number, maxLon: number) => {
-    const { data, error } = await supabaseClient.rpc('routes_in_view', { 
+const searchRoutesByGeo = async (minLat: number, minLon: number, maxLat: number, maxLon: number) => {
+    const { data, error } = await supabaseClient.rpc('searchRoutesByGeo', { 
       min_lat: minLat,
       min_long: minLon,
       max_lat: maxLat,
@@ -52,4 +54,17 @@ const getRoutesInView = async (minLat: number, minLon: number, maxLat: number, m
     }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, getRoutesInView };
+const searchPublicRoutes = async (query: string) => {
+    const { data, error } = await supabaseClient.rpc('searchPublicRoutes', { 
+      q: query,
+      limit_rows: MAX_ROWS
+    }); 
+
+    if(!error) {
+        return data;
+    } else {
+      throw new Error('Error searching public routes');
+    }
+}
+
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, searchRoutesByGeo, searchPublicRoutes };

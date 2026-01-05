@@ -1,17 +1,17 @@
 import useRoutesListFilter from "./hooks/useRoutesListFilter";
+import SearchInput from "../../../components/SearchInput/SearchInput";
 import type { RoutesListFilterProps } from "./types/RoutesListFilter.types";
 
 import './styles/routerListFilter.css';
 
 const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange }: RoutesListFilterProps) => {
-  const [orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler, onQueryChangeHandler,
-    onCollapseClick, orderDirIcon] = useRoutesListFilter(onOrderByClick, onOrderDirClick, onQueryChange);
+  const [orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler,
+    onCollapseClick, orderDirIcon] = useRoutesListFilter(onOrderByClick, onOrderDirClick);
 
   return (<div className="container flex justify-end items-center mx-auto mb-2">
       <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
-      <input className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`} 
-        onChange={ onQueryChangeHandler }
-        placeholder="Filter routes..." type="text" />
+      <SearchInput className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
+        placeholder="Filter routes..." onQueryChange={ onQueryChange } />
 
       <span className={`${isCollapsed ? "hidden" : "button-primary w-8 mx-1 text-center"}`} onClick={onOrderDirClickHandler}>{orderDirIcon}</span>
 
@@ -19,11 +19,11 @@ const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange }: Ro
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='name'? ' selected':''}`}>
         Name
       </div>
-      <div data-order="date" onClick={onOrderByClickHandler} 
+      <div data-order="date" onClick={ onOrderByClickHandler } 
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='date'? ' selected':''}`}>
         Date
       </div>
-      <div data-order="likes" onClick={onOrderByClickHandler}
+      <div data-order="likes" onClick={ onOrderByClickHandler }
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='likes'? ' selected':''}`}>
         Likes
       </div>

@@ -18,6 +18,9 @@
 - deploy home server // crawlear.com
 - toast async
 - create route
+- adjust click search points (modificators)
+- move useRoutesProvider to another place
+- input query validation with zod (or not?), but validation
 
 ## Install and run
 
