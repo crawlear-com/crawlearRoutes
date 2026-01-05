@@ -1,5 +1,5 @@
 type SpinnerProps = {
-    extraClass?: string
+    className?: string
 };
 
 export type { SpinnerProps };

@@ -45,8 +45,8 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
   const onMapClick = React.useCallback((latlon: L.LatLng) => {
       setIsLoading(true);
       const getData = async () => {
-        const promise = searchRoutesByGeo(latlon.lat-LAT_MODIFIER, 
-          latlon.lng-LON_MODIFIER, latlon.lat+LAT_MODIFIER, latlon.lng+LON_MODIFIER);
+        const promise = searchRoutesByGeo(latlon.lat - LAT_MODIFIER,
+          latlon.lng - LON_MODIFIER, latlon.lat + LAT_MODIFIER, latlon.lng + LON_MODIFIER);
 
         promise.then((routes) => {
           setIsLoading(false);

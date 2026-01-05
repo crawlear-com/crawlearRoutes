@@ -10,13 +10,13 @@ const SearchRoute = () => {
 
   return (<div className="w-full sm:w-[50%]">
     <MapPointPicker onMapClick={ onMapClick } points={ points } className="w-full h-96 sm:h-full"></MapPointPicker>
-    <label htmlFor="searchRouteInput" className="mt-56">
-      { t('main.search route') }:
-      <SearchInput className="border-primary border h-10 p-2 ml-2 rounded"
-        onQueryChange={ onQueryChange } placeholder={ t('main.by title') } />
-    </label>
-    { isLoading ? <Spinner /> : <></>}
-    { resultRoutes && resultRoutes.length ? <>{ t('main.total') }: { resultRoutes.length }</> : <></>}
+      <label htmlFor="searchRouteInput" className="mt-56">
+        { t('main.search route') }:
+        <SearchInput className="border-primary border h-10 p-2 ml-2 rounded"
+          onQueryChange={ onQueryChange } placeholder={ t('main.by title') } />
+      </label>
+      { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
+      <span className="ml-2">{ resultRoutes && resultRoutes.length ? <>{ t('main.total') }: { resultRoutes.length }</> : <></>}</span>
   </div>);
 }
 
