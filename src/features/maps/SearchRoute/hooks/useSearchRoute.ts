@@ -8,9 +8,6 @@ type MapPoint = {
   content: HTMLDivElement
 }
 
-const LAT_MODIFIER = 0.35;
-const LON_MODIFIER = 0.45;
-
 const getPointsFromRoutes = (routes: Array<Route>) => {
   return routes.map((route: Route) => {
     const link = document.createElement('div')
@@ -24,7 +21,7 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
 }
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
-  (latlon: L.LatLng) => void, (query: string) => void ] => {
+  (latlon: L.LatLng, mapBounds: L.LatLngBounds) => void, (query: string) => void ] => {
 
   const [ resultRoutes, setResultRoutes ] = React.useState<Array<Route>>([]);
   const [ points, setPoints ] = React.useState<Array<MapPoint>>([]);
@@ -42,11 +39,18 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     });
   }
 
-  const onMapClick = React.useCallback((latlon: L.LatLng) => {
+  const onMapClick = React.useCallback((latlon: L.LatLng, mapBounds: L.LatLngBounds) => {
+    const southWest = mapBounds.getSouthWest();
+    const northEast = mapBounds.getNorthEast();
+
+      const latLength = Math.abs(northEast.lat - southWest.lat) / 2
+      const lonLength = Math.abs(northEast.lng - southWest.lng) / 4
+      
       setIsLoading(true);
       const getData = async () => {
-        const promise = searchRoutesByGeo(latlon.lat - LAT_MODIFIER,
-          latlon.lng - LON_MODIFIER, latlon.lat + LAT_MODIFIER, latlon.lng + LON_MODIFIER);
+        //where('point.lat', '>', latlon.lat - bounds.lat), where('point.lat', '<', latlon.lat + bounds.lat)
+        const promise = searchRoutesByGeo(latlon.lat - latLength,
+          latlon.lng - lonLength, latlon.lat + latLength, latlon.lng + lonLength);
 
         promise.then((routes) => {
           setIsLoading(false);

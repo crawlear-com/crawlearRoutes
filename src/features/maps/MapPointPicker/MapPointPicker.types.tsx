@@ -6,7 +6,7 @@ type PopopPoint = {
 }
 
 type MapPointPickerProps = {
-    onMapClick?: (latlon: L.LatLng) => void,
+    onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBounds) => void,
     points?: Array<PopopPoint>,
     className?: string
 }
