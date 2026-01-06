@@ -2,5 +2,10 @@
   "errors": {
     "error_-1": "La geolocalització no està disponible",
     "error_-2": "La geolocalització no s'ha pogut resoldre"
+  },
+  "main": {
+    "search route": "Buscar ruta",
+    "total": "Total",
+    "by title": "per títol o descripció..."
   }
 }

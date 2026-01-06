@@ -1,12 +1,12 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getFitBoundsFromPosition } from './Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getFitBoundsFromPosition } from '../helpers/Utils'
 
-import type { RoutePoint, GpxInfo } from './GpxRouteMap.types'
-//import { useTranslation } from "react-i18next"
-import type { GeoPoint } from '../../../types/Route.types'
+import type { RoutePoint, GpxInfo } from '../GpxRouteMap.types'
+import type { GeoPoint } from '../../../../types/Route.types'
 import { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
+import GpxInfoCard from '../GpxInfo'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
@@ -20,25 +20,17 @@ const gpxParserOptions = {
     }
 }
 
-function UseGpxRouteMap(onFileResolved?: (fileContent: string, routePoint: GeoPoint) => void, gpx?: string):
+const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint) => void, gpx?: string):
   [(fileContents: string) => void, React.JSX.Element, boolean, React.Dispatch<React.SetStateAction<boolean>>,
-     number, React.Dispatch<React.SetStateAction<number>>] {
-    const map = React.useRef<L.Map | null>(null)
-    const [extraGpxInfo, setExtraGpxInfo] = React.useState<React.JSX.Element>(<></>)
-    const [recordState, setRecordState] = React.useState(false)
-    const [error, setError] = React.useState<number>(0)
-    //const { t } = useTranslation('gpxRouteMap')
-
+     number, React.Dispatch<React.SetStateAction<number>>] => {
+  
+  const map = React.useRef<L.Map | null>(null)
+  const [extraGpxInfo, setExtraGpxInfo] = React.useState<React.JSX.Element>(<></>)
+  const [recordState, setRecordState] = React.useState(false)
+  const [error, setError] = React.useState<number>(0)
   const onFileLoaded = React.useCallback((fileContents: string) => {
-    function generateInfoPopUp(gpxInfo: GpxInfo): React.JSX.Element {
-      return <div className="extraGpxInfoContainer rounded rounded3">
-        <span className="bold">distancia</span><span>{`: ${(gpxInfo.distance/1000).toFixed(3)} m`}</span><br />
-        <span className="bold">tiempo</span><span>{`: ${((gpxInfo.time/1000)/60).toFixed(3)} mins`}</span><br />
-        <span className="bold">tiempo mov</span><span>{`: ${((gpxInfo.movingTime/1000)/60).toFixed(3)} mins`}</span><br />
-        <span className="bold">elevacionmin</span><span>{`: ${(gpxInfo.elevationMin).toFixed(3)} m`}</span><br />
-        <span className="bold">elevacionmax</span><span>{`: ${(gpxInfo.elevationMax).toFixed(3)} m`}</span><br />
-        <span className="bold">velocidad</span><span>{`: ${(gpxInfo.speed).toFixed(3)} Km/h`}</span><br />
-      </div>
+    const generateInfoPopUp = (gpxInfo: GpxInfo): React.JSX.Element => {
+      return <GpxInfoCard gpxInfo={ gpxInfo } />
     }
       try {
         const jObj = parseGpxString(fileContents)
@@ -78,8 +70,7 @@ function UseGpxRouteMap(onFileResolved?: (fileContent: string, routePoint: GeoPo
       if(!map.current) {
         map.current = L.map('map').fitBounds(bounds);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-          attribution: '© OpenStreetMap'
+          maxZoom: 19 
         }).addTo(map.current)
       }
     }
@@ -107,4 +98,4 @@ function UseGpxRouteMap(onFileResolved?: (fileContent: string, routePoint: GeoPo
 
 
 
-export default UseGpxRouteMap
+export default useGpxRouteMap

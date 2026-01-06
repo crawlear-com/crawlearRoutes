@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 import { selectUserUUID } from '../../features/users/store/selectors/userSelectors';
 import type { RoutesDataFromProvider } from './RoutesDataFromProvider.types';
 
-const BOUNCING_TIMEOUT = 1000;
-
 const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   order_dir: string, query: string) => Promise<RoutesDataFromProvider>): 
   [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
@@ -17,7 +15,6 @@ const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
   const [ orderBy, setOrderBy ] = React.useState<string>('name');
   const [ orderDir, setOrderDir ] = React.useState<string>('asc');
   const [ query, setQuery ] = React.useState<string>('');
-  const [ bouncingTimeout, setBouncingTimeout ] = React.useState(0);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const uuid = useSelector(selectUserUUID);
   const onPageClick = (page: number) => {
@@ -30,13 +27,9 @@ const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
     setOrderDir(order);
   }
   const onQueryChange = (query: string) => {
-    if (bouncingTimeout !== 0) {
-      clearTimeout(bouncingTimeout);
-    }
-    setBouncingTimeout(setTimeout(() => {
       setQuery(query);
-    }, BOUNCING_TIMEOUT));
-  }
+    };
+
   React.useEffect(() => {
     if (uuid) {
       setIsLoading(true);

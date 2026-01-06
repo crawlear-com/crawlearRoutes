@@ -2,5 +2,10 @@
   "errors": {
     "error_-1": "Geolocation not available",
     "error_-2": "Geolocation not resolved"
+  },
+  "main": {
+    "search route": "Search route",
+    "total": "Total",
+    "by title": "by title or description..."
   }
 }

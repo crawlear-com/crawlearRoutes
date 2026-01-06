@@ -1,9 +1,9 @@
 import * as React from 'react'
-import useGpxRouteMap from './useGpxRouteMap'
-import useRouteRecorder from './useRouteRecorder'
+import useGpxRouteMap from './hooks/useGpxRouteMap'
+import useRouteRecorder from './hooks/useRouteRecorder'
 //import useWakeLock from './useWakeLock'
 import RecButton from './RecButton'
-import { parseGpxString, getRoutePoint } from './Utils'
+import { parseGpxString, getRoutePoint } from './helpers/Utils'
 
 import 'leaflet/dist/leaflet.css'
 import FileLoader from './FileLoader'
