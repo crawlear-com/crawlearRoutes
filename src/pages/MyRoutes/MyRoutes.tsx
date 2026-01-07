@@ -5,11 +5,12 @@ import LikesFromUser from "../../features/routes/LikesFromUser/LikesFromUser";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import SearchRoute from "../../features/maps/SearchRoute/SearchRoute";
+import { NavLink } from "react-router";
 
 const MyRoutes = () => {
   return (<>
     <Header />
-    Crear ruta <button className="text-xl button-primary w-auto px-2 inline">+</button>
+    <NavLink to="/record" className="text-xl button-primary w-auto px-2 inline">+</NavLink>
     <div className="flex mx-0 sm:mx-10 sm:mt-20 mb-10 flex-col sm:flex-row gap-5">
       <SearchRoute />
       <div className="w-full sm:w-[50%] px-2 sm:px-0"><FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" /></div>

@@ -53,8 +53,8 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
     setPollingTime(value)
   }
 
-  return <div className="w-full">
-        <div id="map" title='routeMap' className={`${className}`}></div>
+  return <div className="w-full h-full">
+        <div id="map" title='routeMap' className={`${className} rounded-xl`}></div>
         { extraGpxInfo }
         { onRouteRecorded && <>
           <RecButton onStartStopRecord={onStartStopRecord} recordState={recordState} onPollingTimeChange={onPollingTimeChanged} value={pollingTime} />
