@@ -9,7 +9,7 @@ const RoutesList = ({ title, card, hook, rpc}: RoutesListProps) => {
     onOrderDirClick, onQueryChange ] = hook(rpc);
 
   return (<div className="w-full lg:w-[50%]">
-    <h1 className="mr-3 inline-block">{ title }</h1><button className="text-xl button-primary w-auto px-2 inline">+</button>
+    { title ? <h1 className="mr-3 inline-block">{ title }</h1> : <></>}
     <RoutesListFilter onOrderByClick= { onOrderByClick} onOrderDirClick= { onOrderDirClick} onQueryChange={onQueryChange} />
     <RoutesPaginator currentPage = { currentPage } totalItems = { totalRoutes } onPageClick={ onPageClick } />
     { isLoading ? <Spinner /> : <RoutesCardList card={ card } routes={ routes } /> }

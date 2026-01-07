@@ -9,6 +9,7 @@ import SearchRoute from "../../features/maps/SearchRoute/SearchRoute";
 const MyRoutes = () => {
   return (<>
     <Header />
+    Crear ruta <button className="text-xl button-primary w-auto px-2 inline">+</button>
     <div className="flex mx-0 sm:mx-10 sm:mt-20 mb-10 flex-col sm:flex-row gap-5">
       <SearchRoute />
       <div className="w-full sm:w-[50%] px-2 sm:px-0"><FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" /></div>
