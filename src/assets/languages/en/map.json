@@ -6,6 +6,10 @@
   "main": {
     "search route": "Search route",
     "total": "Total",
-    "by title": "by title or description..."
+    "by title": "by title or description...",
+    "stop": "Stop",
+    "rec": "Rec",
+    "polling time": "polling time",
+    "secs": "secs"
   }
 }

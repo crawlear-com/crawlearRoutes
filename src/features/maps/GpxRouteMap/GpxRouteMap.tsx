@@ -2,7 +2,7 @@ import * as React from 'react'
 import useGpxRouteMap from './hooks/useGpxRouteMap'
 import useRouteRecorder from './hooks/useRouteRecorder'
 //import useWakeLock from './useWakeLock'
-import RecButton from './RecButton'
+import RecButton from './RecButton/RecButton'
 import { parseGpxString, getRoutePoint } from './helpers/Utils'
 
 import 'leaflet/dist/leaflet.css'
@@ -35,15 +35,16 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
   }, [error, t]);
 
   function onStartStopRecord(event: React.MouseEvent<HTMLButtonElement>) {
-    setError(NO_ERROR)
-    setRecordState(!recordState)
-    onStartStopClick(event)
-    if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
-      const jObj = parseGpxString(gpxRecorded)
-      const routePoint = getRoutePoint(jObj)
+    setError(NO_ERROR);
+    setRecordState(!recordState);
+    onStartStopClick(event);
+    if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && 
+      (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
+        const jObj = parseGpxString(gpxRecorded)
+        const routePoint = getRoutePoint(jObj)
 
-      //releaseWakeLock()
-      onRouteRecorded(gpxRecorded, routePoint)
+        //releaseWakeLock()
+        onRouteRecorded(gpxRecorded, routePoint)
     } else if (!recordState) {
       //requestWakeLock()
     }

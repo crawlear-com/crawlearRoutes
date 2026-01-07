@@ -6,6 +6,10 @@
   "main": {
     "search route": "Buscar ruta",
     "total": "Total",
-    "by title": "por título o descripción..."
+    "by title": "por título o descripción...",
+    "stop": "Parar",
+    "rec": "Grabar",
+    "polling time": "tiempo de actualitzación",
+    "secs": "segs"
   }
 }
