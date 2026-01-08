@@ -54,7 +54,7 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
     }
   }, [error, t]);
 
-  return <div className="w-full h-full">
+  return <div className="w-full h-full flex flex-col">
         <div id="map" title='routeMap' className={`${className} rounded-xl`}></div>
         <div className="flex justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }

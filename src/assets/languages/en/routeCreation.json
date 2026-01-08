@@ -1,6 +1,17 @@
 {
   "main": {
     "route creation": "Route creation (live)",
-    "route creation description": "First of all create the route GPS data, using the 'Rec' button or uploading a GPX file generated with your prefered GPS software of device. The file must be in GPX format.  Once you created the GPS data, you'll be able to fill all the route data in a next step."
+    "route creation description": "First of all create the route GPS data. Once you created the GPS data, you'll be able to fill all the route data in a next step.",
+    "route creation step1": "GPS data generation: use the 'Rec' button tp record a route or upload a GPX file generated with your preferred GPS software or device. The file must be a GPX file. To continue, push the 'Next' button.",
+    "route creation step2": "Route data: to finish and save the route, fill all the requiered fields.",
+    "step": "Step",
+    "next": "Next",
+    "previous": "Previous",
+    "process is finished": "The creation process is finished",
+    "route name": "Route name",
+    "route description": "Description",
+    "route is plublic": "Is public",
+    "route difficulty": "Difficulty",
+    "route scale": "Scale"
   }
 }

@@ -17,10 +17,10 @@ const LoginForm = () => {
             </p>
 
             <form className="space-y-4" action={ onSubmitLoginForm } noValidate>
-                <input className="input" type="email" id="email" name="email" placeholder="Email"
+                <input className="input p-3" type="email" id="email" name="email" placeholder="Email"
                     onChange={ () => { setAndValidate(setEmail, 'email', emailSchema) }} value={ email } />
                 <FormFeedbackElement className="email__feedback" />
-                <input className="input" type="password" id="password" name="password" placeholder="Password"
+                <input className="input p-3" type="password" id="password" name="password" placeholder="Password"
                     onChange={ onPaswordChange } value={ password } />
                 <FormFeedbackElement className="password__feedback" />
                 <button type="submit" className="button-primary">  { t("login.signin") } </button>

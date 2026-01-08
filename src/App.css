@@ -30,8 +30,8 @@
     @apply inline text-primary;
   }
 
-  .input {
-    @apply border border-primary rounded-xl p-3 sm:min-w-80;
+  input[type="text"], textarea, .input {
+    @apply border border-primary rounded p-1;
   }
 
   .valid {
@@ -41,6 +41,26 @@
   .invalid, .invalid:focus {
     @apply border-primary; 
   }
+
+  input[type="checkbox"] {
+    @apply w-5 h-5 accent-primary border border-primary;
+    @apply rounded cursor-pointer decoration-primary;
+  }
+
+  input[type="checkbox"]:checked::after {
+    @apply content-["::"];
+
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    border-color: white;
+    border-style: solid;
+  }
+
 
   body h1 {
     @apply text-4xl font-bold mb-6;

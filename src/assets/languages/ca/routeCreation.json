@@ -1,6 +1,17 @@
 {
   "main": {
     "live route creation": "Creació de ruta (en viu)",
-    "route creation description": "Primer genera les dades GPS de la ruta, usant el botó 'Gravar' o pujant un fitxer gpx que préviament has generat amb el teu software o dispositiu GPS preferit. El fitxer ha d'estar en format GPX. Un cop has creat les dades GPS, podràs acabar d'omplir' les dades de la ruta en un seguent pas."
+    "route creation description": "Primer genera les dades GPS de la ruta. Un cop has creat les dades GPS, podràs acabar d'omplir' les dades de la ruta en un seguent pas.",
+    "route creation step1": "Generació de les dades de GPS: usant el botó 'Gravar' o pujant un fitxer gpx que préviament has generat amb el teu software o dispositiu GPS preferit. El fitxer ha d'estar en format GPX. Pulsa el botó següent un cop tinguis les dades GPS capturades.",
+    "route creation step2": "Dades de la ruta: per finalitzar la ruta i guardar-la, omple els camps requerits.",
+    "step": "Pas",
+    "next": "Següent",
+    "previous": "Anterior",
+    "process is finished": "El procés de creació ha finalitzat",
+    "route name": "Nom de la ruta",
+    "route description": "Descriptió de la ruta",
+    "route is plublic": "és pública",
+    "route difficulty": "Dificultat de la ruta",
+    "route scale": "Escala de la ruta"
   }
 }
