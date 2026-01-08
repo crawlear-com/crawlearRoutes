@@ -1,0 +1,6 @@
+{
+  "main": {
+    "live route creation": "Creació de ruta (en viu)",
+    "route creation description": "Primer genera les dades GPS de la ruta, usant el botó 'Gravar' o pujant un fitxer gpx que préviament has generat amb el teu software o dispositiu GPS preferit. El fitxer ha d'estar en format GPX. Un cop has creat les dades GPS, podràs acabar d'omplir' les dades de la ruta en un seguent pas."
+  }
+}

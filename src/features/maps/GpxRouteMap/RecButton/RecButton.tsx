@@ -13,12 +13,12 @@ function RecButton({ value, onStartStopRecord, recordState, onPollingTimeChange}
     const { t } = useTranslation(['map']);
     const [ readOnlyStatus, onInputValueChange ] = useRecButton(recordState, onPollingTimeChange);
 
-    return <div>
+    return <div className=''>
         <button id="recButton" className={`inline mr-2 button-primary w-auto h-10`} 
             onClick={ onStartStopRecord }> { recordState ? t('main.stop') : t('main.rec') }
         </button>
-        <span>{ t('main.polling time') }</span>
-        <input className='m-auto text-right' type="number" min="14" max="120" 
+        <span className=''>{ t('main.polling time') }</span>
+        <input className='m-auto text-right border border-primary rounded mx-1' type="number" min="14" max="120" 
             { ...readOnlyStatus } value={ value } onChange={ onInputValueChange } />
         <span className='m-auto'>{ t('main.secs') }</span>
     </div>

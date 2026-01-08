@@ -1,0 +1,6 @@
+{
+  "main": {
+    "route creation": "Route creation (live)",
+    "route creation description": "First of all create the route GPS data, using the 'Rec' button or uploading a GPX file generated with your prefered GPS software of device. The file must be in GPX format.  Once you created the GPS data, you'll be able to fill all the route data in a next step."
+  }
+}

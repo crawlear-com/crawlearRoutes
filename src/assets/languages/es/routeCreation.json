@@ -1,0 +1,6 @@
+{
+  "main": {
+    "route creation": "Creación de ruta (en vivo)",
+    "route creation description": "Primero genera los datos GPS de la ruta, usando el botón 'Grabar' o subiendo un fichero gpx que préviamente has generado con el tu software o dispositivo GPS preferido. El fichero ha de estar en formato GPX. Una vez hayas creado los datos GPS, podrás acabar de rellenar los datos de la ruta en un siguiente paso."
+  }
+}

@@ -1,4 +1,4 @@
-import type { GpxInfoCardProps } from "./GpxInfo.types";
+import type { GpxInfoCardProps } from "./GpxInfoCard.types";
 
 const GpxInfoCard = ({ gpxInfo }: GpxInfoCardProps) => {
     return <div className="extraGpxInfoContainer rounded rounded3">

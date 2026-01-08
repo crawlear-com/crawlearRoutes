@@ -6,7 +6,7 @@ import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getF
 import type { RoutePoint, GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
 import { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
-import GpxInfoCard from '../GpxInfo'
+import GpxInfoCard from '../GpxInfoCard/GpxInfoCard'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 

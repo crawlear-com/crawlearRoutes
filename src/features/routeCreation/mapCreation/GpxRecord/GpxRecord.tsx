@@ -19,7 +19,7 @@ const GpxRecord = () => {
 
   return (<div className="w-screen h-screen">
       <GpxRouteMap gpx={ gpx } onFileResolved={ onGpxResolved } 
-        onRouteRecorded={ onGpxResolved } className="h-96 sm:h-[60%] m-5" />
+        onRouteRecorded={ onGpxResolved } className="h-96 sm:h-[60%] sm:m-5" />
     </div>);
 }
 

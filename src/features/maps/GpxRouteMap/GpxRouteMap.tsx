@@ -15,10 +15,10 @@ const NO_ERROR = 0;
 
 function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRouteMapProps): React.JSX.Element {
   const { t } = useTranslation(['map']);
-  const [pollingTime, setPollingTime] = React.useState<number>(30)
-  const [gpxRecorded, onStartStopClick] = useRouteRecorder(pollingTime, onError, gpx)
-  const [onFileLoaded, extraGpxInfo, recordState, setRecordState, error, setError] = useGpxRouteMap(onFileResolved, gpxRecorded)
-  //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError)
+  const [pollingTime, setPollingTime] = React.useState<number>(30);
+  const [gpxRecorded, onStartStopClick] = useRouteRecorder(pollingTime, onError, gpx);
+  const [onFileLoaded, extraGpxInfo, recordState, setRecordState, error, setError] = useGpxRouteMap(onFileResolved, gpxRecorded);
+  //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
   function onError(error: number) {
     setError(error)
@@ -28,39 +28,41 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
     //releaseWakeLock();
   }
 
-  React.useEffect(() => {
-    if (error!==0) {
-      toast.error(t(`errors.error_${error}`))
-    }
-  }, [error, t]);
-
   function onStartStopRecord(event: React.MouseEvent<HTMLButtonElement>) {
     setError(NO_ERROR);
     setRecordState(!recordState);
     onStartStopClick(event);
     if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && 
       (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
-        const jObj = parseGpxString(gpxRecorded)
-        const routePoint = getRoutePoint(jObj)
+        const jObj = parseGpxString(gpxRecorded);
+        const routePoint = getRoutePoint(jObj);
 
-        //releaseWakeLock()
-        onRouteRecorded(gpxRecorded, routePoint)
+        //releaseWakeLock();
+        onRouteRecorded(gpxRecorded, routePoint);
     } else if (!recordState) {
-      //requestWakeLock()
+      //requestWakeLock();
     }
   }
 
   function onPollingTimeChanged(value: number) {
-    setPollingTime(value)
+    setPollingTime(value);
   }
+
+  React.useEffect(() => {
+    if (error!==0) {
+      toast.error(t(`errors.error_${error}`));
+    }
+  }, [error, t]);
 
   return <div className="w-full h-full">
         <div id="map" title='routeMap' className={`${className} rounded-xl`}></div>
-        { extraGpxInfo }
-        { onRouteRecorded && <>
-          <RecButton onStartStopRecord={onStartStopRecord} recordState={recordState} onPollingTimeChange={onPollingTimeChanged} value={pollingTime} />
-        </> }
-        { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
+        <div className="flex justify-center mt-5">
+          { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
+          { onRouteRecorded && <>
+            <RecButton onStartStopRecord={onStartStopRecord} recordState={recordState} onPollingTimeChange={onPollingTimeChanged} value={pollingTime} />
+          </> }
+          { extraGpxInfo }
+        </div>
       </div>
 }
 
