@@ -7,11 +7,6 @@ type GpxRouteMapProps = {
   onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => void
 }
 
-type RoutePoint = {
-  lat: number,
-  lon: number
-}
-
 type GpxInfo = {
   distance: number,
   time: number,
@@ -21,4 +16,4 @@ type GpxInfo = {
   elevationMax: number
 }
 
-export type { GpxRouteMapProps, GpxInfo, RoutePoint };
+export type { GpxRouteMapProps, GpxInfo };

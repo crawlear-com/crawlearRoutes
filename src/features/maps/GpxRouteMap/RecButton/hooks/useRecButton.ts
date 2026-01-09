@@ -9,9 +9,10 @@ const useRecButton = (recordState: boolean, onPollingTimeChange: (value: number)
     const readOnlyStatus = { disabled: recordState };
 
     const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Number((e.target as HTMLInputElement).value)
+        let value = Number((e.target as HTMLInputElement).value);
 
-        onPollingTimeChange(value)
+        value = Math.max(value, Number(e.target.min));
+        onPollingTimeChange(value);
     }
 
     return [ readOnlyStatus, onValueChange ];

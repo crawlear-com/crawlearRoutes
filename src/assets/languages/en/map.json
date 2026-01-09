@@ -9,6 +9,8 @@
     "by title": "by title or description...",
     "stop": "Stop",
     "rec": "Rec",
+    "pause": "Pause",
+    "paused": "Paused",
     "polling time": "polling time",
     "secs": "secs",
     "upload": "Upload Gpx"

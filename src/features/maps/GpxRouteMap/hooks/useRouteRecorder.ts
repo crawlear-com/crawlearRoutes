@@ -36,6 +36,7 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
     if (timer) {
       clearTimer();
     } else {
+      setGpxDataString(initialGpxDataString);
       getGeolocationPosition(success, error);
       const newTimer = window.setInterval(() => {
         getGeolocationPosition(success, error);

@@ -88,6 +88,14 @@ const setMapLocation = (map: L.Map, point?: GeolocationPosition) => {
   }).addTo(map)
 }
 
+const removeMarkers = (map: L.Map) => {
+  map.eachLayer(function(layer) {
+    if (layer instanceof L.Marker) {
+        map.removeLayer(layer)
+    }
+})
+}
+
 
 export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
-  getFitBoundsFromPosition, createMap, setMapLocation };
+  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers };
