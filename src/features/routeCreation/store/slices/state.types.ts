@@ -1,9 +1,8 @@
-import type { GpxData } from "../../../../types/Gpx.types";
 import type { GeoPoint } from "../../../../types/Route.types";
 
 
 interface RouteState {
-  gpx: GpxData | null,
+  gpx: string | null,
   quadrant: GeoPoint | null
 }
 

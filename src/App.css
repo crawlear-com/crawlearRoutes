@@ -17,6 +17,10 @@
     @apply shadow-xl cursor-pointer;
   }
 
+  .button-primary:disabled {
+    @apply opacity-20;
+  }
+
   .button-secondary {
     @apply block w-full py-4 rounded-full bg-secondary text-black font-semibold hover:opacity-90;
     @apply shadow-xl;
@@ -30,7 +34,7 @@
     @apply inline text-primary;
   }
 
-  input[type="text"], textarea, .input {
+  input, textarea, .input {
     @apply border border-primary rounded p-1;
   }
 

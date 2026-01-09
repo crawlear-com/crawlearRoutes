@@ -36,7 +36,7 @@ function  FileLoader({ onFileLoaded }: FileLoaderProps) {
 
     return <>
         <input ref={fileElemRef} title="inputFile" type="file" id="fileElem" multiple accept=".gpx" style={{ display: 'none' }} />
-        <button className="ml-2 sm:ml-0 mr-2 button-primary w-auto sm:h-10" ref={fileSelectRef} title="buttonInputFile"  id="fileSelect" type="button">
+        <button className="ml-2 sm:ml-0 mr-2 button-primary w-auto sm:h-10 max-w-24" ref={fileSelectRef} title="buttonInputFile"  id="fileSelect" type="button">
             { t("main.upload") }
         </button>
     </>

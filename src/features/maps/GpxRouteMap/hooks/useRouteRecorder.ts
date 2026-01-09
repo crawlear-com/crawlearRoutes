@@ -27,7 +27,8 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
         <trkpt lon="${position.coords.longitude}" lat="${position.coords.latitude}">
           <ele>${position.coords.altitude ? position.coords.altitude : 0}</ele>
           <time>${position.timestamp}</time>
-          <speed>${position.coords.speed ? position.coords.speed : 0 }</speed></trkpt>`)
+          <speed>${position.coords.speed ? position.coords.speed : 0 }</speed>
+        </trkpt>`)
     })
   }
 

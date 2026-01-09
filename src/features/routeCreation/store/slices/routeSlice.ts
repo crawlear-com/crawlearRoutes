@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
-
-import type { GpxData } from '../../../../types/Gpx.types';
+import type { PayloadAction } from '@reduxjs/toolkit'
 import type { GeoPoint } from '../../../../types/Route.types';
 
 const routeSlice = createSlice({
   name: 'route',
   initialState,
   reducers: {
-    setGpx: (state, action: PayloadAction<GpxData>) => {
+    setGpx: (state, action: PayloadAction<string>) => {
       state.gpx = action.payload;
     },
     cleanGpx: (state) => {
@@ -19,8 +17,8 @@ const routeSlice = createSlice({
       state.quadrant = action.payload;
     }
   }
-})
+});
 
 export { routeSlice };
-export const { setGpx, cleanGpx, setQuadrant } = routeSlice.actions
-export default routeSlice.reducer
+export const { setGpx, cleanGpx, setQuadrant } = routeSlice.actions;
+export default routeSlice.reducer;

@@ -22,7 +22,7 @@ const RouteDataForm = () => {
     setIsPublic(isChecked);
   }
 
-  return (<div className="">
+  return (<div className="mt-10">
   <label htmlFor="routeName">
     { t("main.route name")}:
   </label>

@@ -1,10 +1,12 @@
 import { XMLParser } from 'fast-xml-parser'
 import type { GpxInfo } from '../GpxRouteMap.types';
-import type { RoutePoint } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
 
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
 import type { GpxData } from '../../../../types/Gpx.types';
+import type { GeoPoint } from '../../../../types/Route.types';
+
+const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
 const parseGpxString = (gpx: string) => {
     let result;
@@ -34,7 +36,7 @@ const getGpxInfo = (leafletEventTarget: L.GPX): GpxInfo => {
     }
 }
 
-const getRoutePoint = (jObj: GpxData): RoutePoint => {
+const getRoutePoint = (jObj: GpxData): GeoPoint => {
     let lat = 0, lon = 0
 
     if (jObj.gpx.trk && jObj.gpx.trk.trkseg && jObj.gpx.trk.trkseg.trkpt[0]) {
@@ -67,4 +69,25 @@ const getFitBoundsFromPosition = (point: GeolocationPosition): L.LatLngBoundsExp
     return [[coords.latitude - 0.3, coords.longitude - 0.3],[coords.latitude + 0.3, coords.longitude + 0.3]];
 }
 
-export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getFitBoundsFromPosition };
+const createMap = (id: string) => {
+  return L.map(id);
+}
+
+const setMapLocation = (map: L.Map, point?: GeolocationPosition) => {
+  let bounds;
+
+  if (point) {
+    bounds = getFitBoundsFromPosition(point);
+  } else {
+    bounds = ARROUND_BARCELONA;
+  }
+
+  map.fitBounds(bounds);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19 
+  }).addTo(map)
+}
+
+
+export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
+  getFitBoundsFromPosition, createMap, setMapLocation };
