@@ -12,6 +12,9 @@
     "route description": "Descriptión",
     "route is plublic": "es pública",
     "route difficulty": "Dificultad",
-    "route scale": "Escala"
+    "route scale": "Escala",
+    "route video": "Video (youtube url)",
+    "gpx creation": "Generación de la ruta GPS",
+    "route data": "Creación de la ruta"
   }
 }

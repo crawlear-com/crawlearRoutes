@@ -12,6 +12,9 @@
     "route description": "Description",
     "route is plublic": "Is public",
     "route difficulty": "Difficulty",
-    "route scale": "Scale"
+    "route scale": "Scale",
+    "route video": "Video (youtube url)",
+    "gpx creation": "GPS data capture",
+    "route data": "Route creation"
   }
 }

@@ -8,7 +8,7 @@ const RecordRoute = () => {
 
   return (<>
     <Header />
-    <main className="w-[90%] m-auto min-h-[80vh] card">
+    <main className="sm:w-[90%] m-auto min-h-[80vh]">
       <h1>{ t("main.live route creation") }</h1>
       <StepRouteCreation />      
     </main>

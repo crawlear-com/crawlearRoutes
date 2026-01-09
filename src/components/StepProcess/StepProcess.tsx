@@ -7,10 +7,11 @@ import { useSelector } from "react-redux";
 type StepProcessProps = {
   steps: Array<React.JSX.Element>,
   stepDescriptions: Array<string>,
+  stepTitles: Array<string>,
   stepsSelectors: Array<(state: unknown, ...params: unknown[]) => unknown>
 }
 
-const StepProcess = ({ steps, stepDescriptions, stepsSelectors }: StepProcessProps) => {
+const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: StepProcessProps) => {
   const { t } = useTranslation(["routeCreation"]);
   const [ step, setStep ] = React.useState(0);
   const [ isFinished, setIsFinisehd ] = React.useState(steps.length === step);
@@ -34,10 +35,10 @@ const StepProcess = ({ steps, stepDescriptions, stepsSelectors }: StepProcessPro
     //console.log("Finished step1!")
   }
 
-  return <div className="text-center">
+  return <div className="text-center card p-0 sm:p-5 max-w-6xl m-auto">
     { isFinished ? t("main.process is finished") : <>
-      <h2 className="font-bold text-2xl mt-10">{ `${t("main.step")} ${step + 1}` }</h2>
-      { t(stepDescriptions[step]) }
+      <h2 className="font-bold text-2xl mt-10">{ `${t("main.step")} ${step + 1}: ${stepTitles[step]}` }</h2>
+      <div className="p-5 sm:p-0">{ t(stepDescriptions[step]) }</div>
       <Step onFinishedCondition={ onFinishedCondition } conditionSelector={ stepsSelectors[step] }>
         { steps[step] }
       </Step>

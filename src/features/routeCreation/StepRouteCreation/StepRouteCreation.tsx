@@ -13,11 +13,12 @@ const StepRouteCreation = () => {
     <RouteDataForm />,
   ];
   const stepsSelectors = [ selectStep1IsFinished ,selectStep2IsFinished ];
+  const stepTitles = [ t("main.gpx creation"), t("main.route data")];
 
   return <>
-    { t("main.route creation description") }
+    <span className="p-5">{ t("main.route creation description") }</span>
     <StepProcess steps={ steps } stepsSelectors={ stepsSelectors }
-      stepDescriptions={ routeDescriptions } />
+      stepTitles={ stepTitles } stepDescriptions={ routeDescriptions } />
   </>
 }
 
