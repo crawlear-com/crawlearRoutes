@@ -66,7 +66,7 @@ const getGeolocationPosition = (okCallback: (position: GeolocationPosition) => v
 const getFitBoundsFromPosition = (point: GeolocationPosition): L.LatLngBoundsExpression => {
     const coords = point.coords;
 
-    return [[coords.latitude - 0.3, coords.longitude - 0.3],[coords.latitude + 0.3, coords.longitude + 0.3]];
+    return [[coords.latitude - 0.005, coords.longitude - 0.005],[coords.latitude + 0.005, coords.longitude + 0.005]];
 }
 
 const createMap = (id: string) => {

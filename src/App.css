@@ -12,6 +12,9 @@
 }
 
 @layer base {
+  [class$="__feedback"] {
+    @apply text-red-600;
+  }
   .button-primary {
     @apply block w-full p-1 rounded bg-primary text-white font-semibold hover:opacity-90;
     @apply shadow-xl cursor-pointer;

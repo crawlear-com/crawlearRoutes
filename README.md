@@ -21,6 +21,7 @@
 - adjust click search points (modificators)
 - move useRoutesProvider to another place
 - input query validation with zod (or not?), but validation
+- zod texts into translation
 
 ## Install and run
 

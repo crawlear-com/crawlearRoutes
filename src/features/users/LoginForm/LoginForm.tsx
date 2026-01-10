@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
-import { emailSchema, setAndValidate } from "../helpers/validation";
+import { emailSchema } from "../helpers/validation";
+import { setAndValidate } from "../../../helpers/formValidations";
 import useLoginForm from "./hooks/useLoginForm";
 import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
 import { useTranslation } from 'react-i18next';
