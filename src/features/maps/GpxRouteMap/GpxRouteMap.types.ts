@@ -3,13 +3,8 @@ import type { GeoPoint } from "../../../types/Route.types"
 type GpxRouteMapProps = {
   gpx?: string
   className?: string,
-  onFileResolved?: (fileContent: string, routePoint: GeoPoint) => void,
-  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => void
-}
-
-type RoutePoint = {
-  lat: number,
-  lon: number
+  onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
+  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void
 }
 
 type GpxInfo = {
@@ -21,4 +16,4 @@ type GpxInfo = {
   elevationMax: number
 }
 
-export type { GpxRouteMapProps, GpxInfo, RoutePoint };
+export type { GpxRouteMapProps, GpxInfo };

@@ -21,6 +21,9 @@
 - adjust click search points (modificators)
 - move useRoutesProvider to another place
 - input query validation with zod (or not?), but validation
+- zod texts into translation
+- check console.error()
+- reset page when filtering in routeslist
 
 ## Install and run
 

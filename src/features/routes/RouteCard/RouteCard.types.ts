@@ -1,7 +1,8 @@
 import type { Route } from "../../../types/Route.types";
 
 type RouteCardProps = {
-  route: Route
+  route: Route,
+  extras?: React.JSX.Element
 }
 
 export type { RouteCardProps };

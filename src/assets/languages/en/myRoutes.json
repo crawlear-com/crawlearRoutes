@@ -1,6 +1,7 @@
 {
   "main": {
     "my routes": "My routes",
-    "favourite routes": "Favourite routes"
+    "favourite routes": "Favourite routes",
+    "create route": "Create new route"
   }
 }

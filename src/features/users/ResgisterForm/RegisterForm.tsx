@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
-import { emailSchema, nameSchema, passwordSchema, notEmptySchema, setAndValidate } from "../helpers/validation";
+import { emailSchema, nameSchema, passwordSchema, notEmptySchema } from "../helpers/validation";
+import { setAndValidate } from "../../../helpers/formValidations";
 import { validateConfirmPassword } from "../helpers/registerValidations";
 import useRegisterForm from "./hooks/useRegisterForm";
 import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
@@ -17,16 +18,16 @@ const RegisterForm = () => {
         </p>
 
         <form className="space-y-4" action={ onSubmitRegisterForm } noValidate>
-            <input className="input" id="name" name="name" type="text" placeholder="Name"
+            <input className="input p-3" id="name" name="name" type="text" placeholder="Name"
                 onChange={ () => { setAndValidate(setName, 'name', nameSchema) }} value={ name } />
             <FormFeedbackElement className="name__feedback" />
-            <input className="input" id="email" name="email" type="email" placeholder="Email" 
+            <input className="input p-3" id="email" name="email" type="email" placeholder="Email" 
                 onChange={ () => { setAndValidate(setEmail, 'email', emailSchema) }} value={ email } />
             <FormFeedbackElement className="email__feedback"/>    
-            <input className="input" id="password" name="password" type="password" placeholder="Password" 
+            <input className="input p-3" id="password" name="password" type="password" placeholder="Password" 
                 onChange={ () => { setAndValidate(setPassword, 'password', passwordSchema) }} value={ password } />
             <FormFeedbackElement className="password__feedback"/>
-            <input className="input" id="repassword" name="repassword" type="password" placeholder="Confirm password" 
+            <input className="input p-3" id="repassword" name="repassword" type="password" placeholder="Confirm password" 
                 onChange={ () => { 
                     setAndValidate(setRepassword, 'repassword', notEmptySchema);
                     validateConfirmPassword();

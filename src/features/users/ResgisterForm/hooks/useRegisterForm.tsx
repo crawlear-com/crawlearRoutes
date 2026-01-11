@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { registerFormValidates } from "../../helpers/registerValidations";
 import supabaseClient from "../../../../database/supabaseClient";
 import { setSession } from "../../store/slice/userSlice";
-import { setFormError } from "../../helpers/validation";
+import { setFormError } from "../../../../helpers/formValidations";
 
 const useRegisterForm = (): [ string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>, 
     string, React.Dispatch<React.SetStateAction<string>>, string, React.Dispatch<React.SetStateAction<string>>, (formData: FormData) => void ] => {

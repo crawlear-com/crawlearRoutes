@@ -25,9 +25,10 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
     setGpxDataString((previousData) => {
       return previousData.concat(`
         <trkpt lon="${position.coords.longitude}" lat="${position.coords.latitude}">
-          <ele>${position.coords.altitude ? position.coords.altitude : 0}</ele>
-          <time>${position.timestamp}</time>
-          <speed>${position.coords.speed ? position.coords.speed : 0 }</speed></trkpt>`)
+          <ele>${ position.coords.altitude ? position.coords.altitude : 0 }</ele>
+          <time>${ new Date(position.timestamp).toISOString() }</time>
+          <speed>${position.coords.speed ? position.coords.speed : 0 }</speed>
+        </trkpt>`)
     })
   }
 
@@ -35,6 +36,7 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
     if (timer) {
       clearTimer();
     } else {
+      setGpxDataString(initialGpxDataString);
       getGeolocationPosition(success, error);
       const newTimer = window.setInterval(() => {
         getGeolocationPosition(success, error);

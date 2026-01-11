@@ -6,6 +6,13 @@
   "main": {
     "search route": "Buscar ruta",
     "total": "Total",
-    "by title": "per títol o descripció..."
+    "by title": "per títol o descripció...",
+    "stop": "Parar",
+    "rec": "Gravar",
+    "pause": "Pausar",
+    "paused": "Pausat",
+    "polling time": "temps d'actualització",
+    "secs": "segs",
+    "upload": "Pujar Gpx"
   }
 }

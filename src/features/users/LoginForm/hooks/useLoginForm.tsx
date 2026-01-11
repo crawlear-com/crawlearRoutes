@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setSession } from "../../store/slice/userSlice";
 import supabaseClient from "../../../../database/supabaseClient";
 import { useNavigate } from "react-router";
-import { setFormError } from "../../helpers/validation";
+import { setFormError } from "../../../../helpers/formValidations";
 
 const useLoginForm = (): [ string, React.Dispatch<React.SetStateAction<string>>, string,
     (formData: FormData) => void, (event: React.ChangeEvent<HTMLInputElement>) => void ] => {

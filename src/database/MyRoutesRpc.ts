@@ -67,4 +67,16 @@ const searchPublicRoutes = async (query: string) => {
     }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, searchRoutesByGeo, searchPublicRoutes };
+const deleteRoute = async (id: string) => {
+    const { data, error } = await supabaseClient.rpc('deleteRouteById', { 
+      p_id: id
+    }); 
+
+    if(!error && data) {
+        return data;
+    } else {
+      throw new Error('Error deleting route');
+    }
+}
+
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, searchRoutesByGeo, searchPublicRoutes, deleteRoute };

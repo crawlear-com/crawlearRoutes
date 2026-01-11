@@ -1,4 +1,4 @@
-import type { GpxInfo } from "./GpxRouteMap.types";
+import type { GpxInfo } from "../GpxRouteMap.types";
 
 type GpxInfoCardProps = {
   gpxInfo: GpxInfo

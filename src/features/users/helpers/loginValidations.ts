@@ -1,7 +1,5 @@
-import { emailSchema, notEmptySchema, validateInput } from "./validation";
-
-const INVALIDCLASS = 'invalid';
-const VALIDCLASS = 'valid';
+import { emailSchema, notEmptySchema } from "./validation";
+import { VALIDCLASS, INVALIDCLASS, validateInput } from "../../../helpers/formValidations";
   
 const cleanErrorsOnSubmit = () => {
   const nameFeedbackElement = document.querySelector('.name__feedback');

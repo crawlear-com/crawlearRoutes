@@ -6,6 +6,13 @@
   "main": {
     "search route": "Search route",
     "total": "Total",
-    "by title": "by title or description..."
+    "by title": "by title or description...",
+    "stop": "Stop",
+    "rec": "Rec",
+    "pause": "Pause",
+    "paused": "Paused",
+    "polling time": "polling time",
+    "secs": "secs",
+    "upload": "Upload Gpx"
   }
 }
