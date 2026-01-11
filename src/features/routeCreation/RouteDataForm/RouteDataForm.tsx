@@ -6,9 +6,10 @@ import useRouteDataForm from "./hooks/useRouteDataForm";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
-  const [ onSubmitRouteForm, name, setName, description, setDescription, 
-    isPublic, youtubeVideo, setYoutubeVideo, isLoading, onIsPublicChangeHandler,
-    onDifficultyChange, onScaleChange ] = useRouteDataForm();
+  const [ onSubmitRouteForm, name, description, 
+    isPublic, youtubeVideo, isLoading, onIsPublicChangeHandler,
+    onDifficultyChange, onScaleChange, setRouteName, 
+    setRouteDescription, setRouteYoutubeVideo ] = useRouteDataForm();
 
   return (<div className="mt-10">
     <form className="space-y-4" action={ onSubmitRouteForm } noValidate>
@@ -16,7 +17,7 @@ const RouteDataForm = () => {
         { t("main.route name")}:
       </label>
       <input type="text" name="routeName" id="routeName" 
-        onChange={ () => { setAndValidate(setName, 'routeName', nameSchema) }}
+        onChange={ () => { setAndValidate(setRouteName, 'routeName', nameSchema) }}
         className="ml-1 mb-5 p-3" placeholder="Route name..." value={ name } /> <br />
       <FormFeedbackElement className="routeName__feedback" />
 
@@ -24,7 +25,7 @@ const RouteDataForm = () => {
         { t("main.route description")}:
       </label>
       <textarea name="routeDescription" id="routeDescription"
-        onChange={ () => { setAndValidate(setDescription, 'routeDescription', descriptionSchema) }}
+        onChange={ () => { setAndValidate(setRouteDescription, 'routeDescription', descriptionSchema) }}
         className="w-[90%] sm:w-96 h-80 ml-1 mb-5 p-3" placeholder="Route description..." value={ description } /> <br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
@@ -58,11 +59,11 @@ const RouteDataForm = () => {
         { t("main.route video")}:
       </label>
       <input type="text" name="youtubeVideo" id="youtubeVideo"
-        onChange={ () => { setAndValidate(setYoutubeVideo, 'youtubeVideo', youtubeSchema) }}
+        onChange={ () => { setAndValidate(setRouteYoutubeVideo, 'youtubeVideo', youtubeSchema) }}
         className="ml-1 mb-5 p-3" placeholder="Youtube video url..." value={ youtubeVideo } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
-      <button type="submit" className="button-primary">  { isLoading ? "submiting" :  t("main.create route") } </button>
+      <button type="submit" className="button-primary w-auto m-auto">  { isLoading ? "submiting" :  t("main.create route") } </button>
     </form>
   </div>);
 }

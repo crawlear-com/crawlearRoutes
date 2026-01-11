@@ -15,6 +15,7 @@
     "route scale": "Escala",
     "route video": "Video (youtube url)",
     "gpx creation": "Generación de la ruta GPS",
-    "route data": "Creación de la ruta"
+    "route data": "Creación de la ruta",
+    "create route": "Crear ruta"
   }
 }

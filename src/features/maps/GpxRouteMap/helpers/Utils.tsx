@@ -5,6 +5,7 @@ import * as L from 'leaflet'
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
 import type { GpxData } from '../../../../types/Gpx.types';
 import type { GeoPoint } from '../../../../types/Route.types';
+import GpxInfoCard from '../GpxInfoCard/GpxInfoCard';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
@@ -34,6 +35,10 @@ const getGpxInfo = (leafletEventTarget: L.GPX): GpxInfo => {
         elevationMin: leafletEventTarget.get_elevation_min(),
         elevationMax: leafletEventTarget.get_elevation_max(),
     }
+}
+
+const generateInfoPopUp = (gpxInfo: GpxInfo): React.JSX.Element => {
+  return <GpxInfoCard gpxInfo={ gpxInfo } />;
 }
 
 const getRoutePoint = (jObj: GpxData): GeoPoint => {
@@ -98,4 +103,4 @@ const removeMarkers = (map: L.Map) => {
 
 
 export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
-  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers };
+  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, generateInfoPopUp };

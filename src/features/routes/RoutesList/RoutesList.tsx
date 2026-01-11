@@ -14,7 +14,6 @@ const RoutesList = ({ title, card, hook, rpc}: RoutesListProps) => {
     <RoutesPaginator currentPage = { currentPage } totalItems = { totalRoutes } onPageClick={ onPageClick } />
     { isLoading ? <Spinner /> : <RoutesCardList card={ card } routes={ routes } /> }
   </div>);
-
 }
 
 export default RoutesList;

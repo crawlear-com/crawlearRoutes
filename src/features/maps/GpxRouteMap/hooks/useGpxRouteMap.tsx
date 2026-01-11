@@ -1,12 +1,11 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers } from '../helpers/Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp } from '../helpers/Utils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
-import GpxInfoCard from '../GpxInfoCard/GpxInfoCard'
 import { setGpx } from '../../../routeCreation/store/slices/routeSlice'
 
 const NO_ERROR = 0;
@@ -21,19 +20,26 @@ const gpxParserOptions = {
     }
 }
 
-const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint) => void, 
-gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => void):
+const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void, 
+gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void):
   [ (fileContents: string) => void, (event: React.MouseEvent<HTMLButtonElement>) => void, 
     (event: React.MouseEvent<HTMLButtonElement>) => void, (value: number) => void,
     React.JSX.Element, boolean, boolean, number, number ] => {
-  
+  const initialGpxInfo = {
+    distance: 0,
+    time: 0,
+    movingTime: 0,
+    speed: 0,
+    elevationMin: 0,
+    elevationMax: 0
+  }
   const map = React.useRef<L.Map | null>(null)
-  const [extraGpxInfo, setExtraGpxInfo] = React.useState<React.JSX.Element>(<></>);
-  const [recordState, setRecordState] = React.useState(false);
-  const [pauseState, setPauseState] = React.useState(false);
-  const [error, setError] = React.useState<number>(0);
-  const [pollingTime, setPollingTime] = React.useState<number>(30);
-  const [gpxRecorded, onStartStopClick] = useRouteRecorder(pollingTime, onError, gpx);
+  const [ recordState, setRecordState ] = React.useState(false);
+  const [ pauseState, setPauseState ] = React.useState(false);
+  const [ error, setError ] = React.useState<number>(0);
+  const [ pollingTime, setPollingTime ] = React.useState<number>(30);
+  const [ gpxRecorded, onStartStopClick ] = useRouteRecorder(pollingTime, onError, gpx);
+  const [ gpxInfo, setGpxInfo ] = React.useState<GpxInfo>(initialGpxInfo);
   //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
   function onError(error: number) {
@@ -53,7 +59,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => v
         const routePoint = getRoutePoint(jObj);
 
         //releaseWakeLock();
-        onRouteRecorded(gpxRecorded, routePoint);
+        onRouteRecorded(gpxRecorded, routePoint, gpxInfo.distance, gpxInfo.time);
     } else if (!recordState) {
       //requestWakeLock();
     }
@@ -81,10 +87,8 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => v
   const onPollingTimeChanged = (value: number) => {
     setPollingTime(value);
   }
+
   const onFileLoaded = React.useCallback((fileContents: string) => {
-    const generateInfoPopUp = (gpxInfo: GpxInfo): React.JSX.Element => {
-      return <GpxInfoCard gpxInfo={ gpxInfo } />
-    }
     try {
       if (map.current) {
         const jObj = parseGpxString(fileContents)
@@ -92,10 +96,10 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => v
             const routePoint: GeoPoint = getRoutePoint(jObj);
             const gpxInfo = getGpxInfo(e.target);
 
-            setExtraGpxInfo(generateInfoPopUp(gpxInfo))
-            map.current?.fitBounds(e.target.getBounds())
+            setGpxInfo(gpxInfo);
+            map.current?.fitBounds(e.target.getBounds());
             if (onFileResolved) {
-              onFileResolved(fileContents, routePoint);
+              onFileResolved(fileContents, routePoint, gpxInfo.distance, gpxInfo.time);
             }
         }
         new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);
@@ -105,12 +109,11 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => v
         onFileResolved('', {
           lat: 0,
           lon: 0
-        });
+        }, 0, 0);
       }
-
       console.error(e);
     }
-  }, [onFileResolved]);
+  }, [onFileResolved, setGpxInfo]);
 
   React.useEffect(() => {
     if (!map.current) {
@@ -133,7 +136,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => v
     }
   }, [gpxRecorded, onFileLoaded]);
 
-  return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, extraGpxInfo, 
+  return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, generateInfoPopUp(gpxInfo), 
     recordState, pauseState, error, pollingTime ];
 }
 

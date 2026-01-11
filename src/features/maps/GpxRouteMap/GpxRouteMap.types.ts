@@ -3,8 +3,8 @@ import type { GeoPoint } from "../../../types/Route.types"
 type GpxRouteMapProps = {
   gpx?: string
   className?: string,
-  onFileResolved?: (fileContent: string, routePoint: GeoPoint) => void,
-  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint) => void
+  onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
+  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void
 }
 
 type GpxInfo = {

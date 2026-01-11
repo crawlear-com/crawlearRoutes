@@ -33,7 +33,7 @@ const setFormError = (error: string) => {
     }
 }
 
-const setAndValidate = (setFunction: React.Dispatch<React.SetStateAction<string>>, elementId: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodURL) => {
+const setAndValidate = (setFunction: React.Dispatch<React.SetStateAction<string>> | ((value: string) => void), elementId: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodURL) => {
     const value = (document.getElementById(elementId) as HTMLInputElement).value;
 
     setFunction(value);

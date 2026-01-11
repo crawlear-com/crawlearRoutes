@@ -22,6 +22,7 @@
 - move useRoutesProvider to another place
 - input query validation with zod (or not?), but validation
 - zod texts into translation
+- check console.error()
 
 ## Install and run
 
