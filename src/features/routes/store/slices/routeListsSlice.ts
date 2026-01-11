@@ -3,6 +3,7 @@ import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../../../store/store';
 import { getMyRoutesFull, getLikesFromUserFull } from '../../../../database/MyRoutesRpc';
+import type { Route } from '../../../../types/Route.types';
 
 const getMyRoutes = createAsyncThunk(
   'routes/getMyRoutes',
@@ -44,12 +45,30 @@ const getMyFavourites = createAsyncThunk(
   }
 );
 
+const deleteRoute = (routes: Array<Route>, routeId: string) => {
+  const index = routes.findIndex(element => element.id === routeId);
+
+  if (index !== -1) {
+      routes.splice(index, 1);
+  }
+
+  return routes;
+}
+
 const routeListsSlice = createSlice({
   name: 'routes',
   initialState,
   reducers: {
     setMyRoutesPage: (state, action: PayloadAction<number>) => {
       state.myRoutes.page = action.payload;
+    },
+    deleteMyRoutesRoute: (state, action: PayloadAction<string>) => {
+      const routeId = action.payload;
+      const routes = state.myRoutes.routes;
+
+      const newRoutes = deleteRoute(routes, routeId);
+      state.myRoutes.routes = [...newRoutes];
+      state.myRoutes.totalRoutes -= 1;
     },
     setMyRoutesOrderBy: (state, action: PayloadAction<string>) => {
       state.myRoutes.orderBy = action.payload;
@@ -107,5 +126,5 @@ const routeListsSlice = createSlice({
 
 export { routeListsSlice, getMyRoutes, getMyFavourites };
 export const { setMyFavouritesOrderDir, setMyFavouritesPage, setMyFavouritesQuery, setMyFavouritesOrderBy,
-  setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery } = routeListsSlice.actions;
+  setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery, deleteMyRoutesRoute } = routeListsSlice.actions;
 export default routeListsSlice.reducer;

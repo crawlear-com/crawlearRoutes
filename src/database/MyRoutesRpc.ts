@@ -6,7 +6,7 @@ const getMyRoutesFull = async (uuid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('routesByOwner', { 
     in_routeowner: uuid,
-    in_page: page,
+    in_page: page + 1,
     in_per_page: ITEMS_PAGE,
     in_order_by: orderBy,
     in_order_dir: orderDir,
@@ -18,7 +18,7 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('likesByUser', { 
     in_uid: uuid,
-    in_page: page,
+    in_page: page + 1,
     in_per_page: ITEMS_PAGE,
     in_order_by: orderBy,
     in_order_dir: orderDir,

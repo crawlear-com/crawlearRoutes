@@ -1,7 +1,7 @@
 import * as React from 'react';
-import type { Route } from '../../types/Route.types';
+import type { Route } from '../../../types/Route.types';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch } from '../../store/store';
+import type { AppDispatch } from '../../../store/store';
 import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
 
 const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
@@ -23,6 +23,7 @@ const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfi
 
   const onPageClick = (page: number) => {
     dispatch(setPage(page));
+    dispatch(thunk());
   }
   const onOrderByClick = (order: string) => {
     dispatch(setOrderBy(order));
