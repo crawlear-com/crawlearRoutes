@@ -1,11 +1,14 @@
 import RouteCard from "../RouteCard/RouteCard";
-import { getMyRoutesFull, deleteRoute } from "../../../database/MyRoutesRpc";
+import { deleteRoute } from "../../../database/MyRoutesRpc";
 import RoutesList from "../RoutesList/RoutesList";
 import useRoutesProvider from "../../../database/hooks/useRoutesProvider";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
+import { getMyRoutes } from "../store/slices/routeListsSlice";
+import { setMyRoutesPage, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesQuery } from "../store/slices/routeListsSlice";
+import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesPage, selectMyRoutesTotalRoutes } from "../store/selectors/routeListsSelectors";
 
 import type { Route } from "../../../types/Route.types";
-import toast from "react-hot-toast";
 
 const RoutesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
@@ -22,7 +25,10 @@ const RoutesFromUser = () => {
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(route.id) } />;
 
   return <RoutesList title={ t("main.my routes") } card={ myRoutesCard }
-    hook={ useRoutesProvider } rpc={ getMyRoutesFull } />;
+    hook={ useRoutesProvider } thunk={ getMyRoutes } setPage={ setMyRoutesPage }
+    setOrderBy={ setMyRoutesOrderBy } setOrderDir={ setMyRoutesOrderDir } setQuery={ setMyRoutesQuery}
+    selectRoutes={ selectMyRoutes } selectIsLoading={ selectMyRoutesIsLoading }
+    selectPage={ selectMyRoutesPage } selectTotalRoutes={ selectMyRoutesTotalRoutes }/>;
 }
 
 export default RoutesFromUser;

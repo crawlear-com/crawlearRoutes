@@ -14,7 +14,7 @@ const RouteCard = ({ route, extras }: RouteCardProps) => {
     <div className="row-start-3 row-end-4 col-start-1 col-end-2 text-xs sm:text-base max-h-5">{ route.likes } Likes</div>    
     
     <SimpleMap className="justify-self-end row-start-1 row-end-4 col-start-3 col-end-4 z-10" 
-      width="w-36" height="h-30" point={ route.location } id = {`${uuidv4()}` } />
+      width="w-36" height="h-30" point = { route.location || { lat: 0, lon: 0} } id = {`${uuidv4()}` } />
     { extras }
   </div>;
 }

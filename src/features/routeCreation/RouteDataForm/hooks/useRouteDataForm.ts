@@ -1,31 +1,22 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { selectDescription, selectDifficulty, selectDistance, selectDuration, selectGpx, selectIsPublic, selectName, 
-  selectPoint, selectScale, selectYoutubeVideo } from "../../store/selectors/routeSelectors";
-import type { GeoPoint } from "../../../../types/Route.types";
+import { selectCreationRoute } from "../../store/selectors/routeSelectors";
+import type { CreationRoute } from "../../../../types/Route.types";
 import { routeFormValidates } from "../helpers/routeValidations";
 import { createRoute } from "../../../../database/routesCreationRpc";
 import toast from "react-hot-toast";
 import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo } from "../../store/slices/routeSlice";
 
-const useRouteDataForm = (): [(formData: FormData) => void, string,
-    string, boolean, string, boolean, (event: React.ChangeEvent<HTMLInputElement>) => void,
+  const useRouteDataForm = (): [(formData: FormData) => void, CreationRoute, boolean,
+    (event: React.ChangeEvent<HTMLInputElement>) => void,
     (event: React.ChangeEvent<HTMLSelectElement>) => void,
     (event: React.ChangeEvent<HTMLSelectElement>) => void,
     (value: string) => void, (value: string) => void, (value: string) => void] => {
-  const name: string = useSelector(selectName);
-  const description: string = useSelector(selectDescription);
-  const youtubeVideo: string = useSelector(selectYoutubeVideo);
-  const difficulty: number = useSelector(selectDifficulty);
-  const scale: number = useSelector(selectScale);
-  const isPublic: boolean = useSelector(selectIsPublic);
-  const routeGpx: string = useSelector(selectGpx);
-  const routePoint: GeoPoint = useSelector(selectPoint);
+  
+  const creationRoute = useSelector(selectCreationRoute);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const dispatch = useDispatch();
-  const distance = useSelector(selectDistance);
-  const duration = useSelector(selectDuration);
   const owner = useSelector(selectUserUUID);
 
   const onIsPublicChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,9 +52,9 @@ const useRouteDataForm = (): [(formData: FormData) => void, string,
 
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
-      const promise = createRoute(name, description, isPublic, difficulty,
-        routePoint.lat, routePoint.lon, scale, youtubeVideo, routeGpx,
-        distance, duration, owner);
+      const promise = createRoute(creationRoute.name, creationRoute.description, creationRoute.isPublic,
+        creationRoute.difficulty, creationRoute.location.lat, creationRoute.location.lon, creationRoute.scale,
+        creationRoute.youtubeVideo, creationRoute.gpx, creationRoute.distance, creationRoute.durationTime, owner);
 
       promise.then((data) => {
         setIsLoading(false);
@@ -75,8 +66,7 @@ const useRouteDataForm = (): [(formData: FormData) => void, string,
     }
   }
 
-  return [ onSubmitRouteForm, name, description, 
-    isPublic, youtubeVideo, isLoading, onIsPublicChangeHandler,
+  return [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, 
     setRouteDescription, setRouteYoutubeVideo ];
 }

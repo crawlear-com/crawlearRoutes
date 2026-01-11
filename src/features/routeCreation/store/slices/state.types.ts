@@ -1,30 +1,23 @@
-import type { GeoPoint } from "../../../../types/Route.types";
+import type { CreationRoute } from "../../../../types/Route.types";
 
-
-interface RouteState {
-  gpx: string | null,
-  point: GeoPoint | null,
-  name: string,
-  description: string,
-  difficulty: number,
-  scale: number,
-  youtubeVideo: string,
-  distance: number,
-  duration: number,
-  isPublic: boolean
+interface CreationRouteState {
+  route: CreationRoute
 }
 
-const initialState: RouteState = {
-  gpx: null,
-  point: null,
-  name: "",
-  description: "",
-  difficulty: 1,
-  scale: 1,
-  youtubeVideo: "",
-  distance: 0,
-  duration: 0,
-  isPublic: true
+const initialState: CreationRouteState = {
+  route: {
+    name: "",
+    description: "",
+    difficulty: 1,
+    isPublic: true,
+    likes: 0,
+    location: null,
+    scale: 1,
+    youtubeVideo: "",
+    gpx: null,
+    durationTime: 0,
+    distance: 0
+  }
 }
 
-export { type RouteState, initialState };
+export { type CreationRouteState, initialState };

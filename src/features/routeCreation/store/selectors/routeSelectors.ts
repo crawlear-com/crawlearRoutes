@@ -1,67 +1,72 @@
 import { createSelector } from "@reduxjs/toolkit";
 
+const selectCreationRoute = createSelector(
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route
+);
+
 const selectGpx = createSelector(
-  (state) => state.route,
-  (route) => route ? route.gpx : null
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.gpx : null
 );
 
 const selectPoint = createSelector(
-  (state) => state.route,
-  (route) => route ? route.point : null
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.point : null
 );
 
 const selectStep1IsFinished = createSelector(
-  (state) => state.route,
-  (route) => route ? route.gpx !== null && route.point !== null : false
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null : false
 );
 
 const selectStep2IsFinished = createSelector(
-  (state) => state.route,
-  (route) => route ? route.name.length > 0 && route.description.length > 0 &&
-    route.youtubeVideo.length > 0 : false
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 &&
+    routeCreation.route.youtubeVideo.length > 0 : false
 );
 
 const selectName = createSelector(
-  (state) => state.route,
-  (route) => route ? route.name : ""
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.name : ""
 );
 
 const selectDescription = createSelector(
-  (state) => state.route,
-  (route) => route ? route.description : ""
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.description : ""
 );
 
 const selectDifficulty = createSelector(
-  (state) => state.route,
-  (route) => route ? route.difficulty : 0
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.difficulty : 0
 );
 
 const selectScale = createSelector(
-  (state) => state.route,
-  (route) => route ? route.scale : 0
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.scale : 0
 );
 
 const selectYoutubeVideo = createSelector(
-  (state) => state.route,
-  (route) => route ? route.youtubeVideo : ""
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.youtubeVideo : ""
 );
 
 const selectDistance = createSelector(
-  (state) => state.route,
-  (route) => route ? route.distance : 0
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.distance : 0
 );
 
 const selectDuration = createSelector(
-  (state) => state.route,
-  (route) => route ? route.duration : 0
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.duration : 0
 );
 
 const selectIsPublic = createSelector(
-  (state) => state.route,
-  (route) => route ? route.isPublic : true
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.isPublic : true
 );
 
-export { selectGpx, selectPoint, selectStep1IsFinished, selectStep2IsFinished,
+export { selectCreationRoute, selectGpx, selectPoint, selectStep1IsFinished, selectStep2IsFinished,
   selectName, selectDescription, selectDifficulty, selectScale, selectYoutubeVideo,
   selectDistance, selectDuration, selectIsPublic
  };

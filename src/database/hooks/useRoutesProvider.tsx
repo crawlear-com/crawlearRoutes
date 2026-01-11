@@ -1,54 +1,45 @@
 import * as React from 'react';
-import { toast } from 'react-hot-toast';
 import type { Route } from '../../types/Route.types';
-import { useSelector } from 'react-redux';
-import { selectUserUUID } from '../../features/users/store/selectors/userSelectors';
-import type { RoutesDataFromProvider } from './RoutesDataFromProvider.types';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch } from '../../store/store';
+import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
 
-const useRoutesProvider = (rpc: (uuid: string, page: number, order_by: string,
-  order_dir: string, query: string) => Promise<RoutesDataFromProvider>): 
+const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
+  setPage: ActionCreatorWithPayload<number, string>,
+  setOrderBy: ActionCreatorWithPayload<string, string>,
+  setOrderDir: ActionCreatorWithPayload<string, string>,
+  setQuery: ActionCreatorWithPayload<string, string>,
+  selectRoutes: (state: unknown) => Array<Route>,
+  selectIsLoading: (state: unknown) => boolean,
+  selectPage: (state: unknown) => number,
+  selectTotalRoutes: (state: unknown) => number,
+): 
   [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
-  
-  const [ routes, setRoutes ] = React.useState<Array<Route>>([]);
-  const [ totalRoutes, setTotalRoutes ] = React.useState<number>(0);
-  const [ currentPage, setCurrentPage ] = React.useState<number>(0);
-  const [ orderBy, setOrderBy ] = React.useState<string>('name');
-  const [ orderDir, setOrderDir ] = React.useState<string>('asc');
-  const [ query, setQuery ] = React.useState<string>('');
-  const [ isLoading, setIsLoading ] = React.useState(false);
-  const uuid = useSelector(selectUserUUID);
+  const dispatch = useDispatch<AppDispatch>();
+  const routes = useSelector(selectRoutes);
+  const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectPage);
+  const totalRoutes = useSelector(selectTotalRoutes);
+
   const onPageClick = (page: number) => {
-    setCurrentPage(page);
+    dispatch(setPage(page));
   }
   const onOrderByClick = (order: string) => {
-    setOrderBy(order);
+    dispatch(setOrderBy(order));
+    dispatch(thunk());
   }
   const onOrderDirClick = (order: string) => {
-    setOrderDir(order);
+    dispatch(setOrderDir(order));
+    dispatch(thunk());
   }
   const onQueryChange = (query: string) => {
-      setQuery(query);
-    };
+      dispatch(setQuery(query));
+      dispatch(thunk());
+  };
 
   React.useEffect(() => {
-    if (uuid) {
-      setIsLoading(true);
-      const getData = async () => {
-        const promise = rpc(uuid, currentPage + 1, orderBy, orderDir, query);
-
-        promise.then((data) => {
-          setRoutes(data.routes);
-          setTotalRoutes(data.total_count);
-          setIsLoading(false);
-        }).catch((e: unknown) => {
-          toast.error((e as Error).message)
-          setIsLoading(false);
-        });
-      };
-
-      getData();
-    }
-  }, [uuid, currentPage, rpc, orderBy, orderDir, query]);
+    dispatch(thunk());
+  }, [dispatch, thunk]);
 
   return [ currentPage, totalRoutes, routes, isLoading, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ];
 }
