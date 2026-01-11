@@ -23,6 +23,7 @@
 - input query validation with zod (or not?), but validation
 - zod texts into translation
 - check console.error()
+- reset page when filtering in routeslist
 
 ## Install and run
 
