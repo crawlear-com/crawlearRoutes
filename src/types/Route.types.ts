@@ -4,21 +4,24 @@ type GeoPoint ={
   lon: number
 }
 
-type Route = {
-  id: string,
-  created_at?: string,
+type CreationRoute = {
   name: string,
-  descriprion: string,
+  description: string,
   difficulty: number,
   isPublic: boolean,
   likes: number,
-  location: GeoPoint,
-  owner?: string,
-  scale?: number,
+  location: GeoPoint | null,
+  scale: number,
   youtubeVideo?: string,
-  gpx?: string,
+  gpx: string | null,
   durationTime: number,
   distance: number
 }
 
-export type { GeoPoint, Route };
+type Route = CreationRoute & {
+  id: string,
+  created_at?: string,
+  owner?: string
+}
+
+export type { GeoPoint, Route, CreationRoute };

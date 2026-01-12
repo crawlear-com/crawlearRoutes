@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { getGeolocationPosition } from '../helpers/Utils'
 
-const initialGpxDataString = `<?xml version="1.0" encoding="UTF-8" standalone="no" ?><gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="murbit GPX Tracker"><trk><trkseg>`
-export const ERR_GEOLOCATION_NOT_AVAILABLE = -1
-export const ERR_GEOLOCATION_NOT_RESOLVED = -2
+const initialGpxDataString = `<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+  <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="murbit GPX Tracker">
+  <trk><trkseg>`;
+export const ERR_GEOLOCATION_NOT_AVAILABLE = -1;
+export const ERR_GEOLOCATION_NOT_RESOLVED = -2;
 
 function useRouteRecorder(pollingTime: number, onError: (error: number) => void, previousGpxData?: string): [string, React.MouseEventHandler<HTMLButtonElement>] {
   const [timer, setTimer] = React.useState(0)

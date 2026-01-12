@@ -1,6 +1,6 @@
 import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
 import type { GeoPoint } from "../../../types/Route.types";
-import { setDistance, setDuration, setGpx, setPoint } from "../store/slices/routeSlice";
+import { setDistance, setDuration, setGpx, setLocation } from "../store/slices/routeSlice";
 import { selectGpx } from "../store/selectors/routeSelectors";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ const GpxRecorder = () => {
   const dispatch = useDispatch();
   const onGpxResolved = (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => {
     try {
-      dispatch(setPoint(routePoint));
+      dispatch(setLocation(routePoint));
       dispatch(setGpx(fileContent));
       dispatch(setDistance(distance));
       dispatch(setDuration(duration));

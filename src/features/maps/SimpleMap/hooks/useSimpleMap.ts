@@ -4,10 +4,8 @@ import 'leaflet-gpx'
 import { iconRoute } from '../Icons'
 import type { GeoPoint } from '../../../../types/Route.types'
 
-//const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
-
 const getBoundingBox = (lat: number, lon : number): [[number, number],[number, number]] => {
-  return [[lat - 1, lon - 1], [lat + 1, lon + 1]];
+  return [[lat - 0.01, lon - 0.01], [lat + 0.01, lon + 0.01]];
 }
 
 function useSimpleMap(id: string, point: GeoPoint): void {
@@ -35,7 +33,7 @@ function useSimpleMap(id: string, point: GeoPoint): void {
         newMap.off()
         newMap.remove()
       }
-    }, [id]);
+    }, [id, point]);
 
     React.useEffect(() => {
       addPropsPoints()

@@ -24,6 +24,8 @@
 - zod texts into translation
 - check console.error()
 - reset page when filtering in routeslist
+- route card difficulty levels (moderate, easy...)
+- delete my routes confirm
 
 ## Install and run
 
