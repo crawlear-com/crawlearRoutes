@@ -1,10 +1,13 @@
+import { useNavigate } from "react-router";
 import SimpleMap from "../../maps/SimpleMap/SimpleMap";
 import type { RouteCardProps } from "./RouteCard.types";
 import markerImage from './assets/images/marker-icon.png';
 import { v4 as uuidv4 } from 'uuid';
 
 const RouteCard = ({ route, extras }: RouteCardProps) => {
-  return <div className="card grid"> 
+  const navigate = useNavigate();
+
+  return <div className="card grid" onClick={ () => { navigate(`/route/${route.id}`)}}> 
     <h2 className="row-start-1 row-end-2 col-start-1 col-end-3 sm:text-2xl">{ route.name } </h2>
     <div className="row-start-2 row-end-3 col-start-1 col-end-2 text-xs sm:text-base max-h-5"><img src={markerImage} className="w-3 h-auto inline mr-1" />{ route.distance }km</div>
     <div className="row-start-2 row-end-3 col-start-2 col-end-3 text-xs sm:text-base max-h-5">{ route.durationTime }mins</div>
