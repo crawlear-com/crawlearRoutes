@@ -1,5 +1,16 @@
 import { createSelector } from "@reduxjs/toolkit";
 
+const selectStep1IsFinished = createSelector(
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null : false
+);
+
+const selectStep2IsFinished = createSelector(
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 &&
+    routeCreation.route.youtubeVideo.length > 0 : false
+);
+
 const selectCreationRoute = createSelector(
   (state) => state.routeCreation,
   (routeCreation) => routeCreation.route
@@ -13,17 +24,6 @@ const selectGpx = createSelector(
 const selectPoint = createSelector(
   (state) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.point : null
-);
-
-const selectStep1IsFinished = createSelector(
-  (state) => state.routeCreation,
-  (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null : false
-);
-
-const selectStep2IsFinished = createSelector(
-  (state) => state.routeCreation,
-  (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 &&
-    routeCreation.route.youtubeVideo.length > 0 : false
 );
 
 const selectName = createSelector(
