@@ -68,7 +68,7 @@ const routeListsSlice = createSlice({
 
       const newRoutes = deleteRoute(routes, routeId);
       state.myRoutes.routes = [...newRoutes];
-      state.myRoutes.totalRoutes -= 1;
+      state.myRoutes.totalRoutes = Math.max(0, state.myRoutes.totalRoutes-1);
     },
     setMyRoutesOrderBy: (state, action: PayloadAction<string>) => {
       state.myRoutes.orderBy = action.payload;
@@ -82,6 +82,14 @@ const routeListsSlice = createSlice({
 
     setMyFavouritesPage: (state, action: PayloadAction<number>) => {
       state.myFavorites.page = action.payload;
+    },
+    deleteMyFavoritesRoute: (state, action: PayloadAction<string>) => {
+      const routeId = action.payload;
+      const routes = state.myFavorites.routes;
+
+      const newRoutes = deleteRoute(routes, routeId);
+      state.myFavorites.routes = [...newRoutes];
+      state.myFavorites.totalRoutes = Math.max(0, state.myFavorites.totalRoutes-1);
     },
     setMyFavouritesOrderBy: (state, action: PayloadAction<string>) => {
       state.myFavorites.orderBy = action.payload;
@@ -125,6 +133,6 @@ const routeListsSlice = createSlice({
 });
 
 export { routeListsSlice, getMyRoutes, getMyFavourites };
-export const { setMyFavouritesOrderDir, setMyFavouritesPage, setMyFavouritesQuery, setMyFavouritesOrderBy,
+export const { setMyFavouritesOrderDir, setMyFavouritesPage, setMyFavouritesQuery, setMyFavouritesOrderBy, deleteMyFavoritesRoute,
   setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery, deleteMyRoutesRoute } = routeListsSlice.actions;
 export default routeListsSlice.reducer;

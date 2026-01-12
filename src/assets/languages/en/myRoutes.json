@@ -2,6 +2,7 @@
   "main": {
     "my routes": "My routes",
     "favourite routes": "Favourite routes",
-    "create route": "Create new route"
+    "create route": "Create new route",
+    "no routes": "There are no routes"
   }
 }

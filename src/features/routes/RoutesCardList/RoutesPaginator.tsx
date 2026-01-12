@@ -19,9 +19,9 @@ const RoutesPaginator = ({ currentPage, totalItems, onPageClick }: RoutesPaginat
   return (<div className="flex container mb-5"> 
     <span className="flex-2 text-left mx-auto">Total: { totalItems }</span>
     <span className="flex-2 text-right">
-      { currentPage-1 >= 0 ? <span className="cursor-pointer" data-page={Math.max(currentPage-1, 0)} onClick={ onPageEventHandler }>&lt;</span> : <></> }
+      { currentPage-1 >= 0 ? <span className="cursor-pointer" data-page={ Math.max(currentPage-1, 0) } onClick={ onPageEventHandler }>&lt;</span> : <></> }
       { pages }
-      { currentPage +1 < totalPages ? <span className="cursor-pointer" data-page={Math.min(currentPage+1, totalPages)} onClick={ onPageEventHandler }>&gt;</span> : <></> }
+      { currentPage +1 < totalPages ? <span className="cursor-pointer" data-page={ Math.min(currentPage+1, totalPages) } onClick={ onPageEventHandler }>&gt;</span> : <></> }
     </span>
   </div>);
 }
