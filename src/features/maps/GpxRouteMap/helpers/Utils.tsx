@@ -98,9 +98,25 @@ const removeMarkers = (map: L.Map) => {
     if (layer instanceof L.Marker) {
         map.removeLayer(layer)
     }
-})
+  })
 }
 
+const getGeolocationPositionFromGeoPoint = (point: GeoPoint): GeolocationPosition => {
+  return {
+    coords: {
+      latitude: point.lat,
+      longitude: point.lon,
+      accuracy: 0,
+      altitude: 0,
+      altitudeAccuracy: 0,
+      heading: 0,
+      speed: 0,
+      toJSON: () => { }
+    },
+    timestamp: Date.now(),
+    toJSON: () => { }
+  }
+}
 
-export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
+export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getGeolocationPositionFromGeoPoint,
   getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, generateInfoPopUp };
