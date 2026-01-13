@@ -1,0 +1,22 @@
+import type { Route } from "../../../../types/Route.types";
+import type { MapPoint } from "../../SearchRouteMap/SearchRouteMap.types";
+
+type RouteSearchState = {
+  query: string,
+  routes: Array<Route>,
+  points: Array<MapPoint>
+  isLoading: boolean,
+  error: string | null,
+  totalRoutes: number
+}
+
+const RoutesSearchInitialState: RouteSearchState = {
+  query: "",
+  routes: [],
+  points: [],
+  isLoading: false,
+  error: null,
+  totalRoutes: 0
+};
+
+export { type RouteSearchState, RoutesSearchInitialState };

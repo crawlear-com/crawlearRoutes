@@ -36,7 +36,7 @@ const RouteDetail = () => {
         <p className="flex-6 pr-5">{ route.description }</p>
         <span>
           <DifficultBadge className="flex-1" difficulty={ route.difficulty } />
-          <LikesBadge className="flex-1" likes={ route.likes } />
+          <LikesBadge className="flex-1 text-right" likes={ route.likes } />
         </span>
       </div>
       <hr />

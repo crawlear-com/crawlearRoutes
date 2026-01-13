@@ -3,7 +3,7 @@ import 'leaflet-gpx'
 import * as L from 'leaflet'
 import { iconRoute } from '../Icons'
 import type { GeoPoint } from '../../../../types/Route.types'
-import type { PopopPoint } from '../MapPointPicker.types'
+import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types'
 import { getMax, getMin, getSearchBoundsFromPoint } from '../helpers/utils'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
@@ -13,7 +13,7 @@ const isCircle = (marker: L.Layer) => {
   return (typeof marker.getPopup() === 'undefined');
 }
 
-const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, points?: Array<PopopPoint>) => {
+const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, points?: Array<MapPoint>) => {
     const markers = React.useRef<Array<L.Layer>>([]);
     const map = React.useRef<L.Map | null>(null);
     const removePreviousMarkers = (removeCircle: boolean) => {

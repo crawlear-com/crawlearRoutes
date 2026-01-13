@@ -27,32 +27,19 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
 }
 
 const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
-
-    const { data, error } = await supabaseClient.rpc('searchRoutesByGeo', { 
-      min_lat: searchBounds.getNorth(),
-      min_long: searchBounds.getWest(),
-      max_lat: searchBounds.getSouth(),
-      max_long: searchBounds.getEast()
-    }); 
-
-    if(!error) {
-        return data;
-    } else {
-      throw new Error('Error accessing getting routes from user');
-    }
+  return await supabaseClient.rpc('searchRoutesByGeo', { 
+    min_lat: searchBounds.getNorth(),
+    min_long: searchBounds.getWest(),
+    max_lat: searchBounds.getSouth(),
+    max_long: searchBounds.getEast()
+  }); 
 }
 
 const searchPublicRoutes = async (query: string) => {
-    const { data, error } = await supabaseClient.rpc('searchPublicRoutes', { 
-      q: query,
-      limit_rows: MAX_ROWS
-    }); 
-
-    if(!error) {
-        return data;
-    } else {
-      throw new Error('Error searching public routes');
-    }
+  return await supabaseClient.rpc('searchPublicRoutes', { 
+    q: query,
+    limit_rows: MAX_ROWS
+  }); 
 }
 
 const deleteRoute = async (id: string) => {

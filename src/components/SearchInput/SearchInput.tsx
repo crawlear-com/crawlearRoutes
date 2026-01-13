@@ -1,10 +1,10 @@
 import type { SearchInputProps } from "./SearchInput.types";
 import useSearchInput from "./hooks/useSearchInput";
 
-const SearchInput = ({ className, placeholder, onQueryChange  }: SearchInputProps) => {
-  const [ onQueryChangeHandler ] = useSearchInput(onQueryChange);
+const SearchInput = ({ value, className, placeholder, onQueryChange, onSearch  }: SearchInputProps) => {
+  const [ onQueryChangeHandler ] = useSearchInput(onQueryChange, onSearch);
 
-  return <input className={ className } onChange={ onQueryChangeHandler }
+  return <input value={ value } className={ className } onChange={ onQueryChangeHandler }
         placeholder={ placeholder } type="text" />
 }
 

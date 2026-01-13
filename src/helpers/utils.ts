@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import type { Route } from "../types/Route.types";
 
 const SCALE11 = "1/1";
 const SCALE110 = "1/10";
@@ -24,4 +25,14 @@ const useDifficultyValues = () => {
   return [ t("main.easy"), t("main.moderate"), t("main.difficult")];
 }
 
-export { getScaleValue, useDifficultyValues };
+const getPointsFromRoutes = (routes: Array<Route>) => {
+  return routes.map((route: Route) => {
+    return {
+        point: route.location,
+        content: route.name
+    }
+  })
+}
+
+
+export { getScaleValue, useDifficultyValues, getPointsFromRoutes };

@@ -6,10 +6,13 @@ import SearchInput from "../../../components/SearchInput/SearchInput";
 import RoutesCardList from "../../routes/RoutesCardList/RoutesCardList";
 import type { Route } from "../../../types/Route.types";
 import RouteCard from "../../routes/RouteCard/RouteCard";
+import { useSelector } from "react-redux";
+import { selectQuery } from "../store/selectors/routeSearchSelectors";
 
 const SearchRouteMap = () => {
-  const [ resultRoutes, points, isLoading, onMapClick, onQueryChange ] = useSearchRoute();
+  const [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch ] = useSearchRoute();
   const { t } = useTranslation(['map']);
+  const query = useSelector(selectQuery);
 
   const routesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;
 
@@ -18,8 +21,8 @@ const SearchRouteMap = () => {
 
     <label htmlFor="searchRouteInput" className="mt-56">
       { t('main.search route') }:
-      <SearchInput className="border-primary border h-10 p-2 ml-2 rounded"
-        onQueryChange={ onQueryChange } placeholder={ t('main.by title') } />
+      <SearchInput value={ query } className="border-primary border h-10 p-2 ml-2 rounded"
+        onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
     </label>
 
     { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
