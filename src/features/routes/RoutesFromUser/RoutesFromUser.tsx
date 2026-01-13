@@ -25,7 +25,7 @@ const RoutesFromUser = () => {
       toast.error((e as Error).message);
     });
   }
-  const deleteExtras = (id: string) => <div onClick={() => deleteRouteById(id)}>🗑</div>
+  const deleteExtras = (id: string) => <div className="absolute top-3 right-3" onClick={() => deleteRouteById(id)}>🗑</div>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(route.id) } />;
 
   return <RoutesList title={ t("main.my routes") } card={ myRoutesCard }

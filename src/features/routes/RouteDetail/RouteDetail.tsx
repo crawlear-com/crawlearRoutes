@@ -4,11 +4,11 @@ import type { Route } from "../../../types/Route.types";
 import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
 import { NavLink, useParams, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import { getScaleValue } from "../../../helpers/utils";
-
-import DifficultBadge from "../../../components/DifficultBadge/DifficultBadge";
+import DifficultBadge from "../../../components/Badge/DifficultBadge/DifficultBadge";
 import LikesBadge from "../../../components/LikesBadge/LikesBadge";
-import DistanceBadge from "../../../components/DistanceBadge/DistanceBadge";
+import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge";
+import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
+import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
 
 const RouteDetail = () => {
   const [route, setRoute ] = React.useState<Route>();
@@ -41,9 +41,9 @@ const RouteDetail = () => {
       </div>
       <hr />
       <div className="flex">
-        <span className="flex-6">{ getScaleValue(route.scale) }</span>
-        <DistanceBadge className="flex-1" distance={ route.distance } />
-        <span  className="flex-1">{ route.durationTime }</span>
+        <ScaleBadge className="flex-8" scale={ route.scale } />
+        <DistanceBadge className="flex-1 text-right" distance={ route.distance } />
+        <DurationBadge className="flex-1 text-right" duration={ route.durationTime } />
       </div>
       <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } className="h-96 mt-10" />
       <NavLink className="text-primary text-center" to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
