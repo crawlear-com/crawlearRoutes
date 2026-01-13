@@ -6,6 +6,7 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import NotFound404 from "../../pages/NotFound404/NotFound404";
 import RecordRoute from "../../pages/RecordRoute/RecordRoute";
+import RouteDetail from "../../pages/Route/Route";
 
 const MainHashRouter = () => {
   return <HashRouter>
@@ -17,6 +18,7 @@ const MainHashRouter = () => {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/route/:id" element={<RouteDetail />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
       </HashRouter>

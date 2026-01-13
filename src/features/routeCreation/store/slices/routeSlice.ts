@@ -50,6 +50,6 @@ const routeSlice = createSlice({
 });
 
 export { routeSlice };
-export const { setGpx, cleanGpx, setLocation, setName, setDescription, setDifficult, setDistance,
+export const { setRoute, cleanRoute, setGpx, cleanGpx, setLocation, setName, setDescription, setDifficult, setDistance,
   setDuration, setIsPublic, setScale, setYoutubeVideo } = routeSlice.actions;
 export default routeSlice.reducer;

@@ -28,7 +28,7 @@ const LikesFromUser = () => {
     });
   }
 
-  const deleteExtras = (uid: string, rid: string) => <div onClick={() => deleteFavoriteById(uid, rid)}>♥</div>
+  const deleteExtras = (uid: string, rid: string) => <div className="absolute top-3 right-3" onClick={() => deleteFavoriteById(uid, rid)}>♥️</div>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(uid, route.id) } />;
 
   return <RoutesList title={ t("main.favourite routes") } card={ myRoutesCard }

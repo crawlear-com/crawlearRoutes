@@ -31,7 +31,7 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     setIsLoading(true);
     searchPublicRoutes(query).then((routes) => {
       setResultRoutes(routes);
-      setPoints(getPointsFromRoutes(routes));
+      setPoints(getPointsFromRoutes(routes) as Array<MapPoint>);
       setIsLoading(false);
     }).catch((e: unknown) => {
       toast.error((e as Error).message)
@@ -56,7 +56,7 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
           setIsLoading(false);
           if (routes && routes.length) {
             setResultRoutes(routes);
-            setPoints(getPointsFromRoutes(routes));
+            setPoints(getPointsFromRoutes(routes) as Array<MapPoint>);
           }
         }).catch((e: unknown) => {
           toast.error((e as Error).message)

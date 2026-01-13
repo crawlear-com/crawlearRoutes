@@ -1,0 +1,8 @@
+@reference "tailwindcss";
+@reference "../index.css";
+
+@layer base {
+  .difficultBadge {
+    @apply bg-primary text-white rounded font-bold px-2 text-xs sm:text-base max-h-5;
+  }
+}

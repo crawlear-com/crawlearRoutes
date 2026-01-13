@@ -3,9 +3,11 @@ import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFee
 import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
+import { getScaleValue, useDifficultyValues } from "../../../helpers/utils";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
+  const [ easy, moderate, difficult ] = useDifficultyValues();
   const [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, setRouteDescription,
     setRouteYoutubeVideo ] = useRouteDataForm();
@@ -39,11 +41,9 @@ const RouteDataForm = () => {
       </label>
       <select className="ml-1 mb-5 p-3 input" id="difficulty" value={ creationRoute.difficulty }
         onChange={ onDifficultyChange }>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option value="1">{ easy }</option>
+        <option value="2">{ moderate }</option>
+        <option value="3">{ difficult}</option>
       </select> <br />
 
       <label htmlFor="scale">
@@ -51,10 +51,10 @@ const RouteDataForm = () => {
       </label>
       <select className="ml-1 mb-5 p-3 input" id="scale" value={ creationRoute.scale }
         onChange={ onScaleChange }>
-        <option value={1}>1/10</option>
-        <option value={2}>1/18</option>
-        <option value={3}>1/24</option>
-        <option value={4}>1/1</option>
+        <option value={1}>{ getScaleValue(1) }</option>
+        <option value={2}>{ getScaleValue(2) }</option>
+        <option value={3}>{ getScaleValue(3) }</option>
+        <option value={4}>{ getScaleValue(4) }</option>
       </select> <br />
       <label htmlFor="youtubeVideo">
         { t("main.route video")}:

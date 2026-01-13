@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp } from '../helpers/Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp, getGeolocationPositionFromGeoPoint } from '../helpers/Utils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
@@ -97,7 +97,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
             const gpxInfo = getGpxInfo(e.target);
 
             setGpxInfo(gpxInfo);
-            map.current?.fitBounds(e.target.getBounds());
+            setMapLocation(map.current!, getGeolocationPositionFromGeoPoint(routePoint));
             if (onFileResolved) {
               onFileResolved(fileContents, routePoint, gpxInfo.distance, gpxInfo.time);
             }
@@ -119,16 +119,21 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     if (!map.current) {
       map.current = createMap('map');
     }
-    getGeolocationPosition((point: GeolocationPosition) => setMapLocation(map.current!, point), () => { 
-      setError(ERR_GEOLOCATION_NOT_RESOLVED);
-      setMapLocation(map.current!);
-    });
+    if (!gpxRecorded) {
+      getGeolocationPosition((point: GeolocationPosition) => setMapLocation(map.current!, point), 
+        () => { 
+          setError(ERR_GEOLOCATION_NOT_RESOLVED);
+          setMapLocation(map.current!);
+        }
+      );
+    }
+    
     return () => {
       map.current?.off();
       map.current?.remove();
       map.current = null;
     }
-  }, []);
+  }, [gpxRecorded]);
 
   React.useEffect(() => {
     if (gpxRecorded && gpxRecorded.length && (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {

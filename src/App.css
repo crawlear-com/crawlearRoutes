@@ -37,6 +37,10 @@
     @apply inline text-primary;
   }
 
+  #root hr {
+    @apply bg-primary text-primary my-2;
+  }
+
   input, textarea, .input {
     @apply border border-primary rounded p-1;
   }
