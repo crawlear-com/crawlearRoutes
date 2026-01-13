@@ -6,9 +6,18 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import * as React from "react";
+import { cleanSearchResultsAndQuery } from "../../features/maps/store/slices/routeSearchSlice";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(cleanSearchResultsAndQuery());
+  }, [dispatch]);
+
   return (<>
     <Header />
     <main>

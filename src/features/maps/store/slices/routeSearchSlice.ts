@@ -37,6 +37,14 @@ const routeSearchSlice = createSlice({
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
     },
+    cleanSearchResultsAndQuery: (state) => {
+      state.query = RoutesSearchInitialState.query;
+      state.error = RoutesSearchInitialState.error;
+      state.isLoading = RoutesSearchInitialState.isLoading;
+      state.points = RoutesSearchInitialState.points;
+      state.routes = RoutesSearchInitialState.routes;
+      state.totalRoutes = RoutesSearchInitialState.totalRoutes;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(searchByGeo.pending, (state) => {
@@ -74,6 +82,6 @@ const routeSearchSlice = createSlice({
 });
 
 export { routeSearchSlice, searchByGeo, searchByQuery };
-export const { setQuery } = routeSearchSlice.actions;
+export const { setQuery, cleanSearchResultsAndQuery } = routeSearchSlice.actions;
 export default routeSearchSlice.reducer;
 
