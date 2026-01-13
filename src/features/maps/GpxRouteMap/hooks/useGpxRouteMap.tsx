@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp, getGeolocationPositionFromGeoPoint } from '../helpers/Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp, getGeolocationPositionFromGeoPoint, gpxHasPoints } from '../helpers/Utils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
@@ -119,7 +119,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     if (!map.current) {
       map.current = createMap('map');
     }
-    if (!gpxRecorded) {
+    if (!gpxHasPoints(gpxRecorded)) {
       getGeolocationPosition((point: GeolocationPosition) => setMapLocation(map.current!, point), 
         () => { 
           setError(ERR_GEOLOCATION_NOT_RESOLVED);
@@ -136,7 +136,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   }, [gpxRecorded]);
 
   React.useEffect(() => {
-    if (gpxRecorded && gpxRecorded.length && (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
+    if (gpxHasPoints(gpxRecorded)) {
       onFileLoaded(gpxRecorded);
     }
   }, [gpxRecorded, onFileLoaded]);

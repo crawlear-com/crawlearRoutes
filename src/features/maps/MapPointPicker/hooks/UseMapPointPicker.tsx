@@ -1,20 +1,19 @@
 import * as React from 'react'
 import 'leaflet-gpx'
 import * as L from 'leaflet'
-import { iconRoute, circleMarkerAttribs } from '../Icons'
+import { iconRoute } from '../Icons'
 import type { GeoPoint } from '../../../../types/Route.types'
 import type { PopopPoint } from '../MapPointPicker.types'
-import { getMax, getMin } from '../helpers/utils'
+import { getMax, getMin, getSearchBoundsFromPoint } from '../helpers/utils'
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
-const RADIUS_SCALE = 50332.5;
-const LATLON_MODIFIER = 0.45;
+const LATLON_MODIFIER = 0.05;
 
 const isCircle = (marker: L.Layer) => {
   return (typeof marker.getPopup() === 'undefined');
 }
 
-const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBounds) => void, points?: Array<PopopPoint>) => {
+const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, points?: Array<PopopPoint>) => {
     const markers = React.useRef<Array<L.Layer>>([]);
     const map = React.useRef<L.Map | null>(null);
     const removePreviousMarkers = (removeCircle: boolean) => {
@@ -28,19 +27,17 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
     }
 
     React.useEffect(() => {
-      const mapClick = (e: L.LeafletMouseEvent) => {
-        const bounds: L.LatLngBounds | undefined = map.current?.getBounds();
-        if (bounds) {
-          const latGrad = (bounds.getNorthEast().lat - bounds.getSouthWest().lat)
+      const mapClickHandler = (e: L.LeafletMouseEvent) => {
+        const mapBounds = map.current?.getBounds();
+        if (mapBounds) {
+          const searchBounds = getSearchBoundsFromPoint(e.latlng, mapBounds);
+          const rectangle = L.rectangle(searchBounds).addTo(map.current!);
+  
           removePreviousMarkers(true);
           markers.current = [];
-          circleMarkerAttribs.radius = latGrad * RADIUS_SCALE;
-
-          const circle = L.circle([e.latlng.lat, e.latlng.lng], circleMarkerAttribs).addTo(map.current!);
-          markers.current.push(circle);
-
+          markers.current.push(rectangle);
           if (map.current && onMapClick) {
-            onMapClick(e.latlng, map.current.getBounds());
+            onMapClick(searchBounds);
           }
         }
       }
@@ -50,7 +47,7 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
         maxZoom: 19
       }).addTo(newMap);
       newMap.on('click', (e: L.LeafletMouseEvent) => {
-        mapClick(e)
+        mapClickHandler(e)
       });
       map.current = newMap;
 
@@ -58,7 +55,7 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
         newMap.off()
         newMap.remove()
       }
-    }, [onMapClick])
+    }, [onMapClick]);
     
     const addPropsPoints = React.useCallback((setBounds: boolean = false) => {
       let max: GeoPoint = { lat: -90, lon: -180 }
@@ -73,9 +70,10 @@ const useMapPointPicker = (onMapClick?: (latlon: L.LatLng, mapBounds: L.LatLngBo
           min = getMin(poppoint.point, min);
 
           if (setBounds && map.current) {
-            map.current.fitBounds(new L.LatLngBounds([new L.LatLng(min.lat - LATLON_MODIFIER,
-              min.lon - LATLON_MODIFIER), 
-              new L.LatLng(max.lat + LATLON_MODIFIER, max.lon + LATLON_MODIFIER)]))
+            map.current.fitBounds(new L.LatLngBounds([
+              new L.LatLng(min.lat - LATLON_MODIFIER, min.lon - LATLON_MODIFIER), 
+              new L.LatLng(max.lat + LATLON_MODIFIER, max.lon + LATLON_MODIFIER)
+            ]))
           }
         })
       }

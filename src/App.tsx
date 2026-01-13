@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import MainHashRouter from "./components/MainHashRouter/MainHashRouter";
 
-import './App.css';
+import './styles/App.css';
 
 const App = () => {
   return (<ErrorBoundary fallback={ <p>There is a problem rendering the App. Please reload and try again.</p> }>

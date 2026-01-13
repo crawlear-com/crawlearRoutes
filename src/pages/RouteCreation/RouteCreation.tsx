@@ -7,7 +7,7 @@ import StepRouteCreation from "../../features/routeCreation/StepRouteCreation/St
 import { useDispatch } from "react-redux";
 import { cleanRoute } from "../../features/routeCreation/store/slices/routeSlice";
 
-const RecordRoute = () => {
+const RouteCreation = () => {
   const { t } = useTranslation(["routeCreation"])
   const dispatch = useDispatch();
 
@@ -27,4 +27,4 @@ const RecordRoute = () => {
   </>);
 }
 
-export default RecordRoute;
+export default RouteCreation;

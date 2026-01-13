@@ -1,6 +1,5 @@
 import type { DistanceBadgeProps } from "./DistanceBadge.types";
 
-import "../../../styles/route.css";
 import kmMarker from '../assets/images/marker-icon.png';
 
 const DistanceBadge = ({ distance, className }: DistanceBadgeProps) => {

@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import DifficultBadge from "../../../components/Badge/DifficultBadge/DifficultBadge";
 import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge";
 
-import "../../../styles/route.css";
 import LikesBadge from "../../../components/LikesBadge/LikesBadge";
 import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
 
