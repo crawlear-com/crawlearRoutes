@@ -31,7 +31,9 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
         const mapBounds = map.current?.getBounds();
         if (mapBounds) {
           const searchBounds = getSearchBoundsFromPoint(e.latlng, mapBounds);
-          const rectangle = L.rectangle(searchBounds).addTo(map.current!);
+          const rectangle = L.rectangle(searchBounds, {
+            color: "#333333", weight: 1
+          }).addTo(map.current!);
   
           removePreviousMarkers(true);
           markers.current = [];
