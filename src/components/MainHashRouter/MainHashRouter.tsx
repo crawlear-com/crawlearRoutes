@@ -5,8 +5,9 @@ import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import NotFound404 from "../../pages/NotFound404/NotFound404";
-import RecordRoute from "../../pages/RecordRoute/RecordRoute";
+import RouteCreation from "../../pages/RouteCreation/RouteCreation";
 import RouteDetail from "../../pages/Route/Route";
+import SearchRoute from "../../pages/SearchRoute/SearchRoute";
 
 const MainHashRouter = () => {
   return <HashRouter>
@@ -14,7 +15,8 @@ const MainHashRouter = () => {
           <Route path="/" element={<Landing />} />
           <Route element={<PrivateRoute />}>
             <Route path="/myroutes" element={<MyRoutes />} />
-            <Route path="/record" element={ <RecordRoute />} />
+            <Route path="/record" element={ <RouteCreation />} />
+            <Route path="/search" element={ <SearchRoute />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

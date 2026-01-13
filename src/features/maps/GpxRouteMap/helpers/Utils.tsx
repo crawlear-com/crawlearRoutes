@@ -118,5 +118,9 @@ const getGeolocationPositionFromGeoPoint = (point: GeoPoint): GeolocationPositio
   }
 }
 
+const gpxHasPoints = (gpx:string) => {
+  return (gpx && gpx.length && (gpx.indexOf('<trkpt')>0 || gpx.indexOf('<wpt')>0));
+}
+
 export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getGeolocationPositionFromGeoPoint,
-  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, generateInfoPopUp };
+  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, generateInfoPopUp, gpxHasPoints };

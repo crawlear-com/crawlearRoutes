@@ -26,12 +26,13 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
   }); 
 }
 
-const searchRoutesByGeo = async (minLat: number, minLon: number, maxLat: number, maxLon: number) => {
+const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
+
     const { data, error } = await supabaseClient.rpc('searchRoutesByGeo', { 
-      min_lat: minLat,
-      min_long: minLon,
-      max_lat: maxLat,
-      max_long: maxLon
+      min_lat: searchBounds.getNorth(),
+      min_long: searchBounds.getWest(),
+      max_lat: searchBounds.getSouth(),
+      max_long: searchBounds.getEast()
     }); 
 
     if(!error) {

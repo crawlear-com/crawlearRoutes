@@ -1,7 +1,7 @@
 import { useDifficultyValues } from "../../../helpers/utils";
 import type { DifficultBadgeProps } from "./DifficultBadge.types";
 
-import "../../../styles/route.css";
+import "../styles/badge.css";
 
 const DifficultBadge = ({ difficulty, className }: DifficultBadgeProps) => {
   const difficultValues = useDifficultyValues();
