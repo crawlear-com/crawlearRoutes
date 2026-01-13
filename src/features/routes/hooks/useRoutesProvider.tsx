@@ -14,7 +14,8 @@ const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfi
   selectPage: (state: unknown) => number,
   selectTotalRoutes: (state: unknown) => number,
 ): 
-  [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void, (order: string) =>  void, (query: string) =>  void ] => {
+  [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void,
+    (order: string) =>  void, (query: string) =>  void, (query: string) =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useSelector(selectRoutes);
   const isLoading = useSelector(selectIsLoading);
@@ -35,14 +36,18 @@ const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfi
   }
   const onQueryChange = (query: string) => {
       dispatch(setQuery(query));
-      dispatch(thunk());
   };
+
+  const onSearch = () => {
+      dispatch(thunk());
+  }
 
   React.useEffect(() => {
     dispatch(thunk());
   }, [dispatch, thunk]);
 
-  return [ currentPage, totalRoutes, routes, isLoading, onPageClick, onOrderByClick, onOrderDirClick, onQueryChange ];
+  return [ currentPage, totalRoutes, routes, isLoading, onPageClick,
+    onOrderByClick, onOrderDirClick, onQueryChange, onSearch ];
 }
 
 export default useRoutesProvider;

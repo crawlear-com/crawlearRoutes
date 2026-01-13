@@ -1,14 +1,9 @@
-import type { GeoPoint } from "../../../types/Route.types"
-
-type PopopPoint = {
-  point: GeoPoint,
-  content: HTMLElement
-}
+import type { MapPoint } from "../SearchRouteMap/SearchRouteMap.types"
 
 type MapPointPickerProps = {
     onMapClick?: (searchBounds: L.LatLngBounds) => void,
-    points?: Array<PopopPoint>,
+    points?: Array<MapPoint>,
     className?: string
 }
 
-export type { PopopPoint, MapPointPickerProps };
+export type { MapPointPickerProps };
