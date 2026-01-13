@@ -16,6 +16,9 @@
     "route video": "Video (youtube url)",
     "gpx creation": "Generación de la ruta GPS",
     "route data": "Creación de la ruta",
-    "create route": "Crear ruta"
+    "create route": "Crear ruta",
+    "easy": "Fácil",
+    "moderate": "Moderada",
+    "difficult": "Difícil"
   }
 }
