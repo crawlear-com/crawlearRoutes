@@ -133,7 +133,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
       map.current?.remove();
       map.current = null;
     }
-  }, []);
+  }, [gpxRecorded]);
 
   React.useEffect(() => {
     if (gpxRecorded && gpxRecorded.length && (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
