@@ -66,8 +66,10 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
       removePreviousMarkers(false);
       if (points && points.length > 0) {
         points.forEach((poppoint) => {
+          const popup = L.popup().setContent(`<a href="#/route/${poppoint.content.rid}"}>${poppoint.content.name}</a>`);
+
           markers.current.push(L.marker([poppoint.point.lat, poppoint.point.lon],
-            { icon: iconRoute }).bindPopup(poppoint.content).openPopup().addTo(map.current!))
+            { icon: iconRoute }).bindPopup(popup).openPopup().addTo(map.current!))
           max = getMax(poppoint.point, max);
           min = getMin(poppoint.point, min);
 
