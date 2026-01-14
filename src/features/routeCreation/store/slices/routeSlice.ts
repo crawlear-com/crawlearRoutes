@@ -1,7 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { CreationRoute, GeoPoint } from '../../../../types/Route.types';
+import { getRoute } from '../../../../database/routeRpc';
+
+const loadRoute = createAsyncThunk(
+  'route/getRoute',
+  async (rid: string) => {
+    const response = await getRoute(rid);
+
+    if (!response.error) {
+      return response;
+    } else {
+      throw new Error(`Error loading favorite routes: ${response.error.message}`);
+    }
+  }
+);
 
 const routeSlice = createSlice({
   name: 'route',
@@ -46,10 +60,24 @@ const routeSlice = createSlice({
     setIsPublic: (state, action: PayloadAction<boolean>) => {
       state.route.isPublic = action.payload;
     }
-  }
+  },
+    extraReducers: (builder) => {
+      builder.addCase(loadRoute.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loadRoute.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ? action.error.message : "Unknown Error";
+      })
+      .addCase(loadRoute.fulfilled, (state, action) => {
+        state.route = action.payload;
+        state.isLoading = false;
+      })
+    }
 });
 
-export { routeSlice };
+export { routeSlice, loadRoute };
 export const { setRoute, cleanRoute, setGpx, cleanGpx, setLocation, setName, setDescription, setDifficult, setDistance,
   setDuration, setIsPublic, setScale, setYoutubeVideo } = routeSlice.actions;
 export default routeSlice.reducer;

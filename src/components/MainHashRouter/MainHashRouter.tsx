@@ -16,6 +16,7 @@ const MainHashRouter = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/myroutes" element={<MyRoutes />} />
             <Route path="/record" element={ <RouteCreation />} />
+            <Route path="/record/:id" element={ <RouteCreation />} />
             <Route path="/search" element={ <SearchRoute />} />
           </Route>
           <Route path="/login" element={<Login />} />

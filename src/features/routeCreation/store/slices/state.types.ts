@@ -1,10 +1,14 @@
 import type { CreationRoute } from "../../../../types/Route.types";
 
 interface CreationRouteState {
-  route: CreationRoute
+  route: CreationRoute,
+  isLoading: boolean,
+  error: string | null
 }
 
 const initialState: CreationRouteState = {
+  isLoading: false,
+  error: null,
   route: {
     name: "",
     description: "",

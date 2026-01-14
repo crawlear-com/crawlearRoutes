@@ -7,13 +7,17 @@ const selectStep1IsFinished = createSelector(
 
 const selectStep2IsFinished = createSelector(
   (state) => state.routeCreation,
-  (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 &&
-    routeCreation.route.youtubeVideo.length > 0 : false
+  (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 : false
 );
 
 const selectCreationRoute = createSelector(
   (state) => state.routeCreation,
   (routeCreation) => routeCreation.route
+);
+
+const selectIsLoading = createSelector(
+  (state) => state.routeCreation,
+  (routeCreation) => routeCreation.isLoading
 );
 
 const selectGpx = createSelector(
@@ -68,5 +72,5 @@ const selectIsPublic = createSelector(
 
 export { selectCreationRoute, selectGpx, selectPoint, selectStep1IsFinished, selectStep2IsFinished,
   selectName, selectDescription, selectDifficulty, selectScale, selectYoutubeVideo,
-  selectDistance, selectDuration, selectIsPublic
+  selectDistance, selectDuration, selectIsPublic, selectIsLoading
  };

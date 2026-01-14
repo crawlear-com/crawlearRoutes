@@ -3,6 +3,8 @@
     "my routes": "My routes",
     "favourite routes": "Favourite routes",
     "create route": "Create new route",
-    "no routes": "There are no routes"
+    "no routes": "There are no routes",
+    "want delete favorite": "Do you want to delete the favorite?",
+    "want delete route": "Do you want to delete the route?"
   }
 }
