@@ -18,13 +18,10 @@
 - deploy home server // crawlear.com
 - toast async
 - create route
-- adjust click search points (modificators)
-- move useRoutesProvider to another place
 - input query validation with zod (or not?), but validation
 - zod texts into translation
 - check console.error()
 - reset page when filtering in routeslist
-- route card difficulty levels (moderate, easy...)
 - delete my routes confirm
 
 ## Install and run

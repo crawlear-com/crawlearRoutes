@@ -3,6 +3,7 @@ import type { MapPoint } from "../../SearchRouteMap/SearchRouteMap.types";
 
 type RouteSearchState = {
   query: string,
+  page: number,
   routes: Array<Route>,
   points: Array<MapPoint>
   isLoading: boolean,
@@ -12,6 +13,7 @@ type RouteSearchState = {
 
 const RoutesSearchInitialState: RouteSearchState = {
   query: "",
+  page: 0,
   routes: [],
   points: [],
   isLoading: false,

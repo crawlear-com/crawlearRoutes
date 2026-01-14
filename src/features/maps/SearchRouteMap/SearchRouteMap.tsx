@@ -7,12 +7,15 @@ import RoutesCardList from "../../routes/RoutesCardList/RoutesCardList";
 import type { Route } from "../../../types/Route.types";
 import RouteCard from "../../routes/RouteCard/RouteCard";
 import { useSelector } from "react-redux";
-import { selectQuery } from "../store/selectors/routeSearchSelectors";
+import { selectRouteSearchPage, selectRouteSearchQuery, selectRouteSearchTotalPages } from "../store/selectors/routeSearchSelectors";
+import RoutesPaginator from "../../routes/RoutesCardList/RoutesPaginator";
 
 const SearchRouteMap = () => {
-  const [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch ] = useSearchRoute();
+  const [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick ] = useSearchRoute();
   const { t } = useTranslation(['map']);
-  const query = useSelector(selectQuery);
+  const query = useSelector(selectRouteSearchQuery);
+  const page = useSelector(selectRouteSearchPage);
+  const totalRoutes = useSelector(selectRouteSearchTotalPages);
 
   const routesCard = (route: Route) => <RouteCard key={ route.id } route={ route } />;
 
@@ -26,10 +29,9 @@ const SearchRouteMap = () => {
     </label>
 
     { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
-    <span className="ml-2">
-      { resultRoutes && resultRoutes.length ? <>{ t('main.total') }: { resultRoutes.length }</> : <></>}
-    </span>
+    <RoutesPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
     <RoutesCardList routes={ resultRoutes } card={ routesCard } />
+    
   </div>);
 }
 

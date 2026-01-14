@@ -15,10 +15,20 @@ const selectRouteSearchIsLoading = createSelector(
   (routeSearch) => routeSearch.isLoading
 );
 
-const selectQuery = createSelector(
+const selectRouteSearchQuery = createSelector(
   (state) => state.routeSearch,
   (routeSearch) => routeSearch.query
 );
 
+const selectRouteSearchPage = createSelector(
+  (state) => state.routeSearch,
+  (routeSearch) => routeSearch.page
+);
+
+const selectRouteSearchTotalPages = createSelector(
+  (state) => state.routeSearch,
+  (routeSearch) => routeSearch.totalRoutes
+);
+
 export { selectRouteSearchIsLoading, selectRouteSearchPoints, selectRouteSearchRoutes,
-  selectQuery };
+  selectRouteSearchQuery, selectRouteSearchPage, selectRouteSearchTotalPages };

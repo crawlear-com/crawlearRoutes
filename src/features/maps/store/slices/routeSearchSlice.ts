@@ -3,6 +3,7 @@ import { RoutesSearchInitialState } from './state.types';
 import { searchRoutesByGeo, searchPublicRoutes } from '../../../../database/MyRoutesRpc';
 import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types';
 import { getPointsFromRoutes } from '../../../../helpers/utils';
+import type { RootState } from '../../../../store/store';
 
 const searchByGeo = createAsyncThunk(
   'routeSearch/searchByGeo',
@@ -19,8 +20,11 @@ const searchByGeo = createAsyncThunk(
 
 const searchByQuery = createAsyncThunk(
   'routeSearch/searchByQuery',
-  async (query: string) => {
-    const response = await searchPublicRoutes(query);
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const query = state.routeSearch.query;
+    const page = state.routeSearch.page + 1;
+    const response = await searchPublicRoutes(query, page);
 
     if (!response.error) {
       return response.data;
@@ -34,8 +38,11 @@ const routeSearchSlice = createSlice({
   name: 'routeSearch',
   initialState: RoutesSearchInitialState,
   reducers: {
-    setQuery: (state, action: PayloadAction<string>) => {
+    setRouteSearchQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
+    },
+    setRouteSearchPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
     },
     cleanSearchResultsAndQuery: (state) => {
       state.query = RoutesSearchInitialState.query;
@@ -72,7 +79,7 @@ const routeSearchSlice = createSlice({
       state.error = action.error.message ? action.error.message : "Unknown Error";
     })
     .addCase(searchByQuery.fulfilled, (state, action) => {
-      const routes = [...action.payload];
+      const routes = [...action.payload.routes];
       state.routes = routes;
       state.totalRoutes = action.payload.total_count;
       state.points = getPointsFromRoutes(routes) as Array<MapPoint>;
@@ -82,6 +89,6 @@ const routeSearchSlice = createSlice({
 });
 
 export { routeSearchSlice, searchByGeo, searchByQuery };
-export const { setQuery, cleanSearchResultsAndQuery } = routeSearchSlice.actions;
+export const { setRouteSearchQuery, setRouteSearchPage, cleanSearchResultsAndQuery } = routeSearchSlice.actions;
 export default routeSearchSlice.reducer;
 

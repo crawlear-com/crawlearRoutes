@@ -1,7 +1,5 @@
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
-const MAX_ROWS = 30;
-
 const getMyRoutesFull = async (uuid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('routesByOwner', { 
@@ -35,10 +33,11 @@ const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
   }); 
 }
 
-const searchPublicRoutes = async (query: string) => {
+const searchPublicRoutes = async (query: string, page: number) => {
   return await supabaseClient.rpc('searchPublicRoutes', { 
-    q: query,
-    limit_rows: MAX_ROWS
+    p_q: query,
+    p_page: page,
+    p_per_page: ITEMS_PAGE
   }); 
 }
 
