@@ -1,8 +1,13 @@
 import type { GeoPoint } from "../../../types/Route.types";
 
-type MapPoint = {
-  point: GeoPoint,
-  content: string
+type MapPointContent = {
+  name: string,
+  rid: string
 }
 
-export type { MapPoint };
+type MapPoint = {
+  point: GeoPoint,
+  content: MapPointContent
+}
+
+export type { MapPoint, MapPointContent };

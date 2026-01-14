@@ -29,7 +29,10 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
   return routes.map((route: Route) => {
     return {
         point: route.location,
-        content: route.name
+        content: {
+          name: route.name,
+          rid: route.id
+        }
     }
   })
 }
