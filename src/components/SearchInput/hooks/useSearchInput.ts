@@ -2,7 +2,7 @@ import React from "react";
 
 const BOUNCING_TIMEOUT = 1000;
 
-const useSearchInput = (onQueryChange: (query: string) => void, onSearch: (query: string) => void):
+const useSearchInput = (onQueryChange: (query: string) => void, onSearch: () => void):
 [ (event: React.ChangeEvent<HTMLInputElement>) => void ] => {
   const [ bouncingTimeout, setBouncingTimeout ] = React.useState(0);
   const onQueryChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +13,7 @@ const useSearchInput = (onQueryChange: (query: string) => void, onSearch: (query
       clearTimeout(bouncingTimeout);
     }
     setBouncingTimeout(setTimeout(() => {
-      onSearch(query);
+      onSearch();
     }, BOUNCING_TIMEOUT));
   }
 

@@ -3,7 +3,7 @@ type SearchInputProps = {
   className: string,
   placeholder: string,
   onQueryChange: (query: string) => void,
-  onSearch: (query: string) => void
+  onSearch: () => void
 }
 
 export type { SearchInputProps };
