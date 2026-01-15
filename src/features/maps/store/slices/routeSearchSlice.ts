@@ -52,6 +52,7 @@ const routeSearchSlice = createSlice({
       state.points = RoutesSearchInitialState.points;
       state.routes = RoutesSearchInitialState.routes;
       state.totalRoutes = RoutesSearchInitialState.totalRoutes;
+      state.page = RoutesSearchInitialState.totalRoutes;
     },
   },
   extraReducers: (builder) => {
