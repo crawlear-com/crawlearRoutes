@@ -1,21 +1,21 @@
 import supabaseClient from "./supabaseClient";
 
-const createRoute = async (name: string, description: string, isPublic: boolean,
-  difficulty: number, lat: number, lon: number, scale: number, youtubeVideo: string,
-  gpx: string, distance: number, duration: number, id: string) => {
+import type { ActionPayload } from "../features/routeCreation/store/slices/state.types";
+
+const createRoute = async (payload: ActionPayload) => {
     const { data, error } = await supabaseClient.rpc('insertRoute', { 
-      p_name: name,
-      p_description: description,
-      p_difficulty: difficulty,
-      p_ispublic: isPublic,
-      p_lat: lat,
-      p_lon: lon,
-      p_scale: scale,
-      p_youtubevideo: youtubeVideo,
-      p_gpx: gpx,
-      p_distance: distance,
-      p_durationtime: duration,
-      p_owner: id
+      p_name: payload.name,
+      p_description: payload.description,
+      p_difficulty: payload.difficulty,
+      p_ispublic: payload.isPublic,
+      p_lat: payload.location.lat,
+      p_lon: payload.location.lon,
+      p_scale: payload.scale,
+      p_youtubevideo: payload.youtubeVideo,
+      p_gpx: payload.gpx,
+      p_distance: payload.distance,
+      p_durationtime: payload.durationTime,
+      p_owner: payload.owner
     }); 
 
     if(!error) {
@@ -25,22 +25,20 @@ const createRoute = async (name: string, description: string, isPublic: boolean,
     }
 }
 
-const modifyRoute = async (name: string, description: string, isPublic: boolean,
-  difficulty: number, lat: number, lon: number, scale: number, youtubeVideo: string,
-  gpx: string, distance: number, duration: number, id: string) => {
+const modifyRoute = async (payload: ActionPayload) => {
     const { data, error } = await supabaseClient.rpc('updateRoute', { 
-      p_id: id,
-      p_name: name,
-      p_description: description,
-      p_is_public: isPublic,
-      p_difficulty: difficulty,
-      p_scale: scale,
-      p_location: { lat: lat, lon: lon},
-      p_gpx: gpx,
-      p_duration_time: duration,
-      p_distance: distance,
-      p_youtube_video: youtubeVideo,
-      p_set_youtube_null: youtubeVideo === ""
+      p_id: payload.routeId,
+      p_name: payload.name,
+      p_description: payload.description,
+      p_is_public: payload.isPublic,
+      p_difficulty: payload.difficulty,
+      p_scale: payload.scale,
+      p_location: payload.location,
+      p_gpx: payload.gpx,
+      p_duration_time: payload.durationTime,
+      p_distance: payload.distance,
+      p_youtube_video: payload.youtubeVideo,
+      p_set_youtube_null: payload.youtubeVideo === ""
     }); 
 
     if(!error) {

@@ -4,21 +4,13 @@ import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
 import { getScaleValue, useDifficultyValues } from "../../../helpers/utils";
-import type { Route } from "../../../types/Route.types";
 
-type RouteDataFormProps = {
-  action: (name: string, description: string, isPublic: boolean,
-  difficulty: number, lat: number, lon: number, scale: number, youtubeVideo: string,
-  gpx: string, distance: number, duration: number, id: string) => Promise<Route>,
-  id: string
-}
-
-const RouteDataForm = ({ action, id }: RouteDataFormProps) => {
+const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
   const [ easy, moderate, difficult ] = useDifficultyValues();
   const [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, setRouteDescription,
-    setRouteYoutubeVideo ] = useRouteDataForm(action, id);
+    setRouteYoutubeVideo ] = useRouteDataForm();
 
   return (<div className="mt-10">
     <form className="space-y-4" action={ onSubmitRouteForm } noValidate>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { initialState } from './state.types';
+import { initialState, type RouteAction } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { CreationRoute, GeoPoint } from '../../../../types/Route.types';
 import { getRoute } from '../../../../database/routeRpc';
@@ -21,6 +21,12 @@ const routeSlice = createSlice({
   name: 'route',
   initialState,
   reducers: {
+    setRouteId: ((state, action: PayloadAction<string>) => {
+      state.routeId = action.payload;
+    }),
+    setAction: ((state, action: PayloadAction<RouteAction>) => {
+      state.action = action.payload;
+    }),
     setRoute: ((state, action: PayloadAction<CreationRoute>) => {
       state.route = action.payload;
     }),
@@ -78,6 +84,7 @@ const routeSlice = createSlice({
 });
 
 export { routeSlice, loadRoute };
-export const { setRoute, cleanRoute, setGpx, cleanGpx, setLocation, setName, setDescription, setDifficult, setDistance,
-  setDuration, setIsPublic, setScale, setYoutubeVideo } = routeSlice.actions;
+export const { setRouteId, setAction, setRoute, cleanRoute, setGpx, cleanGpx, setLocation, setName,
+  setDescription, setDifficult, setDistance, setDuration, setIsPublic, setScale,
+  setYoutubeVideo } = routeSlice.actions;
 export default routeSlice.reducer;
