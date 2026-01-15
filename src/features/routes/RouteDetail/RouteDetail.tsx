@@ -50,7 +50,7 @@ const RouteDetail = () => {
       </div>
       <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } className="h-96 mt-10 w-full lg:max-w-1/2 mx-auto" />
       {route.youtubeVideo ? <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-1/2 mx-auto" /> : <></> }
-      <NavLink className="text-primary text-center" to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
+      <NavLink className="text-primary text-center block" to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
     </div>
   }
 
