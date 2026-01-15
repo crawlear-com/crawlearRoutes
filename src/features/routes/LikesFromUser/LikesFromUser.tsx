@@ -5,7 +5,7 @@ import useRoutesProvider from "../hooks/useRoutesProvider";
 import { deleteMyFavoritesRoute, getMyFavourites } from "../store/slices/routeListsSlice";
 import { setMyFavouritesPage, setMyFavouritesOrderBy, setMyFavouritesOrderDir, setMyFavouritesQuery } from "../store/slices/routeListsSlice";
 import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesPage, selectMyFavoritesTotalRoutes } from "../store/selectors/routeListsSelectors";
-import { deleteLike } from "../../../database/MyRoutesRpc";
+import { deleteLike } from "../../../database/routeRpc";
 
 import type { Route } from "../../../types/Route.types";
 import { useDispatch, useSelector } from "react-redux";

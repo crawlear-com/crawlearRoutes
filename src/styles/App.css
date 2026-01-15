@@ -45,21 +45,6 @@
     @apply rounded cursor-pointer decoration-primary;
   }
 
-  input[type="checkbox"]:checked::after {
-    @apply content-["::"];
-
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 6px;
-    height: 12px;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-    border-color: white;
-    border-style: solid;
-  }
-
-
   body h1 {
     @apply text-4xl font-bold mb-6;
   }

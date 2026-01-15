@@ -19,7 +19,7 @@ const SearchRouteMap = () => {
   const totalRoutes = useSelector(selectRouteSearchTotalPages);
   const uid = useSelector(selectUserUUID);
 
-  const likeExtras = (uid: string, rid: string, liked: boolean) => <div data-uuid={ uid } data-rid={ rid }
+  const likeExtras = (uid: string, rid: string, liked: boolean) => <div data-uid={ uid } data-rid={ rid } data-isliked = { liked }
     className="absolute top-3 right-3" onClick={ onLikeClick }>{ liked ? "♥️" : "♡" }</div>
   const routesCard = (route: Route | SearchResultRoute) => <RouteCard key={ route.id } route={ route } 
     extras={ likeExtras(uid, route.id, (route as SearchResultRoute).liked) } />;
