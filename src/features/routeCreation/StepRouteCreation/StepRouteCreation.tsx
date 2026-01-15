@@ -16,7 +16,6 @@ const StepRouteCreation = () => {
   const stepTitles = [ t("main.gpx creation"), t("main.route data")];
 
   return <>
-    <span className="p-5">{ t("main.route creation description") }</span>
     <StepProcess steps={ steps } stepsSelectors={ stepsSelectors }
       stepTitles={ stepTitles } stepDescriptions={ routeDescriptions } />
   </>

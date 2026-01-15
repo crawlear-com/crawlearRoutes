@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+@utility button-primary {
+  @apply block w-full p-1 rounded bg-primary text-white font-semibold hover:opacity-90;
+  @apply shadow-xl cursor-pointer w-auto;
+}
+
+@utility button-secondary {
+  @apply block w-full py-4 rounded-full bg-secondary text-black font-semibold hover:opacity-90;
+  @apply shadow-xl cursor-pointer w-auto;
+}

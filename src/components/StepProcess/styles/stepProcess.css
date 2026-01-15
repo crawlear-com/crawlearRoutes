@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+@reference "../../../styles/index.css";
+@reference "../../../styles/customUtilities.css";
+
+@layer base {
+  .stepButton {
+    @apply leading-1 p-5 button-primary w-auto h-10 fixed top-1/2 z-1000;
+  }
+}

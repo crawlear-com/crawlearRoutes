@@ -17,18 +17,31 @@ const LikesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
   const dispatch = useDispatch();
   const uid = useSelector(selectUserUUID);
-  const deleteFavoriteById = (uid: string, rid: string) => {
-    const promise = deleteLike(uid, rid);
+  const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.target as HTMLDivElement;
+    const uid = element.dataset.uuid;
+    const rid = element.dataset.rid;
 
-    promise.then(() => {
-      dispatch(deleteMyFavoritesRoute(rid));
-      toast.success("Like removed");
-    }).catch((e: unknown) => {
-      toast.error((e as Error).message);
-    });
+    event.stopPropagation();
+    if (uid && rid) {
+      deleteFavoriteById(uid, rid);
+    }
+  }
+  const deleteFavoriteById = (uid: string, rid: string) => {
+    if (window.confirm(t("main.want delete favorite"))) {
+      const promise = deleteLike(uid, rid);
+
+      promise.then(() => {
+        dispatch(deleteMyFavoritesRoute(rid));
+        toast.success("Like removed");
+      }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
+    }
   }
 
-  const deleteExtras = (uid: string, rid: string) => <div className="absolute top-3 right-3" onClick={() => deleteFavoriteById(uid, rid)}>♥️</div>
+  const deleteExtras = (uid: string, rid: string) => <div data-uuid={ uid } data-rid={ rid }
+    className="absolute top-3 right-3" onClick={ onDeleteClick }>♥️</div>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(uid, route.id) } />;
 
   return <RoutesList title={ t("main.favourite routes") } card={ myRoutesCard }

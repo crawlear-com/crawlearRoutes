@@ -1,23 +1,44 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { selectCreationRoute } from "../../store/selectors/routeSelectors";
-import type { CreationRoute } from "../../../../types/Route.types";
+import { selectAction, selectCreationRoute, selectRouteId } from "../../store/selectors/routeSelectors";
 import { routeFormValidates } from "../helpers/routeValidations";
-import { createRoute } from "../../../../database/routesCreationRpc";
-import toast from "react-hot-toast";
 import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo } from "../../store/slices/routeSlice";
+import toast from "react-hot-toast";
 
-  const useRouteDataForm = (): [(formData: FormData) => void, CreationRoute, boolean,
-    (event: React.ChangeEvent<HTMLInputElement>) => void,
-    (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    (value: string) => void, (value: string) => void, (value: string) => void] => {
-  
+import type { CreationRoute, Route } from "../../../../types/Route.types";
+import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import { getActionFromActionType } from "../helpers/utils";
+import type { RouteAction } from "../../store/slices/state.types";
+
+const useRouteDataForm = (): [
+  (formData: FormData) => void, CreationRoute, boolean, RouteAction,
+  (event: React.ChangeEvent<HTMLInputElement>) => void,
+  (event: React.ChangeEvent<HTMLSelectElement>) => void,
+  (event: React.ChangeEvent<HTMLSelectElement>) => void,
+  (value: string) => void, (value: string) => void, (value: string) => void
+] => {
+  const routeId = useSelector(selectRouteId);
+  const actionType = useSelector(selectAction);
+  const owner = useSelector(selectUserUUID);
   const creationRoute = useSelector(selectCreationRoute);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const dispatch = useDispatch();
-  const owner = useSelector(selectUserUUID);
+  const createActionPayload = () => {
+    return {
+      routeId: routeId,
+      name: creationRoute.name,
+      description: creationRoute.description,
+      isPublic: creationRoute.isPublic,
+      difficulty: creationRoute.difficulty,
+      location: creationRoute.location,
+      scale: creationRoute.scale,
+      youtubeVideo: creationRoute.youtubeVideo,
+      gpx: creationRoute.gpx,
+      distance: creationRoute.distance,
+      durationTime: creationRoute.durationTime,
+      owner: owner
+    }
+  }
 
   const onIsPublicChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -49,12 +70,10 @@ import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutub
     dispatch(setYoutubeVideo(value))
   }
 
-
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
-      const promise = createRoute(creationRoute.name, creationRoute.description, creationRoute.isPublic,
-        creationRoute.difficulty, creationRoute.location.lat, creationRoute.location.lon, creationRoute.scale,
-        creationRoute.youtubeVideo, creationRoute.gpx, creationRoute.distance, creationRoute.durationTime, owner);
+      const action = getActionFromActionType(actionType);
+      const promise: Promise<Route> = action(createActionPayload());
 
       promise.then((data) => {
         setIsLoading(false);
@@ -66,7 +85,7 @@ import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutub
     }
   }
 
-  return [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
+  return [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, 
     setRouteDescription, setRouteYoutubeVideo ];
 }

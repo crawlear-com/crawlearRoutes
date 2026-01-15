@@ -8,25 +8,51 @@ import toast from "react-hot-toast";
 import { getMyRoutes } from "../store/slices/routeListsSlice";
 import { setMyRoutesPage, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesQuery, deleteMyRoutesRoute } from "../store/slices/routeListsSlice";
 import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesPage, selectMyRoutesTotalRoutes } from "../store/selectors/routeListsSelectors";
+import { useNavigate } from "react-router";
 
 import type { Route } from "../../../types/Route.types";
 
 
 const RoutesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const deleteRouteById = (id: string) => {
-    const promise = deleteRoute(id);
+  const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.target as HTMLDivElement;
+    const rid = element.dataset.rid;
 
-    promise.then(() => {
-      dispatch(deleteMyRoutesRoute(id));
-      toast.success("Route removed");
-    }).catch((e: unknown) => {
-      toast.error((e as Error).message);
-    });
+    event.stopPropagation();
+    if (rid) {
+      deleteRouteById(rid);
+    }
   }
-  const deleteExtras = (id: string) => <div className="absolute top-3 right-3" onClick={() => deleteRouteById(id)}>🗑</div>
-  const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(route.id) } />;
+  const onModifyClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.target as HTMLDivElement;
+    const rid = element.dataset.rid;
+
+    event.stopPropagation();
+    if (rid) {
+      navigate(`/record/${rid}`);
+    }
+  }
+
+  const deleteRouteById = (id: string) => {
+    if (window.confirm(t("main.want delete route"))) {
+      const promise = deleteRoute(id);
+
+      promise.then(() => {
+        dispatch(deleteMyRoutesRoute(id));
+        toast.success("Route removed");
+      }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
+    }
+  }
+  const routeExtras = (rid: string) => <>
+    <div className="absolute top-3 right-6 mr-5" data-rid={ rid } onClick={ onModifyClick }>✏️</div>
+    <div className="absolute top-3 right-3" data-rid={ rid } onClick={ onDeleteClick }>🗑</div>
+  </>
+  const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ routeExtras(route.id) } />;
 
   return <RoutesList title={ t("main.my routes") } card={ myRoutesCard }
     hook={ useRoutesProvider } thunk={ getMyRoutes } setPage={ setMyRoutesPage }
