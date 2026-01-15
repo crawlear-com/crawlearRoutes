@@ -5,10 +5,12 @@ import { selectRouteSearchIsLoading, selectRouteSearchPoints, selectRouteSearchR
 import { searchByGeo, searchByQuery, setRouteSearchPage, setRouteSearchQuery } from "../../store/slices/routeSearchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "../../../../store/store";
+import { deleteLike, likeRoute } from "../../../../database/routeRpc";
+import toast from "react-hot-toast";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
   (searchBounds: L.LatLngBounds) => void, (query: string) => void,
-  () => void, (page: number) => void, () => void ] => {
+  () => void, (page: number) => void, (event: React.MouseEvent<HTMLDivElement>) => void ] => {
   const resultRoutes = useSelector(selectRouteSearchRoutes);
   const points = useSelector(selectRouteSearchPoints);
   const isLoading = useSelector(selectRouteSearchIsLoading);
@@ -31,8 +33,33 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     dispatch(searchByGeo(searchBounds));
   }, [dispatch]);
 
-  const onLikeClick = () => {
+  const onLikeClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.target as HTMLDivElement;
+    const isLiked = element.dataset.isliked === "true";
+    const uid = element.dataset.uid;
+    const rid = element.dataset.rid;
 
+    event.stopPropagation();
+
+    if (uid && rid) {
+      if (isLiked) {
+        deleteLike(uid, rid).then(()=> {
+          element.innerText = "♡";
+          element.dataset.isliked = "false";
+          toast.success("Like removed");
+        }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
+      } else {
+        likeRoute(uid, rid).then(() => {
+          element.innerText = "♥️";
+          element.dataset.isliked = "true";
+          toast.success("Like created");
+        }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
+      }
+    }
   }
 
   return [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick, onLikeClick ];

@@ -49,7 +49,7 @@ const RoutesFromUser = () => {
     }
   }
   const routeExtras = (rid: string) => <>
-    <div className="absolute top-3 right-6 mr-5" data-rid={ rid } onClick={ onModifyClick }>✏️</div>
+    <div className="absolute top-3 right-6 mr-5 text-xl leading-6" data-rid={ rid } onClick={ onModifyClick }>✎</div>
     <div className="absolute top-3 right-3" data-rid={ rid } onClick={ onDeleteClick }>🗑</div>
   </>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ routeExtras(route.id) } />;

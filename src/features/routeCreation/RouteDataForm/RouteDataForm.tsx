@@ -14,7 +14,7 @@ const RouteDataForm = () => {
     setRouteYoutubeVideo ] = useRouteDataForm();
 
   return (<div className="mt-10">
-    <form className="space-y-4 text-left m-auto w-1/2" action={ onSubmitRouteForm } noValidate>
+    <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitRouteForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("main.route name")}:
       </label>

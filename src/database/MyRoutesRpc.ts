@@ -36,17 +36,4 @@ const deleteRoute = async (id: string) => {
     }
 }
 
-const deleteLike = async (uid: string, rid: string) => {
-    const { data, error } = await supabaseClient.rpc('deleteLikeByUidAndRid', { 
-      p_uid: uid,
-      p_rid: rid
-    }); 
-
-    if(!error && data) {
-        return data;
-    } else {
-      throw new Error('Error deleting favorite');
-    }
-}
-
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRoute, deleteLike };
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRoute };
