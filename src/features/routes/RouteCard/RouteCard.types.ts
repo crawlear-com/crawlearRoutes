@@ -1,7 +1,7 @@
-import type { Route } from "../../../types/Route.types";
+import type { Route, SearchResultRoute } from "../../../types/Route.types";
 
 type RouteCardProps = {
-  route: Route,
+  route: Route | SearchResultRoute,
   extras?: React.JSX.Element
 }
 

@@ -40,9 +40,9 @@ const LikesFromUser = () => {
     }
   }
 
-  const deleteExtras = (uid: string, rid: string) => <div data-uuid={ uid } data-rid={ rid }
+  const likeExtras = (uid: string, rid: string) => <div data-uuid={ uid } data-rid={ rid }
     className="absolute top-3 right-3" onClick={ onDeleteClick }>♥️</div>
-  const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ deleteExtras(uid, route.id) } />;
+  const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ likeExtras(uid, route.id) } />;
 
   return <RoutesList title={ t("main.favourite routes") } card={ myRoutesCard }
     hook={ useRoutesProvider } thunk={ getMyFavourites } setPage={ setMyFavouritesPage}

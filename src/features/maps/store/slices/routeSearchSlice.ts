@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { RoutesSearchInitialState } from './state.types';
-import { searchRoutesByGeo, searchPublicRoutes } from '../../../../database/MyRoutesRpc';
+import { searchRoutesByGeo, searchPublicRoutes } from '../../../../database/searchRoutesRpc';
 import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types';
 import { getPointsFromRoutes } from '../../../../helpers/utils';
 import type { RootState } from '../../../../store/store';
@@ -24,7 +24,8 @@ const searchByQuery = createAsyncThunk(
     const state = thunkAPI.getState() as RootState;
     const query = state.routeSearch.query;
     const page = state.routeSearch.page + 1;
-    const response = await searchPublicRoutes(query, page);
+    const userId = state.user.session?.user.id;
+    const response = await searchPublicRoutes(query, page, userId!);
 
     if (!response.error) {
       return response.data;

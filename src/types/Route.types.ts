@@ -23,4 +23,8 @@ type Route = CreationRoute & {
   owner?: string
 }
 
-export type { GeoPoint, Route, CreationRoute };
+type SearchResultRoute = Route & {
+  liked: boolean
+}
+
+export type { GeoPoint, Route, CreationRoute, SearchResultRoute };

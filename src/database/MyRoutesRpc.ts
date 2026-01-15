@@ -24,23 +24,6 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
   }); 
 }
 
-const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
-  return await supabaseClient.rpc('searchRoutesByGeo', { 
-    min_lat: searchBounds.getNorth(),
-    min_long: searchBounds.getWest(),
-    max_lat: searchBounds.getSouth(),
-    max_long: searchBounds.getEast()
-  }); 
-}
-
-const searchPublicRoutes = async (query: string, page: number) => {
-  return await supabaseClient.rpc('searchPublicRoutes', { 
-    p_q: query,
-    p_page: page,
-    p_per_page: ITEMS_PAGE
-  }); 
-}
-
 const deleteRoute = async (id: string) => {
     const { data, error } = await supabaseClient.rpc('deleteRouteById', { 
       p_id: id
@@ -66,5 +49,4 @@ const deleteLike = async (uid: string, rid: string) => {
     }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, searchRoutesByGeo, searchPublicRoutes,
-  deleteRoute, deleteLike };
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRoute, deleteLike };

@@ -1,9 +1,9 @@
 import type React from "react";
-import type { Route } from "../../../../types/Route.types";
+import type { Route, SearchResultRoute } from "../../../../types/Route.types";
 
 type RoutesCardListProps = {
-  card: (route: Route) => React.ReactElement,
-  routes: Array<Route>,
+  card: (route: (Route | SearchResultRoute)) => React.ReactElement,
+  routes: Array<Route> | Array<SearchResultRoute>,
   infiniteScroll?: boolean
 }
 

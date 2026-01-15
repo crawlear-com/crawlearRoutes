@@ -8,7 +8,7 @@ import type { AppDispatch } from "../../../../store/store";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
   (searchBounds: L.LatLngBounds) => void, (query: string) => void,
-  () => void, (page: number) => void ] => {
+  () => void, (page: number) => void, () => void ] => {
   const resultRoutes = useSelector(selectRouteSearchRoutes);
   const points = useSelector(selectRouteSearchPoints);
   const isLoading = useSelector(selectRouteSearchIsLoading);
@@ -31,7 +31,11 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     dispatch(searchByGeo(searchBounds));
   }, [dispatch]);
 
-  return [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick ];
+  const onLikeClick = () => {
+
+  }
+
+  return [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick, onLikeClick ];
 }
 
 export default useSearchRoute;
