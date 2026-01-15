@@ -72,7 +72,7 @@ const RouteDataForm = ({ action, id }: RouteDataFormProps) => {
         className="ml-1 mb-5 p-3" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
-      <button type="submit" className="button-primary w-auto m-auto">  { isLoading ? "submiting" :  t("main.create route") } </button>
+      <button type="submit" className="button-primary w-auto m-auto">  { isLoading ? "submiting" : t("main.create route") } </button>
     </form>
   </div>);
 }

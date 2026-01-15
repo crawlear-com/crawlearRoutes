@@ -33,7 +33,6 @@ const StepRouteCreation = ({ rid }: StepRouteCreationProps) => {
   steps.push(<RouteDataForm action={ action } id= { id! } />)
 
   return <>
-    <span className="p-5">{ rid ? t("main.route update description") : t("main.route creation description") }</span>
     <StepProcess steps={ steps } stepsSelectors={ stepsSelectors }
       stepTitles={ stepTitles } stepDescriptions={ routeDescriptions } />
   </>

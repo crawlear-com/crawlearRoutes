@@ -2,8 +2,6 @@
   "main": {
     "route creation": "Creación de ruta",
     "route update": "Modificación de ruta",
-    "route creation description": "Primero genera los datos GPS de la ruta, usando el botón 'Grabar' o subiendo un fichero gpx que préviamente has generado con el tu software o dispositivo GPS preferido. El fichero ha de estar en formato GPX. Una vez hayas creado los datos GPS, podrás acabar de rellenar los datos de la ruta en un siguiente paso.",
-    "route update description": "Modifica los datos de la ruta. Puedes modificar tanto los datos GPS como los parámetros de la ruta",
     "route creation step1": "Generació de les dades de GPS: usant el botó 'Gravar' o pujant un fitxer gpx que préviament has generat amb el teu software o dispositiu GPS preferit. El fitxer ha d'estar en format GPX. Pulsa el botó següent un cop tinguis les dades GPS capturades.",
     "route creation step2": "Dades de la ruta: per finalitzar la ruta y guardar-la, omple els camps requerits.",
     "step": "Paso",

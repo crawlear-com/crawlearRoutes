@@ -2,8 +2,6 @@
   "main": {
     "route creation": "Route creation",
     "route update": "Route update",
-    "route creation description": "First of all create the route GPS data. Once you created the GPS data, you'll be able to fill all the route data in a next step.",
-    "route update description": "Modify the route data. You can modify the GPS data and all the other route parameters",
     "route creation step1": "GPS data generation: use the 'Rec' button tp record a route or upload a GPX file generated with your preferred GPS software or device. The file must be a GPX file. To continue, push the 'Next' button.",
     "route creation step2": "Route data: to finish and save the route, fill all the requiered fields.",
     "step": "Step",

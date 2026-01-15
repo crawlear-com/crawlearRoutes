@@ -15,22 +15,9 @@
   [class$="__feedback"] {
     @apply text-red-600;
   }
-  .button-primary {
-    @apply block w-full p-1 rounded bg-primary text-white font-semibold hover:opacity-90;
-    @apply shadow-xl cursor-pointer;
-  }
-
-  .button-primary:disabled {
-    @apply opacity-20;
-  }
-
-  .button-secondary {
-    @apply block w-full py-4 rounded-full bg-secondary text-black font-semibold hover:opacity-90;
-    @apply shadow-xl;
-  }
 
   .card {
-    @apply rounded-2xl shadow-2xl mb-10 p-5 content-end text-left cursor-pointer;
+    @apply rounded-2xl shadow-2xl mb-10 p-5 content-end text-left;
   }
 
   .link {
