@@ -3,17 +3,17 @@ const VALIDCLASS = 'valid';
   
 import * as z from 'zod';
 
-const validateInput = (feedbackSelector: string, elementId: string, value: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodURL) => {
+const validateInput = (feedbackSelector: string, elementId: string, value: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodUnion) => {
   const feedbackElement = document.querySelector(feedbackSelector);
   const element = document.getElementById(elementId);
-  const result = z.safeParse(schema, value);
+  const result = schema.safeParse(value);
 
   generateUIfeedback(result, feedbackElement, element);
 
   return result.success;
 }
 
-const generateUIfeedback = (result: z.ZodSafeParseResult<string | Record<string, unknown>>, feedbackElement: Element | null, element: Element | null) => {
+const generateUIfeedback = (result: z.ZodSafeParseResult<unknown>, feedbackElement: Element | null, element: Element | null) => {
   if (!result.success && feedbackElement && element) {
     feedbackElement.textContent = result.error.issues[0].message;
     element.classList.add(INVALIDCLASS);
@@ -33,7 +33,7 @@ const setFormError = (error: string) => {
     }
 }
 
-const setAndValidate = (setFunction: React.Dispatch<React.SetStateAction<string>> | ((value: string) => void), elementId: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodURL) => {
+const setAndValidate = (setFunction: React.Dispatch<React.SetStateAction<string>> | ((value: string) => void), elementId: string, schema: z.ZodString | z.ZodEmail | z.ZodObject | z.ZodUnion) => {
     const value = (document.getElementById(elementId) as HTMLInputElement).value;
 
     setFunction(value);

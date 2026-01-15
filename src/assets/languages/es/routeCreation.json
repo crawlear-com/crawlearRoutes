@@ -21,5 +21,11 @@
     "easy": "Fácil",
     "moderate": "Moderada",
     "difficult": "Difícil"
+  },
+  "messages": {
+    "route creation ok": "La ruta se ha creado con éxito",
+    "route creation ko": "Ha habido un error creando la ruta: ",
+    "route modify ok": "La ruta se ha modificado con éxito",
+    "route modify ko": "Ha habido un error modificando la ruta: "
   }
 }

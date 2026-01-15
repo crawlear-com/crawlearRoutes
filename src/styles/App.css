@@ -33,11 +33,11 @@
   }
 
   .valid {
-    @apply border-secondary;
+    @apply border-primary;
   }
 
   .invalid, .invalid:focus {
-    @apply border-primary; 
+    @apply border-red-400; 
   }
 
   input[type="checkbox"] {
