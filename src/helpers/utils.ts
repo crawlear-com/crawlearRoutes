@@ -6,6 +6,8 @@ const SCALE110 = "1/10";
 const SCALE118 = "1/18";
 const SCALE124 = "1/24";
 
+const YOTUBE_PATTERN = /^.*(youtube.com|youtu.be)\/(watch\?v=|embed\/|v\/|shorts\/|)(.*?((?=[&#?])|$))/;
+
 const getScaleValue = (scale: number) => {
   let value = SCALE11;
 
@@ -37,5 +39,4 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
   })
 }
 
-
-export { getScaleValue, useDifficultyValues, getPointsFromRoutes };
+export { YOTUBE_PATTERN, getScaleValue, useDifficultyValues, getPointsFromRoutes };

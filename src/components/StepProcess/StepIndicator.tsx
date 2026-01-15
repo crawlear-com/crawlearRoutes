@@ -7,10 +7,11 @@ const StepIndicator = ({ currentStep, stepsNumber }: StepIndicatorProps) => {
   const pointIndicator = [];
 
   for(let step = 0; step < stepsNumber; step++) {
-    pointIndicator.push(<span key={ step } className={ step === currentStep ? "text-primary" : "text-terciary"}>✸</span>)
+    const className = step === currentStep ? "text-primary" : "text-terciary";
+    pointIndicator.push(<span key={ step } className={ className}>✸</span>)
   }
 
-  return (<div>
+  return (<div className="mt-10">
     { pointIndicator }
   </div>);
 }

@@ -4,11 +4,13 @@ import { selectAction, selectCreationRoute, selectRouteId } from "../../store/se
 import { routeFormValidates } from "../helpers/routeValidations";
 import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo } from "../../store/slices/routeSlice";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import type { CreationRoute, Route } from "../../../../types/Route.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
 import { getActionFromActionType } from "../helpers/utils";
-import type { RouteAction } from "../../store/slices/state.types";
+import { CREATE_ACTION, type RouteAction } from "../../store/slices/state.types";
 
 const useRouteDataForm = (): [
   (formData: FormData) => void, CreationRoute, boolean, RouteAction,
@@ -17,6 +19,8 @@ const useRouteDataForm = (): [
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
   (value: string) => void, (value: string) => void, (value: string) => void
 ] => {
+  const { t } = useTranslation(["routeCreation"]);
+  const navigate = useNavigate();
   const routeId = useSelector(selectRouteId);
   const actionType = useSelector(selectAction);
   const owner = useSelector(selectUserUUID);
@@ -74,12 +78,15 @@ const useRouteDataForm = (): [
     if (routeFormValidates(formData)) {
       const action = getActionFromActionType(actionType);
       const promise: Promise<Route> = action(createActionPayload());
+      const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
+      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok")} ${(e as Error).message}`;
 
-      promise.then((data) => {
+      promise.then(() => {
         setIsLoading(false);
-        toast.success("Created!" + data.id);
+        toast.success(successMessage);
+        navigate(-1);
       }).catch((e: unknown) => {
-        toast.error((e as Error).message);
+        toast.error(errorMessage(e));
         setIsLoading(false);
       });
     }
