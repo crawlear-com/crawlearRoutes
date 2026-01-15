@@ -4,11 +4,12 @@ import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
 import { getScaleValue, useDifficultyValues } from "../../../helpers/utils";
+import { CREATE_ACTION } from "../store/slices/state.types";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
   const [ easy, moderate, difficult ] = useDifficultyValues();
-  const [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
+  const [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, setRouteDescription,
     setRouteYoutubeVideo ] = useRouteDataForm();
 
@@ -64,7 +65,9 @@ const RouteDataForm = () => {
         className="ml-1 mb-5 p-3" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
-      <button type="submit" className="button-primary w-auto m-auto">  { isLoading ? "submiting" : t("main.create route") } </button>
+      <button type="submit" className="button-primary w-auto m-auto">
+        { isLoading ? "submiting" : actionType === CREATE_ACTION ? t("main.create route") : t("main.modify route") }
+      </button>
     </form>
   </div>);
 }

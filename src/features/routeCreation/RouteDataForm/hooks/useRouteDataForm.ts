@@ -8,9 +8,10 @@ import toast from "react-hot-toast";
 import type { CreationRoute, Route } from "../../../../types/Route.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
 import { getActionFromActionType } from "../helpers/utils";
+import type { RouteAction } from "../../store/slices/state.types";
 
 const useRouteDataForm = (): [
-  (formData: FormData) => void, CreationRoute, boolean,
+  (formData: FormData) => void, CreationRoute, boolean, RouteAction,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
@@ -84,7 +85,7 @@ const useRouteDataForm = (): [
     }
   }
 
-  return [ onSubmitRouteForm, creationRoute, isLoading, onIsPublicChangeHandler,
+  return [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, 
     setRouteDescription, setRouteYoutubeVideo ];
 }
