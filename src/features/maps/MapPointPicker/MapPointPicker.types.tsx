@@ -6,4 +6,12 @@ type MapPointPickerProps = {
     className?: string
 }
 
-export type { MapPointPickerProps };
+type MarkerList = {
+    selectors: Array<L.Layer>
+    marker11: Array<L.Layer>,
+    marker110: Array<L.Layer>,
+    marker118: Array<L.Layer>,
+    marker124: Array<L.Layer>,
+}
+
+export type { MapPointPickerProps, MarkerList };

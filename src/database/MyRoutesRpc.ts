@@ -24,7 +24,7 @@ const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
   }); 
 }
 
-const deleteRoute = async (id: string) => {
+const deleteRouteAndLikes = async (id: string) => {
     const { data, error } = await supabaseClient.rpc('deleteRouteById', { 
       p_id: id
     }); 
@@ -36,4 +36,4 @@ const deleteRoute = async (id: string) => {
     }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRoute };
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRouteAndLikes };

@@ -99,7 +99,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
             setGpxInfo(gpxInfo);
             setMapLocation(map.current!, getGeolocationPositionFromGeoPoint(routePoint));
             if (onFileResolved) {
-              onFileResolved(fileContents, routePoint, gpxInfo.distance, gpxInfo.time);
+              onFileResolved(fileContents, routePoint, Math.round(gpxInfo.distance), Math.round(gpxInfo.time));
             }
         }
         new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);

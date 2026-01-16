@@ -79,7 +79,7 @@ const useRouteDataForm = (): [
       const action = getActionFromActionType(actionType);
       const promise: Promise<Route> = action(createActionPayload());
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
-      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok")} ${(e as Error).message}`;
+      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
 
       promise.then(() => {
         setIsLoading(false);

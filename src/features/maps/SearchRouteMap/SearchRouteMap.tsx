@@ -4,23 +4,17 @@ import useSearchRoute from "./hooks/useSearchRoute";
 import { useTranslation } from "react-i18next";
 import SearchInput from "../../../components/SearchInput/SearchInput";
 import RoutesCardList from "../../routes/RoutesCardList/RoutesCardList";
-import type { Route, SearchResultRoute } from "../../../types/Route.types";
 import RouteCard from "../../routes/RouteCard/RouteCard";
-import { useSelector } from "react-redux";
-import { selectRouteSearchPage, selectRouteSearchQuery, selectRouteSearchTotalPages } from "../store/selectors/routeSearchSelectors";
 import RoutesPaginator from "../../routes/RoutesCardList/RoutesPaginator";
-import { selectUserUUID } from "../../users/store/selectors/userSelectors";
+import useLikeRoute from "./hooks/useLikeRoute";
+import type { Route, SearchResultRoute } from "../../../types/Route.types";
 
 const SearchRouteMap = () => {
-  const [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick, onLikeClick ] = useSearchRoute();
+  const [ resultRoutes, points, isLoading, query, page, totalRoutes, uid, 
+    onMapClick, onQueryChange, onSearch, onPageClick] = useSearchRoute();
+  const [likeExtras ] = useLikeRoute();
   const { t } = useTranslation(['map']);
-  const query = useSelector(selectRouteSearchQuery);
-  const page = useSelector(selectRouteSearchPage);
-  const totalRoutes = useSelector(selectRouteSearchTotalPages);
-  const uid = useSelector(selectUserUUID);
 
-  const likeExtras = (uid: string, rid: string, liked: boolean) => <div data-uid={ uid } data-rid={ rid } data-isliked = { liked }
-    className="absolute top-3 right-3" onClick={ onLikeClick }>{ liked ? "♥️" : "♡" }</div>
   const routesCard = (route: Route | SearchResultRoute) => <RouteCard key={ route.id } route={ route } 
     extras={ likeExtras(uid, route.id, (route as SearchResultRoute).liked) } />;
 

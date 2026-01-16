@@ -3,7 +3,7 @@ import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFee
 import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
-import { getScaleValue, useDifficultyValues } from "../../../helpers/utils";
+import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124, useDifficultyValues } from "../../../helpers/utils";
 import { CREATE_ACTION } from "../store/slices/state.types";
 
 const RouteDataForm = () => {
@@ -52,10 +52,10 @@ const RouteDataForm = () => {
       </label>
       <select className="ml-1 mb-5 p-3 input" id="scale" value={ creationRoute.scale }
         onChange={ onScaleChange }>
-        <option value={1}>{ getScaleValue(1) }</option>
-        <option value={2}>{ getScaleValue(2) }</option>
-        <option value={3}>{ getScaleValue(3) }</option>
-        <option value={4}>{ getScaleValue(4) }</option>
+        <option value={ SCALE11 }>{ getScaleValue(SCALE11) }</option>
+        <option value={ SCALE110 }>{ getScaleValue(SCALE110) }</option>
+        <option value={ SCALE118 }>{ getScaleValue(SCALE118) }</option>
+        <option value={ SCALE124 }>{ getScaleValue(SCALE124) }</option>
       </select> <br />
       <label htmlFor="youtubeVideo" className="block font-bold">
         { t("main.route video")}:

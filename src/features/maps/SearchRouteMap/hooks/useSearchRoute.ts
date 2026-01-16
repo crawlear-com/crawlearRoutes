@@ -1,19 +1,22 @@
 import React from "react";
 import type { Route } from "../../../../types/Route.types";
 import type { MapPoint } from "../SearchRouteMap.types";
-import { selectRouteSearchIsLoading, selectRouteSearchPoints, selectRouteSearchRoutes } from "../../store/selectors/routeSearchSelectors";
+import { selectRouteSearchIsLoading, selectRouteSearchPage, selectRouteSearchPoints, selectRouteSearchQuery, selectRouteSearchRoutes, selectRouteSearchTotalPages } from "../../store/selectors/routeSearchSelectors";
 import { searchByGeo, searchByQuery, setRouteSearchPage, setRouteSearchQuery } from "../../store/slices/routeSearchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "../../../../store/store";
-import { deleteLike, likeRoute } from "../../../../database/routeRpc";
-import toast from "react-hot-toast";
+import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
-  (searchBounds: L.LatLngBounds) => void, (query: string) => void,
-  () => void, (page: number) => void, (event: React.MouseEvent<HTMLDivElement>) => void ] => {
+  string, number, number, string, (searchBounds: L.LatLngBounds) => void,
+  (query: string) => void, () => void, (page: number) => void ] => {
   const resultRoutes = useSelector(selectRouteSearchRoutes);
   const points = useSelector(selectRouteSearchPoints);
   const isLoading = useSelector(selectRouteSearchIsLoading);
+  const query = useSelector(selectRouteSearchQuery);
+  const page = useSelector(selectRouteSearchPage);
+  const totalRoutes = useSelector(selectRouteSearchTotalPages);
+  const uid = useSelector(selectUserUUID);
   const dispatch = useDispatch<AppDispatch>();
 
   const onQueryChange = (query: string) => {
@@ -33,36 +36,9 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     dispatch(searchByGeo(searchBounds));
   }, [dispatch]);
 
-  const onLikeClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const element = event.target as HTMLDivElement;
-    const isLiked = element.dataset.isliked === "true";
-    const uid = element.dataset.uid;
-    const rid = element.dataset.rid;
 
-    event.stopPropagation();
-
-    if (uid && rid) {
-      if (isLiked) {
-        deleteLike(uid, rid).then(()=> {
-          element.innerText = "♡";
-          element.dataset.isliked = "false";
-          toast.success("Like removed");
-        }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-      });
-      } else {
-        likeRoute(uid, rid).then(() => {
-          element.innerText = "♥️";
-          element.dataset.isliked = "true";
-          toast.success("Like created");
-        }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-      });
-      }
-    }
-  }
-
-  return [ resultRoutes, points, isLoading, onMapClick, onQueryChange, onSearch, onPageClick, onLikeClick ];
+  return [ resultRoutes, points, isLoading, query, page, totalRoutes, uid, 
+    onMapClick, onQueryChange, onSearch, onPageClick ];
 }
 
 export default useSearchRoute;

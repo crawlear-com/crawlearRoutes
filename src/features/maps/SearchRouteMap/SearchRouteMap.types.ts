@@ -7,6 +7,7 @@ type MapPointContent = {
 
 type MapPoint = {
   point: GeoPoint,
+  type: number
   content: MapPointContent
 }
 

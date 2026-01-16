@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import RouteCard from "../RouteCard/RouteCard";
-import { deleteRoute } from "../../../database/MyRoutesRpc";
+import { deleteRouteAndLikes } from "../../../database/MyRoutesRpc";
 import RoutesList from "../RoutesList/RoutesList";
 import useRoutesProvider from "../hooks/useRoutesProvider";
 import { useTranslation } from "react-i18next";
@@ -38,7 +38,7 @@ const RoutesFromUser = () => {
 
   const deleteRouteById = (id: string) => {
     if (window.confirm(t("main.want delete route"))) {
-      const promise = deleteRoute(id);
+      const promise = deleteRouteAndLikes(id);
 
       promise.then(() => {
         dispatch(deleteMyRoutesRoute(id));
