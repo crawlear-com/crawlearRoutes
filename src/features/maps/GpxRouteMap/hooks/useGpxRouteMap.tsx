@@ -1,7 +1,10 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp, getGeolocationPositionFromGeoPoint, gpxHasPoints } from '../helpers/Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
+  setMapLocation, createMap, removeMarkers, getGeolocationPositionFromGeoPoint,
+  gpxHasPoints, 
+  getElevationMapData} from '../helpers/mapUtils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
@@ -24,7 +27,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
 gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void):
   [ (fileContents: string) => void, (event: React.MouseEvent<HTMLButtonElement>) => void, 
     (event: React.MouseEvent<HTMLButtonElement>) => void, (value: number) => void,
-    React.JSX.Element, boolean, boolean, number, number ] => {
+    GpxInfo, boolean, boolean, number, number ] => {
   const initialGpxInfo = {
     distance: 0,
     time: 0,
@@ -91,12 +94,13 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   const onFileLoaded = React.useCallback((fileContents: string) => {
     try {
       if (map.current) {
-        const jObj = parseGpxString(fileContents)
+        const jObj = parseGpxString(fileContents);
         const onLoadedHandler = (e: L.LeafletEvent) => {
             const routePoint: GeoPoint = getRoutePoint(jObj);
             const gpxInfo = getGpxInfo(e.target);
-
+            
             setGpxInfo(gpxInfo);
+            gpxInfo.elevationData = getElevationMapData(fileContents);
             setMapLocation(map.current!, getGeolocationPositionFromGeoPoint(routePoint));
             if (onFileResolved) {
               onFileResolved(fileContents, routePoint, Math.round(gpxInfo.distance), Math.round(gpxInfo.time));
@@ -142,7 +146,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   }, [gpxRecorded, onFileLoaded]);
 
   return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, 
-    generateInfoPopUp(gpxInfo), recordState, pauseState, error, pollingTime ];
+    gpxInfo, recordState, pauseState, error, pollingTime ];
 }
 
 export default useGpxRouteMap

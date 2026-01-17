@@ -1,13 +1,21 @@
+import { useTranslation } from "react-i18next";
+import { toHours, toKm } from "../../../../helpers/utils";
 import type { GpxInfoCardProps } from "./GpxInfoCard.types";
+import ElevationChart from "../../../routes/RouteDetail/ElevationChart/ElevationChart";
 
-const GpxInfoCard = ({ gpxInfo }: GpxInfoCardProps) => {
-    return <div className="card grid grid-cols-2 sm:grid-cols-3 w-full lg:max-w-1/2 mx-auto">
-        <span><b>distancia</b>{`: ${(gpxInfo.distance/1000).toFixed(3)} m`}</span>
-        <span><b>tiempo</b>{`: ${((gpxInfo.time/1000)/60).toFixed(3)} mins`}</span>
-        <span><b>tiempo mov</b>{`: ${((gpxInfo.movingTime/1000)/60).toFixed(3)} mins`}</span>
-        <span><b>elevacionmin</b>{`: ${(gpxInfo.elevationMin).toFixed(3)} m`}</span>
-        <span><b>elevacionmax</b>{`: ${(gpxInfo.elevationMax).toFixed(3)} m`}</span>
-        <span><b>velocidad</b>{`: ${(gpxInfo.speed).toFixed(3)} Km/h`}</span>
+const GpxInfoCard = ({ gpxInfo, className }: GpxInfoCardProps) => {
+    const { t } = useTranslation(["map"]);
+    
+    return <div className={`card ${ className ? className : '' }`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-3 `}>
+            <span><b>{ t('main.distance') }</b>{`: ${toKm(gpxInfo.distance)} km`}</span>
+            <span><b>{ t('main.time') }</b>{`: ${toHours(gpxInfo.time)} h`}</span>
+            <span><b>{ t('main.movement time') }</b>{`: ${toHours(gpxInfo.movingTime)} h`}</span>
+            <span><b>{ t('main.elevation min') }</b>{`: ${toKm(gpxInfo.elevationMin)} m`}</span>
+            <span><b>{ t('main.elevation max') }</b>{`: ${toKm(gpxInfo.elevationMax)} m`}</span>
+            <span><b>{ t('main.speed') }</b>{`: ${(gpxInfo.speed).toFixed(2)} Km/h`}</span>
+        </div>
+        { gpxInfo.elevationData ? <ElevationChart className="h-96 w-full" data={ gpxInfo.elevationData } /> : <></>}
       </div>
 }
 

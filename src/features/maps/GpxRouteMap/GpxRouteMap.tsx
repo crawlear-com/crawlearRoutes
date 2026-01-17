@@ -4,14 +4,15 @@ import useGpxRouteMap from './hooks/useGpxRouteMap'
 import RecButton from './RecButton/RecButton'
 
 import 'leaflet/dist/leaflet.css'
-import FileLoader from './FileLoader'
+import FileLoader from './FileLoader/FileLoader'
 import type { GpxRouteMapProps } from './GpxRouteMap.types'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import GpxInfoCard from './GpxInfoCard/GpxInfoCard'
 
 function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRouteMapProps): React.JSX.Element {
   const { t } = useTranslation(['map']);
-  const [onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, extraGpxInfo, 
+  const [onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, gpxInfo, 
     recordState, pauseState, error, pollingTime ] = useGpxRouteMap(onFileResolved, gpx, onRouteRecorded);
   //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
@@ -22,16 +23,15 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
   }, [error, t]);
 
   return <div className="w-full h-full flex flex-col">
-        <div id="map" title='routeMap' className={`${className} rounded-xl`}></div>
-        { extraGpxInfo }
-        <div className="flex flex-col sm:flex-row justify-center mt-5">
+        <div id="map" title='routeMap' className={`${className} rounded-xl h-96`}></div>
+        <GpxInfoCard gpxInfo={ gpxInfo } className={`${className}`} />
+        { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
-          { onRouteRecorded && <>
-            <RecButton onStartStopRecord={ onStartStopRecord } onPause={ onPause } 
-              recordState={ recordState } pauseState={ pauseState }
+          { onRouteRecorded && <> <RecButton onStartStopRecord={ onStartStopRecord }
+              onPause={ onPause } recordState={ recordState } pauseState={ pauseState }
               onPollingTimeChange={ onPollingTimeChanged } value={ pollingTime } />
           </> }
-        </div>
+        </div> }
       </div>
 }
 

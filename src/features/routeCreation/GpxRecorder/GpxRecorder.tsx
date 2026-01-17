@@ -21,7 +21,7 @@ const GpxRecorder = () => {
   }
 
   return (<GpxRouteMap gpx={ gpx } onFileResolved={ onGpxResolved }
-    onRouteRecorded={ onGpxResolved } className="h-96 mt-10" />);
+    onRouteRecorded={ onGpxResolved } className="mt-10" />);
 }
 
 export default GpxRecorder;

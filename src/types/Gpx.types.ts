@@ -44,4 +44,4 @@ type GpxData = {
   gpx: GpxGpxData
 }
 
-export type { GpxData };
+export type { GpxData, GpxTrkPt };

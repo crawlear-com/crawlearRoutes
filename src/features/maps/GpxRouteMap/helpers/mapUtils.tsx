@@ -3,13 +3,12 @@ import type { GpxInfo } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
 
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
-import type { GpxData } from '../../../../types/Gpx.types';
+import type { GpxData, GpxTrkPt } from '../../../../types/Gpx.types';
 import type { GeoPoint } from '../../../../types/Route.types';
-import GpxInfoCard from '../GpxInfoCard/GpxInfoCard';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
-const parseGpxString = (gpx: string) => {
+const parseGpxString = (gpx: string): GpxData => {
     let result;
 
     try {
@@ -23,7 +22,7 @@ const parseGpxString = (gpx: string) => {
       console.error(e);
     }
 
-    return result
+    return result;
 }
 
 const getGpxInfo = (leafletEventTarget: L.GPX): GpxInfo => {
@@ -33,12 +32,8 @@ const getGpxInfo = (leafletEventTarget: L.GPX): GpxInfo => {
         movingTime: leafletEventTarget.get_total_time(),
         speed: leafletEventTarget.get_total_speed(),
         elevationMin: leafletEventTarget.get_elevation_min(),
-        elevationMax: leafletEventTarget.get_elevation_max(),
+        elevationMax: leafletEventTarget.get_elevation_max()
     }
-}
-
-const generateInfoPopUp = (gpxInfo: GpxInfo): React.JSX.Element => {
-  return <GpxInfoCard gpxInfo={ gpxInfo } />;
 }
 
 const getRoutePoint = (jObj: GpxData): GeoPoint => {
@@ -122,5 +117,25 @@ const gpxHasPoints = (gpx:string) => {
   return (gpx && gpx.length && (gpx.indexOf('<trkpt')>0 || gpx.indexOf('<wpt')>0));
 }
 
-export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, getGeolocationPositionFromGeoPoint,
-  getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, generateInfoPopUp, gpxHasPoints };
+const getElevationMapData = (gpx: string): Array<Array<number>> => {
+    const gpxObject = parseGpxString(gpx);
+    let sections: Array<GpxTrkPt> = [];
+    const data: Array<Array<number>> = [];
+
+    if (gpxObject && gpxObject.gpx) {
+      if (gpxObject.gpx.trk) {
+        sections = gpxObject.gpx.trk.trkseg.trkpt;
+      }
+
+      if (sections) {
+        sections.forEach((element, index) => {
+            data.push([index, element.ele]);
+        })
+      }
+    }
+    return data
+}
+
+export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, 
+  getGeolocationPositionFromGeoPoint, getFitBoundsFromPosition, createMap,
+  setMapLocation, removeMarkers, gpxHasPoints, getElevationMapData };
