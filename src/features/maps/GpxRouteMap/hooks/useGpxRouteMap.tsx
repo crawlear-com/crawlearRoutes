@@ -1,7 +1,9 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, setMapLocation, createMap, removeMarkers, generateInfoPopUp, getGeolocationPositionFromGeoPoint, gpxHasPoints } from '../helpers/Utils'
+import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
+  setMapLocation, createMap, removeMarkers, generateInfoPopUp, 
+  getGeolocationPositionFromGeoPoint, gpxHasPoints } from '../helpers/mapUtils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'

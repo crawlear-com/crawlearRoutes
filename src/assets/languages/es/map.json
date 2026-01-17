@@ -13,6 +13,12 @@
     "paused": "Pausado",
     "polling time": "tiempo de actualitzación",
     "secs": "segs",
-    "upload": "Subir Gpx"
+    "upload": "Subir Gpx",
+    "distance": "Distancia",
+    "time": "Tiempo",
+    "movement time": "Tiempo en moviment",
+    "elevation max": "Elevación max",
+    "elevation min": "Elevación min",
+    "speed": "Velocidad"
   }
 }

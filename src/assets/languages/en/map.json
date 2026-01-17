@@ -13,6 +13,12 @@
     "paused": "Paused",
     "polling time": "polling time",
     "secs": "secs",
-    "upload": "Upload Gpx"
+    "upload": "Upload Gpx",
+    "distance": "Distance",
+    "time": "Time",
+    "movement time": "Movement time",
+    "elevation max": "Max elevation",
+    "elevation min": "Min elevation",
+    "speed": "Speed"
   }
 }

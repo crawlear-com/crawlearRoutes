@@ -24,14 +24,13 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
   return <div className="w-full h-full flex flex-col">
         <div id="map" title='routeMap' className={`${className} rounded-xl`}></div>
         { extraGpxInfo }
-        <div className="flex flex-col sm:flex-row justify-center mt-5">
+        { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
-          { onRouteRecorded && <>
-            <RecButton onStartStopRecord={ onStartStopRecord } onPause={ onPause } 
-              recordState={ recordState } pauseState={ pauseState }
+          { onRouteRecorded && <> <RecButton onStartStopRecord={ onStartStopRecord }
+              onPause={ onPause } recordState={ recordState } pauseState={ pauseState }
               onPollingTimeChange={ onPollingTimeChanged } value={ pollingTime } />
           </> }
-        </div>
+        </div> }
       </div>
 }
 
