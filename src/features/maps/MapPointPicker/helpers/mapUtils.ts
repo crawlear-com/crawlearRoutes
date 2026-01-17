@@ -148,7 +148,21 @@ const removePreviousMarkersFromMap = (markersList: MarkerList, layerControl: L.C
   }
 }
 
+const addAllPointsToMapAndSetBounds = (map: L.Map, points: MapPoint[], markersList: MarkerList, setBounds: boolean, icon: L.Icon) => {
+  let max: GeoPoint = { lat: -90, lon: -180 }
+  let min: GeoPoint = { lat: 90, lon: 180 }
+
+  points.forEach((popPoint) => {
+    addMarkersListMapPoint(markersList, popPoint, icon);
+    max = getMax(popPoint.point, max);
+    min = getMin(popPoint.point, min);
+  });
+
+  if (setBounds && map) {
+    fitMapToBounds(map, min, max);
+  }
+}
 
 export { ARROUND_BARCELONA, LATLON_MODIFIER, initialMarkersList, getMin, getMax, getSearchBoundsFromPoint,
   removeMarker, getCleanMarkersList, addRectangleAndGetBounds, getNewMap, addMarkersListMapPoint,
-  buildAndAddLegendToMap, fitMapToBounds, removePreviousMarkersFromMap };
+  buildAndAddLegendToMap, fitMapToBounds, removePreviousMarkersFromMap, addAllPointsToMapAndSetBounds };

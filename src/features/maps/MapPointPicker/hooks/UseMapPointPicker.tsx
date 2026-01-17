@@ -2,11 +2,10 @@ import * as React from 'react'
 import 'leaflet-gpx'
 import * as L from 'leaflet'
 import { iconRoute } from '../Icons'
-import type { GeoPoint } from '../../../../types/Route.types'
 import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types'
-import { addMarkersListMapPoint, addRectangleAndGetBounds, buildAndAddLegendToMap,
-  getCleanMarkersList, fitMapToBounds, getMax, getMin, getNewMap, initialMarkersList,
-  removePreviousMarkersFromMap } from '../helpers/utils'
+import { addRectangleAndGetBounds, buildAndAddLegendToMap, removePreviousMarkersFromMap, 
+  getCleanMarkersList, getNewMap, initialMarkersList, 
+  addAllPointsToMapAndSetBounds} from '../helpers/mapUtils'
 import type { MarkerList } from '../MapPointPicker.types'
 
 const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, points?: Array<MapPoint>) => {
@@ -19,9 +18,9 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
         const mapBounds = map.current?.getBounds();
         if (mapBounds && map.current) {
           const { rectangle, searchBounds } = addRectangleAndGetBounds(map.current, e.latlng, mapBounds);
+
           removePreviousMarkersFromMap(markersList.current, layerControl.current, true);
           markersList.current = getCleanMarkersList([]);
-
           markersList.current.selectors.push(rectangle);
           if (map.current && onMapClick) {
             onMapClick(searchBounds);
@@ -40,22 +39,11 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
     }, [onMapClick]);
     
     const addPropsPointsToMap = React.useCallback((setBounds: boolean = false) => {
-      let max: GeoPoint = { lat: -90, lon: -180 }
-      let min: GeoPoint = { lat: 90, lon: 180 }
-
       removePreviousMarkersFromMap(markersList.current, layerControl.current, false);
       markersList.current = getCleanMarkersList(markersList.current.selectors);
 
-      if (points && points.length > 0) {
-        points.forEach((popPoint) => {
-          addMarkersListMapPoint(markersList.current, popPoint, iconRoute);
-          max = getMax(popPoint.point, max);
-          min = getMin(popPoint.point, min);
-        });
-
-        if (setBounds && map.current) {
-          fitMapToBounds(map.current, min, max);
-        }
+      if (map.current && points && points.length > 0) {
+        addAllPointsToMapAndSetBounds(map.current, points, markersList.current, setBounds, iconRoute);
 
         if (map.current) {
           layerControl.current = buildAndAddLegendToMap(map.current, markersList.current);
