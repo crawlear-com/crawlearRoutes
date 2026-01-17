@@ -13,7 +13,8 @@ type GpxInfo = {
   movingTime: number,
   speed: number,
   elevationMin: number,
-  elevationMax: number
+  elevationMax: number,
+  elevationData?: Array<Array<number>>
 }
 
 export type { GpxRouteMapProps, GpxInfo };

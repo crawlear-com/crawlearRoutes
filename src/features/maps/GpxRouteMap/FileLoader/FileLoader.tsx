@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { useTranslation } from "react-i18next"
-
-interface FileLoaderProps {
-    onFileLoaded: (fileContents: string) => void
-}
+import type { FileLoaderProps } from './FileLoader.types';
 
 function  FileLoader({ onFileLoaded }: FileLoaderProps) {
     const { t } = useTranslation('map');

@@ -10,12 +10,9 @@ import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge
 import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
 import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
 import YoutubeEmbed from "../../../components/YoutubeEmbed/YoutubeEmbed";
-import { getElevationMapData } from "../../maps/GpxRouteMap/helpers/mapUtils";
-import ElevationChart from "./ElevationChart/ElevationChart";
 
 const RouteDetail = () => {
   const [route, setRoute ] = React.useState<Route>();
-  const [ elevationData, setElevationData ] = React.useState<Array<Array<number>>>([]);
   const id = useParams().id;
   const navigate = useNavigate();
 
@@ -25,9 +22,6 @@ const RouteDetail = () => {
 
       promise.then((route) => {
         setRoute(route);
-        if (route.gpx) {
-          setElevationData(getElevationMapData(route.gpx));
-        }
       }).catch((e: unknown) => {
         toast.error((e as Error).message);
     });
@@ -49,13 +43,12 @@ const RouteDetail = () => {
         </div>
         <hr />
         <div className="flex">
-          <ScaleBadge className="flex-8" scale={ route.scale } />
+          <ScaleBadge className="flex-2 sm:flex-8" scale={ route.scale } />
           <DistanceBadge className="flex-1 text-right" distance={ route.distance } />
           <DurationBadge className="flex-1 text-right" duration={ route.durationTime } />
         </div>
       </div>
-      <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } className="h-96 mt-10 w-full lg:max-w-2/3 mx-auto" />
-      { elevationData ? <ElevationChart className="card h-96 w-full lg:max-w-2/3 mx-auto" data={ elevationData } /> : <>da</>}
+      <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } className="mt-10 w-full lg:max-w-2/3 mx-auto" />
       {route.youtubeVideo ? <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> : <></> }
       <NavLink className="text-primary text-center block" to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
     </div>
