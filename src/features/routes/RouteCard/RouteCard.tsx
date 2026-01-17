@@ -11,7 +11,7 @@ import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge
 const RouteCard = ({ route, extras }: RouteCardProps) => {
   const navigate = useNavigate();
 
-  return <div className="card cursor-pointer grid relative pt-10" onClick={ () => { navigate(`/route/${route.id}`)}}> 
+  return <div className="routeCard card cursor-pointer grid relative pt-10" onClick={ () => { navigate(`/route/${route.id}`)}}> 
     <h2 className="row-start-1 row-end-2 col-start-1 col-end-3 sm:text-2xl">{ route.name } </h2>
     <div className="row-start-2 row-end-3 col-start-1 col-end-2 text-xs sm:text-base max-h-5">
       <DistanceBadge className="text-rigtht" distance={ route.distance } />

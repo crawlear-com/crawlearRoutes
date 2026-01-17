@@ -15,7 +15,7 @@ const UserStatistics = () => {
       <b>{ t("statistics.total routes") }:</b> { data.total_routes }
     </div>
     <div className="justify-self-start">
-      <b>{ t("statistics.total distance") }:</b> { (data.total_distance / 1000).toFixed(2) } Km
+      <b>{ t("statistics.total distance") }:</b> { (data.total_distance / 1000).toFixed(2) } km
     </div>
     <div className="justify-self-start">
       <b>{ t("statistics.total time") }:</b> { (data.total_duration_time / 3600 / 1000).toFixed(2) } { t("statistics.hours") } 
