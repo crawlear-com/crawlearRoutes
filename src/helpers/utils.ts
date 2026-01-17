@@ -13,7 +13,7 @@ const getScaleValue = (scale: number) => {
   let value = "1/1";
 
   switch(scale) {
-    case SCALE11: value = "1/1"; break;
+    case SCALE11: value = "4x4"; break;
     case SCALE110: value = "1/10"; break;
     case SCALE118: value = "1/18"; break;
     case SCALE124: value = "1/24"; break;
