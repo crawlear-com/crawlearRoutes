@@ -1,5 +1,5 @@
 import { Chart } from "react-google-charts";
-import { getScaleValue } from "../../../helpers/utils";
+import { getScaleValue, toHours, toKm } from "../../../helpers/utils";
 import { useTranslation } from "react-i18next";
 import useUserStatistics from "./hooks/useUserStatistics";
 import Spinner from "../../../components/Spinner/Spinner";
@@ -10,15 +10,15 @@ const UserStatistics = () => {
   const { t } = useTranslation(["myRoutes"]);
   const [ data, easy, medium, difficult, isLoading ] = useUserStatistics();
 
-  return <div className="border border-primary rounded-2xl p-5 pb-0 mb-15 mx-5 sm:w-[80%] sm:mx-auto">
+  return <div className="card p-5 pb-0 mb-15 mx-5 sm:w-[80%] sm:mx-auto">
     <div className="justify-self-start">
       <b>{ t("statistics.total routes") }:</b> { data.total_routes }
     </div>
     <div className="justify-self-start">
-      <b>{ t("statistics.total distance") }:</b> { (data.total_distance / 1000).toFixed(2) } km
+      <b>{ t("statistics.total distance") }:</b> { toKm(data.total_distance) } km
     </div>
     <div className="justify-self-start">
-      <b>{ t("statistics.total time") }:</b> { (data.total_duration_time / 3600 / 1000).toFixed(2) } { t("statistics.hours") } 
+      <b>{ t("statistics.total time") }:</b> { toHours(data.total_duration_time) } { t("statistics.hours") } 
     </div>
 
     <div className="flex flex-col lg:flex-row justify-center mt-5 lg:w-4/6 m-auto">

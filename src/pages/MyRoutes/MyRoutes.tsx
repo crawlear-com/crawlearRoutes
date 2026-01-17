@@ -26,9 +26,9 @@ const MyRoutes = () => {
         <div className="w-full px-2 sm:px-0">
           <FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" />
         </div>
-        <NavLink to="/record" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
       </div>
       <UserStatistics />
+      <NavLink to="/record" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
       <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
         <RoutesFromUser />
         <LikesFromUser />

@@ -141,8 +141,8 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     }
   }, [gpxRecorded, onFileLoaded]);
 
-  return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, generateInfoPopUp(gpxInfo), 
-    recordState, pauseState, error, pollingTime ];
+  return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, 
+    generateInfoPopUp(gpxInfo), recordState, pauseState, error, pollingTime ];
 }
 
 export default useGpxRouteMap

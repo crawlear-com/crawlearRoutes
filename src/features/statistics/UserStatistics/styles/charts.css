@@ -3,7 +3,7 @@
 
 @layer base {
   rect {
-    @apply fill-background;
+    @apply fill-secondary;
   }
 
   text {

@@ -41,4 +41,8 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
   })
 }
 
-export { SCALE11, SCALE110, SCALE118, SCALE124, YOTUBE_PATTERN, getScaleValue, useDifficultyValues, getPointsFromRoutes };
+const toHours = (time: number) => (time / 3600 / 1000).toFixed(2);
+const toKm = (distance: number) => (distance / 1000).toFixed(2);
+
+export { SCALE11, SCALE110, SCALE118, SCALE124, YOTUBE_PATTERN, 
+  getScaleValue, useDifficultyValues, getPointsFromRoutes, toHours, toKm };
