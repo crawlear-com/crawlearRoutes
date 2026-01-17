@@ -1,0 +1,12 @@
+@reference "tailwindcss";
+@reference "../../../../styles/index.css";
+
+@layer base {
+  rect {
+    @apply fill-background;
+  }
+
+  text {
+    @apply fill-(--color-font);
+  }
+}

@@ -36,4 +36,16 @@ const deleteRouteAndLikes = async (id: string) => {
     }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRouteAndLikes };
+const getUserStats = async (uid: string) => {
+  const { data, error } = await supabaseClient.rpc('get_routes_stats', {
+    p_uid: uid
+  });
+
+  if(!error && data) {
+    return data;
+  } else {
+    throw new Error('Error geting user statistics');
+  }
+}
+
+export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRouteAndLikes, getUserStats };

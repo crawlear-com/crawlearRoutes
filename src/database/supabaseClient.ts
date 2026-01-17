@@ -4,7 +4,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY
 const supabaseClient = createClient(supabaseUrl, supabaseAnonKey)
 
-const ITEMS_PAGE = 2;
+const ITEMS_PAGE = 5;
 
 export { ITEMS_PAGE };
 export default supabaseClient;

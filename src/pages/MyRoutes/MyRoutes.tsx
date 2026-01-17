@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import * as React from "react";
 import { cleanSearchResultsAndQuery } from "../../features/maps/store/slices/routeSearchSlice";
+import UserStatistics from "../../features/statistics/UserStatistics/UserStatistics";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -27,6 +28,7 @@ const MyRoutes = () => {
         </div>
         <NavLink to="/record" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
       </div>
+      <UserStatistics />
       <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
         <RoutesFromUser />
         <LikesFromUser />
