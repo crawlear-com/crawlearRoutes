@@ -18,16 +18,16 @@ const useLikeRoute = (): [
           element.dataset.isliked = "false";
           toast.success("Like removed");
         }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-      });
+          toast.error((e as Error).message);
+        });
       } else {
         likeRoute(uid, rid).then(() => {
           element.innerText = "♥️";
           element.dataset.isliked = "true";
           toast.success("Like created");
         }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-      });
+          toast.error((e as Error).message);
+        });
       }
     }
   }

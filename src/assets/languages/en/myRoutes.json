@@ -6,5 +6,13 @@
     "no routes": "There are no routes",
     "want delete favorite": "Do you want to delete the favorite?",
     "want delete route": "Do you want to delete the route?"
+  },
+  "statistics": {
+    "total routes": "Total routes",
+    "total distance": "Total distance",
+    "total time": "Total time",
+    "by scale": "Routes per scale",
+    "by difficult": "Routes per difficult",
+    "hours": "Hours"
   }
 }

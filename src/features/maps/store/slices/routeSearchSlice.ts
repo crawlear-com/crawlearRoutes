@@ -70,6 +70,8 @@ const routeSearchSlice = createSlice({
       state.totalRoutes = action.payload.total_count;
       state.points = getPointsFromRoutes(routes) as Array<MapPoint>;
       state.isLoading = false;
+      state.query = "";
+      state.page = 0;
     })
 
     .addCase(searchByQuery.pending, (state) => {

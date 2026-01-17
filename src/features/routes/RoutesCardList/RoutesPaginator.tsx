@@ -1,9 +1,9 @@
 import { ITEMS_PAGE } from "../../../database/supabaseClient";
 import type { RoutesPaginatorProps } from "./types/RoutesPaginator.types";
 
-const RoutesPaginator = ({ currentPage, totalItems, onPageClick }: RoutesPaginatorProps) => {
+const RoutesPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: RoutesPaginatorProps) => {
   const pages: Array<React.JSX.Element> = [];
-  const totalPages = Math.ceil(totalItems / ITEMS_PAGE);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
   const onPageEventHandler = (e: React.MouseEvent) => {
     const page = Number((e.target as HTMLSpanElement).dataset.page);
 
