@@ -11,7 +11,7 @@ type RoutesListState = {
   totalRoutes: number
 }
 
-interface RouteListsState {
+type RouteListsState = {
   myRoutes: RoutesListState,
   myFavorites: RoutesListState
 }

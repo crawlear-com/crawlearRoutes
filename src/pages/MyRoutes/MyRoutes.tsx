@@ -2,14 +2,13 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import RoutesFromUser from "../../features/routes/RoutesFromUser/RoutesFromUser";
 import LikesFromUser from "../../features/routes/LikesFromUser/LikesFromUser";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
 import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import * as React from "react";
 import { cleanSearchResultsAndQuery } from "../../features/maps/store/slices/routeSearchSlice";
 import UserStatistics from "../../features/statistics/UserStatistics/UserStatistics";
+import EventsCalendar from "../../features/events/EventsCalendar/EventsCalendar";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -24,7 +23,7 @@ const MyRoutes = () => {
     <main>
       <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10">
         <div className="w-full px-2 sm:px-0">
-          <FullCalendar plugins={[ dayGridPlugin ]} initialView="dayGridMonth" />
+          <EventsCalendar />
         </div>
       </div>
       <UserStatistics />
