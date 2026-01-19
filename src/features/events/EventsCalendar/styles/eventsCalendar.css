@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+@layer base {
+  .fc-toolbar-title {
+    @apply max-w-4 sm:max-w-max;
+  }
+
+  .fc-header-toolbar, .fc-view-harness {
+    @apply mx-1 sm:mx-0;
+  }
+}

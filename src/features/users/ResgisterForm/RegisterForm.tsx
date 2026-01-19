@@ -33,7 +33,7 @@ const RegisterForm = () => {
                     validateConfirmPassword();
                 }} value={ repassword } />
             <FormFeedbackElement className="repassword__feedback"/>
-            <button type="submit" className="button-primary"> { t("login.signup") } </button>
+            <button type="submit" className="button-primary m-auto"> { t("login.signup") } </button>
             <FormFeedbackElement className="general__feedback" />
         </form>
 

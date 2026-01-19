@@ -15,7 +15,7 @@ const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfi
   selectTotalRoutes: (state: unknown) => number,
 ): 
   [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void,
-    (order: string) =>  void, (query: string) =>  void, (query: string) =>  void ] => {
+    (order: string) =>  void, (query: string) =>  void, () =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useSelector(selectRoutes);
   const isLoading = useSelector(selectIsLoading);

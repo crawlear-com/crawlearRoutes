@@ -41,7 +41,7 @@ const initialState: CreationRouteState = {
     difficulty: 1,
     isPublic: true,
     likes: 0,
-    location: null,
+    location: { lat: 0, lon: 0},
     scale: 1,
     youtubeVideo: "",
     gpx: null,
