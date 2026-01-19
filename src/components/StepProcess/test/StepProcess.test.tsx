@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import StepProcess from "../StepProcess";
 import { stepDescriptions, steps, stepSelectors, stepTitles } from "./stepsData";
+import { NEXT_PAGE_ARROW, PREVIOUS_PAGE_ARROW } from "../StepProcess.types";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -61,7 +62,7 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText("＞"));
+    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
 
     expect(screen.getByText("main.step 2: Title 2")).toBeInTheDocument();
     expect(screen.getByText("Step 2 content")).toBeInTheDocument();
@@ -80,8 +81,8 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText("＞"));
-    fireEvent.click(screen.getByText("＜"));
+    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
+    fireEvent.click(screen.getByText(PREVIOUS_PAGE_ARROW));
 
     expect(screen.getByText("main.step 1: Title 1")).toBeInTheDocument();
   });
@@ -98,7 +99,7 @@ describe("StepProcess", () => {
       />
     );
 
-    const nextButton = screen.getByText("＞");
+    const nextButton = screen.getByText(NEXT_PAGE_ARROW);
     expect(nextButton).toBeDisabled();
   });
 
@@ -114,7 +115,7 @@ describe("StepProcess", () => {
       />
     );
 
-    expect(screen.queryByText("＜")).toBeNull();
+    expect(screen.queryByText(PREVIOUS_PAGE_ARROW)).toBeNull();
   });
 
   it("does not render next button on last step", () => {
@@ -129,9 +130,9 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText("＞"));
-    fireEvent.click(screen.getByText("＞"));
+    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
+    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
 
-    expect(screen.queryByText("＞")).toBeNull();
+    expect(screen.queryByText(NEXT_PAGE_ARROW)).toBeNull();
   });
 });
