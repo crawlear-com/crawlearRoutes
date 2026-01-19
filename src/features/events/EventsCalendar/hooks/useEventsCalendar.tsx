@@ -7,7 +7,7 @@ import type { Route } from "../../../../types/Route.types";
 import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
 import type { CalendarEventRoutes } from "../EventsCalendar.types";
-import { datePlus1h } from "../helpers/utils";
+import { datePlusHours } from "../helpers/utils";
 
 const useEventsCalendar = (): [
     string, Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
@@ -29,7 +29,7 @@ const useEventsCalendar = (): [
         return { id: route.id,
           title: route.name,
           start: new Date(route.created_at!),
-          end: datePlus1h(route.created_at!)
+          end: datePlusHours(route.created_at!, route.durationTime! / 1000 / 60 / 60)
         }
       }));
     }
@@ -46,11 +46,16 @@ const useEventsCalendar = (): [
   }
 
   const renderEventContent = (eventContent: EventContentArg) => {
-    return(<>
-        <i className="text-wrap bg-secondary font-bold max-h-10 text-ellipsis overflow-hidden cursor-pointer">
+    const startTime = eventContent.event.start;
+    return(<div className="rounded flex flex-col bg-secondary">
+        <li>
+          <b>{ `${startTime!.getHours()}:${startTime!.getMinutes()}`  }</b>
+        </li>
+        <i className="text-wrap font-bold max-h-10 text-ellipsis overflow-hidden cursor-pointer">
           { eventContent.event.title }
         </i>
-      </>)
+        <b>{ eventContent.event.end?.getHours() }</b>
+      </div>)
 }
 
   return [ startDate, eventRoutes, onEventClick, onDateRangeChange, renderEventContent ];

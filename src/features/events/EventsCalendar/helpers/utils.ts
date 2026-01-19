@@ -1,9 +1,9 @@
-const datePlus1h = (date: string) => {
+const datePlusHours = (date: string, hours: number) => {
   const origDate = new Date(date);
   
-  origDate.setHours(origDate.getHours()+1);
+  origDate.setHours(origDate.getHours() + hours);
 
   return origDate;
 }
 
-export { datePlus1h}
+export { datePlusHours}

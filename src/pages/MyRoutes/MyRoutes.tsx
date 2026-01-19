@@ -21,7 +21,7 @@ const MyRoutes = () => {
   return (<>
     <Header />
     <main>
-      <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-150">
+      <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-250">
         <EventsCalendar />
       </div>
       <UserStatistics />

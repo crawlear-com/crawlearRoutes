@@ -32,10 +32,11 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
   return routes.map((route: Route): MapPoint => {
     return {
         point: route.location,
-        type: route.scale,
         content: {
           name: route.name,
-          rid: route.id
+          rid: route.id,
+          scale: route.scale,
+          difficulty: route.difficulty
         }
     }
   })

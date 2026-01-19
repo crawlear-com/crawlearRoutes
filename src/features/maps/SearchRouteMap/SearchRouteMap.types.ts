@@ -2,12 +2,13 @@ import type { GeoPoint } from "../../../types/Route.types";
 
 type MapPointContent = {
   name: string,
-  rid: string
+  rid: string,
+  scale: number,
+  difficulty: number
 }
 
 type MapPoint = {
   point: GeoPoint,
-  type: number
   content: MapPointContent
 }
 

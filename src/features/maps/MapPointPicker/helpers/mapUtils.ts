@@ -2,7 +2,8 @@ import L from "leaflet"
 import type { GeoPoint } from "../../../../types/Route.types"
 import type { MarkerList } from "../MapPointPicker.types";
 import type { MapPoint } from "../../SearchRouteMap/SearchRouteMap.types";
-import { SCALE11, SCALE110, SCALE118, SCALE124 } from "../../../../helpers/utils";
+import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "../../../../helpers/utils";
+import scaleBadgeImage from "../../../../components/Badge/assets/images/scaleCar.png";
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 const LATLON_MODIFIER = 0.05;
@@ -28,12 +29,12 @@ const removeMarker = (marker: L.Layer, removeCircle: boolean) => {
 
 const getMin = (p1: GeoPoint, p2: GeoPoint) => {
   if(p1.lat < p2.lat) {
-    p2.lat = p1.lat
+    p2.lat = p1.lat;
   }
   if (p1.lon < p2.lon) {
-    p2.lon = p1.lon
+    p2.lon = p1.lon;
   }
-  return p2
+  return p2;
 }
 
 const getMax = (p1: GeoPoint, p2: GeoPoint) => {
@@ -43,7 +44,7 @@ const getMax = (p1: GeoPoint, p2: GeoPoint) => {
   if(p1.lon > p2.lon) {
     p2.lon = p1.lon;
   }
-  return p2
+  return p2;
 }
 
 const getSearchBoundsFromPoint = (point: L.LatLng, mapBounds: L.LatLngBounds): L.LatLngBounds => {
@@ -92,19 +93,29 @@ const getNewMap = (mapId: string, mapClickEventHandler: (e: L.LeafletMouseEvent)
   return newMap;
 }
 
-const addMarkersListMapPoint = (markersList: MarkerList, mapPoint: MapPoint, icon: L.Icon) => {
-  const popup = L.popup().setContent(`<a href="#/route/${mapPoint.content.rid}"}>${mapPoint.content.name}</a>`);
+const getRoutePopupContent = (mapPoint: MapPoint) => {
+  return `<a href="#/route/${mapPoint.content.rid}"}>
+      ${ mapPoint.content.name } <br />
+      <img src="${ scaleBadgeImage }" style="width:20px; display: inline" />
+      ${ getScaleValue(mapPoint.content.scale) }
+    </a>`
+}
 
-  if (mapPoint.type === SCALE11) {
+const addMarkersListMapPoint = (markersList: MarkerList, mapPoint: MapPoint, icon: L.Icon) => {
+  const popup = L.popup()
+    .setContent(getRoutePopupContent(mapPoint));
+  const scale = mapPoint.content.scale;
+
+  if (scale === SCALE11) {
     markersList.marker11.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
       { icon: icon }).bindPopup(popup).openPopup());
-  } else if (mapPoint.type === SCALE110) {
+  } else if (scale === SCALE110) {
     markersList.marker110.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
       { icon: icon }).bindPopup(popup).openPopup());
-  } else if (mapPoint.type === SCALE118) {
+  } else if (scale === SCALE118) {
     markersList.marker118.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
       { icon: icon }).bindPopup(popup).openPopup());
-  } else if (mapPoint.type === SCALE124) {
+  } else if (scale === SCALE124) {
     markersList.marker124.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
       { icon: icon }).bindPopup(popup).openPopup());
   }
