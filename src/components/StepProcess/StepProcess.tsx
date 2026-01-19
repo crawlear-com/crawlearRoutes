@@ -4,13 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import './styles/stepProcess.css';
-
-type StepProcessProps = {
-  steps: Array<React.JSX.Element>,
-  stepDescriptions: Array<string>,
-  stepTitles: Array<string>,
-  stepsSelectors: Array<(state: unknown, ...params: unknown[]) => unknown>
-}
+import { NEXT_PAGE_ARROW, PREVIOUS_PAGE_ARROW, type StepProcessProps } from "./StepProcess.types";
 
 const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: StepProcessProps) => {
   const { t } = useTranslation(["routeCreation"]);
@@ -36,9 +30,9 @@ const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: St
         { steps[step] }
     </>
     { step > 0 ? <button className="stepButton left-2 disabled:opacity-50"
-        onClick={ onPreviousStep }>＜</button> : <></>}
+        onClick={ onPreviousStep }>{ PREVIOUS_PAGE_ARROW }</button> : <></>}
     { step < steps.length - 1 ? <button className="stepButton right-2 disabled:opacity-50"
-        onClick={ onNextStep } disabled={ !isCurrentStepFinished }>＞</button> : <></>}
+        onClick={ onNextStep } disabled={ !isCurrentStepFinished }>{ NEXT_PAGE_ARROW }</button> : <></>}
     { <StepIndicator stepsNumber={ steps.length } currentStep={ step } />}
   </div>;
 }
