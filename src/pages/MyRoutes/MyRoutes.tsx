@@ -21,10 +21,8 @@ const MyRoutes = () => {
   return (<>
     <Header />
     <main>
-      <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10">
-        <div className="w-full px-2 sm:px-0">
-          <EventsCalendar />
-        </div>
+      <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-150">
+        <EventsCalendar />
       </div>
       <UserStatistics />
       <NavLink to="/record" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>

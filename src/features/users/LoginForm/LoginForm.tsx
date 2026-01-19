@@ -24,7 +24,7 @@ const LoginForm = () => {
                 <input className="input p-3" type="password" id="password" name="password" placeholder="Password"
                     onChange={ onPaswordChange } value={ password } />
                 <FormFeedbackElement className="password__feedback" />
-                <button type="submit" className="button-primary">  { t("login.signin") } </button>
+                <button type="submit" className="button-primary m-auto">  { t("login.signin") } </button>
                 <FormFeedbackElement className="general__feedback" />
             </form>
 

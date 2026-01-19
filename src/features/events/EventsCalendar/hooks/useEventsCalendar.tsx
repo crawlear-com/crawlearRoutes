@@ -4,27 +4,14 @@ import { getMyEventRoutes, setEndDate, setStartDate } from "../../store/slices/e
 import type { AppDispatch } from "../../../../store/store";
 import { selectEventRoutes, selectEventStartDate } from "../../store/selectors/eventsListsSelectors";
 import type { Route } from "../../../../types/Route.types";
-import type { DatesSetArg, EventClickArg } from "@fullcalendar/core/index.js";
+import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
-
-type CalendarEventRoutes = {
-  id: string,
-  title: string,
-  start: Date,
-  end: Date
-}
-
-const datePlus1h = (date: string) => {
-  const origDate = new Date(date);
-  
-  origDate.setHours(origDate.getHours()+1);
-  return origDate;
-
-}
+import type { CalendarEventRoutes } from "../EventsCalendar.types";
+import { datePlus1h } from "../helpers/utils";
 
 const useEventsCalendar = (): [
-    string, Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void
-  ] => {
+    string, Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
+    (eventContent: EventContentArg) => void ] => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const startDate = useSelector(selectEventStartDate);
@@ -42,7 +29,7 @@ const useEventsCalendar = (): [
         return { id: route.id,
           title: route.name,
           start: new Date(route.created_at!),
-          end: datePlus1h(route.created_at!),
+          end: datePlus1h(route.created_at!)
         }
       }));
     }
@@ -58,7 +45,15 @@ const useEventsCalendar = (): [
     dispatch(getMyEventRoutes());
   }
 
-  return [ startDate, eventRoutes, onEventClick, onDateRangeChange ];
+  const renderEventContent = (eventContent: EventContentArg) => {
+    return(<>
+        <i className="text-wrap bg-secondary font-bold max-h-10 text-ellipsis overflow-hidden cursor-pointer">
+          { eventContent.event.title }
+        </i>
+      </>)
+}
+
+  return [ startDate, eventRoutes, onEventClick, onDateRangeChange, renderEventContent ];
 }
 
 export default useEventsCalendar;

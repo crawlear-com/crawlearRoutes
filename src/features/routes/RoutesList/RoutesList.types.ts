@@ -23,7 +23,7 @@ type RoutesListProps = {
     selectPage: (state: unknown) => number,
     selectTotalRoutes: (state: unknown) => number) => [
       number, number, Array<Route>, boolean, (page: number) => void, 
-      (order: string) => void, (order: string) => void, (query: string) => void, (query: string) => void
+      (order: string) => void, (order: string) => void, (query: string) => void, () => void
     ]
 }
 

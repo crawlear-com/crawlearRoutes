@@ -2,14 +2,17 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import useEventsCalendar from "./hooks/useEventsCalendar";
 
-const EventsCalendar = () => {
-  const [ startDate, eventRoutes, onEventClick, onDateRangeChange ] = useEventsCalendar();
+import './styles/eventsCalendar.css';
 
-  return (<>
-    <FullCalendar plugins={[ dayGridPlugin ]}
+const EventsCalendar = () => {
+  const [ startDate, eventRoutes, onEventClick, onDateRangeChange, 
+    renderEventContent ] = useEventsCalendar();
+
+  return (<FullCalendar plugins={[ dayGridPlugin ]}
       initialDate={ startDate } eventClick={ onEventClick }
-      initialView="dayGridMonth" events={ eventRoutes } datesSet={ onDateRangeChange} />
-  </>);
+      eventContent={ renderEventContent }
+      height="100%"
+      initialView="dayGridMonth" events={ eventRoutes } datesSet={ onDateRangeChange} />);
 }
 
 export default EventsCalendar;
