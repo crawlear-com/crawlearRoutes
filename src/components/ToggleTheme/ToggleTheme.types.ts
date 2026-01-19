@@ -1,5 +1,5 @@
 type ToggleThemeProps = {
-  className: string
+  className?: string
 };
 
 export type { ToggleThemeProps };
