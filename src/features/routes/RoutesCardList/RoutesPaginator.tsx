@@ -1,21 +1,9 @@
 import { ITEMS_PAGE } from "../../../database/supabaseClient";
 import type { RoutesPaginatorProps } from "./types/RoutesPaginator.types";
+import useRoutesPaginator from "./hooks/useRoutesPaginator";
 
 const RoutesPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: RoutesPaginatorProps) => {
-  const pages: Array<React.JSX.Element> = [];
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const onPageEventHandler = (e: React.MouseEvent) => {
-    const page = Number((e.target as HTMLSpanElement).dataset.page);
-
-    if (page >= 0 && page !== currentPage && page < totalPages) {
-      onPageClick(page);
-    }
-  }
-
-  for(let i=0; i<totalPages; i++) {
-    pages.push(<span key={ i } className={`${ currentPage === i ? "font-bold" : "cursor-pointer underline" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
-  }
-
+  const [ pages, totalPages, onPageEventHandler ] = useRoutesPaginator(totalItems, itemsPerPage, currentPage, onPageClick);
   return (<div className="flex container mb-5"> 
     <span className="flex-2 text-left mx-auto">Total: { totalItems }</span>
     <span className="flex-2 text-right">

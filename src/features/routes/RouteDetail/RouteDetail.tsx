@@ -1,32 +1,16 @@
-import * as React from "react";
-import { getRoute } from "../../../database/routeRpc";
-import type { Route } from "../../../types/Route.types";
 import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
-import { NavLink, useParams, useNavigate } from "react-router";
-import toast from "react-hot-toast";
+import { NavLink, useNavigate } from "react-router";
 import DifficultBadge from "../../../components/Badge/DifficultBadge/DifficultBadge";
 import LikesBadge from "../../../components/LikesBadge/LikesBadge";
 import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge";
 import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
 import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
 import YoutubeEmbed from "../../../components/YoutubeEmbed/YoutubeEmbed";
+import useRouteDetail from "./hooks/useRouteDetail";
 
 const RouteDetail = () => {
-  const [route, setRoute ] = React.useState<Route>();
-  const id = useParams().id;
   const navigate = useNavigate();
-
-  React.useEffect(() => {
-    if (id) {
-      const promise = getRoute(id);
-
-      promise.then((route) => {
-        setRoute(route);
-      }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-    });
-    }
-  }, [setRoute, id]);
+  const [ route ] = useRouteDetail();
 
   if (!route) {
     return <></>;
@@ -48,9 +32,13 @@ const RouteDetail = () => {
           <DurationBadge className="flex-1 text-right" duration={ route.durationTime } />
         </div>
       </div>
-      <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } className="mt-10 w-full lg:max-w-2/3 mx-auto" />
-      {route.youtubeVideo ? <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> : <></> }
-      <NavLink className="text-primary text-center block" to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
+      <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } 
+        className="mt-10 w-full lg:max-w-2/3 mx-auto" />
+      { route.youtubeVideo ? 
+        <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> :
+        <></> }
+      <NavLink className="text-primary text-center block"
+        to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
     </div>
   }
 

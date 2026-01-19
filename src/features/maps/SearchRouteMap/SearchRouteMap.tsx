@@ -4,19 +4,12 @@ import useSearchRoute from "./hooks/useSearchRoute";
 import { useTranslation } from "react-i18next";
 import SearchInput from "../../../components/SearchInput/SearchInput";
 import RoutesCardList from "../../routes/RoutesCardList/RoutesCardList";
-import RouteCard from "../../routes/RouteCard/RouteCard";
 import RoutesPaginator from "../../routes/RoutesCardList/RoutesPaginator";
-import useLikeRoute from "./hooks/useLikeRoute";
-import type { Route, SearchResultRoute } from "../../../types/Route.types";
 
 const SearchRouteMap = () => {
-  const [ resultRoutes, points, isLoading, query, page, totalRoutes, uid, 
-    onMapClick, onQueryChange, onSearch, onPageClick] = useSearchRoute();
-  const [likeExtras ] = useLikeRoute();
   const { t } = useTranslation(['map']);
-
-  const routesCard = (route: Route | SearchResultRoute) => <RouteCard key={ route.id } route={ route } 
-    extras={ likeExtras(uid, route.id, (route as SearchResultRoute).liked) } />;
+  const [ resultRoutes, points, isLoading, query, page, totalRoutes, 
+    onMapClick, onQueryChange, onSearch, onPageClick, routesCard] = useSearchRoute();
 
   return (<div className="sm:max-w-[90%] lg:max-w-1/2 mx-auto mt-10">
     <MapPointPicker onMapClick={ onMapClick } points={ points } className="w-full h-96 sm:h-150" />
