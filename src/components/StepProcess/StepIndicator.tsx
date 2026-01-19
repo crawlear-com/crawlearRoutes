@@ -1,7 +1,4 @@
-type StepIndicatorProps = {
-  currentStep: number,
-  stepsNumber: number
-}
+import type { StepIndicatorProps } from "./StepIndicator.types";
 
 const StepIndicator = ({ currentStep, stepsNumber }: StepIndicatorProps) => {
   const pointIndicator = [];

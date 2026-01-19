@@ -7,8 +7,6 @@ const SCALE110 = 2;
 const SCALE118 = 3;
 const SCALE124 = 4;
 
-const YOTUBE_PATTERN = /^.*(youtube.com|youtu.be)\/(watch\?v=|embed\/|v\/|shorts\/|)(.*?((?=[&#?])|$))/;
-
 const getScaleValue = (scale: number) => {
   let value = "1/1";
 
@@ -45,5 +43,5 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
 const toHours = (time: number) => (time / 3600 / 1000).toFixed(2);
 const toKm = (distance: number) => (distance / 1000).toFixed(2);
 
-export { SCALE11, SCALE110, SCALE118, SCALE124, YOTUBE_PATTERN, 
+export { SCALE11, SCALE110, SCALE118, SCALE124, 
   getScaleValue, useDifficultyValues, getPointsFromRoutes, toHours, toKm };
