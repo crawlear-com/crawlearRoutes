@@ -11,18 +11,16 @@
  - toast notifications and errors (https://react-hot-toast.com/)
  - redux (user session, theme)
  - private routes using React router v7
+ - manual code splitting
 
 ### To-do
-
-- dinamyc imports to split code
 - deploy home server // crawlear.com
 - toast async
-- create route
 - input query validation with zod (or not?), but validation
 - zod texts into translation
-- check console.error()
 - reset page when filtering in routeslist
 - delete my routes confirm
+- do i keep useWakeLock ??
 
 ## Install and run
 

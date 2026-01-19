@@ -10,6 +10,7 @@ import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '../../../../types/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
 import { setGpx } from '../../../routeCreation/store/slices/routeSlice'
+import toast from 'react-hot-toast'
 
 const NO_ERROR = 0;
 
@@ -58,11 +59,15 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     onStartStopClick(event);
     if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && 
       (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
-        const jObj = parseGpxString(gpxRecorded);
-        const routePoint = getRoutePoint(jObj);
+        try {
+          const jObj = parseGpxString(gpxRecorded);
+          const routePoint = getRoutePoint(jObj);
 
-        //releaseWakeLock();
-        onRouteRecorded(gpxRecorded, routePoint, gpxInfo.distance, gpxInfo.time);
+          //releaseWakeLock();
+          onRouteRecorded(gpxRecorded, routePoint, gpxInfo.distance, gpxInfo.time);
+        } catch(e: unknown) {
+          toast.error(`Cannot record GPX file: ${(e as Error).message}`);
+        }
     } else if (!recordState) {
       //requestWakeLock();
     }
@@ -94,19 +99,24 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   const onFileLoaded = React.useCallback((fileContents: string) => {
     try {
       if (map.current) {
-        const jObj = parseGpxString(fileContents);
-        const onLoadedHandler = (e: L.LeafletEvent) => {
-            const routePoint: GeoPoint = getRoutePoint(jObj);
-            const gpxInfo = getGpxInfo(e.target);
-            
-            setGpxInfo(gpxInfo);
-            gpxInfo.elevationData = getElevationMapData(fileContents);
-            setMapLocation(map.current!, getGeolocationPositionFromGeoPoint(routePoint));
-            if (onFileResolved) {
-              onFileResolved(fileContents, routePoint, Math.round(gpxInfo.distance), Math.round(gpxInfo.time));
-            }
+        try {
+          const jObj = parseGpxString(fileContents);
+          const onLoadedHandler = (e: L.LeafletEvent) => {
+              const routePoint: GeoPoint = getRoutePoint(jObj);
+              const gpxInfo = getGpxInfo(e.target);
+              
+              setGpxInfo(gpxInfo);
+              gpxInfo.elevationData = getElevationMapData(fileContents);
+              setMapLocation(map.current!, getGeolocationPositionFromGeoPoint(routePoint));
+              if (onFileResolved) {
+                onFileResolved(fileContents, routePoint, Math.round(gpxInfo.distance), Math.round(gpxInfo.time));
+              }
+          }
+
+          new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);
+        } catch(e: unknown) {
+          toast.error(`Cannot load GPX file: ${(e as Error).message}`);
         }
-        new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);
       }
     } catch(e: unknown) {
       if (onFileResolved) {

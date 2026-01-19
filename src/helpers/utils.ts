@@ -43,5 +43,15 @@ const getPointsFromRoutes = (routes: Array<Route>) => {
 const toHours = (time: number) => (time / 3600 / 1000).toFixed(2);
 const toKm = (distance: number) => (distance / 1000).toFixed(2);
 
+const isObjectEmpty = (obj: object) => {
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export { SCALE11, SCALE110, SCALE118, SCALE124, 
-  getScaleValue, useDifficultyValues, getPointsFromRoutes, toHours, toKm };
+  getScaleValue, useDifficultyValues, getPointsFromRoutes, toHours, toKm, isObjectEmpty };

@@ -13,7 +13,7 @@ function useWakeLock(onError: (error: number)=> void): [() => void, () => void] 
         setWakeLock(lock)
       } catch (err) {
         onError(ERR_WAKELOCK_NOT_AVAILABLE)
-        console.error(err)
+        console.error(err);
       }
     }
 

@@ -5,6 +5,7 @@ import * as L from 'leaflet'
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
 import type { GpxData, GpxTrkPt } from '../../../../types/Gpx.types';
 import type { GeoPoint } from '../../../../types/Route.types';
+import { isObjectEmpty } from '../../../../helpers/utils';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
@@ -16,10 +17,14 @@ const parseGpxString = (gpx: string): GpxData => {
             ignoreAttributes: false,
             isArray: (tagName: string) => (tagName === 'trkpt')
           });
-          result = parser.parse(gpx)
+          result = parser.parse(gpx);
+
+          if (isObjectEmpty(result)) {
+            throw new Error('GPX data is empty');
+          }
     } catch(e) {
       result = { gpx: { wpt: [] } };
-      console.error(e);
+      throw new Error(`Cannot parse GPX file: ${(e as Error).message}`)
     }
 
     return result;
