@@ -2,40 +2,34 @@ import * as React from 'react';
 import type { Route } from '../../../types/Route.types';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '../../../store/store';
-import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
+import type { AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
+import type { SelectMethods, SetMethods } from '../RoutesList/RoutesList.types';
 
 const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
-  setPage: ActionCreatorWithPayload<number, string>,
-  setOrderBy: ActionCreatorWithPayload<string, string>,
-  setOrderDir: ActionCreatorWithPayload<string, string>,
-  setQuery: ActionCreatorWithPayload<string, string>,
-  selectRoutes: (state: unknown) => Array<Route>,
-  selectIsLoading: (state: unknown) => boolean,
-  selectPage: (state: unknown) => number,
-  selectTotalRoutes: (state: unknown) => number,
-): 
+  setMethods: SetMethods,
+  selectMethods: SelectMethods): 
   [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void,
     (order: string) =>  void, (query: string) =>  void, () =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
-  const routes = useSelector(selectRoutes);
-  const isLoading = useSelector(selectIsLoading);
-  const currentPage = useSelector(selectPage);
-  const totalRoutes = useSelector(selectTotalRoutes);
+  const routes = useSelector(selectMethods.selectRoutes);
+  const isLoading = useSelector(selectMethods.selectIsLoading);
+  const currentPage = useSelector(selectMethods.selectPage);
+  const totalRoutes = useSelector(selectMethods.selectTotalRoutes);
 
   const onPageClick = (page: number) => {
-    dispatch(setPage(page));
+    dispatch(setMethods.setPage(page));
     dispatch(thunk());
   }
   const onOrderByClick = (order: string) => {
-    dispatch(setOrderBy(order));
+    dispatch(setMethods.setOrderBy(order));
     dispatch(thunk());
   }
   const onOrderDirClick = (order: string) => {
-    dispatch(setOrderDir(order));
+    dispatch(setMethods.setOrderDir(order));
     dispatch(thunk());
   }
   const onQueryChange = (query: string) => {
-      dispatch(setQuery(query));
+      dispatch(setMethods.setQuery(query));
   };
 
   const onSearch = () => {
