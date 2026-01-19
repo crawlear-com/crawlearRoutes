@@ -53,12 +53,22 @@ const RoutesFromUser = () => {
     <div className="absolute top-3 right-3" data-rid={ rid } onClick={ onDeleteClick }>🗑</div>
   </>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ routeExtras(route.id) } />;
+  const setMethods = {
+    setPage: setMyRoutesPage,
+    setOrderBy: setMyRoutesOrderBy,
+    setOrderDir: setMyRoutesOrderDir,
+    setQuery: setMyRoutesQuery
+  };
+  const selectMethods = {
+    selectRoutes: selectMyRoutes,
+    selectIsLoading: selectMyRoutesIsLoading,
+    selectPage: selectMyRoutesPage,
+    selectTotalRoutes: selectMyRoutesTotalRoutes
+  };
 
   return <RoutesList title={ t("main.my routes") } card={ myRoutesCard }
-    hook={ useRoutesProvider } thunk={ getMyRoutes } setPage={ setMyRoutesPage }
-    setOrderBy={ setMyRoutesOrderBy } setOrderDir={ setMyRoutesOrderDir } setQuery={ setMyRoutesQuery}
-    selectRoutes={ selectMyRoutes } selectIsLoading={ selectMyRoutesIsLoading }
-    selectPage={ selectMyRoutesPage } selectTotalRoutes={ selectMyRoutesTotalRoutes }/>;
+    hook={ useRoutesProvider } thunk={ getMyRoutes } setMethods={ setMethods }
+    selectMethods={ selectMethods }/>;
 }
 
 export default RoutesFromUser;
