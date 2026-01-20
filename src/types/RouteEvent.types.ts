@@ -1,6 +1,6 @@
 
 type RouteEvent = {
-  id: string | null,
+  id: string,
   name: string,
   description: string,
   date: Date,

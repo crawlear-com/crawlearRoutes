@@ -14,6 +14,20 @@ const getEventRoutes = async (uid: string, startDate: string, endDate: string) =
     }
 }
 
+const getEventRouteEvents = async (uid: string, startDate: string, endDate: string) => {
+    const { data, error } = await supabaseClient.rpc('eventsByOwnerAndMonth', { 
+      p_uid: uid,
+      p_start_date: startDate,
+      p_end_date: endDate
+    }); 
+
+    if(!error) {
+      return data;
+    } else {
+      throw new Error('Error getting the event routes data');
+    }
+}
+
 const getRouteEventByIdAndOwner = async (uid: string, eid: string) => {
     const { data, error } = await supabaseClient.rpc('getEventByIdAndOwner', {       
       p_eventid: eid,
@@ -61,4 +75,4 @@ const modifyEventRoute = async (name: string, description: string, date: Date, s
     }
 }
 
-export { getEventRoutes, getRouteEventByIdAndOwner, createEventRoute, modifyEventRoute }
+export { getEventRoutes, getEventRouteEvents, getRouteEventByIdAndOwner, createEventRoute, modifyEventRoute }

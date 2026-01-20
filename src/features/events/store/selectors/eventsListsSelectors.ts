@@ -5,6 +5,11 @@ const selectEventRoutes = createSelector(
   (events) => events.routes
 );
 
+const selectEventRouteEvents = createSelector(
+  (state) => state.events,
+  (events) => events.routeEvents
+);
+
 const selectEventStartDate = createSelector(
   (state) => state.events,
   (events) => events.startDate
@@ -15,4 +20,4 @@ const selectEventEndDate = createSelector(
   (events) => events.endDate
 );
 
-export { selectEventRoutes, selectEventStartDate, selectEventEndDate };
+export { selectEventRoutes, selectEventStartDate, selectEventEndDate, selectEventRouteEvents };

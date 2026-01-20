@@ -1,7 +1,9 @@
 import type { Route } from "../../../../types/Route.types";
+import type { RouteEvent } from "../../../../types/RouteEvent.types";
 
 type EventsListState = {
   routes: Array<Route>,
+  routeEvents: Array<RouteEvent>,
   startDate: string,
   endDate: string,
   isLoading: boolean,
@@ -24,6 +26,7 @@ const getDate15DaysFrom = () => {
 
 const initialState: EventsListState = {
   routes: [],
+  routeEvents: [],
   startDate: getDate15DaysAgo().toISOString(),
   endDate: getDate15DaysFrom().toISOString(),
   isLoading: false,
