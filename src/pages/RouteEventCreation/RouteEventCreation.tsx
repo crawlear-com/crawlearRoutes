@@ -7,32 +7,38 @@ import { useParams } from "react-router";
 import Spinner from "../../components/Spinner/Spinner";
 import RouteEventsDataForm from "../../features/events/RouteEventsDataForm/RouteEventsDataForm";
 import type { RouteEvent } from "../../types/RouteEvent.types";
-
-const loadRouteEvent =(rid: string) => {
-  console.log(rid);
-}
+import { selectUserUUID } from "../../features/users/store/selectors/userSelectors";
+import { useSelector } from "react-redux";
+import { getRouteEventByIdAndOwner } from "../../database/eventsRpc";
+import toast from "react-hot-toast";
 
 const RouteEventCreation = () => {
   const { t } = useTranslation(["eventsCreation"]);
-  const rid = useParams().id;
+  const eid = useParams().id;
   const date = useParams().date;
   const [ isLoading, setIsLoading ] = React.useState(false);
-  const [ routeEvent ] = React.useState<RouteEvent | undefined>(undefined);
+  const [ routeEvent, setRouteEvent ] = React.useState<RouteEvent | undefined>(undefined);
   const [ eventDate ] = React.useState<Date>(new Date(Number(date) || 0));
+  const userId = useSelector(selectUserUUID);
 
   React.useEffect(() => {
-    if (rid) {
+    if (eid && userId) {
       setIsLoading(true);
-      loadRouteEvent(rid);
+      getRouteEventByIdAndOwner(userId, eid).then((event) => {
+        setIsLoading(false);
+        setRouteEvent(event);
+      }).catch((e: unknown) => {
+          toast.error((e as Error).message);
+        });
     } else {
       setIsLoading(false);
     }
-  }, [rid]);
+  }, [eid, userId]);
 
   return (<>
     <Header />
     <main className="sm:w-[90%] m-auto min-h-[80vh] mt-10">
-      <h1>{ rid ? t("main.event update") : t("main.event creation") }</h1>
+      <h1>{ eid ? t("main.event update") : t("main.event creation") }</h1>
       { isLoading ? <Spinner /> : 
         routeEvent ? <RouteEventsDataForm date={ eventDate } routeEvent={ routeEvent } /> :
           <RouteEventsDataForm date={ eventDate } /> }

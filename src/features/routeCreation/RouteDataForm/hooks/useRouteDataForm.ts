@@ -9,11 +9,12 @@ import { useNavigate } from "react-router";
 
 import type { CreationRoute, Route } from "../../../../types/Route.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { getActionFromActionType } from "../helpers/utils";
-import { CREATE_ACTION, type RouteAction } from "../../store/slices/state.types";
+import { getActionFromActionRpcType } from "../helpers/utils";
+import { CREATE_ACTION } from "../../../../helpers/utils";
+import type { FormAction } from "../../store/slices/state.types";
 
 const useRouteDataForm = (): [
-  (formData: FormData) => void, CreationRoute, boolean, RouteAction,
+  (formData: FormData) => void, CreationRoute, boolean, FormAction,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
@@ -76,7 +77,7 @@ const useRouteDataForm = (): [
 
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
-      const action = getActionFromActionType(actionType);
+      const action = getActionFromActionRpcType(actionType);
       const promise: Promise<Route> = action(createActionPayload());
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
       const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;

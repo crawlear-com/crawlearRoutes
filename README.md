@@ -8,19 +8,23 @@
  - responsive design
  - multilanguage support with react-i18next and lazy load of language data
  - deploy into ghpages using routeHash and github environment variables for secret keys
+ - deploy https://flatline.hopto.org/crawlearRoutes
  - toast notifications and errors (https://react-hot-toast.com/)
- - redux (user session, theme)
+ - leaflet and leaflet-gpx maps
+ - full calendar integration
+ - redux (user session, theme, routes lists, route creation, route search)
  - private routes using React router v7
  - manual code splitting
+ - zob form validations
 
 ### To-do
-- deploy home server // crawlear.com
 - toast async
 - input query validation with zod (or not?), but validation
 - zod texts into translation
 - reset page when filtering in routeslist
 - delete my routes confirm
 - do i keep useWakeLock ??
+- maintain FullCalendar events in Redux?
 
 ## Install and run
 
@@ -61,6 +65,22 @@ $ npm run lint
 <br>
 
 ## Project structure
+
+ /src/components
+ /src/features: events / maps / routeCreation / routes / statistics / users
+ /src/pages
+ /src/database
+ 
+ Components self contained:
+  - helpers
+  - hooks
+  - test
+  - styles
+  - assets
+  - types in separated files
+  - store:
+    - selectors
+    - slices
 
 ## Components diagram: 
 

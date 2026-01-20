@@ -4,7 +4,7 @@ import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
 import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124, useDifficultyValues } from "../../../helpers/utils";
-import { CREATE_ACTION } from "../store/slices/state.types";
+import { CREATE_ACTION } from "../../../helpers/utils";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);

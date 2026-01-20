@@ -11,7 +11,8 @@ import { cleanRoute, loadRoute, setAction, setRouteId } from "../../features/rou
 import type { AppDispatch } from "../../store/store";
 import { selectIsLoading } from "../../features/routeCreation/store/selectors/routeSelectors";
 import Spinner from "../../components/Spinner/Spinner";
-import { CREATE_ACTION, UPDATE_ACTION } from "../../features/routeCreation/store/slices/state.types";
+import { CREATE_ACTION, UPDATE_ACTION } from "../../helpers/utils";
+
 
 const RouteCreation = () => {
   const { t } = useTranslation(["routeCreation"]);

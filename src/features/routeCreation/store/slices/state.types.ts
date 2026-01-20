@@ -1,8 +1,5 @@
+import type { FormAction } from "../../../../types/Generic.types";
 import type { CreationRoute, GeoPoint, Route } from "../../../../types/Route.types";
-
-const UPDATE_ACTION = 'update';
-const CREATE_ACTION = 'create';
-type RouteAction = 'create' | 'update' | null;
 
 type ActionPayload = {
   routeId: string | null,
@@ -24,7 +21,7 @@ type UpdateAction = (payload: ActionPayload) => Promise<Route>
 
 type CreationRouteState = {
   routeId: string | null,
-  action: RouteAction,
+  action: FormAction,
   route: CreationRoute,
   isLoading: boolean,
   error: string | null
@@ -50,5 +47,5 @@ const initialState: CreationRouteState = {
   }
 }
 
-export type { CreationRouteState, CreateAction, UpdateAction, ActionPayload, RouteAction };
-export { initialState, CREATE_ACTION, UPDATE_ACTION };
+export type { CreationRouteState, CreateAction, UpdateAction, ActionPayload, FormAction };
+export { initialState };

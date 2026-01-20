@@ -1,14 +1,13 @@
-import { createRoute, modifyRoute } from "../../../../database/routesCreationRpc";
+import { createEventRoute, modifyEventRoute } from "../../../../database/eventsRpc";
 import { CREATE_ACTION } from "../../../../helpers/utils";
-import type { FormAction } from "../../store/slices/state.types";
-
+import type { FormAction } from "../../../../types/Generic.types";
 
 const getActionFromActionRpcType = (actionType: FormAction) => {
   if (actionType === CREATE_ACTION) {
-    return createRoute;
+    return createEventRoute;
   }
 
-  return modifyRoute;
+  return modifyEventRoute;
 }
 
 export { getActionFromActionRpcType };

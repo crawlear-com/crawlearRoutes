@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../../../store/store';
-import { getMyRoutesFull, getLikesFromUserFull } from '../../../../database/MyRoutesRpc';
+import { getMyRoutesPaginated, getLikesFromUserPaginated } from '../../../../database/MyRoutesRpc';
 import type { Route } from '../../../../types/Route.types';
 
 const getMyRoutes = createAsyncThunk(
@@ -15,7 +15,7 @@ const getMyRoutes = createAsyncThunk(
     const orderBy = myRoutes.orderBy;
     const orderDir = myRoutes.orderDir;
     const query = myRoutes.query;
-    const response = await getMyRoutesFull(owner!, page, orderBy, orderDir, query);
+    const response = await getMyRoutesPaginated(owner!, page, orderBy, orderDir, query);
 
     if (!response.error) {
       return response.data[0];
@@ -35,7 +35,7 @@ const getMyFavourites = createAsyncThunk(
     const orderBy = myFavorites.orderBy;
     const orderDir = myFavorites.orderDir;
     const query = myFavorites.query;
-    const response = await getLikesFromUserFull(owner!, page, orderBy, orderDir, query);
+    const response = await getLikesFromUserPaginated(owner!, page, orderBy, orderDir, query);
 
     if (!response.error) {
       return response.data[0];
