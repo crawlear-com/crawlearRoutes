@@ -8,6 +8,7 @@ import NotFound404 from "../../pages/NotFound404/NotFound404";
 import RouteCreation from "../../pages/RouteCreation/RouteCreation";
 import RouteDetail from "../../pages/Route/Route";
 import SearchRoute from "../../pages/SearchRoute/SearchRoute";
+import RouteEventCreation from "../../pages/RouteEventCreation/RouteEventCreation";
 
 const MainHashRouter = () => {
   return <HashRouter>
@@ -18,6 +19,8 @@ const MainHashRouter = () => {
             <Route path="/record" element={ <RouteCreation />} />
             <Route path="/record/:id" element={ <RouteCreation />} />
             <Route path="/search" element={ <SearchRoute />} />
+            <Route path="/event/:date/:id" element={ <RouteEventCreation />} />
+            <Route path="/event/:date" element={ <RouteEventCreation />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

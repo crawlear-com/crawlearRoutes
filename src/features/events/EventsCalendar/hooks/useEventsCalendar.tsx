@@ -11,7 +11,7 @@ import { datePlusHours } from "../helpers/utils";
 
 const useEventsCalendar = (): [
     string, Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
-    (eventContent: EventContentArg) => void ] => {
+    (date: Date) => void, (eventContent: EventContentArg) => void ] => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const startDate = useSelector(selectEventStartDate);
@@ -39,6 +39,10 @@ const useEventsCalendar = (): [
     navigate(`/route/${info.event.id}`);
   }
 
+  const onDayClick = (date: Date) => {
+    navigate(`/event/${date.getTime()}`);
+  }
+
   const onDateRangeChange = (param: DatesSetArg) => {
     dispatch(setStartDate(param.start.toISOString()));
     dispatch(setEndDate(param.end.toISOString()));
@@ -58,7 +62,7 @@ const useEventsCalendar = (): [
       </div>)
 }
 
-  return [ startDate, eventRoutes, onEventClick, onDateRangeChange, renderEventContent ];
+  return [ startDate, eventRoutes, onEventClick, onDateRangeChange, onDayClick, renderEventContent ];
 }
 
 export default useEventsCalendar;

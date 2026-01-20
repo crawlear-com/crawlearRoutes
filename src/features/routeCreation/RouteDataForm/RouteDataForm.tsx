@@ -23,7 +23,7 @@ const RouteDataForm = () => {
         className="ml-1 mb-5 p-3 w-full" placeholder="Route name..." value={ creationRoute.name } /> <br />
       <FormFeedbackElement className="routeName__feedback" />
 
-      <label htmlFor="routeName" className="align-top block font-bold">
+      <label htmlFor="routeDescription" className="align-top block font-bold">
         * { t("main.route description")}:
       </label>
       <textarea name="routeDescription" id="routeDescription"

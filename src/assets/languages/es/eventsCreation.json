@@ -1,0 +1,12 @@
+{
+  "main": {
+    "event creation": "Creación de event",
+    "event update": "Modificación de evento",
+    "event name": "Nombre del evento",
+    "event description": "Descripción del evento",
+    "event date": "Fecha del evento",
+    "event hour": "Hora del evento",
+    "routes": "Rutas",
+    "no route": "Sin ruta previa"
+  }
+}

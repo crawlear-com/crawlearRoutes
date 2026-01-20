@@ -1,0 +1,12 @@
+{
+  "main": {
+    "event creation": "Event creation",
+    "event update": "Event update",
+    "event name": "Event name",
+    "event description": "Event description",
+    "event date": "Event date",
+    "event hour": "Event hour",
+    "routes": "Routes",
+    "no route": "Without previous route"
+  }
+}
