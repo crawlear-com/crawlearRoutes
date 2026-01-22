@@ -89,6 +89,21 @@ $ npm run lint
 
 ## Considerations
 
+## Design decisions
+
+1) ONLY keep in Redux state the shared data by a component hierarchy to avoid prop drilling.
+[put here a ItemsList component hierarchy] and avoid pollute Redux state
+ ---> Route list, favourite list and events list using list, filter and order components
+
+2) Generic lists of items: ItemsList + ItemsCardList
+- Definition: abstract Lists of items with search by query, order (by attribute and direction), pagination.
+- Requeriments:
+ ---> follow DRY principle and reuse the items list
+ ---> avoid prop drilling (Pagination, filter by query and order by/direction): using Redux context
+ ---> keep abstraction: using Typescript generics <T>
+ ---> to be used with any kind of cards: using render props in ItemsCardList
+
+
 ## Testing
 
 ## CI pipeline

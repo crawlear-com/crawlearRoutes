@@ -31,7 +31,7 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
 
     event.stopPropagation();
     if (eid) {
-      navigate(`/showroute/${eid}`);
+      navigate(`/event/${eid}`);
     }
   }
 

@@ -30,7 +30,7 @@ const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
 
     event.stopPropagation();
     if (rid) {
-      navigate(`/showroute/${rid}`);
+      navigate(`/route/${rid}`);
     }
   }
 
