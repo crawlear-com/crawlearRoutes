@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '../../../store/store';
 import type { AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
 import type { SelectMethods, SetMethods } from '../../../components/ItemsList/ItemsList.types';
-import type { Route } from '../../../types/Route.types';
+import type { RouteEvent } from '../../../types/RouteEvent.types';
 
-const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
+const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, AsyncThunkConfig>,
   setMethods: SetMethods,
-  selectMethods: SelectMethods<Route>): 
-  [ number, number, Array<Route>, boolean, (page: number) => void, (order: string) =>  void,
+  selectMethods: SelectMethods<RouteEvent>): 
+  [ number, number, Array<RouteEvent>, boolean, (page: number) => void, (order: string) =>  void,
     (order: string) =>  void, (query: string) =>  void, () =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useSelector(selectMethods.selectItems);
   const isLoading = useSelector(selectMethods.selectIsLoading);
   const currentPage = useSelector(selectMethods.selectPage);
-  const totalRoutes = useSelector(selectMethods.selectTotalItems);
+  const totalEventRoutes = useSelector(selectMethods.selectTotalItems);
 
   const onPageClick = (page: number) => {
     dispatch(setMethods.setPage(page));
@@ -40,8 +40,8 @@ const useRoutesProvider = (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfi
     dispatch(thunk());
   }, [dispatch, thunk]);
 
-  return [ currentPage, totalRoutes, routes, isLoading, onPageClick,
+  return [ currentPage, totalEventRoutes, routes, isLoading, onPageClick,
     onOrderByClick, onOrderDirClick, onQueryChange, onSearch ];
 }
 
-export default useRoutesProvider;
+export default useRouteEventsProvider;

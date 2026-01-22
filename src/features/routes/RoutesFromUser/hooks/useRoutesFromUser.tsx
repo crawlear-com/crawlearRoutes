@@ -8,10 +8,10 @@ import type { Route } from "../../../../types/Route.types";
 import RouteCard from "../../RouteCard/RouteCard";
 import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesPage, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
 import React from "react";
-import type { SelectMethods, SetMethods } from "../../RoutesList/RoutesList.types";
+import type { SelectMethods, SetMethods } from "../../../../components/ItemsList/ItemsList.types";
 
 const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
-  SetMethods, SelectMethods ] => {
+  SetMethods, SelectMethods<Route> ] => {
   const { t } = useTranslation(['myRoutes']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
 
     event.stopPropagation();
     if (rid) {
-      navigate(`/record/${rid}`);
+      navigate(`/showroute/${rid}`);
     }
   }
 
@@ -51,17 +51,17 @@ const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
     <div className="absolute top-3 right-3" data-rid={ rid } onClick={ onDeleteClick }>🗑</div>
   </>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ routeExtras(route.id) } />;
-  const setMethods = {
+  const setMethods: SetMethods = {
     setPage: setMyRoutesPage,
     setOrderBy: setMyRoutesOrderBy,
     setOrderDir: setMyRoutesOrderDir,
     setQuery: setMyRoutesQuery
   };
-  const selectMethods = {
-    selectRoutes: selectMyRoutes,
+  const selectMethods: SelectMethods<Route> = {
+    selectItems: selectMyRoutes,
     selectIsLoading: selectMyRoutesIsLoading,
     selectPage: selectMyRoutesPage,
-    selectTotalRoutes: selectMyRoutesTotalRoutes
+    selectTotalItems: selectMyRoutesTotalRoutes
   };
 
   return [ myRoutesCard, setMethods, selectMethods ];

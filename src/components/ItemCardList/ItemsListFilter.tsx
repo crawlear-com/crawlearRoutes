@@ -1,12 +1,12 @@
-import useRoutesListFilter from "./hooks/useRoutesListFilter";
-import SearchInput from "../../../components/SearchInput/SearchInput";
-import type { RoutesListFilterProps } from "./types/RoutesListFilter.types";
+import useItemsListFilter from "./hooks/useItemsListFilter";
+import SearchInput from "../SearchInput/SearchInput";
+import type { ItemsListFilterProps } from "./types/ItemsListFilter.types";
 
 import './styles/routerListFilter.css';
 
-const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSearch }: RoutesListFilterProps) => {
+const ItemsListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSearch }: ItemsListFilterProps) => {
   const [orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler,
-    onCollapseClick, orderDirIcon] = useRoutesListFilter(onOrderByClick, onOrderDirClick);
+    onCollapseClick, orderDirIcon] = useItemsListFilter(onOrderByClick, onOrderDirClick);
 
   return (<div className="container flex justify-end items-center mx-auto mb-2">
       <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
@@ -30,4 +30,4 @@ const RoutesListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSe
     </div>);
 }
 
-export default RoutesListFilter;
+export default ItemsListFilter;

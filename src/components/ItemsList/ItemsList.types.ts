@@ -1,4 +1,3 @@
-import type { Route } from "../../../types/Route.types";
 import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
 
 type SetMethods = {
@@ -8,25 +7,25 @@ type SetMethods = {
   setQuery: ActionCreatorWithPayload<string, string>
 }
 
-type SelectMethods = {
-  selectRoutes: (state: unknown) => Array<Route>,
+type SelectMethods<T> = {
+  selectItems: (state: unknown) => Array<T>,
   selectIsLoading: (state: unknown) => boolean,
   selectPage: (state: unknown) => number,
-  selectTotalRoutes: (state: unknown) => number
+  selectTotalItems: (state: unknown) => number
 }
 
-type RoutesListProps = {
+type ItemsListProps<T> = {
   title?: string,
-  card: (route: Route) => React.ReactElement,
+  card: (item: T) => React.ReactElement,
   setMethods: SetMethods,
-  selectMethods: SelectMethods,
-  thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
-  hook: (thunk: AsyncThunk<Array<Route>, void, AsyncThunkConfig>,
+  selectMethods: SelectMethods<T>,
+  thunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>,
+  hook: (thunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>,
   setMethods: SetMethods,
-  selectMethods: SelectMethods) => [
-      number, number, Array<Route>, boolean, (page: number) => void, 
+  selectMethods: SelectMethods<T>) => [
+      number, number, Array<T>, boolean, (page: number) => void,
       (order: string) => void, (order: string) => void, (query: string) => void, () => void
     ]
 }
 
-export type { RoutesListProps, SetMethods, SelectMethods };
+export type { ItemsListProps, SetMethods, SelectMethods };

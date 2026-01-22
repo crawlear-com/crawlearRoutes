@@ -94,7 +94,7 @@ const getNewMap = (mapId: string, mapClickEventHandler: (e: L.LeafletMouseEvent)
 }
 
 const getRoutePopupContent = (mapPoint: MapPoint) => {
-  return `<a href="#/route/${mapPoint.content.rid}"}>
+  return `<a href="#/showroute/${mapPoint.content.rid}"}>
       ${ mapPoint.content.name } <br />
       <img src="${ scaleBadgeImage }" style="width:20px; display: inline" />
       ${ getScaleValue(mapPoint.content.scale) }

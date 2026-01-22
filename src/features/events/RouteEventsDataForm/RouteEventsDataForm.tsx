@@ -50,15 +50,16 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
         placeholder={`${t("main.event name")}...`} value={ description } /><br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
-      <label className="align-top font-bold"> { t("main.event date") }: </label>
-      <span>{ date.toLocaleDateString() }</span>
-      <div className="font-bold">
-        { t("main.event hour") } : 
-        <select className="border border-primary rounded-xl p-2" 
-          value={hour} onChange={ onHourChange }>
-          { generateHoursOptions() }
-        </select>
-      </div>
+      <label htmlFor="routeDate" className="align-top font-bold"> { t("main.event date") }: </label>
+      <span id="routeDate">{ date.toLocaleDateString() }</span>
+      
+      <label htmlFor="routeHour" className="font-bold"> { t("main.event hour") } : </label>
+      <select id="routeHour" name="routeHour" className="border border-primary rounded-xl p-2" 
+        value={hour} onChange={ onHourChange }>
+        { generateHoursOptions() }
+      </select>
+      
+      <label></label>
 
       <div className="font-bold">
         { t("main.routes") } : 

@@ -1,4 +1,4 @@
-type RoutesListFilterProps = {
+type ItemsListFilterProps = {
   onOrderByClick: (order: string) => void,
   onOrderDirClick: (order: string) => void,
   onQueryChange: (query: string) => void,
@@ -8,4 +8,4 @@ type RoutesListFilterProps = {
 const ASC = 'asc';
 const DESC = 'des';
 
-export { type RoutesListFilterProps, ASC, DESC}
+export { type ItemsListFilterProps, ASC, DESC}

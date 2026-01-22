@@ -3,8 +3,9 @@ import Spinner from "../../../components/Spinner/Spinner";
 import useSearchRoute from "./hooks/useSearchRoute";
 import { useTranslation } from "react-i18next";
 import SearchInput from "../../../components/SearchInput/SearchInput";
-import RoutesCardList from "../../routes/RoutesCardList/RoutesCardList";
-import RoutesPaginator from "../../routes/RoutesCardList/RoutesPaginator";
+import ItemCardList from "../../../components/ItemCardList/ItemCardList";
+import ItemsPaginator from "../../../components/ItemCardList/ItemsPaginator";
+import type { Route, SearchResultRoute } from "../../../types/Route.types";
 
 const SearchRouteMap = () => {
   const { t } = useTranslation(['map']);
@@ -22,8 +23,8 @@ const SearchRouteMap = () => {
       </label>
 
       { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
-      <RoutesPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
-      <RoutesCardList routes={ resultRoutes } card={ routesCard } />
+      <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
+      <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />
     </div>
   </div>);
 }

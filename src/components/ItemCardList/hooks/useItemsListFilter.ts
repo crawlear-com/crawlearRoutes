@@ -1,7 +1,7 @@
 import * as React from "react";
-import { ASC, DESC } from "../types/RoutesListFilter.types";
+import { ASC, DESC } from "../types/ItemsListFilter.types";
 
-const useRoutesListFilter = (onOrderByClick: (order: string) => void,
+const useItemsListFilter = (onOrderByClick: (order: string) => void,
   onOrderDirClick: (order: string) => void):
   [ string, boolean, (event: React.MouseEvent<HTMLDivElement>) => void, () => void, () => void, string ] => {
   
@@ -32,4 +32,4 @@ const useRoutesListFilter = (onOrderByClick: (order: string) => void,
   return [ orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler, onCollapseClick, orderDirIcon ]
 }
 
-export default useRoutesListFilter;
+export default useItemsListFilter;

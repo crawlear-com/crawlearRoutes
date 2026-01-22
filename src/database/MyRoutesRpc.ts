@@ -12,16 +12,16 @@ const getMyRoutesPaginated = async (uuid: string, page: number, orderBy: string,
   });
 }
 
-const getMyRoutesFull = async (uuid: string) => {
+const getMyRoutesFull = async (uid: string) => {
   return await supabaseClient.rpc('routesByOwnerFull', { 
-    p_uid: uuid
+    p_uid: uid
   });
 }
 
-const getLikesFromUserPaginated = async (uuid: string, page: number, orderBy: string,
+const getLikesFromUserPaginated = async (uid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('likesByUser', { 
-    in_uid: uuid,
+    in_uid: uid,
     in_page: page + 1,
     in_per_page: ITEMS_PAGE,
     in_order_by: orderBy,

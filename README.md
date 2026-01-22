@@ -25,6 +25,9 @@
 - delete my routes confirm
 - do i keep useWakeLock ??
 - maintain FullCalendar events in Redux?
+- UX / UI
+- Accesibilidad
+- All common code in layouts
 
 ## Install and run
 

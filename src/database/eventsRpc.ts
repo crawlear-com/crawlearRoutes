@@ -1,6 +1,18 @@
-import supabaseClient from "./supabaseClient";
+import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
-const getEventRoutes = async (uid: string, startDate: string, endDate: string) => {
+const getEventRouteEventsPaginated = async (uid: string, page: number, orderBy: string,
+  orderDir = 'asc', query: string) => {
+  return await supabaseClient.rpc('events_by_owner_paginated', { 
+    p_uid: uid,
+    p_page: page + 1,
+    p_per_page: ITEMS_PAGE,
+    p_order_by: orderBy,
+    p_order_dir: orderDir,
+    p_q: query
+  }); 
+}
+
+const getEventRoutesByMonth = async (uid: string, startDate: string, endDate: string) => {
     const { data, error } = await supabaseClient.rpc('getEventRoutesByUserAndMonth', { 
       p_uid: uid,
       p_start_date: startDate,
@@ -14,7 +26,7 @@ const getEventRoutes = async (uid: string, startDate: string, endDate: string) =
     }
 }
 
-const getEventRouteEvents = async (uid: string, startDate: string, endDate: string) => {
+const getEventRouteEventsByMonth = async (uid: string, startDate: string, endDate: string) => {
     const { data, error } = await supabaseClient.rpc('eventsByOwnerAndMonth', { 
       p_uid: uid,
       p_start_date: startDate,
@@ -75,4 +87,18 @@ const modifyEventRoute = async (name: string, description: string, date: Date, s
     }
 }
 
-export { getEventRoutes, getEventRouteEvents, getRouteEventByIdAndOwner, createEventRoute, modifyEventRoute }
+const deleteEventRoute = async (eid: string, uid: string) => {
+    const { data, error } = await supabaseClient.rpc('deleteEvent', {
+      p_eid: eid,
+      p_uid: uid
+    });
+
+    if(!error) {
+      return data;
+    } else {
+      throw new Error('Error modifying route event');
+    }
+}
+
+export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
+  getEventRouteEventsPaginated, createEventRoute, modifyEventRoute, deleteEventRoute }

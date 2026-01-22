@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyEventRouteEvents, getMyEventRoutes, setEndDate, setStartDate } from "../../store/slices/eventListsSlice";
+import { getMyEventRouteEventsByMonth, getMyEventRoutesByMonth, setEndDate, setStartDate } from "../../store/slices/eventListsSlice";
 import type { AppDispatch } from "../../../../store/store";
 import { selectEventRouteEvents, selectEventRoutes, selectEventStartDate } from "../../store/selectors/eventsListsSelectors";
 import type { Route } from "../../../../types/Route.types";
@@ -23,7 +23,7 @@ const useEventsCalendar = (): [
   const [ eventRouteEvents, setEventRouteEvents ] = React.useState<Array<CalendarEventRoutes>>([]);
 
   React.useEffect(() => {
-    dispatch(getMyEventRoutes());
+    dispatch(getMyEventRoutesByMonth());
   }, [dispatch]);
 
   React.useEffect(() => {
@@ -52,7 +52,11 @@ const useEventsCalendar = (): [
   }, [routes, routeEvents]);
 
   const onEventClick = (info: EventClickArg) => {
-    navigate(`/route/${info.event.id}`);
+    if (info.event.extendedProps.type === TYPE_EVENT) {
+      navigate(`/showevent/${info.event.id}`);
+    } else if (info.event.extendedProps.type === TYPE_ROUTE) {
+      navigate(`/showroute/${info.event.id}`);
+    }
   }
 
   const onDayClick = (date: Date) => {
@@ -62,8 +66,8 @@ const useEventsCalendar = (): [
   const onDateRangeChange = (param: DatesSetArg) => {
     dispatch(setStartDate(param.start.toISOString()));
     dispatch(setEndDate(param.end.toISOString()));
-    dispatch(getMyEventRoutes());
-    dispatch(getMyEventRouteEvents());
+    dispatch(getMyEventRoutesByMonth());
+    dispatch(getMyEventRouteEventsByMonth());
   }
 
   const renderEventContent = (eventContent: EventContentArg) => {
