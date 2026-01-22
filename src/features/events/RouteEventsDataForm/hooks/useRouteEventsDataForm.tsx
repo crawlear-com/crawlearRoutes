@@ -76,8 +76,8 @@ const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [
     getRoutes().then((routes) => {
       setRouteOptions(generateRouteOptions(routes));
     }).catch((e: unknown) => {
-          toast.error((e as Error).message);
-        });
+      toast.error((e as Error).message);
+    });
   }, [userId, generateRouteOptions]);
 
   const onHourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

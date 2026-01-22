@@ -1,28 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-const selectEventRoutes = createSelector(
-  (state) => state.events.calendarEvents,
-  (events) => events.routes
-);
-
-const selectEventRouteEvents = createSelector(
-  (state) => state.events.calendarEvents,
-  (events) => events.routeEvents
-);
-
-const selectEventStartDate = createSelector(
-  (state) => state.events.calendarEvents,
-  (events) => events.startDate
-);
-
-const selectEventEndDate = createSelector(
-  (state) => state.events.calendarEvents,
-  (events) => events.endDate
-);
-
 const selectMyEvents = createSelector(
-  (state) => state.events.myEvents,
-  (myEvents) => myEvents.allEventRoutes
+  (state) => state.events,
+  (events) => events.events
 );
 
 const selectMyEventsIsLoading = createSelector(
@@ -31,15 +11,13 @@ const selectMyEventsIsLoading = createSelector(
 );
 
 const selectMyEventsPage = createSelector(
-  (state) => state.events.myEvents,
-  (myEvents) => myEvents.page
+  (state) => state.events,
+  (events) => events.page
 );
 
 const selectMyEventsTotalRoutes = createSelector(
-  (state) => state.events.myEvents,
-  (myEvents) => myEvents.totalEvents
+  (state) => state.events,
+  (events) => events.totalEvents
 );
 
-export { selectEventRoutes, selectEventStartDate, selectEventEndDate, selectEventRouteEvents,
-  selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, selectMyEventsTotalRoutes
- };
+export { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, selectMyEventsTotalRoutes };
