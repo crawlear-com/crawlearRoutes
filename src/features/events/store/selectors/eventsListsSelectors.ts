@@ -1,22 +1,23 @@
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "../../../../store/store";
 
 const selectMyEvents = createSelector(
-  (state) => state.events,
+  (state: RootState) => state.events,
   (events) => events.events
 );
 
 const selectMyEventsIsLoading = createSelector(
-  (state) => state.events,
+  (state: RootState) => state.events,
   (events) => events.isLoading
 );
 
 const selectMyEventsPage = createSelector(
-  (state) => state.events,
+  (state: RootState) => state.events,
   (events) => events.page
 );
 
 const selectMyEventsTotalRoutes = createSelector(
-  (state) => state.events,
+  (state: RootState) => state.events,
   (events) => events.totalEvents
 );
 

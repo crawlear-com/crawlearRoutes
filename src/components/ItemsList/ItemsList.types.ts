@@ -1,4 +1,5 @@
 import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
+import type { RootState } from "../../store/store";
 
 type SetMethods = {
   setPage: ActionCreatorWithPayload<number, string>,
@@ -8,10 +9,10 @@ type SetMethods = {
 }
 
 type SelectMethods<T> = {
-  selectItems: (state: unknown) => Array<T>,
-  selectIsLoading: (state: unknown) => boolean,
-  selectPage: (state: unknown) => number,
-  selectTotalItems: (state: unknown) => number
+  selectItems: (state: RootState) => Array<T>,
+  selectIsLoading: (state: RootState) => boolean,
+  selectPage: (state: RootState) => number,
+  selectTotalItems: (state: RootState) => number
 }
 
 type ItemsListProps<T> = {

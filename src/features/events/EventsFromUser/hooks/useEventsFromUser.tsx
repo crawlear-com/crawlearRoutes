@@ -28,10 +28,11 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   const onModifyClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const eid = element.dataset.eid;
+    const date = (element.dataset.date ? new Date(element.dataset.date) : new Date()).getTime();
 
     event.stopPropagation();
     if (eid) {
-      navigate(`/event/${eid}`);
+      navigate(`/event/${date}/${eid}`);
     }
   }
 
@@ -47,11 +48,15 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
       });
     }
   }
-  const eventExtras = (eid: string) => <>
-    <div className="absolute top-3 right-6 mr-5 text-xl leading-6" data-eid={ eid } onClick={ onModifyClick }>✎</div>
+  const eventExtras = (eid: string, eventDate: string) => <>
+    <div className="absolute top-3 right-6 mr-5 text-xl leading-6" 
+      data-eid={ eid } data-date={ eventDate } onClick={ onModifyClick }>✎</div>
     <div className="absolute top-3 right-3" data-eid={ eid } onClick={ onDeleteClick }>🗑</div>
   </>
-  const myRouteEventsCard = (route: RouteEvent) => <RouteEventCard key={ route.id } routeEvent={ route } extras={ eventExtras(route.id) } />;
+  const myRouteEventsCard = (event: RouteEvent) => 
+    <RouteEventCard key={ event.id } routeEvent={ event } 
+      extras={ eventExtras(event.id, event.date.toString()) } />;
+
   const setMethods = {
     setPage: setMyEventsPage,
     setOrderBy: setMyEventsOrderBy,
