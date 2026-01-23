@@ -1,4 +1,5 @@
 import * as React from 'react'
+import toast from 'react-hot-toast';
 const ERR_WAKELOCK_NOT_AVAILABLE = -3;
 
 function useWakeLock(onError: (error: number)=> void): [() => void, () => void] {
@@ -13,7 +14,7 @@ function useWakeLock(onError: (error: number)=> void): [() => void, () => void] 
         setWakeLock(lock)
       } catch (err) {
         onError(ERR_WAKELOCK_NOT_AVAILABLE)
-        console.error(err);
+        toast.error(`Wake Lock not available: ${(err as Error).message}`);
       }
     }
 

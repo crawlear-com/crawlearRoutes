@@ -7,6 +7,9 @@ const SCALE110 = 2;
 const SCALE118 = 3;
 const SCALE124 = 4;
 
+const UPDATE_ACTION = 'update';
+const CREATE_ACTION = 'create';
+
 const getScaleValue = (scale: number) => {
   let value = "1/1";
 
@@ -53,5 +56,5 @@ const isObjectEmpty = (obj: object) => {
   return true;
 }
 
-export { SCALE11, SCALE110, SCALE118, SCALE124, 
+export { SCALE11, SCALE110, SCALE118, SCALE124, UPDATE_ACTION, CREATE_ACTION,
   getScaleValue, useDifficultyValues, getPointsFromRoutes, toHours, toKm, isObjectEmpty };

@@ -1,7 +1,9 @@
 import { createRoute, modifyRoute } from "../../../../database/routesCreationRpc";
-import { CREATE_ACTION, type RouteAction } from "../../store/slices/state.types";
+import { CREATE_ACTION } from "../../../../helpers/utils";
+import type { FormAction } from "../../store/slices/state.types";
 
-const getActionFromActionType = (actionType: RouteAction) => {
+
+const getActionFromActionRpcType = (actionType: FormAction) => {
   if (actionType === CREATE_ACTION) {
     return createRoute;
   }
@@ -9,4 +11,4 @@ const getActionFromActionType = (actionType: RouteAction) => {
   return modifyRoute;
 }
 
-export { getActionFromActionType };
+export { getActionFromActionRpcType };

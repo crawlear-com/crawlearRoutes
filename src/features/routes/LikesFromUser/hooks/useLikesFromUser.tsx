@@ -8,10 +8,10 @@ import toast from "react-hot-toast";
 import type { Route } from "../../../../types/Route.types";
 import RouteCard from "../../RouteCard/RouteCard";
 import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesPage, selectMyFavoritesTotalRoutes } from "../../store/selectors/routeListsSelectors";
-import type { SelectMethods, SetMethods } from "../../RoutesList/RoutesList.types";
+import type { SelectMethods, SetMethods } from "../../../../components/ItemsList/ItemsList.types";
 
 const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
-  SetMethods, SelectMethods ] => {
+  SetMethods, SelectMethods<Route> ] => {
   const { t } = useTranslation(['myRoutes']);
   const dispatch = useDispatch();
   const uid = useSelector(selectUserUUID);
@@ -47,11 +47,11 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
     setOrderDir: setMyFavouritesOrderDir,
     setQuery: setMyFavouritesQuery
   };
-  const selectMethods = {
-    selectRoutes: selectMyFavorites,
+  const selectMethods: SelectMethods<Route> = {
+    selectItems: selectMyFavorites,
     selectIsLoading: selectMyFavoritesIsLoading,
     selectPage: selectMyFavoritesPage,
-    selectTotalRoutes: selectMyFavoritesTotalRoutes
+    selectTotalItems: selectMyFavoritesTotalRoutes
   };
 
   return [ myRoutesCard, setMethods, selectMethods ]

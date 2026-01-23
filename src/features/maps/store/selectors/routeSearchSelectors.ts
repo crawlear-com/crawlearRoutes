@@ -1,32 +1,33 @@
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "../../../../store/store";
 
 const selectRouteSearchRoutes = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.routes
 );
 
 const selectRouteSearchPoints = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.points
 );
 
 const selectRouteSearchIsLoading = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.isLoading
 );
 
 const selectRouteSearchQuery = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.query
 );
 
 const selectRouteSearchPage = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.page
 );
 
 const selectRouteSearchTotalPages = createSelector(
-  (state) => state.routeSearch,
+  (state: RootState) => state.routeSearch,
   (routeSearch) => routeSearch.totalRoutes
 );
 

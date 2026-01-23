@@ -8,19 +8,26 @@
  - responsive design
  - multilanguage support with react-i18next and lazy load of language data
  - deploy into ghpages using routeHash and github environment variables for secret keys
+ - deploy https://flatline.hopto.org/crawlearRoutes
  - toast notifications and errors (https://react-hot-toast.com/)
- - redux (user session, theme)
+ - leaflet and leaflet-gpx maps
+ - full calendar integration
+ - redux (user session, theme, routes lists, route creation, route search)
  - private routes using React router v7
  - manual code splitting
+ - zob form validations
 
 ### To-do
-- deploy home server // crawlear.com
 - toast async
 - input query validation with zod (or not?), but validation
 - zod texts into translation
 - reset page when filtering in routeslist
 - delete my routes confirm
 - do i keep useWakeLock ??
+- maintain FullCalendar events in Redux?
+- UX / UI
+- Accesibilidad
+- All common code in layouts
 
 ## Install and run
 
@@ -62,9 +69,46 @@ $ npm run lint
 
 ## Project structure
 
+ /src/components
+ /src/features: events / maps / routeCreation / routes / statistics / users
+ /src/pages
+ /src/database
+ 
+ Components self contained:
+  - helpers
+  - hooks
+  - test
+  - styles
+  - assets
+  - types in separated files
+  - store:
+    - selectors
+    - slices
+
 ## Components diagram: 
 
 ## Considerations
+
+## Design decisions
+
+1) **ONLY keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
+
+ - Routes list, favourites list and events list all using filter and order components
+
+[put here a ItemsList component hierarchy] 
+
+2) **Generic lists of items**: ItemsList + ItemsCardList
+- Definition:
+  - **ABSTRACTION** of lists of items with search by query, order (by attribute and direction), pagination.
+
+[put here UI of lists]
+
+- Requeriments:
+  - follow **DRY principle** and *reuse* the items list
+  - **avoid prop drilling** (Pagination, filter by query and order by/direction): using Redux context
+  - **keep abstraction**: using Typescript generics \<T>
+  - to be used with **any kind of cards**: using render props in ItemsCardList
+
 
 ## Testing
 

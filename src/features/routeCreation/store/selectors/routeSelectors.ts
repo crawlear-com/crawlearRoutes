@@ -1,82 +1,83 @@
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "../../../../store/store";
 
 const selectStep1IsFinished = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null : false
 );
 
 const selectStep2IsFinished = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.name.length > 0 && routeCreation.route.description.length > 0 : false
 );
 
 const selectCreationRoute = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route
 );
 
 const selectIsLoading = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.isLoading
 );
 
 const selectGpx = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.gpx : null
 );
 
 const selectPoint = createSelector(
-  (state) => state.routeCreation,
-  (routeCreation) => routeCreation.route ? routeCreation.route.point : null
+  (state: RootState) => state.routeCreation,
+  (routeCreation) => routeCreation.route ? routeCreation.route.location : null
 );
 
 const selectName = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.name : ""
 );
 
 const selectDescription = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.description : ""
 );
 
 const selectDifficulty = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.difficulty : 0
 );
 
 const selectScale = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.scale : 0
 );
 
 const selectYoutubeVideo = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.youtubeVideo : ""
 );
 
 const selectDistance = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.distance : 0
 );
 
 const selectDuration = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.durationTime : 0
 );
 
 const selectIsPublic = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.route ? routeCreation.route.isPublic : true
 );
 
 const selectRouteId = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.routeId
 );
 
 const selectAction = createSelector(
-  (state) => state.routeCreation,
+  (state: RootState) => state.routeCreation,
   (routeCreation) => routeCreation.action
 );
 

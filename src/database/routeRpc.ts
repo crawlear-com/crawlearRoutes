@@ -13,7 +13,7 @@ const getRoute = async (rid: string) => {
 }
 
 const likeRoute = async (uid: string, rid: string) => {
-    const { data, error } = await supabaseClient.rpc('insert_like', { 
+    const { data, error } = await supabaseClient.rpc('insertLike', { 
       p_uid: uid,
       p_rid: rid
     }); 

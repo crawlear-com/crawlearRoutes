@@ -1,27 +1,70 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMyEventRoutes, setEndDate, setStartDate } from "../../store/slices/eventListsSlice";
-import type { AppDispatch } from "../../../../store/store";
-import { selectEventRoutes, selectEventStartDate } from "../../store/selectors/eventsListsSelectors";
+import { useSelector } from "react-redux";
 import type { Route } from "../../../../types/Route.types";
 import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
-import type { CalendarEventRoutes } from "../EventsCalendar.types";
-import { datePlusHours } from "../helpers/utils";
+import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
+import { datePlusHours, getDate15DaysAgo, getDate15DaysFrom } from "../helpers/utils";
+import type { RouteEvent } from "../../../../types/RouteEvent.types";
+import { getEventRouteEventsByMonth, getEventRoutesByMonth } from "../../../../database/eventsRpc";
+import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import toast from "react-hot-toast";
 
-const useEventsCalendar = (): [
-    string, Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
-    (eventContent: EventContentArg) => void ] => {
+const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
+    Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
+    (date: Date) => void, (eventContent: EventContentArg) => void ] => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
-  const startDate = useSelector(selectEventStartDate);
-  //const endDate = useSelector(selectEventEndDate);
-  const routes:Array<Route> = useSelector(selectEventRoutes);
+  const [ currentDate, setCurrentDate ] = React.useState<string>(new Date().toISOString());
+  const [ startDate, setStartDate ] = React.useState<string>(getDate15DaysAgo());
+  const [ endDate, setEndDate ] = React.useState<string>(getDate15DaysFrom());
+  const [ routes, setRoutes ] = React.useState<Array<Route>>([]);
+  const [ routeEvents, setRouteEvents ] = React.useState<Array<RouteEvent>>([]);
   const [ eventRoutes, setEventRoutes ] = React.useState<Array<CalendarEventRoutes>>([]);
+  const [ eventRouteEvents, setEventRouteEvents ] = React.useState<Array<CalendarEventRoutes>>([]);
+  const [ isLoading, setIsLoading ] = React.useState<boolean>(false);
+  const uid = useSelector(selectUserUUID);
 
   React.useEffect(() => {
-    dispatch(getMyEventRoutes());
-  }, [dispatch]);
+    const getRoutes = async () => {
+      setIsLoading(true);
+      const response = await getEventRoutesByMonth(uid!, startDate, endDate);
+
+      if (!response.error) {
+        setIsLoading(false);
+        return response;
+      } else {
+        setIsLoading(false);
+        throw new Error(`Error loading events (routes): ${response.error.message}`);
+      }
+    }
+
+    const getEventRoutes = async () => {
+      setIsLoading(true);
+      const response = await getEventRouteEventsByMonth(uid!, startDate, endDate);
+
+      if (!response.error) {
+        setIsLoading(false);
+        return response;
+      } else {
+        setIsLoading(false);
+        throw new Error(`Error loading events (routes): ${response.error.message}`);
+      }
+    }
+
+    getRoutes().then((routes) => {
+      setRoutes(routes);
+    }).catch((e: unknown) => {
+      toast.error((e as Error).message);
+    });
+
+    getEventRoutes().then((routeEvents) => {
+      setRouteEvents(routeEvents);
+    }).catch((e: unknown) => {
+      toast.error((e as Error).message);
+    });
+
+
+  }, [startDate, endDate, uid]);
 
   React.useEffect(() => {
     if (routes.length > 0) {
@@ -29,25 +72,46 @@ const useEventsCalendar = (): [
         return { id: route.id,
           title: route.name,
           start: new Date(route.created_at!),
-          end: datePlusHours(route.created_at!, route.durationTime! / 1000 / 60 / 60)
+          end: datePlusHours(route.created_at!, route.durationTime! / 1000 / 60 / 60),
+          type: TYPE_ROUTE
         }
       }));
     }
-  }, [routes]);
+
+    if (routeEvents.length > 0) {
+      setEventRouteEvents(routeEvents.map((routeEvent) => {
+        const date = new Date(routeEvent.date);
+        return { id: routeEvent.id,
+          title: routeEvent.name,
+          start: date,
+          end: datePlusHours(date.toDateString(), 4),
+          type: TYPE_EVENT
+        }
+      }));
+    }
+  }, [routes, routeEvents]);
 
   const onEventClick = (info: EventClickArg) => {
-    navigate(`/route/${info.event.id}`);
+    if (info.event.extendedProps.type === TYPE_EVENT) {
+      navigate(`/showevent/${info.event.id}`);
+    } else if (info.event.extendedProps.type === TYPE_ROUTE) {
+      navigate(`/showroute/${info.event.id}`);
+    }
+  }
+
+  const onDayClick = (date: Date) => {
+    navigate(`/event/${date.getTime()}`);
   }
 
   const onDateRangeChange = (param: DatesSetArg) => {
-    dispatch(setStartDate(param.start.toISOString()));
-    dispatch(setEndDate(param.end.toISOString()));
-    dispatch(getMyEventRoutes());
+    setStartDate(param.start.toISOString());
+    setEndDate(param.end.toISOString());
+    setCurrentDate(param.view.calendar.getDate().toISOString());
   }
 
   const renderEventContent = (eventContent: EventContentArg) => {
     const startTime = eventContent.event.start;
-    return(<div className="rounded flex flex-col bg-secondary">
+    return(<div className={`rounded flex flex-col ${eventContent.event.extendedProps.type === TYPE_ROUTE ? 'bg-secondary' : 'bg-primary'} p-1  `}>
         <li>
           <b>{ `${startTime!.getHours()}:${startTime!.getMinutes()}`  }</b>
         </li>
@@ -58,7 +122,7 @@ const useEventsCalendar = (): [
       </div>)
 }
 
-  return [ startDate, eventRoutes, onEventClick, onDateRangeChange, renderEventContent ];
+  return [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, onDateRangeChange, onDayClick, renderEventContent ];
 }
 
 export default useEventsCalendar;

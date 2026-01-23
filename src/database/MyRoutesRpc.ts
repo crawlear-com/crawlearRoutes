@@ -1,6 +1,6 @@
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
-const getMyRoutesFull = async (uuid: string, page: number, orderBy: string,
+const getMyRoutesPaginated = async (uuid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('routesByOwner', { 
     in_routeowner: uuid,
@@ -12,10 +12,16 @@ const getMyRoutesFull = async (uuid: string, page: number, orderBy: string,
   });
 }
 
-const getLikesFromUserFull = async (uuid: string, page: number, orderBy: string,
+const getMyRoutesFull = async (uid: string) => {
+  return await supabaseClient.rpc('routesByOwnerFull', { 
+    p_uid: uid
+  });
+}
+
+const getLikesFromUserPaginated = async (uid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
   return await supabaseClient.rpc('likesByUser', { 
-    in_uid: uuid,
+    in_uid: uid,
     in_page: page + 1,
     in_per_page: ITEMS_PAGE,
     in_order_by: orderBy,
@@ -37,7 +43,7 @@ const deleteRouteAndLikes = async (id: string) => {
 }
 
 const getUserStats = async (uid: string) => {
-  const { data, error } = await supabaseClient.rpc('get_routes_stats', {
+  const { data, error } = await supabaseClient.rpc('getRoutesStats', {
     p_uid: uid
   });
 
@@ -48,4 +54,5 @@ const getUserStats = async (uid: string) => {
   }
 }
 
-export { ITEMS_PAGE, getMyRoutesFull, getLikesFromUserFull, deleteRouteAndLikes, getUserStats };
+export { ITEMS_PAGE, getMyRoutesPaginated, getMyRoutesFull, getLikesFromUserPaginated,
+  deleteRouteAndLikes, getUserStats };

@@ -1,31 +1,23 @@
-import type { Route } from "../../../../types/Route.types";
+import type { RouteEvent } from "../../../../types/RouteEvent.types";
 
 type EventsListState = {
-  routes: Array<Route>,
-  startDate: string,
-  endDate: string,
+  events: Array<RouteEvent>,
+  page: number,
+  orderBy: string,
+  orderDir: string,
+  query: string,
+  totalEvents: number
   isLoading: boolean,
   error: string | null
 }
 
-const getDate15DaysAgo = () => {
-  const date = new Date();
-  date.setDate(date.getDate() - 15);
-
-  return date;
-}
-
-const getDate15DaysFrom = () => {
-  const date = new Date();
-  date.setDate(date.getDate() + 15);
-
-  return date;
-}
-
 const initialState: EventsListState = {
-  routes: [],
-  startDate: getDate15DaysAgo().toISOString(),
-  endDate: getDate15DaysFrom().toISOString(),
+  events: [],
+  page: 0,
+  orderBy: 'name',
+  orderDir: 'asc',
+  query: '',
+  totalEvents: 0,
   isLoading: false,
   error: null
 };

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { initialState, type RouteAction } from './state.types';
+import { initialState, type FormAction } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { CreationRoute, GeoPoint } from '../../../../types/Route.types';
 import { getRoute } from '../../../../database/routeRpc';
@@ -24,7 +24,7 @@ const routeSlice = createSlice({
     setRouteId: ((state, action: PayloadAction<string>) => {
       state.routeId = action.payload;
     }),
-    setAction: ((state, action: PayloadAction<RouteAction>) => {
+    setAction: ((state, action: PayloadAction<FormAction>) => {
       state.action = action.payload;
     }),
     setRoute: ((state, action: PayloadAction<CreationRoute>) => {

@@ -1,9 +1,9 @@
-import { ITEMS_PAGE } from "../../../database/supabaseClient";
-import type { RoutesPaginatorProps } from "./types/RoutesPaginator.types";
-import useRoutesPaginator from "./hooks/useRoutesPaginator";
+import { ITEMS_PAGE } from "../../database/supabaseClient";
+import type { ItemsPaginatorProps } from "./types/ItemsPaginator.types";
+import useItemsPaginator from "./hooks/useItemsPaginator";
 
-const RoutesPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: RoutesPaginatorProps) => {
-  const [ pages, totalPages, onPageEventHandler ] = useRoutesPaginator(totalItems, itemsPerPage, currentPage, onPageClick);
+const ItemsPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: ItemsPaginatorProps) => {
+  const [ pages, totalPages, onPageEventHandler ] = useItemsPaginator(totalItems, itemsPerPage, currentPage, onPageClick);
   return (<div className="flex container mb-5"> 
     <span className="flex-2 text-left mx-auto">Total: { totalItems }</span>
     <span className="flex-2 text-right">
@@ -14,4 +14,4 @@ const RoutesPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, o
   </div>);
 }
 
-export default RoutesPaginator;
+export default ItemsPaginator;

@@ -9,6 +9,7 @@ import * as React from "react";
 import { cleanSearchResultsAndQuery } from "../../features/maps/store/slices/routeSearchSlice";
 import UserStatistics from "../../features/statistics/UserStatistics/UserStatistics";
 import EventsCalendar from "../../features/events/EventsCalendar/EventsCalendar";
+import EventsFromUser from "../../features/events/EventsFromUser/EventsFromUser";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -25,10 +26,11 @@ const MyRoutes = () => {
         <EventsCalendar />
       </div>
       <UserStatistics />
-      <NavLink to="/record" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
+      <NavLink to="/route" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
       <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
         <RoutesFromUser />
         <LikesFromUser />
+        <EventsFromUser />
       </div>
     </main>
     <Footer />
