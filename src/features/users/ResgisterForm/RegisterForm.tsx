@@ -3,7 +3,7 @@ import { emailSchema, nameSchema, passwordSchema, notEmptySchema } from "../help
 import { setAndValidate } from "../../../helpers/formValidations";
 import { validateConfirmPassword } from "../helpers/registerValidations";
 import useRegisterForm from "./hooks/useRegisterForm";
-import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
 import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {

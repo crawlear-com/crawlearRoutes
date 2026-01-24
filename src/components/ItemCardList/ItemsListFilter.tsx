@@ -1,5 +1,5 @@
 import useItemsListFilter from "./hooks/useItemsListFilter";
-import SearchInput from "../SearchInput/SearchInput";
+import SearchInput from "../ui/SearchInput/SearchInput";
 import type { ItemsListFilterProps } from "./types/ItemsListFilter.types";
 import { useTranslation } from "react-i18next";
 

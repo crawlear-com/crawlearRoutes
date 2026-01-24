@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/ui/Footer/Footer";
+import Header from "../../components/ui/Header/Header";
 import { useTranslation } from "react-i18next";
 import StepRouteCreation from "../../features/routeCreation/StepRouteCreation/StepRouteCreation";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 import { loadRoute, setAction, setEventId, setRouteId } from "../../features/routeCreation/store/slices/routeSlice";
 import type { AppDispatch } from "../../store/store";
 import { selectIsLoading } from "../../features/routeCreation/store/selectors/routeSelectors";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/ui/Spinner/Spinner";
 import { CREATE_ACTION, UPDATE_ACTION } from "../../helpers/utils";
 
 

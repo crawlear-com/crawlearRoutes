@@ -1,9 +1,9 @@
 import { NavLink } from "react-router";
-import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
+import ScaleBadge from "../../../components/ui/Badge/ScaleBadge/ScaleBadge";
 import useEventDetail from "./hooks/useEventDetail";
 import { useNavigate } from "react-router";
 import RouteDetail from "../../routes/RouteDetail/RouteDetail";
-import Spinner from "../../../components/Spinner/Spinner";
+import Spinner from "../../../components/ui/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 
 type EventDetailProps = {

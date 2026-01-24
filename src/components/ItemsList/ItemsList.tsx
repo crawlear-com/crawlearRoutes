@@ -1,7 +1,7 @@
 import ItemCardList from "../ItemCardList/ItemCardList";
 import ItemsPaginator from "../ItemCardList/ItemsPaginator";
 import ItemsListFilter from "../ItemCardList/ItemsListFilter";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../ui/Spinner/Spinner";
 import type { ItemsListProps } from "./ItemsList.types";
 
 const ItemsList = <T,>({ title, card, hook, thunk, setMethods, selectMethods }: ItemsListProps<T>) => {

@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { emailSchema } from "../helpers/validation";
 import { setAndValidate } from "../../../helpers/formValidations";
 import useLoginForm from "./hooks/useLoginForm";
-import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
 import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {

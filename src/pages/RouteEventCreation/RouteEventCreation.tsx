@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/ui/Footer/Footer";
+import Header from "../../components/ui/Header/Header";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/ui/Spinner/Spinner";
 import RouteEventsDataForm from "../../features/events/RouteEventsDataForm/RouteEventsDataForm";
 import type { RouteEvent } from "../../types/RouteEvent.types";
 import { selectUserUUID } from "../../features/users/store/selectors/userSelectors";

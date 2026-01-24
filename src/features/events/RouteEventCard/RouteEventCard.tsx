@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import type { RouteEventCardProps } from "./RouteEventCard.types";
-import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
+import ScaleBadge from "../../../components/ui/Badge/ScaleBadge/ScaleBadge";
 import { useTranslation } from "react-i18next";
 
 const RouteEventCard = ({ routeEvent, extras }: RouteEventCardProps) => {

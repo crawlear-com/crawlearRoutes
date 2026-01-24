@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
-import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
 import useRouteEventsDataForm from "./hooks/useRouteEventsDataForm";
 import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema } from "./helpers/validation";
 import type { RouteEvent } from "../../../types/RouteEvent.types";
-import Spinner from "../../../components/Spinner/Spinner";
-import ScaleSelectOptions from "../../../components/ScaleSelectOptions/ScaleSelectOptions";
+import Spinner from "../../../components/ui/Spinner/Spinner";
+import ScaleSelectOptions from "../../../components/ui/ScaleSelectOptions/ScaleSelectOptions";
 import { generateHoursOptions } from "./helpers/uiutils";
 
 type EventsDataFormProps = {

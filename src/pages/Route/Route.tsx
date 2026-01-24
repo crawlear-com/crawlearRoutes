@@ -1,5 +1,5 @@
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/ui/Footer/Footer";
+import Header from "../../components/ui/Header/Header";
 import RouteDetail from "../../features/routes/RouteDetail/RouteDetail";
 import useSession from "../../hooks/useSession";
 
