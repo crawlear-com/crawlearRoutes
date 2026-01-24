@@ -1,5 +1,5 @@
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/ui/Footer/Footer";
+import Header from "../../components/ui/Header/Header";
 import LoginForm from "../../features/users/LoginForm/LoginForm";
 import useSession from "../../hooks/useSession";
 

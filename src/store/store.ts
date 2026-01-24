@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../features/users/store/slice/userSlice';
-import themeReducer from '../components/ToggleTheme/store/slice/themeSlice';
+import themeReducer from '../features/theme/ToggleTheme/store/slice/themeSlice';
 import routeReducer from '../features/routeCreation/store/slices/routeSlice';
 import routesReducer from '../features/routes/store/slices/routeListsSlice';
 import routeSearchReducer from '../features/maps/store/slices/routeSearchSlice';

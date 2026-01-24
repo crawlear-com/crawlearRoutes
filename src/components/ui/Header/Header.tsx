@@ -1,8 +1,8 @@
 import { NavLink } from "react-router";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import ToggleTheme from "../../../features/theme/ToggleTheme/ToggleTheme";
 import useHeader from "./hooks/useHeader";
 import { useSelector } from "react-redux";
-import { selectTheme } from "../ToggleTheme/store/selectors/themeSelectors";
+import { selectTheme } from "../../../features/theme/ToggleTheme/store/selectors/themeSelectors";
 import { useTranslation } from "react-i18next";
 
 import logo from '../../assets/images/logo.png';

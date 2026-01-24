@@ -4,7 +4,7 @@ import type { Route } from "../../../../types/Route.types";
 import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
 import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
-import { datePlusHours, getDate15DaysAgo, getDate15DaysFrom } from "../helpers/utils";
+import { getCalendarDataFrom, getDate15DaysAgo, getDate15DaysFrom } from "../helpers/utils";
 import type { RouteEvent } from "../../../../types/RouteEvent.types";
 import { getEventRouteEventsByMonth, getEventRoutesByMonth } from "../../../../database/eventsRpc";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
@@ -68,26 +68,11 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
 
   React.useEffect(() => {
     if (routes.length > 0) {
-      setEventRoutes(routes.map((route) => {
-        return { id: route.id,
-          title: route.name,
-          start: new Date(route.created_at!),
-          end: datePlusHours(route.created_at!, route.durationTime! / 1000 / 60 / 60),
-          type: TYPE_ROUTE
-        }
-      }));
+      setEventRoutes(getCalendarDataFrom(routes, TYPE_ROUTE));
     }
 
     if (routeEvents.length > 0) {
-      setEventRouteEvents(routeEvents.map((routeEvent) => {
-        const date = new Date(routeEvent.date);
-        return { id: routeEvent.id,
-          title: routeEvent.name,
-          start: date,
-          end: datePlusHours(date.toDateString(), 4),
-          type: TYPE_EVENT
-        }
-      }));
+      setEventRouteEvents(getCalendarDataFrom(routeEvents, TYPE_EVENT));
     }
   }, [routes, routeEvents]);
 
@@ -120,7 +105,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
         </i>
         <b>{ eventContent.event.end?.getHours() }</b>
       </div>)
-}
+  }
 
   return [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, onDateRangeChange, onDayClick, renderEventContent ];
 }

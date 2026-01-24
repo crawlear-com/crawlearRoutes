@@ -1,30 +1,18 @@
 import * as React from "react";
-import { useParams } from "react-router";
-
-import toast from "react-hot-toast";
 import type { RouteEvent } from "../../../../types/RouteEvent.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
-import { getRouteEventByIdAndOwner } from "../../../../database/eventsRpc";
+import useGetRouteEventByIdAndOwner from "../../../../hooks/useGetRouteEventByIdAndOwner";
 
-const useEventDetail = () => {
-  const [event, setEvent ] = React.useState<RouteEvent>();
-  const id = useParams().id;
+const useEventDetail = (eid: string): [ RouteEvent | undefined, boolean ] => {
+  const [routeEvent, setRouteEvent ] = React.useState<RouteEvent>();
   const uid = useSelector(selectUserUUID);
+  const [ isLoading, setIsLoading ] = React.useState(false);
 
-  React.useEffect(() => {
-    if (id) {
-      const promise = getRouteEventByIdAndOwner(uid, id);
+  useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
+  
 
-      promise.then((event) => {
-        setEvent(event);
-      }).catch((e: unknown) => {
-        toast.error((e as Error).message);
-    });
-    }
-  }, [setEvent, id, uid]);
-
-  return [ event ]
+  return [ routeEvent, isLoading ]
 }
 
 export default useEventDetail;

@@ -19,7 +19,7 @@ const createRoute = async (payload: ActionPayload) => {
     }); 
 
     if(!error) {
-        return data[0];
+        return data;
     } else {
       throw new Error('Error creating a route');
     }
@@ -27,7 +27,7 @@ const createRoute = async (payload: ActionPayload) => {
 
 const modifyRoute = async (payload: ActionPayload) => {
     const { data, error } = await supabaseClient.rpc('updateRoute', { 
-      p_id: payload.routeId,
+      p_id: payload.rid,
       p_name: payload.name,
       p_description: payload.description,
       p_is_public: payload.isPublic,

@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import useEventsCalendar from "./hooks/useEventsCalendar";
-import Spinner from "../../../components/Spinner/Spinner";
+import Spinner from "../../../components/ui/Spinner/Spinner";
 
 import './styles/eventsCalendar.css';
 

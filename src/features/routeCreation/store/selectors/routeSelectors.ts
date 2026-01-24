@@ -73,7 +73,12 @@ const selectIsPublic = createSelector(
 
 const selectRouteId = createSelector(
   (state: RootState) => state.routeCreation,
-  (routeCreation) => routeCreation.routeId
+  (routeCreation) => routeCreation.rid
+);
+
+const selectEventId = createSelector(
+  (state: RootState) => state.routeCreation,
+  (routeCreation) => routeCreation.eventId
 );
 
 const selectAction = createSelector(
@@ -84,5 +89,5 @@ const selectAction = createSelector(
 
 export { selectCreationRoute, selectGpx, selectPoint, selectStep1IsFinished, selectStep2IsFinished,
   selectName, selectDescription, selectDifficulty, selectScale, selectYoutubeVideo,
-  selectDistance, selectDuration, selectIsPublic, selectIsLoading, selectRouteId, selectAction
- };
+  selectDistance, selectDuration, selectIsPublic, selectIsLoading, selectRouteId, selectEventId, 
+  selectAction };

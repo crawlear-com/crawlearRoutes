@@ -1,6 +1,7 @@
 {
   "main": {
     "route creation": "Route creation",
+    "route creation for event": "Event route creation",
     "route update": "Route update",
     "route creation step1": "GPS data generation: use the 'Rec' button tp record a route or upload a GPX file generated with your preferred GPS software or device. The file must be a GPX file. To continue, push the 'Next' button.",
     "route creation step2": "Route data: to finish and save the route, fill all the requiered fields.",
@@ -20,7 +21,10 @@
     "modify route": "Modify route",
     "easy": "Easy",
     "moderate": "Moderate",
-    "difficult": "Difficult"
+    "difficult": "Difficult",
+    "name": "Name",
+    "date": "Date",
+    "likes": "Likes"
   },
   "messages": {
     "route creation ok": "The route was created correctly",

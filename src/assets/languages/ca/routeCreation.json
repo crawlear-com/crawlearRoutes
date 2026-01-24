@@ -1,6 +1,7 @@
 {
   "main": {
-    "live route creation": "Creació de ruta",
+    "route creation": "Creació de ruta",
+    "route creation for event": "Creació de ruta d'event",
     "route update": "Modificació de ruta",
     "route creation step1": "Generació de les dades de GPS: usant el botó 'Gravar' o pujant un fitxer gpx que préviament has generat amb el teu software o dispositiu GPS preferit. El fitxer ha d'estar en format GPX. Pulsa el botó següent un cop tinguis les dades GPS capturades.",
     "route creation step2": "Dades de la ruta: per finalitzar la ruta i guardar-la, omple els camps requerits.",
@@ -20,7 +21,10 @@
     "modify route": "Modificar ruta",
     "easy": "Fàcil",
     "moderate": "Moderada",
-    "difficult": "Difícil"
+    "difficult": "Difícil",
+    "name": "Nom",
+    "date": "Data",
+    "likes": "Favorits"
   },
   "messages": {
     "route creation ok": "La ruta s'ha creat amb exit",

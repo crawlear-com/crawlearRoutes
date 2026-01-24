@@ -22,7 +22,7 @@ const routeSlice = createSlice({
   initialState,
   reducers: {
     setRouteId: ((state, action: PayloadAction<string>) => {
-      state.routeId = action.payload;
+      state.rid = action.payload;
     }),
     setAction: ((state, action: PayloadAction<FormAction>) => {
       state.action = action.payload;
@@ -30,8 +30,11 @@ const routeSlice = createSlice({
     setRoute: ((state, action: PayloadAction<CreationRoute>) => {
       state.route = action.payload;
     }),
-    cleanRoute: ((state) => {
-      state.route = initialState.route;
+    setEventId: ((state, action: PayloadAction<string>) => {
+      state.eventId = action.payload;
+    }),
+    cleanRouteCreation: ((state) => {
+      Object.assign(state, initialState);
     }),
     setGpx: (state, action: PayloadAction<string>) => {
       state.route.gpx = action.payload;
@@ -84,7 +87,7 @@ const routeSlice = createSlice({
 });
 
 export { routeSlice, loadRoute };
-export const { setRouteId, setAction, setRoute, cleanRoute, setGpx, cleanGpx, setLocation, setName,
-  setDescription, setDifficult, setDistance, setDuration, setIsPublic, setScale,
-  setYoutubeVideo } = routeSlice.actions;
+export const { setRouteId, setEventId, setAction, setRoute, cleanRouteCreation, setGpx, cleanGpx, 
+  setLocation, setName, setDescription, setDifficult, setDistance, setDuration, setIsPublic, 
+  setScale, setYoutubeVideo } = routeSlice.actions;
 export default routeSlice.reducer;

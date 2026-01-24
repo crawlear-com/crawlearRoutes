@@ -1,19 +1,20 @@
 import { useTranslation } from "react-i18next";
-import FormFeedbackElement from "../../../components/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
 import { setAndValidate } from "../../../helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
-import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124, useDifficultyValues } from "../../../helpers/utils";
 import { CREATE_ACTION } from "../../../helpers/utils";
+import DifficultySelectOptions from "../../../components/ui/DifficultySelectOptions/DifficultySelectOptions";
+import ScaleSelectOptions from "../../../components/ui/ScaleSelectOptions/ScaleSelectOptions";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
-  const [ easy, moderate, difficult ] = useDifficultyValues();
-  const [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
+  const [ onSubmitRouteForm, creationRoute, isLoading, eventId, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, setRouteDescription,
     setRouteYoutubeVideo ] = useRouteDataForm();
 
   return (<div className="mt-10">
+    { eventId ? <>Ruta para el evento de hoy</> : <></> }
     <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitRouteForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("main.route name")}:
@@ -40,29 +41,20 @@ const RouteDataForm = () => {
       <label htmlFor="difficulty" className="font-bold">
         { t("main.route difficulty")}:
       </label>
-      <select className="ml-1 mb-5 p-3 input" id="difficulty" value={ creationRoute.difficulty }
-        onChange={ onDifficultyChange }>
-        <option value="1">{ easy }</option>
-        <option value="2">{ moderate }</option>
-        <option value="3">{ difficult}</option>
-      </select> <br />
+      <DifficultySelectOptions id="difficulty" value={ creationRoute.difficulty }
+        className="ml-1 mb-5 p-3 input" onDifficultyChange={ onDifficultyChange } /><br />
 
       <label htmlFor="scale" className="font-bold">
         { t("main.route scale")}:
       </label>
-      <select className="ml-1 mb-5 p-3 input" id="scale" value={ creationRoute.scale }
-        onChange={ onScaleChange }>
-        <option value={ SCALE11 }>{ getScaleValue(SCALE11) }</option>
-        <option value={ SCALE110 }>{ getScaleValue(SCALE110) }</option>
-        <option value={ SCALE118 }>{ getScaleValue(SCALE118) }</option>
-        <option value={ SCALE124 }>{ getScaleValue(SCALE124) }</option>
-      </select> <br />
+      <ScaleSelectOptions id="scale" value= { creationRoute.scale }
+        className="ml-1 mb-5 p-3 input" onScaleChange={ onScaleChange } /><br />
       <label htmlFor="youtubeVideo" className="block font-bold">
         { t("main.route video")}:
       </label>
       <input type="text" name="youtubeVideo" id="youtubeVideo"
         onChange={ () => { setAndValidate(setRouteYoutubeVideo, 'youtubeVideo', youtubeSchema) }}
-        className="ml-1 mb-5 p-3 w-full" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo } /> <br />
+        className="ml-1 mb-5 p-3 w-full" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo ? creationRoute.youtubeVideo : '' } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
       <button type="submit" className="button-primary w-auto m-auto p-3">

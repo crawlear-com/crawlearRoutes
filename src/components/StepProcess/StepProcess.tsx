@@ -25,7 +25,7 @@ const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: St
 
   return <div className="text-center card p-0 sm:p-5 max-w-6xl m-auto relative">
     <>
-      <h2 className="font-bold text-2xl mt-3">{ `${t("main.step")} ${step + 1}: ${stepTitles[step]}` }</h2>
+      <h2 className="font-bold text-2xl mt-3">{ `${t("main.step")} ${step + 1}: ${t(stepTitles[step])}` }</h2>
       <div className="p-5 sm:p-0">{ t(stepDescriptions[step]) }</div>
         { steps[step] }
     </>

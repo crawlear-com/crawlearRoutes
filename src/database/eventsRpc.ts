@@ -87,6 +87,20 @@ const modifyEventRoute = async (name: string, description: string, date: Date, s
     }
 }
 
+const assignRouteToEvent = async (eid: string, rid: string, owner: string) => {
+    const { data, error } = await supabaseClient.rpc('assignEventRid', {       
+      p_eid: eid,
+      p_rid: rid,
+      p_uid: owner
+    });
+
+    if(!error) {
+      return data;
+    } else {
+      throw new Error('Error assigning route to event');
+    }
+}
+
 const deleteEventRoute = async (eid: string, uid: string) => {
     const { data, error } = await supabaseClient.rpc('deleteEvent', {
       p_eid: eid,
@@ -100,5 +114,18 @@ const deleteEventRoute = async (eid: string, uid: string) => {
     }
 }
 
+const getTodayEvents = async (uid: string) => {
+  const { data, error } = await supabaseClient.rpc('eventsByOwnerToday', {
+    p_uid: uid
+  });
+
+  if(!error) {
+    return data;
+  } else {
+    throw new Error('Error geting today events');
+  }
+}
+
 export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
-  getEventRouteEventsPaginated, createEventRoute, modifyEventRoute, deleteEventRoute }
+  getEventRouteEventsPaginated, createEventRoute, modifyEventRoute, deleteEventRoute,
+  getTodayEvents, assignRouteToEvent };

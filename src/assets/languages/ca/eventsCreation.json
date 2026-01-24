@@ -1,5 +1,10 @@
 {
   "main": {
+    "today events": "Events al dia d'avui",
+    "my events": "Els meus events",
+    "no event specified": "No s'ha especificat l'event"
+  },
+  "creation": {
     "event creation": "Creació d'event",
     "event update": "Modificació d'event",
     "event name": "Nom de l'event",
@@ -7,6 +12,10 @@
     "event date": "Data de l'event",
     "event hour": "Hora de l'event",
     "routes": "Rutes",
-    "no route": "Sense ruta prèvia"
+    "no route": "Sense ruta prèvia",
+    "create route for event": "Crear ruta del event",
+    "scale": "Escala",
+    "assigned route": "Ruta asignada",
+    "not assigned route": "Sense ruta"
   }
 }
