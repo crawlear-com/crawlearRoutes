@@ -1,3 +1,6 @@
+import type { Route } from "../../../../types/Route.types";
+import type { RouteEvent } from "../../../../types/RouteEvent.types";
+
 const datePlusHours = (date: string, hours: number) => {
   const origDate = new Date(date);
   
@@ -20,4 +23,18 @@ const getDate15DaysFrom = () => {
   return date.toISOString();
 }
 
-export { datePlusHours, getDate15DaysAgo, getDate15DaysFrom };
+const getCalendarDataFrom = (array: Array<Route | RouteEvent>, type: string) => {
+  return array.map((item) => {
+    const isRoute = 'created_at' in item;
+    const startDate = isRoute ? (item as Route).created_at : (item as RouteEvent).date;
+    
+    return { id: item.id,
+      title: item.name,
+      start: new Date(startDate!),
+      end: isRoute ? datePlusHours((item as Route).created_at!, (item as Route).durationTime! / 1000 / 60 / 60) : datePlusHours((item as RouteEvent).date, 4),
+      type: type
+    }
+  });
+}
+
+export { datePlusHours, getDate15DaysAgo, getDate15DaysFrom, getCalendarDataFrom };

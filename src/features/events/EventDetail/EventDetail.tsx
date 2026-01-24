@@ -7,7 +7,7 @@ import Spinner from "../../../components/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 
 type EventDetailProps = {
-  eid?: string
+  eid: string
 }
 
 const EventDetail = ({ eid }: EventDetailProps) => {

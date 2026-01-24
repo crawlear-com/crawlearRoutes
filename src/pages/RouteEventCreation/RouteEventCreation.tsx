@@ -9,8 +9,7 @@ import RouteEventsDataForm from "../../features/events/RouteEventsDataForm/Route
 import type { RouteEvent } from "../../types/RouteEvent.types";
 import { selectUserUUID } from "../../features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
-import { getRouteEventByIdAndOwner } from "../../database/eventsRpc";
-import toast from "react-hot-toast";
+import useGetRouteEventByIdAndOwner from "../../hooks/useGetRouteEventByIdAndOwner";
 
 const RouteEventCreation = () => {
   const { t } = useTranslation(["eventsCreation"]);
@@ -19,21 +18,9 @@ const RouteEventCreation = () => {
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ routeEvent, setRouteEvent ] = React.useState<RouteEvent | undefined>(undefined);
   const [ eventDate ] = React.useState<Date>(new Date(Number(date) || 0));
-  const userId = useSelector(selectUserUUID);
+  const uid = useSelector(selectUserUUID);
 
-  React.useEffect(() => {
-    if (eid && userId) {
-      setIsLoading(true);
-      getRouteEventByIdAndOwner(userId, eid).then((event) => {
-        setIsLoading(false);
-        setRouteEvent(event);
-      }).catch((e: unknown) => {
-          toast.error((e as Error).message);
-        });
-    } else {
-      setIsLoading(false);
-    }
-  }, [eid, userId]);
+  useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
 
   return (<>
     <Header />

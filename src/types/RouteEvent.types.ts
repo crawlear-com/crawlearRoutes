@@ -3,7 +3,7 @@ type RouteEvent = {
   id: string,
   name: string,
   description: string,
-  date: Date,
+  date: string,
   scale: number,
   rid: string | null,
   owner: string
