@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 
 import type { CreationRoute } from "../../../../types/Route.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { getActionFromRpcType } from "../helpers/utils";
+import { createActionPayload, getActionFromRpcType } from "../helpers/utils";
 import { CREATE_ACTION } from "../../../../helpers/utils";
 import type { FormAction } from "../../store/slices/state.types";
 import { assignRouteToEvent } from "../../../../database/eventsRpc";
@@ -23,29 +23,13 @@ const useRouteDataForm = (): [
 ] => {
   const { t } = useTranslation(["routeCreation"]);
   const navigate = useNavigate();
-  const routeId = useSelector(selectRouteId);
+  const rid = useSelector(selectRouteId);
   const eventId = useSelector(selectEventId);
   const actionType = useSelector(selectAction);
   const owner = useSelector(selectUserUUID);
   const creationRoute = useSelector(selectCreationRoute);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const dispatch = useDispatch();
-  const createActionPayload = () => {
-    return {
-      routeId: routeId,
-      name: creationRoute.name,
-      description: creationRoute.description,
-      isPublic: creationRoute.isPublic,
-      difficulty: creationRoute.difficulty,
-      location: creationRoute.location,
-      scale: creationRoute.scale,
-      youtubeVideo: creationRoute.youtubeVideo,
-      gpx: creationRoute.gpx,
-      distance: creationRoute.distance,
-      durationTime: creationRoute.durationTime,
-      owner: owner
-    }
-  }
 
   const onIsPublicChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -80,7 +64,7 @@ const useRouteDataForm = (): [
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
       const action = getActionFromRpcType(actionType);
-      const promise: Promise<string> = action(createActionPayload());
+      const promise: Promise<string> = action(createActionPayload(rid, creationRoute, owner));
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
       const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
 
@@ -88,10 +72,7 @@ const useRouteDataForm = (): [
         setIsLoading(false);
         toast.success(successMessage);
         if (eventId && newRouteId) {
-          //asignar ruta al evento
-          const eventPromise = assignRouteToEvent(eventId, newRouteId, owner);
-
-          eventPromise.then(() => {
+          assignRouteToEvent(eventId, newRouteId, owner).then(() => {
             setIsLoading(false);
             toast.success(successMessage);
             dispatch(cleanRouteCreation());

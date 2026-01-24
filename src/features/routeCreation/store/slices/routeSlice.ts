@@ -22,7 +22,7 @@ const routeSlice = createSlice({
   initialState,
   reducers: {
     setRouteId: ((state, action: PayloadAction<string>) => {
-      state.routeId = action.payload;
+      state.rid = action.payload;
     }),
     setAction: ((state, action: PayloadAction<FormAction>) => {
       state.action = action.payload;

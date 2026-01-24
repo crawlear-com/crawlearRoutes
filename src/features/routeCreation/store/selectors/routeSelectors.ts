@@ -73,7 +73,7 @@ const selectIsPublic = createSelector(
 
 const selectRouteId = createSelector(
   (state: RootState) => state.routeCreation,
-  (routeCreation) => routeCreation.routeId
+  (routeCreation) => routeCreation.rid
 );
 
 const selectEventId = createSelector(

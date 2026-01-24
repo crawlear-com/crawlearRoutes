@@ -45,8 +45,8 @@ const getMyFavourites = createAsyncThunk(
   }
 );
 
-const deleteRoute = (routes: Array<Route>, routeId: string) => {
-  const index = routes.findIndex(element => element.id === routeId);
+const deleteRoute = (routes: Array<Route>, rid: string) => {
+  const index = routes.findIndex(element => element.id === rid);
 
   if (index !== -1) {
       routes.splice(index, 1);
@@ -65,10 +65,10 @@ const routeListsSlice = createSlice({
       state.myRoutes.page = action.payload;
     },
     deleteMyRoutesRoute: (state, action: PayloadAction<string>) => {
-      const routeId = action.payload;
+      const rid = action.payload;
       const routes = state.myRoutes.routes;
 
-      const newRoutes = deleteRoute(routes, routeId);
+      const newRoutes = deleteRoute(routes, rid);
       state.myRoutes.routes = [...newRoutes];
       state.myRoutes.totalRoutes = Math.max(0, state.myRoutes.totalRoutes-1);
     },
@@ -86,10 +86,10 @@ const routeListsSlice = createSlice({
       state.myFavorites.page = action.payload;
     },
     deleteMyFavoritesRoute: (state, action: PayloadAction<string>) => {
-      const routeId = action.payload;
+      const rid = action.payload;
       const routes = state.myFavorites.routes;
 
-      const newRoutes = deleteRoute(routes, routeId);
+      const newRoutes = deleteRoute(routes, rid);
       state.myFavorites.routes = [...newRoutes];
       state.myFavorites.totalRoutes = Math.max(0, state.myFavorites.totalRoutes-1);
     },

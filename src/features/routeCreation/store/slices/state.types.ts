@@ -2,7 +2,7 @@ import type { FormAction } from "../../../../types/Generic.types";
 import type { CreationRoute, GeoPoint, Route } from "../../../../types/Route.types";
 
 type ActionPayload = {
-  routeId: string | null,
+  rid: string | null,
   name: string,
   description: string,
   isPublic: boolean,
@@ -20,7 +20,7 @@ type CreateAction = (payload: ActionPayload) => Promise<Route>
 type UpdateAction = (payload: ActionPayload) => Promise<Route>
 
 type CreationRouteState = {
-  routeId: string | null,
+  rid: string | null,
   eventId: string | null,
   action: FormAction,
   route: CreationRoute,
@@ -43,7 +43,7 @@ const routeInitialState = {
 }
 
 const initialState: CreationRouteState = {
-  routeId: null,
+  rid: null,
   eventId: null,
   action: null,
   isLoading: false,
