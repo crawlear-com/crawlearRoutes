@@ -1,14 +1,16 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { deleteLike } from "../../../../database/routeRpc";
-import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir, setMyFavouritesPage, setMyFavouritesQuery } from "../../store/slices/routeListsSlice";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
+import { deleteLike } from "@/database/routeRpc";
+import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir,
+  setMyFavouritesPage, setMyFavouritesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
-import type { Route } from "../../../../types/Route.types";
-import RouteCard from "../../RouteCard/RouteCard";
-import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesPage, selectMyFavoritesTotalRoutes } from "../../store/selectors/routeListsSelectors";
-import type { SelectMethods, SetMethods } from "../../../../components/ItemsList/ItemsList.types";
+import type { Route } from "@/types/Route.types";
+import RouteCard from "@/features/routes/RouteCard/RouteCard";
+import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesPage,
+  selectMyFavoritesTotalRoutes } from "@/features/routes/store/selectors/routeListsSelectors";
+import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 
 const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
   SetMethods, SelectMethods<Route> ] => {

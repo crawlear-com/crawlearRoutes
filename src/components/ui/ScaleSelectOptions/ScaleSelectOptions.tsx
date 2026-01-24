@@ -1,4 +1,4 @@
-import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "../../helpers/utils";
+import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "@/helpers/utils";
 import type { ScaleSelectOptionsProps } from "./ScaleSelectOptions.types";
 
 

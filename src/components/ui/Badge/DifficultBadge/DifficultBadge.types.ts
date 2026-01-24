@@ -1,5 +1,3 @@
-
-
 type DifficultBadgeProps = {
   difficulty: number;
   className?: string;

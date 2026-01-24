@@ -1,4 +1,4 @@
-import type { RootState } from "../../store/store";
+import type { RootState } from "@/store/store";
 
 const NEXT_PAGE_ARROW = "＞";
 const PREVIOUS_PAGE_ARROW = "＜";

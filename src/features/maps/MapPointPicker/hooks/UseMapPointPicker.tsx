@@ -2,7 +2,7 @@ import * as React from 'react'
 import 'leaflet-gpx'
 import * as L from 'leaflet'
 import { iconRoute } from '../Icons'
-import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types'
+import type { MapPoint } from '@/features/maps/SearchRouteMap/SearchRouteMap.types'
 import { addRectangleAndGetBounds, buildAndAddLegendToMap, removePreviousMarkersFromMap, 
   getCleanMarkersList, getNewMap, initialMarkersList, 
   addAllPointsToMapAndSetBounds} from '../helpers/mapUtils'

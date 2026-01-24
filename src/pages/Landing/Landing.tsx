@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
-import useSession from "../../hooks/useSession";
-import Header from "../../components/ui/Header/Header";
-import Footer from "../../components/ui/Footer/Footer";
+import useSession from "@/hooks/useSession";
+import Header from "@/components/ui/Header/Header";
+import Footer from "@/components/ui/Footer/Footer";
 import { useTranslation } from 'react-i18next';
 
 import locationImage from './assets/images/location.png';

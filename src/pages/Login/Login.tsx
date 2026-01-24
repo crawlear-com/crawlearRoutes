@@ -1,18 +1,14 @@
-import Footer from "../../components/ui/Footer/Footer";
-import Header from "../../components/ui/Header/Header";
-import LoginForm from "../../features/users/LoginForm/LoginForm";
-import useSession from "../../hooks/useSession";
+import LoginForm from "@/features/users/LoginForm/LoginForm";
+import useSession from "@/hooks/useSession";
+import MainLayout from "@/layouts/MainLayout";
 
 const Login = () => {
   useSession("/myroutes");
   
-  return (<>
-    <Header />
-    <main className="flex flex-col w-full min-h-[80vh]">
+  return (
+    <MainLayout contentClassName="flex flex-col w-full min-h-[80vh]">
       <LoginForm />
-    </main>
-    <Footer />
-  </>);
+    </MainLayout>);
 }
 
 export default Login;

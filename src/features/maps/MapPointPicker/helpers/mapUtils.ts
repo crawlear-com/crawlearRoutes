@@ -1,9 +1,9 @@
 import L from "leaflet"
-import type { GeoPoint } from "../../../../types/Route.types"
+import type { GeoPoint } from "@/types/Route.types"
 import type { MarkerList } from "../MapPointPicker.types";
-import type { MapPoint } from "../../SearchRouteMap/SearchRouteMap.types";
-import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "../../../../helpers/utils";
-import scaleBadgeImage from "../../../../components/Badge/assets/images/scaleCar.png";
+import type { MapPoint } from "@/features/maps/SearchRouteMap/SearchRouteMap.types";
+import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "@/helpers/utils";
+import scaleBadgeImage from "@/components/ui/Badge/assets/images/scaleCar.png";
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 const LATLON_MODIFIER = 0.05;

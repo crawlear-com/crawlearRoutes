@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../../../../store/store';
-import { getEventRouteEventsPaginated } from '../../../../database/eventsRpc';
-import type { RouteEvent } from '../../../../types/RouteEvent.types';
+import type { RootState } from '@/store/store';
+import { getEventRouteEventsPaginated } from '@/database/eventsRpc';
+import type { RouteEvent } from '@/types/RouteEvent.types';
 
 const getMyRouteEventsPaginated = createAsyncThunk(
   'events/getMyRouteEventsPaginated',

@@ -1,16 +1,16 @@
 import { useTranslation } from "react-i18next";
-import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "@/components/ui/FormFeedbackElement/FormFeedbackElement";
 import useRouteEventsDataForm from "./hooks/useRouteEventsDataForm";
-import { setAndValidate } from "../../../helpers/formValidations";
+import { setAndValidate } from "@/helpers/formValidations";
 import { descriptionSchema, nameSchema } from "./helpers/validation";
-import type { RouteEvent } from "../../../types/RouteEvent.types";
-import Spinner from "../../../components/ui/Spinner/Spinner";
-import ScaleSelectOptions from "../../../components/ui/ScaleSelectOptions/ScaleSelectOptions";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import Spinner from "@/components/ui/Spinner/Spinner";
+import ScaleSelectOptions from "@/components/ui/ScaleSelectOptions/ScaleSelectOptions";
 import { generateHoursOptions } from "./helpers/uiutils";
 
 type EventsDataFormProps = {
   routeEvent?: RouteEvent,
-  date: Date
+  date: string
 }
 
 const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
@@ -40,7 +40,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       <FormFeedbackElement className="routeDescription__feedback" />
 
       <label htmlFor="routeDate" className="align-top font-bold mr-2"> { t("creation.event date") }: </label>
-      <span id="routeDate">{ date.toLocaleDateString() }</span><br />
+      <span id="routeDate">{ new Date(date).toLocaleDateString() }</span><br />
       
       <label htmlFor="routeHour" className="font-bold mr-2"> { t("creation.event hour") } :</label>
       <select id="routeHour" name="routeHour" 

@@ -1,4 +1,4 @@
-import StepProcess from "../../../components/StepProcess/StepProcess";
+import StepProcess from "@/components/StepProcess/StepProcess";
 import GpxRecorder from "../GpxRecorder/GpxRecorder";
 import RouteDataForm from "../RouteDataForm/RouteDataForm";
 import { selectStep1IsFinished, selectStep2IsFinished } from "../store/selectors/routeSelectors";

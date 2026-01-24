@@ -1,4 +1,4 @@
-import { toHours } from "../../../helpers/utils";
+import { toHours } from "@/helpers/utils";
 import type { DurationBadgeProps } from "./DistanceBadge.types";
 
 const DurationBadge = ({ duration, className }: DurationBadgeProps) => {

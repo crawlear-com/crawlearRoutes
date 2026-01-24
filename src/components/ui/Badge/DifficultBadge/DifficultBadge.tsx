@@ -1,4 +1,4 @@
-import { useDifficultyValues } from "../../../helpers/utils";
+import { useDifficultyValues } from "@/helpers/utils";
 import type { DifficultBadgeProps } from "./DifficultBadge.types";
 
 import "../styles/badge.css";

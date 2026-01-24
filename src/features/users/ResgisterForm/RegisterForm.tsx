@@ -1,9 +1,9 @@
 import { NavLink } from "react-router";
 import { emailSchema, nameSchema, passwordSchema, notEmptySchema } from "../helpers/validation";
-import { setAndValidate } from "../../../helpers/formValidations";
+import { setAndValidate } from "@/helpers/formValidations";
 import { validateConfirmPassword } from "../helpers/registerValidations";
 import useRegisterForm from "./hooks/useRegisterForm";
-import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
+import FormFeedbackElement from "@/components/ui/FormFeedbackElement/FormFeedbackElement";
 import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {

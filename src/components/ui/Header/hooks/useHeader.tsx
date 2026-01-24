@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { selectUserDisplayName, selectUserSession } from "../../../../features/users/store/selectors/userSelectors";
-import supabaseClient from "../../../../database/supabaseClient";
+import { selectUserDisplayName, selectUserSession } from "@/features/users/store/selectors/userSelectors";
+import supabaseClient from "@/database/supabaseClient";
 import { useDispatch } from "react-redux";
-import { cleanSession } from "../../../../features/users/store/slice/userSlice";
+import { cleanSession } from "@/features/users/store/slice/userSlice";
 
 const useHeader = (): [ boolean, string, string, boolean, () => void,
   (event: React.MouseEvent<HTMLAnchorElement>) => void ] => {

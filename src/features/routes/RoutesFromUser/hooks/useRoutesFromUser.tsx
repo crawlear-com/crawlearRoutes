@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteRouteAndLikes } from "../../../../database/MyRoutesRpc";
+import { deleteRouteAndLikes } from "@/database/MyRoutesRpc";
 import { deleteMyRoutesRoute, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
-import type { Route } from "../../../../types/Route.types";
-import RouteCard from "../../RouteCard/RouteCard";
+import type { Route } from "@/types/Route.types";
+import RouteCard from "@/features/routes/RouteCard/RouteCard";
 import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesPage, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
 import React from "react";
-import type { SelectMethods, SetMethods } from "../../../../components/ItemsList/ItemsList.types";
+import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 
 const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
   SetMethods, SelectMethods<Route> ] => {

@@ -1,5 +1,5 @@
 import { nameSchema, descriptionSchema } from "./validation";
-import { VALIDCLASS, INVALIDCLASS, validateInput } from "../../../../helpers/formValidations";  
+import { VALIDCLASS, INVALIDCLASS, validateInput } from "@/helpers/formValidations";  
 
 const cleanErrorsOnSubmit = () => {
   const nameFeedbackElement = document.querySelector('.routeName__feedback');

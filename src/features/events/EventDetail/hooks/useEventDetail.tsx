@@ -1,8 +1,8 @@
 import * as React from "react";
-import type { RouteEvent } from "../../../../types/RouteEvent.types";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
-import useGetRouteEventByIdAndOwner from "../../../../hooks/useGetRouteEventByIdAndOwner";
+import useGetRouteEventByIdAndOwner from "@/hooks/useGetRouteEventByIdAndOwner";
 
 const useEventDetail = (eid: string): [ RouteEvent | undefined, boolean ] => {
   const [routeEvent, setRouteEvent ] = React.useState<RouteEvent>();

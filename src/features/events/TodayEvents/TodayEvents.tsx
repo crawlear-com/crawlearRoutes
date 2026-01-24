@@ -1,11 +1,11 @@
 import * as React from "react";
-import { getTodayEvents } from "../../../database/eventsRpc";
-import { selectUserUUID } from "../../users/store/selectors/userSelectors";
+import { getTodayEvents } from "@/database/eventsRpc";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import type { RouteEvent } from "../../../types/RouteEvent.types";
+import type { RouteEvent } from "@/types/RouteEvent.types";
 import { useTranslation } from "react-i18next";
-import RouteEventCard from "../RouteEventCard/RouteEventCard";
+import RouteEventCard from "@/features/events/RouteEventCard/RouteEventCard";
 import { useNavigate } from "react-router";
 
 const TodayEvents = () => {

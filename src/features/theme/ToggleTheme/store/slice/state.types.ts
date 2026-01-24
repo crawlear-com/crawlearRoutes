@@ -1,4 +1,3 @@
-
 interface ThemeState {
   selectedTheme: string
 }

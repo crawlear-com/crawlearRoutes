@@ -1,4 +1,4 @@
-import type { Route, SearchResultRoute } from "../../../types/Route.types";
+import type { Route, SearchResultRoute } from "@/types/Route.types";
 
 type RouteCardProps = {
   route: Route | SearchResultRoute,

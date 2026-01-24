@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import type { Route } from "../../../../types/Route.types";
+import type { Route } from "@/types/Route.types";
 import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
 import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
 import { getCalendarDataFrom, getDate15DaysAgo, getDate15DaysFrom } from "../helpers/utils";
-import type { RouteEvent } from "../../../../types/RouteEvent.types";
-import { getEventRouteEventsByMonth, getEventRoutesByMonth } from "../../../../database/eventsRpc";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import { getEventRouteEventsByMonth, getEventRoutesByMonth } from "@/database/eventsRpc";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import toast from "react-hot-toast";
 
 const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,

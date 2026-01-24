@@ -1,5 +1,5 @@
 import type { ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
-import type { RootState } from "../../store/store";
+import type { RootState } from "@/store/store";
 
 type SetMethods = {
   setPage: ActionCreatorWithPayload<number, string>,

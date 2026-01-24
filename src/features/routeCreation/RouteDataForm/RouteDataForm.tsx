@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
-import FormFeedbackElement from "../../../components/ui/FormFeedbackElement/FormFeedbackElement";
-import { setAndValidate } from "../../../helpers/formValidations";
+import FormFeedbackElement from "@/components/ui/FormFeedbackElement/FormFeedbackElement";
+import { setAndValidate } from "@/helpers/formValidations";
 import { descriptionSchema, nameSchema, youtubeSchema } from "./helpers/validation";
 import useRouteDataForm from "./hooks/useRouteDataForm";
-import { CREATE_ACTION } from "../../../helpers/utils";
-import DifficultySelectOptions from "../../../components/ui/DifficultySelectOptions/DifficultySelectOptions";
-import ScaleSelectOptions from "../../../components/ui/ScaleSelectOptions/ScaleSelectOptions";
+import { CREATE_ACTION } from "@/helpers/utils";
+import DifficultySelectOptions from "@/components/ui/DifficultySelectOptions/DifficultySelectOptions";
+import ScaleSelectOptions from "@/components/ui/ScaleSelectOptions/ScaleSelectOptions";
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);

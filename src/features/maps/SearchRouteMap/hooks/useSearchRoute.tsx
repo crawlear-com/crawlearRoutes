@@ -1,13 +1,14 @@
 import React from "react";
-import type { Route, SearchResultRoute } from "../../../../types/Route.types";
+import type { Route, SearchResultRoute } from "@/types/Route.types";
 import type { MapPoint } from "../SearchRouteMap.types";
-import { selectRouteSearchIsLoading, selectRouteSearchPage, selectRouteSearchPoints, selectRouteSearchQuery, selectRouteSearchRoutes, selectRouteSearchTotalPages } from "../../store/selectors/routeSearchSelectors";
-import { searchByGeo, searchByQuery, setRouteSearchPage, setRouteSearchQuery } from "../../store/slices/routeSearchSlice";
+import { selectRouteSearchIsLoading, selectRouteSearchPage, selectRouteSearchPoints,
+  selectRouteSearchQuery, selectRouteSearchRoutes, selectRouteSearchTotalPages } from "@/features/maps/store/selectors/routeSearchSelectors";
+import { searchByGeo, searchByQuery, setRouteSearchPage, setRouteSearchQuery } from "@/features/maps/store/slices/routeSearchSlice";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "../../../../store/store";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import type { AppDispatch } from "@/store/store";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import useLikeRoute from "./useLikeRoute";
-import RouteCard from "../../../routes/RouteCard/RouteCard";
+import RouteCard from "@/features/routes/RouteCard/RouteCard";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
   string, number, number, (searchBounds: L.LatLngBounds) => void,

@@ -1,15 +1,11 @@
-import Footer from "../../components/ui/Footer/Footer";
-import Header from "../../components/ui/Header/Header";
-import SearchRouteMap from "../../features/maps/SearchRouteMap/SearchRouteMap";
+import SearchRouteMap from "@/features/maps/SearchRouteMap/SearchRouteMap";
+import MainLayout from "@/layouts/MainLayout";
 
 const SearchRoute = () => {
-  return (<>
-    <Header />
-    <main className="sm:w-[90%] m-auto min-h-[80vh]">
+  return (
+    <MainLayout contentClassName="sm:w-[90%] m-auto min-h-[80vh]">
       <SearchRouteMap />
-    </main>
-    <Footer />
-  </>);
+    </MainLayout>);
 }
 
 export default SearchRoute;

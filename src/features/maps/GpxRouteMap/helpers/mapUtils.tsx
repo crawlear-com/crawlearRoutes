@@ -3,9 +3,9 @@ import type { GpxInfo } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
 
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
-import type { GpxData, GpxTrkPt } from '../../../../types/Gpx.types';
-import type { GeoPoint } from '../../../../types/Route.types';
-import { isObjectEmpty } from '../../../../helpers/utils';
+import type { GpxData, GpxTrkPt } from '@/types/Gpx.types';
+import type { GeoPoint } from '@/types/Route.types';
+import { isObjectEmpty } from '@/helpers/utils';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 
@@ -141,6 +141,11 @@ const getElevationMapData = (gpx: string): Array<Array<number>> => {
     return data
 }
 
+const initialGpxDataString = `<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+  <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="murbit GPX Tracker">
+  <trk><trkseg>`;
+
+
 export { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition, 
   getGeolocationPositionFromGeoPoint, getFitBoundsFromPosition, createMap,
-  setMapLocation, removeMarkers, gpxHasPoints, getElevationMapData };
+  setMapLocation, removeMarkers, gpxHasPoints, getElevationMapData, initialGpxDataString };

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { getUserStats } from "../../../../database/MyRoutesRpc";
+import { getUserStats } from "@/database/MyRoutesRpc";
 import type { UserData } from "../UserStatistics.types";
-import { useDifficultyValues } from "../../../../helpers/utils";
+import { useDifficultyValues } from "@/helpers/utils";
 
 const initialUserData = {
   by_difficulty: { 1:0, 2:0, 3:0 },

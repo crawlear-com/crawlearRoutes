@@ -1,11 +1,11 @@
 import MapPointPicker from "../MapPointPicker/MapPointPicker";
-import Spinner from "../../../components/ui/Spinner/Spinner";
+import Spinner from "@/components/ui/Spinner/Spinner";
 import useSearchRoute from "./hooks/useSearchRoute";
 import { useTranslation } from "react-i18next";
-import SearchInput from "../../../components/ui/SearchInput/SearchInput";
-import ItemCardList from "../../../components/ItemCardList/ItemCardList";
-import ItemsPaginator from "../../../components/ItemCardList/ItemsPaginator";
-import type { Route, SearchResultRoute } from "../../../types/Route.types";
+import SearchInput from "@/components/ui/SearchInput/SearchInput";
+import ItemCardList from "@/components/ItemCardList/ItemCardList";
+import ItemsPaginator from "@/components/ItemCardList/ItemsPaginator";
+import type { Route, SearchResultRoute } from "@/types/Route.types";
 
 const SearchRouteMap = () => {
   const { t } = useTranslation(['map']);

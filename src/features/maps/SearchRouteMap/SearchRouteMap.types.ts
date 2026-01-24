@@ -1,4 +1,4 @@
-import type { GeoPoint } from "../../../types/Route.types";
+import type { GeoPoint } from "@/types/Route.types";
 
 type MapPointContent = {
   name: string,

@@ -1,7 +1,7 @@
-import ItemCardList from "../ItemCardList/ItemCardList";
-import ItemsPaginator from "../ItemCardList/ItemsPaginator";
-import ItemsListFilter from "../ItemCardList/ItemsListFilter";
-import Spinner from "../ui/Spinner/Spinner";
+import ItemCardList from "@/components/ItemCardList/ItemCardList";
+import ItemsPaginator from "@/components/ItemCardList/ItemsPaginator";
+import ItemsListFilter from "@/components/ItemCardList/ItemsListFilter";
+import Spinner from "@/components/ui/Spinner/Spinner";
 import type { ItemsListProps } from "./ItemsList.types";
 
 const ItemsList = <T,>({ title, card, hook, thunk, setMethods, selectMethods }: ItemsListProps<T>) => {

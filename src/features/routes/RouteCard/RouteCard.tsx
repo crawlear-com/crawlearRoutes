@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
-import SimpleMap from "../../maps/SimpleMap/SimpleMap";
+import SimpleMap from "@/features/maps/SimpleMap/SimpleMap";
 import type { RouteCardProps } from "./RouteCard.types";
 import { v4 as uuidv4 } from 'uuid';
-import DifficultBadge from "../../../components/ui/Badge/DifficultBadge/DifficultBadge";
-import DistanceBadge from "../../../components/ui/Badge/DistanceBadge/DistanceBadge";
+import DifficultBadge from "@/components/ui/Badge/DifficultBadge/DifficultBadge";
+import DistanceBadge from "@/components/ui/Badge/DistanceBadge/DistanceBadge";
 
-import LikesBadge from "../../../components/ui/Badge/LikesBadge/LikesBadge";
-import DurationBadge from "../../../components/ui/Badge/DurationBadge/DistanceBadge";
+import LikesBadge from "@/components/ui/Badge/LikesBadge/LikesBadge";
+import DurationBadge from "@/components/ui/Badge/DurationBadge/DistanceBadge";
 
 const RouteCard = ({ route, extras }: RouteCardProps) => {
   const navigate = useNavigate();

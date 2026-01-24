@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../../../../store/store';
-import { getMyRoutesPaginated, getLikesFromUserPaginated } from '../../../../database/MyRoutesRpc';
-import type { Route } from '../../../../types/Route.types';
+import type { RootState } from '@/store/store';
+import { getMyRoutesPaginated, getLikesFromUserPaginated } from '@/database/MyRoutesRpc';
+import type { Route } from '@/types/Route.types';
 
 const getMyRoutes = createAsyncThunk(
   'routes/getMyRoutes',

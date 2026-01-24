@@ -1,15 +1,13 @@
 import * as React from "react";
-
-import Footer from "../../components/ui/Footer/Footer";
-import Header from "../../components/ui/Header/Header";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import Spinner from "../../components/ui/Spinner/Spinner";
-import RouteEventsDataForm from "../../features/events/RouteEventsDataForm/RouteEventsDataForm";
-import type { RouteEvent } from "../../types/RouteEvent.types";
-import { selectUserUUID } from "../../features/users/store/selectors/userSelectors";
+import Spinner from "@/components/ui/Spinner/Spinner";
+import RouteEventsDataForm from "@/features/events/RouteEventsDataForm/RouteEventsDataForm";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
-import useGetRouteEventByIdAndOwner from "../../hooks/useGetRouteEventByIdAndOwner";
+import useGetRouteEventByIdAndOwner from "@/hooks/useGetRouteEventByIdAndOwner";
+import MainLayout from "@/layouts/MainLayout";
 
 const RouteEventCreation = () => {
   const { t } = useTranslation(["eventsCreation"]);
@@ -17,21 +15,18 @@ const RouteEventCreation = () => {
   const date = useParams().date;
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ routeEvent, setRouteEvent ] = React.useState<RouteEvent | undefined>(undefined);
-  const [ eventDate ] = React.useState<Date>(new Date(Number(date) || 0));
+  const [ eventDate ] = React.useState<string>(date || "");
   const uid = useSelector(selectUserUUID);
 
   useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
 
-  return (<>
-    <Header />
-    <main className="sm:w-[90%] m-auto min-h-[80vh] mt-10">
+  return (
+    <MainLayout contentClassName="sm:w-[90%] m-auto min-h-[80vh] mt-10"><>
       <h1>{ eid ? t("creation.event update") : t("creation.event creation") }</h1>
       { isLoading ? <Spinner /> : 
         routeEvent ? <RouteEventsDataForm date={ eventDate } routeEvent={ routeEvent } /> :
-          <RouteEventsDataForm date={ eventDate } /> }
-    </main>
-    <Footer />
-  </>);
+          <RouteEventsDataForm date={ eventDate } /> }</>
+    </MainLayout>);
 }
 
 export default RouteEventCreation;

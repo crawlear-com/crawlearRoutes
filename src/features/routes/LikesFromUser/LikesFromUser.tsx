@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import useRoutesProvider from "../hooks/useRoutesProvider";
 import { getMyFavourites } from "../store/slices/routeListsSlice";
 import useLikesFromUser from "./hooks/useLikesFromUser";
-import ItemsList from "../../../components/ItemsList/ItemsList";
-import type { Route } from "../../../types/Route.types";
+import ItemsList from "@/components/ItemsList/ItemsList";
+import type { Route } from "@/types/Route.types";
 
 const LikesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);

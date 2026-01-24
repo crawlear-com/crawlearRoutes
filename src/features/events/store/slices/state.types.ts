@@ -1,4 +1,4 @@
-import type { RouteEvent } from "../../../../types/RouteEvent.types";
+import type { RouteEvent } from "@/types/RouteEvent.types";
 
 type EventsListState = {
   events: Array<RouteEvent>,
