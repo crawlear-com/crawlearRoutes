@@ -19,7 +19,7 @@ const createRoute = async (payload: ActionPayload) => {
     }); 
 
     if(!error) {
-        return data[0];
+        return data;
     } else {
       throw new Error('Error creating a route');
     }

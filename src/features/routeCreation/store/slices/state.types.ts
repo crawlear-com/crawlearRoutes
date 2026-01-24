@@ -21,6 +21,7 @@ type UpdateAction = (payload: ActionPayload) => Promise<Route>
 
 type CreationRouteState = {
   routeId: string | null,
+  eventId: string | null,
   action: FormAction,
   route: CreationRoute,
   isLoading: boolean,
@@ -43,6 +44,7 @@ const routeInitialState = {
 
 const initialState: CreationRouteState = {
   routeId: null,
+  eventId: null,
   action: null,
   isLoading: false,
   error: null,

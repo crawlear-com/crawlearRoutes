@@ -30,12 +30,10 @@ const TodayEvents = () => {
   }, [uid]);
 
   const onEditRouteClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    //const eid = (event.target as HTMLDivElement).dataset.eid;
+    const eid = (event.target as HTMLDivElement).dataset.eid;
 
     event.stopPropagation();
-
-    //navigate(`/todayevent/${eid}`);
-    navigate(`/route`);
+    navigate(`/routeforevent/${eid}`);
   }
 
   return <div className="w-full lg:w-[50%]">

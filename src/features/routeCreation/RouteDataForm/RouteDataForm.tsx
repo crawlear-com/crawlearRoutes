@@ -9,11 +9,12 @@ import ScaleSelectOptions from "../../../components/ScaleSelectOptions/ScaleSele
 
 const RouteDataForm = () => {
   const { t } = useTranslation(["routeCreation"]);
-  const [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
+  const [ onSubmitRouteForm, creationRoute, isLoading, eventId, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, setRouteDescription,
     setRouteYoutubeVideo ] = useRouteDataForm();
 
   return (<div className="mt-10">
+    { eventId? <>Ruta para el evento de hoy</> : <></> }
     <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitRouteForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("main.route name")}:

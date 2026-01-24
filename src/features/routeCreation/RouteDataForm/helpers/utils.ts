@@ -3,7 +3,7 @@ import { CREATE_ACTION } from "../../../../helpers/utils";
 import type { FormAction } from "../../store/slices/state.types";
 
 
-const getActionFromActionRpcType = (actionType: FormAction) => {
+const getActionFromRpcType = (actionType: FormAction) => {
   if (actionType === CREATE_ACTION) {
     return createRoute;
   }
@@ -11,4 +11,4 @@ const getActionFromActionRpcType = (actionType: FormAction) => {
   return modifyRoute;
 }
 
-export { getActionFromActionRpcType };
+export { getActionFromRpcType };

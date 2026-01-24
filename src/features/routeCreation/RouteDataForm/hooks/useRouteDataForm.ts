@@ -1,20 +1,21 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAction, selectCreationRoute, selectRouteId } from "../../store/selectors/routeSelectors";
+import { selectAction, selectCreationRoute, selectEventId, selectRouteId } from "../../store/selectors/routeSelectors";
 import { routeFormValidates } from "../helpers/routeValidations";
-import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo } from "../../store/slices/routeSlice";
+import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo, cleanRouteCreation, setAction } from "../../store/slices/routeSlice";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import type { CreationRoute, Route } from "../../../../types/Route.types";
+import type { CreationRoute } from "../../../../types/Route.types";
 import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { getActionFromActionRpcType } from "../helpers/utils";
+import { getActionFromRpcType } from "../helpers/utils";
 import { CREATE_ACTION } from "../../../../helpers/utils";
 import type { FormAction } from "../../store/slices/state.types";
+import { assignRouteToEvent } from "../../../../database/eventsRpc";
 
 const useRouteDataForm = (): [
-  (formData: FormData) => void, CreationRoute, boolean, FormAction,
+  (formData: FormData) => void, CreationRoute, boolean, string | null, FormAction,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
@@ -23,6 +24,7 @@ const useRouteDataForm = (): [
   const { t } = useTranslation(["routeCreation"]);
   const navigate = useNavigate();
   const routeId = useSelector(selectRouteId);
+  const eventId = useSelector(selectEventId);
   const actionType = useSelector(selectAction);
   const owner = useSelector(selectUserUUID);
   const creationRoute = useSelector(selectCreationRoute);
@@ -77,15 +79,29 @@ const useRouteDataForm = (): [
 
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
-      const action = getActionFromActionRpcType(actionType);
-      const promise: Promise<Route> = action(createActionPayload());
+      const action = getActionFromRpcType(actionType);
+      const promise: Promise<string> = action(createActionPayload());
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
       const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
 
-      promise.then(() => {
+      promise.then((newRouteId) => {
         setIsLoading(false);
         toast.success(successMessage);
-        navigate(-1);
+        if (eventId && newRouteId) {
+          //asignar ruta al evento
+          const eventPromise = assignRouteToEvent(eventId, newRouteId, owner);
+
+          eventPromise.then(() => {
+            setIsLoading(false);
+            toast.success(successMessage);
+            dispatch(cleanRouteCreation());
+            dispatch(setAction(CREATE_ACTION));
+            navigate(-1);
+          }).catch((e: unknown) => {
+            toast.error(errorMessage(e));
+            setIsLoading(false);
+          });
+        }
       }).catch((e: unknown) => {
         toast.error(errorMessage(e));
         setIsLoading(false);
@@ -93,7 +109,7 @@ const useRouteDataForm = (): [
     }
   }
 
-  return [ onSubmitRouteForm, creationRoute, isLoading, actionType, onIsPublicChangeHandler,
+  return [ onSubmitRouteForm, creationRoute, isLoading, eventId, actionType, onIsPublicChangeHandler,
     onDifficultyChange, onScaleChange, setRouteName, 
     setRouteDescription, setRouteYoutubeVideo ];
 }
