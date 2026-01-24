@@ -10,7 +10,6 @@ import RoutePage from "../../pages/Route/Route";
 import SearchRoute from "../../pages/SearchRoute/SearchRoute";
 import EventPage from "../../pages/Event/Event";
 import RouteEventCreation from "../../pages/RouteEventCreation/RouteEventCreation";
-import ToydayEventRouteRecorder from "../../pages/ToydayEventRouteRecorder/ToydayEventRouteRecorder";
 
 const MainHashRouter = () => {
   return <HashRouter>
@@ -25,7 +24,6 @@ const MainHashRouter = () => {
             <Route path="/event/:date/:id" element={ <RouteEventCreation />} />
             <Route path="/event/:date" element={ <RouteEventCreation />} />
             <Route path="/showevent/:id" element={<EventPage />} />
-            <Route path="/todayevent/:id" element={ <ToydayEventRouteRecorder />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

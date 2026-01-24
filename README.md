@@ -91,6 +91,8 @@ $ npm run lint
 
 ## Design decisions
 
+Design patters: DRY, custom hooks
+
 1) **ONLY keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
 
  - Routes list, favourites list and events list all using filter and order components

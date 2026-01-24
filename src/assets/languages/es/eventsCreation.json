@@ -13,6 +13,8 @@
     "routes": "Rutas",
     "no route": "Sin ruta previa",
     "create route for event": "Crear ruta del evento",
-    "scale": "Escala"
+    "scale": "Escala",
+    "assigned route": "Ruta asignada",
+    "not assigned route": "Sin ruta"
   }
 }
