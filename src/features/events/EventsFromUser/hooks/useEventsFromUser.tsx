@@ -25,6 +25,7 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
       deleteEventById(eid);
     }
   }
+
   const onModifyClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const eid = element.dataset.eid;
@@ -53,10 +54,11 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
       data-eid={ eid } data-date={ eventDate } onClick={ onModifyClick }>✎</div>
     <div className="absolute top-3 right-3" data-eid={ eid } onClick={ onDeleteClick }>🗑</div>
   </>
-  const myRouteEventsCard = (event: RouteEvent) => 
-    <RouteEventCard key={ event.id } routeEvent={ event } 
-      extras={ eventExtras(event.id, event.date.toString()) } />;
 
+  const myRouteEventsCard = (event: RouteEvent) => {
+    return <RouteEventCard key={ event.id } routeEvent={ event } 
+      extras={ eventExtras(event.id, event.date.toString()) } />;
+  }
   const setMethods = {
     setPage: setMyEventsPage,
     setOrderBy: setMyEventsOrderBy,

@@ -1,12 +1,14 @@
 import useItemsListFilter from "./hooks/useItemsListFilter";
 import SearchInput from "../SearchInput/SearchInput";
 import type { ItemsListFilterProps } from "./types/ItemsListFilter.types";
+import { useTranslation } from "react-i18next";
 
 import './styles/routerListFilter.css';
 
 const ItemsListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSearch }: ItemsListFilterProps) => {
   const [orderBy, isCollapsed, onOrderByClickHandler, onOrderDirClickHandler,
     onCollapseClick, orderDirIcon] = useItemsListFilter(onOrderByClick, onOrderDirClick);
+  const { t } = useTranslation(["routeCreation"]);
 
   return (<div className="container flex justify-end items-center mx-auto mb-2">
       <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
@@ -17,15 +19,15 @@ const ItemsListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSea
 
       <div data-order="name" onClick={ onOrderByClickHandler } 
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='name'? ' selected':''}`}>
-        Name
+        { t("main.name") }
       </div>
       <div data-order="date" onClick={ onOrderByClickHandler } 
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='date'? ' selected':''}`}>
-        Date
+        { t("main.date") }
       </div>
       <div data-order="likes" onClick={ onOrderByClickHandler }
         className={`${isCollapsed ? "hidden" : "button-primary"} orderBy${orderBy==='likes'? ' selected':''}`}>
-        Likes
+        { t("main.likes") }
       </div>
     </div>);
 }

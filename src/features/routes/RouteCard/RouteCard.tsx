@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import DifficultBadge from "../../../components/Badge/DifficultBadge/DifficultBadge";
 import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge";
 
-import LikesBadge from "../../../components/LikesBadge/LikesBadge";
+import LikesBadge from "../../../components/Badge/LikesBadge/LikesBadge";
 import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
 
 const RouteCard = ({ route, extras }: RouteCardProps) => {

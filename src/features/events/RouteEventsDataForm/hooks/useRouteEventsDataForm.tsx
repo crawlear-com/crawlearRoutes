@@ -38,9 +38,11 @@ const createActionPayload = (routeEvent: RouteEvent & { hour: string }) => {
 }
 
 const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [ 
-    string, string, boolean, string, Array<React.JSX.Element>,(formData: FormData) => void,
+    string, string, string | null, boolean, number, string, Array<React.JSX.Element>,(formData: FormData) => void,
     (value: React.SetStateAction<string>) => void,
     (value: React.SetStateAction<string>) => void,
+    (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    (event: React.ChangeEvent<HTMLSelectElement>) => void,
     (event: React.ChangeEvent<HTMLSelectElement>) => void
   ] => {
   const actionType: FormAction = routeEvent ? UPDATE_ACTION : CREATE_ACTION;
@@ -48,15 +50,17 @@ const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [
   const [name, setName] = React.useState(routeEvent && routeEvent.name || '');
   const [ description, setDescription ] = React.useState(routeEvent && routeEvent.description || '');
   const [ hour, setHour ] = React.useState(getHourString(routeEvent ? new Date(routeEvent.date) : eventDate));
+  const [ scale, setScale ] = React.useState(routeEvent ? routeEvent.scale : 1);
+  const [ rid, setRid ] = React.useState(routeEvent?.rid || null);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ routeOptions, setRouteOptions ] = React.useState<Array<React.JSX.Element>>([]);
   const userId = useSelector(selectUserUUID);
   const generateRouteOptions = React.useCallback((routes: Array<Route>) => {
     const routeOptions = routes.map((route) => (
-      <option key={route.id}>{route.name}</option>
+      <option key={route.id} value={ route.id }>{route.name}</option>
     ));
 
-    return [<option key="noRoute">{ t("main.no route") }</option>, ...routeOptions];
+    return [<option key="noRoute" value="">{ t("creation.no route") }</option>, ...routeOptions];
   }, [t]);
 
   React.useEffect(() => {
@@ -84,10 +88,20 @@ const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [
     setHour(event.target.value);
   }
 
+  const onRouteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const rid = event.target.value;
+
+    setRid(rid.length ? rid : null);
+  }
+
+  const onScaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setScale(Number(event.target.value));
+  }
+
   const onSubmitEventsForm = async(formData: FormData) => {  
     if (eventFormValidates(formData)) {
       const action = getActionFromActionRpcType(actionType);
-      const payload = createActionPayload({ name: name, description: description, date: eventDate, scale: 1, rid: null, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
+      const payload = createActionPayload({ name: name, description: description, date: eventDate, scale: scale, rid: rid, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
       const promise: Promise<RouteEvent> = action(payload.name, payload.description, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
       const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
@@ -102,8 +116,8 @@ const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [
     }
   }
 
-  return [ name, description, isLoading, hour, routeOptions,
-    onSubmitEventsForm, setName, setDescription, onHourChange ];
+  return [ name, description, rid, isLoading, scale, hour, routeOptions,
+    onSubmitEventsForm, setName, setDescription, onHourChange, onRouteChange, onScaleChange ];
 }
 
 export default useRouteEventsDataForm;

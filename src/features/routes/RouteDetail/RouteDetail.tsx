@@ -1,16 +1,20 @@
 import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
 import { NavLink, useNavigate } from "react-router";
 import DifficultBadge from "../../../components/Badge/DifficultBadge/DifficultBadge";
-import LikesBadge from "../../../components/LikesBadge/LikesBadge";
+import LikesBadge from "../../../components/Badge/LikesBadge/LikesBadge";
 import DistanceBadge from "../../../components/Badge/DistanceBadge/DistanceBadge";
 import DurationBadge from "../../../components/Badge/DurationBadge/DistanceBadge";
 import ScaleBadge from "../../../components/Badge/ScaleBadge/ScaleBadge";
 import YoutubeEmbed from "../../../components/YoutubeEmbed/YoutubeEmbed";
 import useRouteDetail from "./hooks/useRouteDetail";
 
-const RouteDetail = () => {
+type RouteDetailProps = {
+  rid?: string
+}
+
+const RouteDetail = ({ rid }: RouteDetailProps) => {
   const navigate = useNavigate();
-  const [ route ] = useRouteDetail();
+  const [ route ] = useRouteDetail(rid);
 
   if (!route) {
     return <></>;

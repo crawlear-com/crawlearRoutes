@@ -20,7 +20,10 @@
     "modify route": "Modify route",
     "easy": "Easy",
     "moderate": "Moderate",
-    "difficult": "Difficult"
+    "difficult": "Difficult",
+    "name": "Name",
+    "date": "Date",
+    "likes": "Likes"
   },
   "messages": {
     "route creation ok": "The route was created correctly",

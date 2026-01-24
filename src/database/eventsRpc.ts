@@ -100,5 +100,18 @@ const deleteEventRoute = async (eid: string, uid: string) => {
     }
 }
 
+const getTodayEvents = async (uid: string) => {
+  const { data, error } = await supabaseClient.rpc('eventsByOwnerToday', {
+    p_uid: uid
+  });
+
+  if(!error) {
+    return data;
+  } else {
+    throw new Error('Error geting today events');
+  }
+}
+
 export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
-  getEventRouteEventsPaginated, createEventRoute, modifyEventRoute, deleteEventRoute }
+  getEventRouteEventsPaginated, createEventRoute, modifyEventRoute, deleteEventRoute,
+  getTodayEvents };

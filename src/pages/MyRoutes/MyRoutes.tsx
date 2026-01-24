@@ -10,6 +10,7 @@ import { cleanSearchResultsAndQuery } from "../../features/maps/store/slices/rou
 import UserStatistics from "../../features/statistics/UserStatistics/UserStatistics";
 import EventsCalendar from "../../features/events/EventsCalendar/EventsCalendar";
 import EventsFromUser from "../../features/events/EventsFromUser/EventsFromUser";
+import TodayEvents from "../../features/events/TodayEvents/TodayEvents";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -22,6 +23,10 @@ const MyRoutes = () => {
   return (<>
     <Header />
     <main>
+      <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
+        <TodayEvents />
+        <EventsFromUser />
+      </div>
       <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-250">
         <EventsCalendar />
       </div>
@@ -30,7 +35,6 @@ const MyRoutes = () => {
       <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
         <RoutesFromUser />
         <LikesFromUser />
-        <EventsFromUser />
       </div>
     </main>
     <Footer />

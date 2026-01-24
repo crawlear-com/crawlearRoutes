@@ -4,9 +4,10 @@ import { useParams } from "react-router";
 import { getRoute } from "../../../../database/routeRpc";
 import toast from "react-hot-toast";
 
-const useRouteDetail = () => {
+const useRouteDetail = (rid: string | undefined) => {
   const [route, setRoute ] = React.useState<Route>();
-  const id = useParams().id;
+  const paramsRid = useParams().id;
+  const id = rid || paramsRid;
 
   React.useEffect(() => {
     if (id) {

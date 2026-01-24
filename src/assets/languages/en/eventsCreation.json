@@ -1,5 +1,9 @@
 {
   "main": {
+    "today events": "Today events",
+    "my events": "My events"
+  },
+  "creation": {
     "event creation": "Event creation",
     "event update": "Event update",
     "event name": "Event name",
@@ -7,6 +11,8 @@
     "event date": "Event date",
     "event hour": "Event hour",
     "routes": "Routes",
-    "no route": "Without previous route"
+    "no route": "Without previous route",
+    "create route for event": "Route creation for event",
+    "scale": "Scale"
   }
 }

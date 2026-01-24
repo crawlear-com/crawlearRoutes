@@ -6,10 +6,10 @@ import ItemsList from "../../../components/ItemsList/ItemsList";
 import type { RouteEvent } from "../../../types/RouteEvent.types";
 
 const EventsFromUser = () => {
-  const { t } = useTranslation(['myRoutes']);
+  const { t } = useTranslation(['eventsCreation']);
   const [ myEventsCard, setMethods, selectMethods ] = useEventsFromUser();
 
-  return <ItemsList<RouteEvent> title={ t("main.my routes") } card={ myEventsCard }
+  return <ItemsList<RouteEvent> title={ t("main.my events") } card={ myEventsCard }
     hook={ useRouteEventsProvider } thunk={ getMyRouteEventsPaginated } setMethods={ setMethods }
     selectMethods={ selectMethods }/>;
 }

@@ -20,7 +20,10 @@
     "modify route": "Modificar ruta",
     "easy": "Fàcil",
     "moderate": "Moderada",
-    "difficult": "Difícil"
+    "difficult": "Difícil",
+    "name": "Nom",
+    "date": "Data",
+    "likes": "Favorits"
   },
   "messages": {
     "route creation ok": "La ruta s'ha creat amb exit",

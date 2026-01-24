@@ -1,5 +1,9 @@
 {
   "main": {
+    "today events": "Eventos de hoy",
+    "my events": "Mis eventos"
+  },
+  "creation": {
     "event creation": "Creación de event",
     "event update": "Modificación de evento",
     "event name": "Nombre del evento",
@@ -7,6 +11,8 @@
     "event date": "Fecha del evento",
     "event hour": "Hora del evento",
     "routes": "Rutas",
-    "no route": "Sin ruta previa"
+    "no route": "Sin ruta previa",
+    "create route for event": "Crear ruta del evento",
+    "scale": "Escala"
   }
 }

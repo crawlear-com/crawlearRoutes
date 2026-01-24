@@ -20,7 +20,7 @@ const GpxRecorder = () => {
     };
   }
 
-  return (<GpxRouteMap gpx={ gpx } onFileResolved={ onGpxResolved }
+  return (<GpxRouteMap gpx={ gpx || "" } onFileResolved={ onGpxResolved }
     onRouteRecorded={ onGpxResolved } className="mt-10" />);
 }
 

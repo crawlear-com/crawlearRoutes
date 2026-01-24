@@ -9,8 +9,8 @@ type ActionPayload = {
   difficulty: number,
   location: GeoPoint,
   scale: number,
-  youtubeVideo: string,
-  gpx: string,
+  youtubeVideo: string | null,
+  gpx: string | null,
   distance: number,
   durationTime: number,
   owner: string
@@ -27,12 +27,7 @@ type CreationRouteState = {
   error: string | null
 }
 
-const initialState: CreationRouteState = {
-  routeId: null,
-  action: null,
-  isLoading: false,
-  error: null,
-  route: {
+const routeInitialState = {
     name: "",
     description: "",
     difficulty: 1,
@@ -44,7 +39,14 @@ const initialState: CreationRouteState = {
     gpx: null,
     durationTime: 0,
     distance: 0
-  }
+}
+
+const initialState: CreationRouteState = {
+  routeId: null,
+  action: null,
+  isLoading: false,
+  error: null,
+  route: routeInitialState
 }
 
 export type { CreationRouteState, CreateAction, UpdateAction, ActionPayload, FormAction };

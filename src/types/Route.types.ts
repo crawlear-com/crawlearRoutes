@@ -11,7 +11,7 @@ type CreationRoute = {
   likes: number,
   location: GeoPoint,
   scale: number,
-  youtubeVideo?: string,
+  youtubeVideo: string | null,
   gpx: string | null,
   durationTime: number,
   distance: number
