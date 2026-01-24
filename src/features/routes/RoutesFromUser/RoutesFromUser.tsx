@@ -9,14 +9,11 @@ const RoutesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
   const [ myRoutesCard, setMethods, selectMethods ] = useRoutesFromUser();
 
-  return <ItemsList<Route>
-    title={ t("main.my routes")}
-    card={ myRoutesCard}
-    thunk={ getMyRoutes }
-    setMethods={setMethods}
-    selectMethods={selectMethods}
-    hook={ useRoutesProvider }
-  />
+  return <div className="card flex-1 container text-right p-10 self-start">
+    <ItemsList<Route> title={ t("main.my routes")} card={ myRoutesCard}
+      thunk={ getMyRoutes } setMethods={setMethods} selectMethods={selectMethods} 
+      hook={ useRoutesProvider } />
+  </div>
 }
 
 

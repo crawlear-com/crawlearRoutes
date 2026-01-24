@@ -5,11 +5,12 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import * as React from "react";
 import { cleanSearchResultsAndQuery } from "@/features/maps/store/slices/routeSearchSlice";
-import UserStatistics from "@/features/statistics/UserStatistics/UserStatistics";
+import UserRouteStatistics from "@/features/statistics/RouteStatistics/UserRouteStatistics";
 import EventsCalendar from "@/features/events/EventsCalendar/EventsCalendar";
 import EventsFromUser from "@/features/events/EventsFromUser/EventsFromUser";
 import TodayEvents from "@/features/events/TodayEvents/TodayEvents";
 import MainLayout from "@/layouts/MainLayout";
+import UserEventsStatistics from "@/features/statistics/EventsStatistics/UserEventsStatistics";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -20,19 +21,29 @@ const MyRoutes = () => {
   }, [dispatch]);
 
   return (<MainLayout><>
-    <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
-      <TodayEvents />
+    <h1 className="text-right mr-10">Events</h1>
+    <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
+      <div>
+        <TodayEvents />
+        <UserEventsStatistics />
+      </div>
       <EventsFromUser />
-    </div>
-    <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-250">
       <EventsCalendar />
     </div>
-    <UserStatistics />
-    <NavLink to="/route" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
-    <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
+
+    <div className="text-right mr-10 mb-5 flex align-middle items-center h-15 my-0 gap-5">
+      <h1 className="flex-5/6 text-right">Routes</h1>
+      <NavLink to="/route" className="flex-1/6 p-3 text-xl button-primary text-center">
+        { t("main.create route") }
+      </NavLink>
+
+    </div>
+    <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
+      <UserRouteStatistics />
       <RoutesFromUser />
       <LikesFromUser />
-    </div></>
+    </div>
+    </>
   </MainLayout>);
 }
 

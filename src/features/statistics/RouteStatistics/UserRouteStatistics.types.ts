@@ -1,4 +1,4 @@
-type UserData = {
+type UserRouteStatisticsData = {
   by_difficulty: {
     1: number,
     2: number,
@@ -15,4 +15,4 @@ type UserData = {
   total_routes: number
 }
 
-export type { UserData };
+export type { UserRouteStatisticsData };

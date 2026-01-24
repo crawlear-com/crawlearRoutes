@@ -8,6 +8,7 @@
     "want delete route": "Estàs segur que vols eliminar la teva ruta?"
   },
   "statistics": {
+    "statistics": "Estadístiques",
     "total routes": "Total de rutes",
     "total distance": "Distància total de rutes",
     "total time": "Temps total en ruta",

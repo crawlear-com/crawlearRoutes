@@ -7,7 +7,7 @@ const useItemsListFilter = (onOrderByClick: (order: string) => void,
   
   const [ orderDir, setOrderDir ] = React.useState(ASC);
   const [ orderBy, setOrderBy ] = React.useState('name');
-  const [ isCollapsed, setIsCollapsed ] = React.useState(true);
+  const [ isCollapsed, setIsCollapsed ] = React.useState(false);
   const onOrderByClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const order = (event.target as HTMLDivElement).dataset.order;
 

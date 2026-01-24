@@ -8,6 +8,7 @@
     "want delete route": "Do you want to delete the route?"
   },
   "statistics": {
+    "statistics": "Statistics",
     "total routes": "Total routes",
     "total distance": "Total distance",
     "total time": "Total time",

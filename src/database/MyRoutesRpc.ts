@@ -42,7 +42,7 @@ const deleteRouteAndLikes = async (id: string) => {
     }
 }
 
-const getUserStats = async (uid: string) => {
+const getUserRouteStats = async (uid: string) => {
   const { data, error } = await supabaseClient.rpc('getRoutesStats', {
     p_uid: uid
   });
@@ -55,4 +55,4 @@ const getUserStats = async (uid: string) => {
 }
 
 export { ITEMS_PAGE, getMyRoutesPaginated, getMyRoutesFull, getLikesFromUserPaginated,
-  deleteRouteAndLikes, getUserStats };
+  deleteRouteAndLikes, getUserRouteStats };
