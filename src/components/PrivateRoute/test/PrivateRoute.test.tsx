@@ -7,7 +7,7 @@ vi.mock("../../../hooks/useSession", () => ({
   default: vi.fn(),
 }));
 
-vi.mock("../../Spinner/Spinner", () => ({
+vi.mock("../../ui/Spinner/Spinner", () => ({
   default: () => <div data-testid="spinner" />,
 }));
 
