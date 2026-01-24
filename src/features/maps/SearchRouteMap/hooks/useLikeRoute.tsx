@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { deleteLike, likeRoute } from "../../../../database/routeRpc";
+import { deleteLike, likeRoute } from "@/database/routeRpc";
 
 const useLikeRoute = (): [ 
   (uid: string, rid: string, liked: boolean) => React.JSX.Element ] => {

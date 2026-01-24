@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { toHours, toKm } from "../../../../helpers/utils";
+import { toHours, toKm } from "@/helpers/utils";
 import type { GpxInfoCardProps } from "./GpxInfoCard.types";
-import ElevationChart from "../../../routes/RouteDetail/ElevationChart/ElevationChart";
+import ElevationChart from "@/features/routes/RouteDetail/ElevationChart/ElevationChart";
 
 const GpxInfoCard = ({ gpxInfo, className }: GpxInfoCardProps) => {
     const { t } = useTranslation(["map"]);

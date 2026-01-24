@@ -1,13 +1,13 @@
-import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
+import GpxRouteMap from "@/features/maps/GpxRouteMap/GpxRouteMap";
 import { NavLink, useNavigate } from "react-router";
-import DifficultBadge from "../../../components/ui/Badge/DifficultBadge/DifficultBadge";
-import LikesBadge from "../../../components/ui/Badge/LikesBadge/LikesBadge";
-import DistanceBadge from "../../../components/ui/Badge/DistanceBadge/DistanceBadge";
-import DurationBadge from "../../../components/ui/Badge/DurationBadge/DistanceBadge";
-import ScaleBadge from "../../../components/ui/Badge/ScaleBadge/ScaleBadge";
-import YoutubeEmbed from "../../../components/YoutubeEmbed/YoutubeEmbed";
+import DifficultBadge from "@/components/ui/Badge/DifficultBadge/DifficultBadge";
+import LikesBadge from "@/components/ui/Badge/LikesBadge/LikesBadge";
+import DistanceBadge from "@/components/ui/Badge/DistanceBadge/DistanceBadge";
+import DurationBadge from "@/components/ui/Badge/DurationBadge/DistanceBadge";
+import ScaleBadge from "@/components/ui/Badge/ScaleBadge/ScaleBadge";
+import YoutubeEmbed from "@/components/YoutubeEmbed/YoutubeEmbed";
 import useRouteDetail from "./hooks/useRouteDetail";
-import Spinner from "../../../components/ui/Spinner/Spinner";
+import Spinner from "@/components/ui/Spinner/Spinner";
 
 type RouteDetailProps = {
   rid?: string

@@ -1,8 +1,8 @@
 import { Chart } from "react-google-charts";
-import { getScaleValue, toHours, toKm } from "../../../helpers/utils";
+import { getScaleValue, toHours, toKm } from "@/helpers/utils";
 import { useTranslation } from "react-i18next";
 import useUserStatistics from "./hooks/useUserStatistics";
-import Spinner from "../../../components/ui/Spinner/Spinner";
+import Spinner from "@/components/ui/Spinner/Spinner";
 
 import "./styles/charts.css";
 

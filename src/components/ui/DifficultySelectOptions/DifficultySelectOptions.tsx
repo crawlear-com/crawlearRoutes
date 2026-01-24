@@ -1,4 +1,4 @@
-import { useDifficultyValues } from "../../helpers/utils";
+import { useDifficultyValues } from "@/helpers/utils";
 import type { DifficultySelectOptionsProps } from "./DifficultySelectOptions.types";
 
 const DifficultySelectOptions = ({ id, className, onDifficultyChange, value }: DifficultySelectOptionsProps) => {

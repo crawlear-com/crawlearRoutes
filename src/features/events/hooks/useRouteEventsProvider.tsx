@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch } from '../../../store/store';
+import type { AppDispatch } from '@/store/store';
 import type { AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
-import type { SelectMethods, SetMethods } from '../../../components/ItemsList/ItemsList.types';
-import type { RouteEvent } from '../../../types/RouteEvent.types';
+import type { SelectMethods, SetMethods } from '@/components/ItemsList/ItemsList.types';
+import type { RouteEvent } from '@/types/RouteEvent.types';
 
 const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, AsyncThunkConfig>,
   setMethods: SetMethods,

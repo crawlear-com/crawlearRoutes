@@ -1,4 +1,3 @@
-
 type UserData = {
   by_difficulty: {
     1: number,

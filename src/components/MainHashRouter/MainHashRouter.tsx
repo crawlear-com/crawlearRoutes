@@ -1,15 +1,15 @@
 import { HashRouter, Route, Routes } from "react-router";
-import Landing from "../../pages/Landing/Landing";
-import MyRoutes from "../../pages/MyRoutes/MyRoutes";
-import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
-import Login from "../../pages/Login/Login";
-import Register from "../../pages/Register/Register";
-import NotFound404 from "../../pages/NotFound404/NotFound404";
-import RouteCreation from "../../pages/RouteCreation/RouteCreation";
-import RoutePage from "../../pages/Route/Route";
-import SearchRoute from "../../pages/SearchRoute/SearchRoute";
-import EventPage from "../../pages/Event/Event";
-import RouteEventCreation from "../../pages/RouteEventCreation/RouteEventCreation";
+import Landing from "@/pages/Landing/Landing";
+import MyRoutes from "@/pages/MyRoutes/MyRoutes";
+import { PrivateRoute } from "@/components/PrivateRoute/PrivateRoute";
+import Login from "@/pages/Login/Login";
+import Register from "@/pages/Register/Register";
+import NotFound404 from "@/pages/NotFound404/NotFound404";
+import RouteCreation from "@/pages/RouteCreation/RouteCreation";
+import RoutePage from "@/pages/Route/Route";
+import SearchRoute from "@/pages/SearchRoute/SearchRoute";
+import EventPage from "@/pages/Event/Event";
+import RouteEventCreation from "@/pages/RouteEventCreation/RouteEventCreation";
 
 const MainHashRouter = () => {
   return <HashRouter>

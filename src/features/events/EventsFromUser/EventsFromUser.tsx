@@ -2,8 +2,8 @@ import useRouteEventsProvider from "../hooks/useRouteEventsProvider";
 import { useTranslation } from "react-i18next";
 import { getMyRouteEventsPaginated } from "../store/slices/eventListsSlice";
 import useEventsFromUser from "./hooks/useEventsFromUser";
-import ItemsList from "../../../components/ItemsList/ItemsList";
-import type { RouteEvent } from "../../../types/RouteEvent.types";
+import ItemsList from "@/components/ItemsList/ItemsList";
+import type { RouteEvent } from "@/types/RouteEvent.types";
 
 const EventsFromUser = () => {
   const { t } = useTranslation(['eventsCreation']);

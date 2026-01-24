@@ -1,21 +1,16 @@
 import { useParams } from "react-router";
-import Footer from "../../components/ui/Footer/Footer";
-import Header from "../../components/ui/Header/Header";
-import EventDetail from "../../features/events/EventDetail/EventDetail";
+import EventDetail from "@/features/events/EventDetail/EventDetail";
 import { useTranslation } from "react-i18next";
+import MainLayout from "@/layouts/MainLayout";
 
 const Event = () => {
   const eid = useParams().id;
   const { t } = useTranslation(["eventsCreation"]);
 
-  return (<>
-    <Header />
-    <main>
+  return (
+    <MainLayout>
       { eid ? <EventDetail eid={ eid } /> : <>{ t("main.no event specified") }</> }
-    </main>
-    <Footer />
-  </>);
-
+    </MainLayout>);
 }
 
 export default Event;

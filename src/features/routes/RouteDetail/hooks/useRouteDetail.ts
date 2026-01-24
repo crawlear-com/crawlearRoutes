@@ -1,7 +1,7 @@
 import * as React from "react";
-import type { Route } from "../../../../types/Route.types";
+import type { Route } from "@/types/Route.types";
 import { useParams } from "react-router";
-import { getRoute } from "../../../../database/routeRpc";
+import { getRoute } from "@/database/routeRpc";
 import toast from "react-hot-toast";
 
 const useRouteDetail = (rid: string | undefined): [ Route | undefined, boolean ] => {

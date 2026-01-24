@@ -1,15 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteRouteAndLikes } from "../../../../database/MyRoutesRpc";
+import { deleteRouteAndLikes } from "@/database/MyRoutesRpc";
 import { deleteMyEvent, setMyEventsOrderBy, setMyEventsOrderDir, 
-  setMyEventsPage, setMyEventsQuery } from "../../store/slices/eventListsSlice";
+  setMyEventsPage, setMyEventsQuery } from "@/features/events/store/slices/eventListsSlice";
 import toast from "react-hot-toast";
-import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, selectMyEventsTotalRoutes } from "../../store/selectors/eventsListsSelectors";
+import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, 
+  selectMyEventsTotalRoutes } from "@/features/events/store/selectors/eventsListsSelectors";
 import React from "react";
-import type { SelectMethods, SetMethods } from "../../../../components/ItemsList/ItemsList.types";
-import type { RouteEvent } from "../../../../types/RouteEvent.types";
-import RouteEventCard from "../../RouteEventCard/RouteEventCard";
+import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import RouteEventCard from "@/features/events/RouteEventCard/RouteEventCard";
 
 const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   SetMethods, SelectMethods<RouteEvent> ] => {

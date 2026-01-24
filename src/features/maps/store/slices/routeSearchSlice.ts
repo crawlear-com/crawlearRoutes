@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { RoutesSearchInitialState } from './state.types';
-import { searchRoutesByGeo, searchPublicRoutes } from '../../../../database/searchRoutesRpc';
-import type { MapPoint } from '../../SearchRouteMap/SearchRouteMap.types';
-import { getPointsFromRoutes } from '../../../../helpers/utils';
-import type { RootState } from '../../../../store/store';
+import { searchRoutesByGeo, searchPublicRoutes } from '@/database/searchRoutesRpc';
+import type { MapPoint } from '@/features/maps/SearchRouteMap/SearchRouteMap.types';
+import { getPointsFromRoutes } from '@/helpers/utils';
+import type { RootState } from '@/store/store';
 
 const searchByGeo = createAsyncThunk(
   'routeSearch/searchByGeo',

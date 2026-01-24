@@ -1,18 +1,14 @@
-import Footer from "../../components/ui/Footer/Footer";
-import Header from "../../components/ui/Header/Header";
-import RouteDetail from "../../features/routes/RouteDetail/RouteDetail";
-import useSession from "../../hooks/useSession";
+import RouteDetail from "@/features/routes/RouteDetail/RouteDetail";
+import useSession from "@/hooks/useSession";
+import MainLayout from "@/layouts/MainLayout";
 
 const Route = () => {
   useSession();
 
-  return (<>
-    <Header />
-    <main>
+  return (
+    <MainLayout>
       <RouteDetail />
-    </main>
-    <Footer />
-  </>);
+    </MainLayout>);
 }
 
 export default Route;

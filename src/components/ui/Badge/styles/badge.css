@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../styles/index.css";
+@reference "../../../../styles/index.css";
 
 @layer base {
   .difficultBadge {

@@ -1,18 +1,18 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAction, selectCreationRoute, selectEventId, selectRouteId } from "../../store/selectors/routeSelectors";
+import { selectAction, selectCreationRoute, selectEventId, selectRouteId } from "@/features/routeCreation/store/selectors/routeSelectors";
 import { routeFormValidates } from "../helpers/routeValidations";
 import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo, cleanRouteCreation, setAction } from "../../store/slices/routeSlice";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import type { CreationRoute } from "../../../../types/Route.types";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
+import type { CreationRoute } from "@/types/Route.types";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { createActionPayload, getActionFromRpcType } from "../helpers/utils";
-import { CREATE_ACTION } from "../../../../helpers/utils";
-import type { FormAction } from "../../store/slices/state.types";
-import { assignRouteToEvent } from "../../../../database/eventsRpc";
+import { CREATE_ACTION } from "@/helpers/utils";
+import type { FormAction } from "@/features/routeCreation/store/slices/state.types";
+import { assignRouteToEvent } from "@/database/eventsRpc";
 
 const useRouteDataForm = (): [
   (formData: FormData) => void, CreationRoute, boolean, string | null, FormAction,

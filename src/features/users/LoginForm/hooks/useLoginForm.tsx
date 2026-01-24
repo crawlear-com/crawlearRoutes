@@ -1,10 +1,10 @@
 import * as React from "react";
-import { loginFormValidates } from "../../helpers/loginValidations";
+import { loginFormValidates } from "@/features/users/helpers/loginValidations";
 import { useDispatch } from "react-redux";
-import { setSession } from "../../store/slice/userSlice";
-import supabaseClient from "../../../../database/supabaseClient";
+import { setSession } from "@/features/users/store/slice/userSlice";
+import supabaseClient from "@/database/supabaseClient";
 import { useNavigate } from "react-router";
-import { setFormError } from "../../../../helpers/formValidations";
+import { setFormError } from "@/helpers/formValidations";
 
 const useLoginForm = (): [ string, React.Dispatch<React.SetStateAction<string>>, string,
     (formData: FormData) => void, (event: React.ChangeEvent<HTMLInputElement>) => void ] => {

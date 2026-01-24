@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import type { Route } from "../types/Route.types";
-import type { MapPoint } from "../features/maps/SearchRouteMap/SearchRouteMap.types";
+import type { Route } from "@/types/Route.types";
+import type { MapPoint } from "@/features/maps/SearchRouteMap/SearchRouteMap.types";
 
 const SCALE11 = 1;
 const SCALE110 = 2;

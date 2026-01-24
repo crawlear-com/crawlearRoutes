@@ -1,22 +1,20 @@
 import * as React from "react";
 import { eventFormValidates } from "../helpers/eventValidations";
-//import toast from "react-hot-toast";
-//import { CREATE_ACTION } from "../../../routeCreation/store/slices/state.types";
-//import { useTranslation } from "react-i18next";
-import type { RouteEvent } from "../../../../types/RouteEvent.types";
-import type { Route } from "../../../../types/Route.types";
+import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { Route } from "@/types/Route.types";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { selectUserUUID } from "../../../users/store/selectors/userSelectors";
-import { getMyRoutesFull } from "../../../../database/MyRoutesRpc";
-import { CREATE_ACTION, UPDATE_ACTION } from "../../../../helpers/utils";
+import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
+import { getMyRoutesFull } from "@/database/MyRoutesRpc";
+import { CREATE_ACTION, UPDATE_ACTION } from "@/helpers/utils";
 import toast from "react-hot-toast";
-import type { FormAction } from "../../../../types/Generic.types";
+import type { FormAction } from "@/types/Generic.types";
 import { getActionFromActionRpcType } from "../helpers/utils";
 
-const getHourString = (date: Date) => {
-  const hoursValue = date.getHours().toString().padStart(2, '0');
-  const minutesValue = date.getMinutes() === 0 ? '00h' : '30h';
+const getHourString = (date: string) => {
+  const dateObject = new Date(date);
+  const hoursValue = dateObject.getHours().toString().padStart(2, '0');
+  const minutesValue = dateObject.getMinutes() === 0 ? '00h' : '30h';
 
   return `${hoursValue}:${minutesValue}`;
 }
@@ -37,7 +35,7 @@ const createActionPayload = (routeEvent: RouteEvent & { hour: string }) => {
     }
 }
 
-const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [ 
+const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [ 
     string, string, string | null, boolean, number, string, Array<React.JSX.Element>,(formData: FormData) => void,
     (value: React.SetStateAction<string>) => void,
     (value: React.SetStateAction<string>) => void,
@@ -49,7 +47,7 @@ const useRouteEventsDataForm = (eventDate: Date, routeEvent?: RouteEvent): [
   const { t } = useTranslation(["eventsCreation"]);  
   const [name, setName] = React.useState(routeEvent && routeEvent.name || '');
   const [ description, setDescription ] = React.useState(routeEvent && routeEvent.description || '');
-  const [ hour, setHour ] = React.useState(getHourString(routeEvent ? new Date(routeEvent.date) : eventDate));
+  const [ hour, setHour ] = React.useState(getHourString(routeEvent ? routeEvent.date : eventDate));
   const [ scale, setScale ] = React.useState(routeEvent ? routeEvent.scale : 1);
   const [ rid, setRid ] = React.useState(routeEvent?.rid || null);
   const [ isLoading, setIsLoading ] = React.useState(false);

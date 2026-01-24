@@ -1,5 +1,5 @@
-import GpxRouteMap from "../../maps/GpxRouteMap/GpxRouteMap";
-import type { GeoPoint } from "../../../types/Route.types";
+import GpxRouteMap from "@/features/maps/GpxRouteMap/GpxRouteMap";
+import type { GeoPoint } from "@/types/Route.types";
 import { setDistance, setDuration, setGpx, setLocation } from "../store/slices/routeSlice";
 import { selectGpx } from "../store/selectors/routeSelectors";
 import { useSelector } from "react-redux";

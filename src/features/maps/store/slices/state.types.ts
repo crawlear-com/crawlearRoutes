@@ -1,5 +1,5 @@
-import type { Route } from "../../../../types/Route.types";
-import type { MapPoint } from "../../SearchRouteMap/SearchRouteMap.types";
+import type { Route } from "@/types/Route.types";
+import type { MapPoint } from "@/features/maps/SearchRouteMap/SearchRouteMap.types";
 
 type RouteSearchState = {
   query: string,

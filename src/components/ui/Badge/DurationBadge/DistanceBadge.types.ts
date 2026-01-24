@@ -1,5 +1,3 @@
-
-
 type DurationBadgeProps = {
   duration: number;
   className?: string;

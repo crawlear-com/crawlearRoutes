@@ -1,7 +1,7 @@
 import * as React from "react";
-import { getRouteEventByIdAndOwner } from "../database/eventsRpc";
+import { getRouteEventByIdAndOwner } from "@/database/eventsRpc";
 import toast from "react-hot-toast";
-import type { RouteEvent } from "../types/RouteEvent.types";
+import type { RouteEvent } from "@/types/RouteEvent.types";
 
 const useGetRouteEventByIdAndOwner = ( setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setData: React.Dispatch<React.SetStateAction<RouteEvent | undefined>>,

@@ -1,4 +1,3 @@
-
 type LikesBadgeProps = {
   likes: number,
   className?: string

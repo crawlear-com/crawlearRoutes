@@ -1,4 +1,3 @@
-
 type FileLoaderProps = {
     onFileLoaded: (fileContents: string) => void
 }

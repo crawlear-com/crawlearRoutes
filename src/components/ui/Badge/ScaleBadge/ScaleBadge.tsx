@@ -1,4 +1,4 @@
-import { getScaleValue } from "../../../helpers/utils";
+import { getScaleValue } from "@/helpers/utils";
 import type { ScaleBadgeProps } from "./ScaleBadge.types";
 
 import carImg from '../assets/images/scaleCar.png'

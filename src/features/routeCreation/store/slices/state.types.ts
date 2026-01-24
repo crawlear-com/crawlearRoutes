@@ -1,5 +1,5 @@
-import type { FormAction } from "../../../../types/Generic.types";
-import type { CreationRoute, GeoPoint, Route } from "../../../../types/Route.types";
+import type { FormAction } from "@/types/Generic.types";
+import type { CreationRoute, GeoPoint, Route } from "@/types/Route.types";
 
 type ActionPayload = {
   rid: string | null,

@@ -1,6 +1,6 @@
  import * as z from 'zod';
 import { emailSchema, nameSchema, notEmptySchema, passwordConfirmationSchema, passwordSchema } from './validation';
-import { VALIDCLASS, INVALIDCLASS, validateInput, generateUIfeedback } from '../../../helpers/formValidations';
+import { VALIDCLASS, INVALIDCLASS, validateInput, generateUIfeedback } from '@/helpers/formValidations';
 
 const validateConfirmPassword = () => {
   const feedbackElement = document.querySelector('.repassword__feedback');
