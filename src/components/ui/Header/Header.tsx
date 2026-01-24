@@ -28,6 +28,7 @@ const Header = () => {
                 </div>
                 <ToggleTheme className="md:mr-5" />
                 <NavLink to="/myroutes" className="link block md:inline md:mr-5">{ t("main.my routes") }</NavLink>
+                <NavLink to="/myevents" className="link block md:inline md:mr-5">{ t("main.my events") }</NavLink>
                 <NavLink to="/search" className="link block md:inline md:mr-5">{ t("main.search route") }</NavLink>
                 <a href="/" onClick={ onLogoutClick } className="link block md:inline">{ t('login.signout') }</a>
             </div>
