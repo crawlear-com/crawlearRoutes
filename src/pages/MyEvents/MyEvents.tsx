@@ -21,7 +21,7 @@ const MyRoutes = () => {
 
   return (<MainLayout><>
     <PageTitle background="myevents--backgroud p-10">
-      <h1 className="sm:flex-5/6 text-right text-secondary w-full sm:mr-5">{ t("main.my events") }</h1>
+      <h1 className="sm:flex-5/6 text-right text-white w-full sm:mr-5">{ t("main.my events") }</h1>
     </PageTitle>
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
       <div>

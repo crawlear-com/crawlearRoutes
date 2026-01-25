@@ -23,7 +23,7 @@ const MyRoutes = () => {
   return (<MainLayout><>
     <PageTitle background="myroutes--backgroud p-5">
       <>
-        <h1 className="sm:flex-5/6 text-right text-secondary mr-5">{ t("main.my routes") }</h1>
+        <h1 className="sm:flex-5/6 text-right text-white mr-5">{ t("main.my routes") }</h1>
         <NavLink to="/route" className="sm:flex-1/6 p-3 text-xl button-primary text-center">
           { t("main.create route") }
         </NavLink>
