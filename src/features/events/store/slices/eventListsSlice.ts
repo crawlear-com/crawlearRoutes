@@ -4,6 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store';
 import { getEventRouteEventsPaginated } from '@/database/eventsRpc';
 import type { RouteEvent } from '@/types/RouteEvent.types';
+import { ASC, DESC } from '@/components/ItemCardList/types/ItemsListFilter.types';
 
 const getMyRouteEventsPaginated = createAsyncThunk(
   'events/getMyRouteEventsPaginated',
@@ -52,8 +53,8 @@ const eventRoutesListsSlice = createSlice({
     setMyEventsOrderBy: (state, action: PayloadAction<string>) => {
       state.orderBy = action.payload;
     },
-    setMyEventsOrderDir: (state, action: PayloadAction<string>) => {
-      state.orderDir = action.payload;
+    setMyEventsOrderDir: (state) => {
+      state.orderDir = state.orderDir === ASC ? DESC : ASC;
     },
     setMyEventsQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;

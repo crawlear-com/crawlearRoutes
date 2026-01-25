@@ -5,7 +5,8 @@ import { deleteRouteAndLikes } from "@/database/MyRoutesRpc";
 import { deleteMyEvent, setMyEventsOrderBy, setMyEventsOrderDir, 
   setMyEventsPage, setMyEventsQuery } from "@/features/events/store/slices/eventListsSlice";
 import toast from "react-hot-toast";
-import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, 
+import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsOrderBy, selectMyEventsOrderDir, selectMyEventsPage, 
+  selectMyEventsQuery, 
   selectMyEventsTotalRoutes } from "@/features/events/store/selectors/eventsListsSelectors";
 import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
@@ -60,7 +61,7 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
     return <RouteEventCard key={ event.id } routeEvent={ event } 
       extras={ eventExtras(event.id, event.date.toString()) } />;
   }
-  const setMethods = {
+  const setMethods: SetMethods = {
     setPage: setMyEventsPage,
     setOrderBy: setMyEventsOrderBy,
     setOrderDir: setMyEventsOrderDir,
@@ -70,7 +71,10 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
     selectItems: selectMyEvents,
     selectIsLoading: selectMyEventsIsLoading,
     selectPage: selectMyEventsPage,
-    selectTotalItems: selectMyEventsTotalRoutes
+    selectTotalItems: selectMyEventsTotalRoutes,
+    selectOrderBy: selectMyEventsOrderBy,
+    selectOrderDir: selectMyEventsOrderDir,
+    selectQuery: selectMyEventsQuery,
   };
 
   return [ myRouteEventsCard, setMethods, selectMethods ];

@@ -8,7 +8,8 @@ import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir
 import toast from "react-hot-toast";
 import type { Route } from "@/types/Route.types";
 import RouteCard from "@/features/routes/RouteCard/RouteCard";
-import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesPage,
+import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesOrderBy, selectMyFavoritesOrderDir, selectMyFavoritesPage,
+  selectMyFavoritesQuery,
   selectMyFavoritesTotalRoutes } from "@/features/routes/store/selectors/routeListsSelectors";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 
@@ -53,7 +54,10 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
     selectItems: selectMyFavorites,
     selectIsLoading: selectMyFavoritesIsLoading,
     selectPage: selectMyFavoritesPage,
-    selectTotalItems: selectMyFavoritesTotalRoutes
+    selectTotalItems: selectMyFavoritesTotalRoutes,
+    selectOrderBy: selectMyFavoritesOrderBy,
+    selectOrderDir: selectMyFavoritesOrderDir,
+    selectQuery: selectMyFavoritesQuery
   };
 
   return [ myRoutesCard, setMethods, selectMethods ]

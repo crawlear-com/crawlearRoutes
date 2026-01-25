@@ -6,7 +6,7 @@ import { deleteMyRoutesRoute, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRout
 import toast from "react-hot-toast";
 import type { Route } from "@/types/Route.types";
 import RouteCard from "@/features/routes/RouteCard/RouteCard";
-import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesPage, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
+import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesOrderBy, selectMyRoutesOrderDir, selectMyRoutesPage, selectMyRoutesQuery, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
 import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 
@@ -61,7 +61,10 @@ const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
     selectItems: selectMyRoutes,
     selectIsLoading: selectMyRoutesIsLoading,
     selectPage: selectMyRoutesPage,
-    selectTotalItems: selectMyRoutesTotalRoutes
+    selectTotalItems: selectMyRoutesTotalRoutes,
+    selectOrderBy: selectMyRoutesOrderBy,
+    selectOrderDir: selectMyRoutesOrderDir,
+    selectQuery: selectMyRoutesQuery,
   };
 
   return [ myRoutesCard, setMethods, selectMethods ];
