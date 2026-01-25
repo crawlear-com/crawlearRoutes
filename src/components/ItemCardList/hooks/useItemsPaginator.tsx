@@ -13,7 +13,7 @@ const useItemsPaginator = (totalItems: number, itemsPerPage: number,
   }
 
   for(let i=0; i<totalPages; i++) {
-    pages.push(<span key={ i } className={`${ currentPage === i ? "font-bold" : "cursor-pointer underline" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
+    pages.push(<span key={ i } className={`${ currentPage === i ? "font-bold" : "cursor-pointer" }`} data-page={ i } onClick={ onPageEventHandler }> { i + 1 } </span>);
   }
 
   return [ pages, totalPages, onPageEventHandler ];

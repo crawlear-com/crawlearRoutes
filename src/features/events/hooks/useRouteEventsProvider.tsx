@@ -8,13 +8,16 @@ import type { RouteEvent } from '@/types/RouteEvent.types';
 const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, AsyncThunkConfig>,
   setMethods: SetMethods,
   selectMethods: SelectMethods<RouteEvent>): 
-  [ number, number, Array<RouteEvent>, boolean, (page: number) => void, (order: string) =>  void,
-    (order: string) =>  void, (query: string) =>  void, () =>  void ] => {
+  [ number, string, string, string, number, Array<RouteEvent>, boolean, (page: number) => void, (order: string) =>  void,
+    () =>  void, (query: string) =>  void, () =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useSelector(selectMethods.selectItems);
   const isLoading = useSelector(selectMethods.selectIsLoading);
   const currentPage = useSelector(selectMethods.selectPage);
   const totalEventRoutes = useSelector(selectMethods.selectTotalItems);
+  const query = useSelector(selectMethods.selectQuery);
+  const orderBy = useSelector(selectMethods.selectOrderBy);
+  const orderDir = useSelector(selectMethods.selectOrderDir);
 
   const onPageClick = (page: number) => {
     dispatch(setMethods.setPage(page));
@@ -24,8 +27,8 @@ const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, Async
     dispatch(setMethods.setOrderBy(order));
     dispatch(thunk());
   }
-  const onOrderDirClick = (order: string) => {
-    dispatch(setMethods.setOrderDir(order));
+  const onOrderDirClick = () => {
+    dispatch(setMethods.setOrderDir());
     dispatch(thunk());
   }
   const onQueryChange = (query: string) => {
@@ -40,7 +43,7 @@ const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, Async
     dispatch(thunk());
   }, [dispatch, thunk]);
 
-  return [ currentPage, totalEventRoutes, routes, isLoading, onPageClick,
+  return [ currentPage, query, orderBy, orderDir, totalEventRoutes, routes, isLoading, onPageClick,
     onOrderByClick, onOrderDirClick, onQueryChange, onSearch ];
 }
 

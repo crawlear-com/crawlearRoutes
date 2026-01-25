@@ -21,4 +21,21 @@ const selectMyEventsTotalRoutes = createSelector(
   (events) => events.totalEvents
 );
 
-export { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, selectMyEventsTotalRoutes };
+
+const selectMyEventsOrderBy = createSelector(
+  (state: RootState) => state.events,
+  (events) => events.orderBy
+);
+
+const selectMyEventsOrderDir = createSelector(
+  (state: RootState) => state.events,
+  (events) => events.orderDir
+);
+
+const selectMyEventsQuery = createSelector(
+  (state: RootState) => state.events,
+  (events) => events.query
+);
+
+export { selectMyEvents, selectMyEventsIsLoading, selectMyEventsPage, 
+  selectMyEventsTotalRoutes, selectMyEventsOrderBy, selectMyEventsOrderDir, selectMyEventsQuery };

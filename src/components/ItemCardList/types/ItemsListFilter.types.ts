@@ -1,8 +1,11 @@
 type ItemsListFilterProps = {
   onOrderByClick: (order: string) => void,
-  onOrderDirClick: (order: string) => void,
+  onOrderDirClick: () => void,
   onQueryChange: (query: string) => void,
-  onSearch: () => void
+  onSearch: () => void,
+  query: string,
+  orderBy: string,
+  orderDir: string
 }
 
 const ASC = 'asc';

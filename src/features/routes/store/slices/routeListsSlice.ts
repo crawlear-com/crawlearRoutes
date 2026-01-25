@@ -4,6 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store';
 import { getMyRoutesPaginated, getLikesFromUserPaginated } from '@/database/MyRoutesRpc';
 import type { Route } from '@/types/Route.types';
+import { ASC, DESC } from '@/components/ItemCardList/types/ItemsListFilter.types';
 
 const getMyRoutes = createAsyncThunk(
   'routes/getMyRoutes',
@@ -75,8 +76,8 @@ const routeListsSlice = createSlice({
     setMyRoutesOrderBy: (state, action: PayloadAction<string>) => {
       state.myRoutes.orderBy = action.payload;
     },
-    setMyRoutesOrderDir: (state, action: PayloadAction<string>) => {
-      state.myRoutes.orderDir = action.payload;
+    setMyRoutesOrderDir: (state) => {
+      state.myRoutes.orderDir = state.myRoutes.orderDir === ASC ? DESC : ASC;
     },
     setMyRoutesQuery: (state, action: PayloadAction<string>) => {
       state.myRoutes.query = action.payload;
@@ -96,8 +97,8 @@ const routeListsSlice = createSlice({
     setMyFavouritesOrderBy: (state, action: PayloadAction<string>) => {
       state.myFavorites.orderBy = action.payload;
     },
-    setMyFavouritesOrderDir: (state, action: PayloadAction<string>) => {
-      state.myFavorites.orderDir = action.payload;
+    setMyFavouritesOrderDir: (state) => {
+      state.myFavorites.orderDir = state.myFavorites.orderDir === ASC ? DESC : ASC;
     },
     setMyFavouritesQuery: (state, action: PayloadAction<string>) => {
       state.myFavorites.query = action.payload;
