@@ -15,7 +15,8 @@ const GpxInfoCard = ({ gpxInfo, className }: GpxInfoCardProps) => {
             <span><b>{ t('main.elevation max') }</b>{`: ${toKm(gpxInfo.elevationMax)} m`}</span>
             <span><b>{ t('main.speed') }</b>{`: ${(gpxInfo.speed).toFixed(2)} Km/h`}</span>
         </div>
-        { gpxInfo.elevationData ? <ElevationChart className="h-96 w-full" data={ gpxInfo.elevationData } /> : <></>}
+        { gpxInfo.elevationData ? <ElevationChart className="h-96 w-full" data={ gpxInfo.elevationData } /> : 
+            <div className="h-96 w-full text-center mt-10 font-bold">{ t("main.no data") }</div>}
       </div>
 }
 
