@@ -9,12 +9,12 @@ const EventsCalendar = () => {
   const [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, onDateRangeChange, onDayClick,
     renderEventContent ] = useEventsCalendar();
 
-  return (<>{ isLoading ? <Spinner /> : <FullCalendar plugins={[ dayGridPlugin ]}
+  return (<div className="card flex-1 p-10">{ isLoading ? <Spinner /> : <FullCalendar plugins={[ dayGridPlugin ]}
       initialDate={ currentDate } eventClick={ onEventClick } navLinkDayClick={ onDayClick }
-      eventContent={ renderEventContent } navLinks={ true } height="100%"
+      eventContent={ renderEventContent } navLinks={ true } height="auto"
       initialView="dayGridMonth" events={ [...eventRoutes, ...eventRouteEvents] }
       datesSet={ onDateRangeChange} /> }
-    </>);
+    </div>);
 }
 
 export default EventsCalendar;

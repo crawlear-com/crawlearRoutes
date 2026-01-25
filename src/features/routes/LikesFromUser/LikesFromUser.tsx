@@ -9,9 +9,11 @@ const LikesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
   const [ myRoutesCard, setMethods, selectMethods ] = useLikesFromUser();
 
-  return <ItemsList<Route> title={ t("main.favourite routes") } card={ myRoutesCard }
+  return <div className="card flex-1 container text-right sm:p-10 self-start">
+    <ItemsList<Route> title={ t("main.favourite routes") } card={ myRoutesCard }
     hook={ useRoutesProvider } thunk={ getMyFavourites } setMethods={ setMethods }
-    selectMethods={ selectMethods }/>;
+    selectMethods={ selectMethods }/>
+  </div>
 }
 
 export default LikesFromUser;

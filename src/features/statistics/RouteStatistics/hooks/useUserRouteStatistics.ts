@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { getUserStats } from "@/database/MyRoutesRpc";
-import type { UserData } from "../UserStatistics.types";
+import { getUserRouteStats } from "@/database/statisticsRpc";
+import type { UserRouteStatisticsData } from "../UserRouteStatistics.types";
 import { useDifficultyValues } from "@/helpers/utils";
 
 const initialUserData = {
@@ -14,14 +14,14 @@ const initialUserData = {
   total_routes: 0
 }
 
-const useUserStatistics = (): [ UserData, string, string, string, boolean ] => {
+const useUserRouteStatistics = (): [ UserRouteStatisticsData, string, string, string, boolean ] => {
   const uid = useSelector(selectUserUUID);
   const [ isLoading, setIsLoading ] = React.useState(false);
-  const [ data, setData ] = React.useState<UserData>(initialUserData); 
+  const [ data, setData ] = React.useState<UserRouteStatisticsData>(initialUserData); 
   const [ easy, medium, difficult ] = useDifficultyValues();
 
   React.useEffect(() => {
-    const promise = getUserStats(uid);
+    const promise = getUserRouteStats(uid);
 
     setIsLoading(true);
     promise.then((data) => {
@@ -36,4 +36,4 @@ const useUserStatistics = (): [ UserData, string, string, string, boolean ] => {
   return [ data, easy, medium, difficult, isLoading ];
 }
 
-export default useUserStatistics;
+export default useUserRouteStatistics;

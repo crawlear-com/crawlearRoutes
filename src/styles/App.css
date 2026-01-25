@@ -17,9 +17,9 @@
   }
 
   .card {
-    @apply rounded-2xl shadow-2xl mb-10 p-5 content-end text-left;
+    @apply rounded-2xl mb-10 content-end text-left;
     @apply min-w-60 bg-secondary text-font;
-    @apply border-0 shadow-2xl p-6 rounded-3xl;
+    @apply border-primary border p-6 rounded-3xl shadow-xl;
   }
 
   .link {
@@ -48,7 +48,7 @@
   }
 
   body h1 {
-    @apply text-4xl font-bold mb-6;
+    @apply text-3xl sm:text-4xl font-bold;
   }
 
   .container {

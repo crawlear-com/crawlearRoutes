@@ -10,6 +10,7 @@ import RoutePage from "@/pages/Route/Route";
 import SearchRoute from "@/pages/SearchRoute/SearchRoute";
 import EventPage from "@/pages/Event/Event";
 import RouteEventCreation from "@/pages/RouteEventCreation/RouteEventCreation";
+import MyEvents from "@/pages/MyEvents/MyEvents";
 
 const MainHashRouter = () => {
   return <HashRouter>
@@ -17,6 +18,7 @@ const MainHashRouter = () => {
           <Route path="/" element={<Landing />} />
           <Route element={<PrivateRoute />}>
             <Route path="/myroutes" element={<MyRoutes />} />
+            <Route path="/myevents" element={<MyEvents />} />
             <Route path="/route" element={ <RouteCreation />} />
             <Route path="/route/:rid" element={ <RouteCreation />} />
             <Route path="/routeforevent/:eid" element={ <RouteCreation />} />

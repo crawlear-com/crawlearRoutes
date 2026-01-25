@@ -11,7 +11,7 @@ const ItemsListFilter = ({ onOrderByClick, onOrderDirClick, onQueryChange, onSea
   const { t } = useTranslation(["routeCreation"]);
 
   return (<div className="container flex justify-end items-center mx-auto mb-2">
-      <div className="button-primary w-auto text-2xl" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
+      <div className="button-primary w-auto text-2xl hidden sm:block" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
       <SearchInput className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
         placeholder="Filter routes..." onQueryChange={ onQueryChange } onSearch={ onSearch } />
 

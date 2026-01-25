@@ -5,11 +5,12 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import * as React from "react";
 import { cleanSearchResultsAndQuery } from "@/features/maps/store/slices/routeSearchSlice";
-import UserStatistics from "@/features/statistics/UserStatistics/UserStatistics";
-import EventsCalendar from "@/features/events/EventsCalendar/EventsCalendar";
-import EventsFromUser from "@/features/events/EventsFromUser/EventsFromUser";
-import TodayEvents from "@/features/events/TodayEvents/TodayEvents";
+import UserRouteStatistics from "@/features/statistics/RouteStatistics/UserRouteStatistics";
+import PageTitle from "@/components/ui/PageTitle/PageTitle";
+
 import MainLayout from "@/layouts/MainLayout";
+
+import "./styles/myRoutes.css";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -20,19 +21,20 @@ const MyRoutes = () => {
   }, [dispatch]);
 
   return (<MainLayout><>
-    <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
-      <TodayEvents />
-      <EventsFromUser />
-    </div>
-    <div className="mx-0 sm:mx-10 mt-10 sm:mt-20 mb-10 h-250">
-      <EventsCalendar />
-    </div>
-    <UserStatistics />
-    <NavLink to="/route" className="mt-10 p-3 text-xl button-primary w-auto inline-block">{ t("main.create route") }</NavLink>
-    <div className="flex mx-5 sm:mx-10 sm:mt-30 mb-10 flex-col lg:flex-row gap-5">
+    <PageTitle background="myroutes--backgroud p-5">
+      <>
+        <h1 className="sm:flex-5/6 text-right text-secondary mr-5">{ t("main.my routes") }</h1>
+        <NavLink to="/route" className="sm:flex-1/6 p-3 text-xl button-primary text-center">
+          { t("main.create route") }
+        </NavLink>
+      </>
+    </PageTitle>
+    <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
+      <UserRouteStatistics />
       <RoutesFromUser />
       <LikesFromUser />
-    </div></>
+    </div>
+    </>
   </MainLayout>);
 }
 

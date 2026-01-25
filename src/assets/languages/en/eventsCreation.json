@@ -16,6 +16,7 @@
     "create route for event": "Route creation for event",
     "scale": "Scale",
     "assigned route": "Route assigned",
-    "not assigned route": "No route"
+    "not assigned route": "No route",
+    "no events for today": "No events today"
   }
 }

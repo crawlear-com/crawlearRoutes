@@ -5,6 +5,7 @@ const StepIndicator = ({ currentStep, stepsNumber }: StepIndicatorProps) => {
 
   for(let step = 0; step < stepsNumber; step++) {
     const className = step === currentStep ? "text-primary" : "text-terciary";
+    
     pointIndicator.push(<span key={ step } className={ className}>✸</span>)
   }
 

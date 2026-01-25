@@ -10,7 +10,9 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import GpxInfoCard from './GpxInfoCard/GpxInfoCard'
 
-function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRouteMapProps): React.JSX.Element {
+function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, 
+  containerClassName, mapClassName }: GpxRouteMapProps): React.JSX.Element {
+
   const { t } = useTranslation(['map']);
   const [onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, gpxInfo, 
     recordState, pauseState, error, pollingTime ] = useGpxRouteMap(onFileResolved, gpx, onRouteRecorded);
@@ -22,16 +24,16 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
     }
   }, [error, t]);
 
-  return <div className="w-full h-full flex flex-col">
-        <div id="map" title='routeMap' className={`${className} rounded-xl h-96`}></div>
-        <GpxInfoCard gpxInfo={ gpxInfo } className={`${className}`} />
-        { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row justify-center mt-5">
+  return <div className={`${containerClassName} flex gap-5 flex-wrap flex-col sm:flex-row`}>
+        { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row w-full justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
           { onRouteRecorded && <> <RecButton onStartStopRecord={ onStartStopRecord }
               onPause={ onPause } recordState={ recordState } pauseState={ pauseState }
               onPollingTimeChange={ onPollingTimeChanged } value={ pollingTime } />
           </> }
         </div> }
+        <div id="map" title='routeMap' className={`${mapClassName} rounded-xl h-144`}></div>
+        <GpxInfoCard gpxInfo={ gpxInfo } className={`${mapClassName}` } />
       </div>
 }
 

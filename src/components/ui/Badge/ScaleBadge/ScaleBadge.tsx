@@ -5,7 +5,7 @@ import carImg from '../assets/images/scaleCar.png'
 
 const ScaleBadge = ({ scale, className }: ScaleBadgeProps) => {
   return <span className={`${className ? className : ""}`}>
-    <img className="w-10 inline" src={carImg} alt="car icon" />{ getScaleValue(scale) }
+    <img className="w-8 inline" src={carImg} alt="car icon" />{ getScaleValue(scale) }
   </span>
   }
 

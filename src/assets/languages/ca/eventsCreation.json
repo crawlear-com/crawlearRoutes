@@ -16,6 +16,7 @@
     "create route for event": "Crear ruta del event",
     "scale": "Escala",
     "assigned route": "Ruta asignada",
-    "not assigned route": "Sense ruta"
+    "not assigned route": "Sense ruta",
+    "no events for today": "No hi ha events avui"
   }
 }

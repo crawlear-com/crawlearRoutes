@@ -47,7 +47,8 @@ describe("StepProcess", () => {
     expect(screen.getByText("main.step 1: Title 1")).toBeInTheDocument();
     expect(screen.getByText("desc1")).toBeInTheDocument();
     expect(screen.getByText("Step 1 content")).toBeInTheDocument();
-    expect(screen.getByTestId("step-indicator")).toHaveTextContent("0");
+    expect(screen.getAllByTestId("step-indicator")[0]).toHaveTextContent("0");
+    expect(screen.getAllByTestId("step-indicator")[1]).toHaveTextContent("0");
   });
 
   it("moves to next step when clicking next button", () => {
@@ -66,7 +67,8 @@ describe("StepProcess", () => {
 
     expect(screen.getByText("main.step 2: Title 2")).toBeInTheDocument();
     expect(screen.getByText("Step 2 content")).toBeInTheDocument();
-    expect(screen.getByTestId("step-indicator")).toHaveTextContent("1");
+    expect(screen.getAllByTestId("step-indicator")[0]).toHaveTextContent("1");
+    expect(screen.getAllByTestId("step-indicator")[1]).toHaveTextContent("1");
   });
 
   it("moves back to previous step when clicking previous button", () => {

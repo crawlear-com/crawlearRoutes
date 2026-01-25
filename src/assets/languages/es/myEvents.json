@@ -1,0 +1,12 @@
+{
+  "main": {
+    "my events": "Mis eventos"
+  },
+  "statistics": {
+    "statistics": "Estadísticas",
+    "total events": "Total de eventos'",
+    "by scale": "Eventos por escala",
+    "future events": "Eventos futuros",
+    "past events": "Eventos pasados"
+  }
+}
