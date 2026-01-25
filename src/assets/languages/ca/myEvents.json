@@ -4,7 +4,9 @@
   },
   "statistics": {
     "statistics": "Estadístiques",
-    "total events": "Total d'events'",
-    "by scale": "Events per escala"
+    "total events": "Total d'events",
+    "by scale": "Events per escala",
+    "future events": "Events futurs",
+    "past events": "Events pasats"
   }
 }

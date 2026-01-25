@@ -22,9 +22,9 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded, className }: GpxRo
     }
   }, [error, t]);
 
-  return <div className="w-full h-full flex flex-col">
-        <div id="map" title='routeMap' className={`${className} rounded-xl h-96`}></div>
-        <GpxInfoCard gpxInfo={ gpxInfo } className={`${className}`} />
+  return <div className="max-w-[90%] lg:max-w-2/3 mx-auto flex gap-5">
+        <div id="map" title='routeMap' className={`${className} rounded-xl h-132`}></div>
+        <GpxInfoCard gpxInfo={ gpxInfo } className={`${className}` } />
         { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
           { onRouteRecorded && <> <RecButton onStartStopRecord={ onStartStopRecord }

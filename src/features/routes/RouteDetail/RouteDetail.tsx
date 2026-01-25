@@ -21,8 +21,8 @@ const RouteDetail = ({ rid }: RouteDetailProps) => {
     { isLoading ? <Spinner /> : 
       !route ? <></> : 
         <div className="text-left mx-auto">
-        <div className="max-w-[90%] lg:max-w-2/3 mx-auto">
-          <h1>{ route.name}</h1>
+        <div className="max-w-[90%] lg:max-w-2/3 mx-auto mt-10">
+          <h1 className="mb-5">{ route.name}</h1>
           <div className="flex">
             <p className="flex-6 pr-5">{ route.description }</p>
             <span>
@@ -38,7 +38,7 @@ const RouteDetail = ({ rid }: RouteDetailProps) => {
           </div>
         </div>
         <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } 
-          className="mt-10 w-full lg:max-w-2/3 mx-auto" />
+          className="mt-10 w-full lg:max-w-2/3 mx-auto flex-1" />
         { route.youtubeVideo ? 
           <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> :
           <></> }

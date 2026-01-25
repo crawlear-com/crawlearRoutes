@@ -17,7 +17,7 @@ const MyRoutes = () => {
   }, [dispatch]);
 
   return (<MainLayout><>
-    <div className="text-right mr-10 mb-5 flex align-middle items-center h-15 my-0 gap-5">
+    <div className="text-right mr-10 mb-5 flex align-middle items-center h-15 my-10 gap-5">
       <h1 className="flex-5/6 text-right">Routes</h1>
       <NavLink to="/route" className="flex-1/6 p-3 text-xl button-primary text-center">
         { t("main.create route") }

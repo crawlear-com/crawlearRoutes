@@ -11,8 +11,8 @@ const UserRouteStatistics = () => {
   const [ data, easy, medium, difficult, isLoading ] = useUserRouteStatistics();
 
   return <div className="flex-1">
-    <h1>{ t("statistics.statistics") }</h1>
-    <div className="card p-5 pb-0 mb-15 mx-5 sm:mx-auto">
+    <div className="card p-10 pb-0 mb-15 mx-5 sm:mx-auto">
+      <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
       <div className="justify-self-start">
         <b>{ t("statistics.total routes") }:</b> { data.total_routes }
       </div>

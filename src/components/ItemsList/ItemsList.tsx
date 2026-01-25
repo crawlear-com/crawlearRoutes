@@ -9,7 +9,7 @@ const ItemsList = <T,>({ title, card, hook, thunk, setMethods, selectMethods }: 
     onOrderDirClick, onQueryChange, onSearch ] = hook(thunk, setMethods, selectMethods);
 
   return (<div className="">
-    { title ? <h1 className="mr-3 inline-block">{ title }</h1> : <></>}
+    { title ? <h1 className="mr-3 inline-block mb-4">{ title }</h1> : <></>}
     <ItemsListFilter onOrderByClick= { onOrderByClick } onOrderDirClick= { onOrderDirClick }
       onQueryChange={ onQueryChange } onSearch={ onSearch }/>
     <ItemsPaginator currentPage = { currentPage } totalItems = { totalItems } onPageClick={ onPageClick } />

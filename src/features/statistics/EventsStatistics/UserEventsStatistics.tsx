@@ -7,12 +7,12 @@ import Spinner from "@/components/ui/Spinner/Spinner";
 import useUserEventsStatistics from "./hooks/useUserEventsStatistics";
 
 const UserEventsStatistics = () => {
-  const { t } = useTranslation(["myRoutes"]);
+  const { t } = useTranslation(["myEvents"]);
   const [ data, isLoading ] = useUserEventsStatistics();
 
   return <div>
-    <h1>{ t("statistics.statistics") }</h1>
-    <div className="card p-5 pb-0 mb-15 mx-5 sm:mx-auto">
+    <div className="card pb-0 mb-15 mx-5 sm:mx-auto p-10">
+      <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
       <div className="justify-self-start">
         <b>{ t("statistics.total events") }:</b> { data.total_events }
       </div>

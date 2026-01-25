@@ -1,10 +1,12 @@
 {
   "main": {
-    "my events": "Els meus events"
+    "my events": "Mis eventos"
   },
   "statistics": {
-    "statistics": "Estadístiques",
-    "total events": "Total d'events'",
-    "by scale": "Events per escala"
+    "statistics": "Estadísticas",
+    "total events": "Total de eventos'",
+    "by scale": "Eventos por escala",
+    "future events": "Eventos futuros",
+    "past events": "Eventos pasados"
   }
 }

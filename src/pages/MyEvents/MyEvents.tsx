@@ -17,7 +17,7 @@ const MyRoutes = () => {
   }, [dispatch]);
 
   return (<MainLayout><>
-    <h1 className="text-right mr-10">{ t("main.my events") }</h1>
+    <h1 className="text-right mr-10 my-10">{ t("main.my events") }</h1>
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
       <div>
         <TodayEvents />
