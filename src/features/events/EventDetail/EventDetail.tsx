@@ -19,7 +19,7 @@ const EventDetail = ({ eid }: EventDetailProps) => {
     { isLoading ? <Spinner /> : 
       !event ? <></> :
         <div className="text-left mx-auto">
-          <div className="max-w-[90%] lg:max-w-2/3 mx-auto card mt-20 p-15">
+          <div className="max-w-[90%] lg:max-w-2/3 mx-auto card sm:mt-20 sm:p-15">
             <h1 className="mb-10">{ event.name}</h1>
             <div className="flex">
               <p className="flex-6 pr-5">{ event.description }</p>

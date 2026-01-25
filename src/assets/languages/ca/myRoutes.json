@@ -7,6 +7,9 @@
     "want delete favorite": "Estàs segur que vols eliminar el favorit?",
     "want delete route": "Estàs segur que vols eliminar la teva ruta?"
   },
+  "search": {
+    "search routes": "Cerca de rutes"
+  },
   "statistics": {
     "statistics": "Estadístiques",
     "total routes": "Total de rutes",

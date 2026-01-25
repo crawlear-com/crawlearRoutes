@@ -24,7 +24,7 @@ function GpxRouteMap ({ gpx, onFileResolved, onRouteRecorded,
     }
   }, [error, t]);
 
-  return <div className={`${containerClassName} flex gap-5 flex-wrap`}>
+  return <div className={`${containerClassName} flex gap-5 flex-wrap flex-col sm:flex-row`}>
         { (onFileResolved || onRouteRecorded) && <div className="flex flex-col sm:flex-row w-full justify-center mt-5">
           { onFileResolved && <FileLoader onFileLoaded={onFileLoaded}></FileLoader> }
           { onRouteRecorded && <> <RecButton onStartStopRecord={ onStartStopRecord }

@@ -7,6 +7,9 @@
     "want delete favorite": "Do you want to delete the favorite?",
     "want delete route": "Do you want to delete the route?"
   },
+  "search": {
+    "search routes": "Search Routes"
+  },
   "statistics": {
     "statistics": "Statistics",
     "total routes": "Total routes",

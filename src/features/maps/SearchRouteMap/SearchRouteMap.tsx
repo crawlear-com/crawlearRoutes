@@ -12,8 +12,8 @@ const SearchRouteMap = () => {
   const [ resultRoutes, points, isLoading, query, page, totalRoutes, 
     onMapClick, onQueryChange, onSearch, onPageClick, routesCard] = useSearchRoute();
 
-  return (<div className="flex gap-5">
-    <div className="flex-1 self-start sm:max-w-[90%] lg:max-w-1/2 mx-auto mt-10">
+  return (<div className="flex gap-5 flex-col sm:flex-row">
+    <div className="flex-1 self-start sm:max-w-[90%] lg:max-w-1/2 mx-auto ml-10">
       <MapPointPicker onMapClick={ onMapClick } points={ points } className="w-full h-96 sm:h-150" />
             <label htmlFor="searchRouteInput" className="mt-56">
         { t('main.search route') }:
@@ -22,7 +22,7 @@ const SearchRouteMap = () => {
       </label>
     </div>
 
-    <div className="flex-1 card self-start sm:max-w-[90%] lg:max-w-1/2 mx-auto mt-10">
+    <div className="flex-1 card self-start sm:max-w-[90%] lg:max-w-1/2 mx-10 ">
         { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
         <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
         <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />

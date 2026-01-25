@@ -11,7 +11,7 @@ const UserEventsStatistics = () => {
   const [ data, isLoading ] = useUserEventsStatistics();
 
   return <div>
-    <div className="card pb-0 mb-15 mx-5 sm:mx-auto p-10">
+    <div className="card pb-0 mb-15 sm:mx-auto p-10">
       <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
       <div className="justify-self-start">
         <b>{ t("statistics.total events") }:</b> { data.total_events }

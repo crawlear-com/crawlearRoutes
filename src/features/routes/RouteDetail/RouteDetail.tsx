@@ -39,7 +39,7 @@ const RouteDetail = ({ rid }: RouteDetailProps) => {
           </div>
           <GpxRouteMap gpx={ route.gpx ? route.gpx : undefined } 
             containerClassName="max-w-[90%] lg:max-w-2/3 mx-auto"
-            mapClassName="mt-10 w-full lg:max-w-2/3 mx-auto flex-1" />
+            mapClassName="mt-10 w-full lg:max-w-2/3 mx-auto sm:flex-1" />
           { route.youtubeVideo ? 
             <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> :
             <></> }

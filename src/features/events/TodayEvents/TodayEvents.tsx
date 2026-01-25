@@ -39,7 +39,7 @@ const TodayEvents = () => {
   return <div className="self-start card flex-1 container text-right p-10">
     <h1>{ t("main.today events") }</h1>
     {
-      todayEvents.length === 0 ? <div className="m-5">No events for today</div> :
+      todayEvents.length === 0 ? <div className="my-5">{ t("creation.no events for today") }</div> :
       todayEvents.map((event) => {
         if (!event.rid) {
           extras = <span data-eid={ event.id } onClick={ onEditRouteClick } className="font-bold absolute top-3 right-3"> { t("creation.create route for event") } </span>;

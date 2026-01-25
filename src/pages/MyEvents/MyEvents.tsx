@@ -7,6 +7,9 @@ import EventsFromUser from "@/features/events/EventsFromUser/EventsFromUser";
 import TodayEvents from "@/features/events/TodayEvents/TodayEvents";
 import MainLayout from "@/layouts/MainLayout";
 import UserEventsStatistics from "@/features/statistics/EventsStatistics/UserEventsStatistics";
+import PageTitle from "@/components/ui/PageTitle/PageTitle";
+
+import "./styles/myRoutes.css";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myEvents"]);
@@ -17,7 +20,9 @@ const MyRoutes = () => {
   }, [dispatch]);
 
   return (<MainLayout><>
-    <h1 className="text-right mr-10 my-10">{ t("main.my events") }</h1>
+    <PageTitle background="myevents--backgroud p-10">
+      <h1 className="sm:flex-5/6 text-right text-secondary w-full sm:mr-5">{ t("main.my events") }</h1>
+    </PageTitle>
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
       <div>
         <TodayEvents />

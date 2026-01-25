@@ -9,7 +9,7 @@ const EventsFromUser = () => {
   const { t } = useTranslation(['eventsCreation']);
   const [ myEventsCard, setMethods, selectMethods ] = useEventsFromUser();
 
-  return <div className="card flex-1 self-start container text-right p-10">
+  return <div className="card flex-1 self-start container text-right sm:p-10">
       <ItemsList<RouteEvent> title={ t("main.my events") } card={ myEventsCard }
       hook={ useRouteEventsProvider } thunk={ getMyRouteEventsPaginated } 
       setMethods={ setMethods } selectMethods={ selectMethods }/>

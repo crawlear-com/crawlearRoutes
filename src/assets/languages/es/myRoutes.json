@@ -7,6 +7,9 @@
     "want delete favorite": "Estás seguro de eliminar el favorito?",
     "want delete route": "Estás seguro de eliminar tu ruta?"
   },
+  "search": {
+    "search routes": "Búsqueda de rutas"
+  },
   "statistics": {
     "statistics": "Estadísticas",
     "total routes": "Total de rutas",
