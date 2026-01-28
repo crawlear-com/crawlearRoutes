@@ -24,7 +24,7 @@ const MyRoutes = () => {
       <h1 className="sm:flex-5/6 text-right text-white w-full sm:mr-5">{ t("main.my events") }</h1>
     </PageTitle>
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
-      <div>
+      <div className="z-10">
         <TodayEvents />
         <UserEventsStatistics />
       </div>

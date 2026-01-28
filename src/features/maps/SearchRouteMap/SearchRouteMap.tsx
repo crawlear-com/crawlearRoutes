@@ -22,7 +22,7 @@ const SearchRouteMap = () => {
       </label>
     </div>
 
-    <div className="flex-1 card self-start sm:max-w-[90%] lg:max-w-1/2 mx-10 ">
+    <div className="flex-1 card self-start sm:max-w-[90%] lg:max-w-1/2 mx-10 z-10">
         { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
         <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
         <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />

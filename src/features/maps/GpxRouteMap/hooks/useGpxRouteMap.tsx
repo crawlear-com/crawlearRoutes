@@ -1,6 +1,11 @@
 import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
+import markerIcon from '../../assets/images/marker-icon.png';
+import iconStart from '../../assets/images/marker-icon-start.png';
+import iconEnd from '../../assets/images/marker-icon-end.png';
+import iconShadow from '../../assets/images/marker-shadow.png';
+
 import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
   setMapLocation, createMap, removeMarkers, getGeolocationPositionFromGeoPoint,
   gpxHasPoints, 
@@ -17,10 +22,10 @@ const NO_ERROR = 0;
 const gpxParserOptions = {
     async: true,
     marker_options: {
-      wptIconUrls: { '': '../assers/images/marker-icon.png' },
-      startIconUrl: '../assers/images/marker-icon-start.png',
-      endIconUrl: '../assers/images/marker-icon-end.png',
-      shadowUrl: '../assers/images/marker-shadow.png'
+      wptIconUrls: { '': markerIcon },
+      startIconUrl: iconStart,
+      endIconUrl: iconEnd,
+      shadowUrl: iconShadow
     }
 }
 
