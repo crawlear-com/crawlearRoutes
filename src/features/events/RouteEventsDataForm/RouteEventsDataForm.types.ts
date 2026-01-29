@@ -1,3 +1,5 @@
+import type { RouteEvent } from "@/types/RouteEvent.types";
+
 type EventsDataFormProps = {
   routeEvent?: RouteEvent,
   date: string

@@ -1,4 +1,4 @@
-import { createEventRoute, modifyEventRoute } from "@/database/eventsRpc";
+import { createEventRoute, modifyEventRoute } from "@/database/eventsCreationRpc";
 import { CREATE_ACTION } from "@/helpers/utils";
 import type { FormAction } from "@/types/Generic.types";
 
