@@ -1,8 +1,7 @@
 {
   "main": {
     "today events": "Today events",
-    "my events": "My events",
-    "no event specified": "No event specified"
+    "my events": "My events"
   },
   "creation": {
     "event creation": "Event creation",

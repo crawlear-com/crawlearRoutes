@@ -1,8 +1,7 @@
 {
   "main": {
     "today events": "Eventos de hoy",
-    "my events": "Mis eventos",
-    "no event specified": "No se ha especificado el evento"
+    "my events": "Mis eventos"
   },
   "creation": {
     "event creation": "Creación de event",

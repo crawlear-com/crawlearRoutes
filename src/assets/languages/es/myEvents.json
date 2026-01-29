@@ -1,6 +1,10 @@
 {
   "main": {
-    "my events": "Mis eventos"
+    "my events": "Mis eventos",
+    "need register": "Si quieres ver éste evento, necesitas ser un usuario registrado",
+    "no event specified": "No s'ha especificat l'event",
+    "login": "inicia sesión",
+    "register": "regístrate"
   },
   "statistics": {
     "statistics": "Estadísticas",
