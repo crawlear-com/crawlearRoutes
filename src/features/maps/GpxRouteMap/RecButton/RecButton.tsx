@@ -1,17 +1,9 @@
-import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import useRecButton from './hooks/useRecButton'
+import type { GpxRecorderProps } from './RecButton.types';
 
-interface GpxRecorderProps {
-    value: number
-    onStartStopRecord: React.MouseEventHandler<HTMLButtonElement>,
-    onPause: React.MouseEventHandler<HTMLButtonElement>,
-    recordState: boolean,
-    pauseState: boolean,
-    onPollingTimeChange: (value: number) => void
-}
-
-function RecButton({ value, recordState, pauseState, onStartStopRecord, onPause, onPollingTimeChange}: GpxRecorderProps) {
+const RecButton = ({ value, recordState, pauseState, onStartStopRecord, onPause,
+    onPollingTimeChange}: GpxRecorderProps) => {
     const { t } = useTranslation(['map']);
     const [ readOnlyStatus, onInputValueChange ] = useRecButton(recordState, onPollingTimeChange);
 
