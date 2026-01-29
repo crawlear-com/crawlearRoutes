@@ -21,7 +21,7 @@ const RouteEventCreation = () => {
   useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
 
   return (
-    <MainLayout contentClassName="sm:w-[90%] m-auto min-h-[80vh] mt-10"><>
+    <MainLayout contentClassName="w-[90%] m-auto min-h-[80vh] mt-10"><>
       <h1>{ eid ? t("creation.event update") : t("creation.event creation") }</h1>
       { isLoading ? <Spinner /> : 
         routeEvent ? <RouteEventsDataForm date={ eventDate } routeEvent={ routeEvent } /> :

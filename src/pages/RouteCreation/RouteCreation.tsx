@@ -31,7 +31,7 @@ const RouteCreation = () => {
   }, [rid, eid, dispatch]);
 
   return (
-    <MainLayout contentClassName="sm:w-[90%] m-auto min-h-[80vh] mt-10"><>
+    <MainLayout contentClassName="w-[90%] m-auto min-h-[80vh] mt-10"><>
       <h1 className="text-right mb-5">{ rid ? t("main.route update") : eid ? t("main.route creation for event") : t("main.route creation") }</h1>
       { isLoading ? <Spinner /> : <StepRouteCreation /> }</>
     </MainLayout>);

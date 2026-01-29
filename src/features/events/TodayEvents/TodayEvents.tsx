@@ -44,7 +44,7 @@ const TodayEvents = () => {
         if (!event.rid) {
           extras = <span data-eid={ event.id } onClick={ onEditRouteClick } className="font-bold absolute top-3 right-3"> { t("creation.create route for event") } </span>;
         }
-        return <RouteEventCard routeEvent={ event } extras={ extras } />;
+        return <RouteEventCard key={ event.id } routeEvent={ event } extras={ extras } />;
       })
   }</div>;
 }
