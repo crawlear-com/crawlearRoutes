@@ -27,6 +27,8 @@ const RouteCreation = () => {
       dispatch(setRouteId(rid));
       dispatch(setAction(UPDATE_ACTION))
       dispatch(loadRoute(rid));
+    } else {
+      dispatch(setAction(CREATE_ACTION))
     }
   }, [rid, eid, dispatch]);
 
