@@ -35,7 +35,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full sm:w-96 h-80 ml-1 mb-5 p-3" 
+        className="w-full h-80 ml-1 mb-5 p-3" 
         placeholder={`${t("creation.event name")}...`} value={ description } /><br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
@@ -56,7 +56,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       <div className="font-bold">
         { t("creation.routes") } : 
         { isLoading ? <Spinner /> :
-        <select className="border border-primary rounded-xl p-2" 
+        <select className="border border-primary rounded-xl p-2 w-full" 
           value = { rid ? rid : '' } onChange={ onRouteChange }>
           { routeOptions }
         </select> }
