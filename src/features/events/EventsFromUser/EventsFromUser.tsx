@@ -1,4 +1,3 @@
-import useRouteEventsProvider from "../hooks/useRouteEventsProvider";
 import { useTranslation } from "react-i18next";
 import { getMyRouteEventsPaginated } from "../store/slices/eventListsSlice";
 import useEventsFromUser from "./hooks/useEventsFromUser";
@@ -11,7 +10,7 @@ const EventsFromUser = () => {
 
   return <div className="card flex-1 self-start container text-right sm:p-10 z-10">
     <ItemsList<RouteEvent> title={ t("main.my events") } card={ myEventsCard }
-    hook={ useRouteEventsProvider } thunk={ getMyRouteEventsPaginated } 
+    getDataAsyncThunk={ getMyRouteEventsPaginated } 
     setMethods={ setMethods } selectMethods={ selectMethods }/>
   </div>
 }

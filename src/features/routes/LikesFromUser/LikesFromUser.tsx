@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import useRoutesProvider from "../hooks/useRoutesProvider";
 import { getMyFavourites } from "../store/slices/routeListsSlice";
 import useLikesFromUser from "./hooks/useLikesFromUser";
 import ItemsList from "@/components/ItemsList/ItemsList";
@@ -11,7 +10,7 @@ const LikesFromUser = () => {
 
   return <div className="card flex-1 container text-right sm:p-10 self-start z-10">
     <ItemsList<Route> title={ t("main.favourite routes") } card={ myRoutesCard }
-    hook={ useRoutesProvider } thunk={ getMyFavourites } setMethods={ setMethods }
+    getDataAsyncThunk={ getMyFavourites } setMethods={ setMethods }
     selectMethods={ selectMethods }/>
   </div>
 }

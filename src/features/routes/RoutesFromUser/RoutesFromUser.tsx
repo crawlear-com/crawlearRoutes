@@ -1,4 +1,3 @@
-import useRoutesProvider from "../hooks/useRoutesProvider";
 import { useTranslation } from "react-i18next";
 import { getMyRoutes } from "../store/slices/routeListsSlice";
 import useRoutesFromUser from "./hooks/useRoutesFromUser";
@@ -11,8 +10,7 @@ const RoutesFromUser = () => {
 
   return <div className="card flex-1 container text-right sm:p-10 self-start z-10">
     <ItemsList<Route> title={ t("main.my routes")} card={ myRoutesCard}
-      thunk={ getMyRoutes } setMethods={setMethods} selectMethods={selectMethods} 
-      hook={ useRoutesProvider } />
+      getDataAsyncThunk={ getMyRoutes } setMethods={setMethods} selectMethods={selectMethods} />
   </div>
 }
 
