@@ -21,7 +21,7 @@ const RouteDataForm = () => {
       </label>
       <input type="text" name="routeName" id="routeName" 
         onChange={ () => { setAndValidate(setRouteName, 'routeName', nameSchema) }}
-        className="ml-1 mb-5 p-3 w-full" placeholder="Route name..." value={ creationRoute.name } /> <br />
+        className="ml-1 mb-5 p-3 w-full rounded-xl" placeholder="Route name..." value={ creationRoute.name } /> <br />
       <FormFeedbackElement className="routeName__feedback" />
 
       <label htmlFor="routeDescription" className="align-top block font-bold">
@@ -29,14 +29,14 @@ const RouteDataForm = () => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setRouteDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full h-80 ml-1 mb-5 p-3" placeholder="Route description..." value={ creationRoute.description } /> <br />
+        className="w-full h-80 ml-1 mb-5 p-3 rounded-xl" placeholder="Route description..." value={ creationRoute.description } /> <br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
       <label htmlFor="isPublic" className="font-bold">
         { t("main.route is plublic")}:
       </label>
       <input type="checkbox" id="isPublic" onChange={ onIsPublicChangeHandler }
-        className="ml-1 p-3" checked={ creationRoute.isPublic } /> <br />
+        className="ml-1 p-3 rounded-xl" checked={ creationRoute.isPublic } /> <br />
 
       <label htmlFor="difficulty" className="font-bold">
         { t("main.route difficulty")}:
@@ -54,7 +54,7 @@ const RouteDataForm = () => {
       </label>
       <input type="text" name="youtubeVideo" id="youtubeVideo"
         onChange={ () => { setAndValidate(setRouteYoutubeVideo, 'youtubeVideo', youtubeSchema) }}
-        className="ml-1 mb-5 p-3 w-full" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo ? creationRoute.youtubeVideo : '' } /> <br />
+        className="ml-1 mb-5 p-3 w-full rounded-xl" placeholder="Youtube video url..." value={ creationRoute.youtubeVideo ? creationRoute.youtubeVideo : '' } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
       <button type="submit" className="button-primary w-auto m-auto p-3">
