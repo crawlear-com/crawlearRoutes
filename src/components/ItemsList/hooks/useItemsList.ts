@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '@/store/store';
 import type { AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
 import type { SelectMethods, SetMethods } from '@/components/ItemsList/ItemsList.types';
-import type { RouteEvent } from '@/types/RouteEvent.types';
 
-const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, AsyncThunkConfig>,
+const useItemsList = <T, > (
+  thunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>,
   setMethods: SetMethods,
-  selectMethods: SelectMethods<RouteEvent>): 
-  [ number, string, string, string, number, Array<RouteEvent>, boolean, (page: number) => void, (order: string) =>  void,
-    () =>  void, (query: string) =>  void, () =>  void ] => {
+  selectMethods: SelectMethods<T>): 
+    [ number, string, string, string, number, Array<T>, boolean, (page: number) => void, (order: string) =>  void,
+      () =>  void, (query: string) =>  void, () =>  void ] => {
   const dispatch = useDispatch<AppDispatch>();
   const routes = useSelector(selectMethods.selectItems);
   const isLoading = useSelector(selectMethods.selectIsLoading);
@@ -47,4 +47,4 @@ const useRouteEventsProvider = (thunk: AsyncThunk<Array<RouteEvent>, void, Async
     onOrderByClick, onOrderDirClick, onQueryChange, onSearch ];
 }
 
-export default useRouteEventsProvider;
+export default useItemsList;

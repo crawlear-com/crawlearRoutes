@@ -23,12 +23,7 @@ type ItemsListProps<T> = {
   card: (item: T) => React.ReactElement,
   setMethods: SetMethods,
   selectMethods: SelectMethods<T>,
-  thunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>,
-  hook: (thunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>,
-  setMethods: SetMethods,
-  selectMethods: SelectMethods<T>) => [ number, string, string, string, number,
-    Array<T>, boolean, (page: number) => void, (order: string) =>  void,
-    () =>  void, (query: string) =>  void, () =>  void ]
+  getDataAsyncThunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>
 }
 
 export type { ItemsListProps, SetMethods, SelectMethods };
