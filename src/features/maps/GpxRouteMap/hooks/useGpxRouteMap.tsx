@@ -16,6 +16,7 @@ import type { GeoPoint } from '@/types/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
 import { setGpx } from '@/features/routeCreation/store/slices/routeSlice'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next';
 
 const NO_ERROR = 0;
 
@@ -33,7 +34,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
 gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void):
   [ (fileContents: string) => void, (event: React.MouseEvent<HTMLButtonElement>) => void, 
     (event: React.MouseEvent<HTMLButtonElement>) => void, (value: number) => void,
-    GpxInfo, boolean, boolean, number, number ] => {
+    GpxInfo, boolean, boolean, number ] => {
   const initialGpxInfo = {
     distance: 0,
     time: 0,
@@ -42,7 +43,8 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     elevationMin: 0,
     elevationMax: 0
   }
-  const map = React.useRef<L.Map | null>(null)
+  const { t } = useTranslation(['map']);
+  const map = React.useRef<L.Map | null>(null);
   const [ recordState, setRecordState ] = React.useState(false);
   const [ pauseState, setPauseState ] = React.useState(false);
   const [ error, setError ] = React.useState<number>(0);
@@ -160,8 +162,14 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
     }
   }, [gpxRecorded, onFileLoaded]);
 
+  React.useEffect(() => {
+    if (error!==0) {
+      toast.error(t(`errors.error_${error}`));
+    }
+  }, [error, t]);
+
   return [ onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, 
-    gpxInfo, recordState, pauseState, error, pollingTime ];
+    gpxInfo, recordState, pauseState, pollingTime ];
 }
 
 export default useGpxRouteMap

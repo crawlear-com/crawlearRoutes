@@ -1,28 +1,13 @@
-import * as React from "react";
 import StepIndicator from "./StepIndicator";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 
 import './styles/stepProcess.css';
 import { NEXT_PAGE_ARROW, PREVIOUS_PAGE_ARROW, type StepProcessProps } from "./StepProcess.types";
+import useStepProcess from "./hooks/useStepProcess";
 
 const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: StepProcessProps) => {
   const { t } = useTranslation(["routeCreation"]);
-  const [ step, setStep ] = React.useState(0);
-  const isCurrentStepFinished = useSelector(stepsSelectors[step]);
-
-  const onNextStep = () => {
-    if (step + 1 < steps.length) {
-      setStep((prev) => prev + 1);
-    }
-  }
-
-  const onPreviousStep = () => {
-    if (step - 1 >= 0) {
-      setStep((prev) => prev - 1);
-    }
-  }
-
+  const [ step, isCurrentStepFinished, onNextStep, onPreviousStep] = useStepProcess(steps, stepsSelectors);
   return <div className="text-center card p-0 sm:p-5 m-auto">
     <>
       <h2 className="font-bold text-2xl mt-3 mb-5">{ `${t("main.step")} ${step + 1}: ${t(stepTitles[step])}` }</h2>

@@ -11,7 +11,6 @@ const useEventDetail = (eid: string): [ RouteEvent | undefined, boolean ] => {
 
   useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
   
-
   return [ routeEvent, isLoading ]
 }
 
