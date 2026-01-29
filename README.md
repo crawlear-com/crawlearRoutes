@@ -2,32 +2,33 @@
 
 ## Introduction
 
-### Features
- - sign in / sign up
- - light / dark theme
+![alt routes screenshot](/etc/screenshot1.png)
+![alt events screenshot](/etc/screenshot2.png)
+![alt search routes screenshot](/etc/screenshot3.png)
+
+### Main features
+ - sign in / sign up using username and password
+ - light / dark theme selector
  - responsive design
- - multilanguage support with react-i18next and lazy load of language data
+ - multilanguage support (en, es, cat) with [react-i18next](https://react.i18next.com/) and lazy load of language data 
  - deploy into ghpages using routeHash and github environment variables for secret keys
  - deploy https://flatline.hopto.org/crawlearRoutes
- - toast notifications and errors (https://react-hot-toast.com/)
- - leaflet and leaflet-gpx maps
- - full calendar integration
- - redux (user session, theme, routes lists, route creation, route search)
- - private routes using React router v7
- - manual code splitting
- - zob form validations
+ - toast notifications and errors [react-hot-toast](https://react-hot-toast.com/)
+ - [leafletjs](http://leafletjs.com/) and [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx) maps 
+ - [full calendar](https://fullcalendar.io/) integration
+ - [Redux toolkit](http://redux-toolkit.js.org/) for unified state management (user session, theme, routes lists, route creation, route search)
+ - private routes using [React router v7](https://reactrouter.com/)
+ - manual code splitting to avoid big bundle files
+ - [zod](https://zod.dev/) form validations
 
 ### To-do
+- more clean architecture oriented to domain / features or use cases / infrastructure
 - toast async
 - input query validation with zod (or not?), but validation
 - zod texts into translation
-- reset page when filtering in routeslist
-- delete my routes confirm
+- confirms?
 - do i keep useWakeLock ??
-- maintain FullCalendar events in Redux?
-- UX / UI
 - Accesibilidad
-- All common code in layouts
 
 ## Install and run
 
@@ -69,12 +70,13 @@ $ npm run lint
 
 ## Project structure
 
- /src/components
- /src/features: events / maps / routeCreation / routes / statistics / users
- /src/pages
- /src/database
+ /src/components: generic components
+ /src/components/ui: generic UI components
+ /src/features: main app use cases
+ /src/pages: app router pages
+ /src/database: supabase Rpc's
  
- Components self contained:
+ Components are self contained, including (when needed):
   - helpers
   - hooks
   - test
@@ -87,21 +89,22 @@ $ npm run lint
 
 ## Components diagram: 
 
-## Considerations
-
 ## Design decisions
 
-Design patters: DRY, custom hooks
+Design patters: DRY, kiss, custom hooks, singleton, observer pattern
 
 1) **ONLY keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
 
- - Routes list, favourites list and events list all using filter and order components
-
-[put here a ItemsList component hierarchy] 
+ - logged user data: to manage the private routes and get the user uid when needed
+ - current theme: to be able to change styles on the fly
+ - list data  and parameters (routes and events) to share state in filters and order components
 
 2) **Generic lists of items**: ItemsList + ItemsCardList
-- Definition:
-  - **ABSTRACTION** of lists of items with search by query, order (by attribute and direction), pagination.
+
+![alt example ItemList screenshot](/etc/screenshot4.png)
+![alt ItemList diagram screenshot](/etc/itemListDiagram.png)
+
+- Definition: **ABSTRACTION** of lists of items with search by query, order (by attribute and direction), pagination.
 
 [put here UI of lists]
 
@@ -110,7 +113,6 @@ Design patters: DRY, custom hooks
   - **avoid prop drilling** (Pagination, filter by query and order by/direction): using Redux context
   - **keep abstraction**: using Typescript generics \<T>
   - to be used with **any kind of cards**: using render props in ItemsCardList
-
 
 ## Testing
 
