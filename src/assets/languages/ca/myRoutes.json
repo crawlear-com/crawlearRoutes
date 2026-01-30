@@ -5,7 +5,10 @@
     "create route": "Crear ruta",
     "no routes": "No hi ha rutes",
     "want delete favorite": "Estàs segur que vols eliminar el favorit?",
-    "want delete route": "Estàs segur que vols eliminar la teva ruta?"
+    "want delete route": "Estàs segur que vols eliminar la teva ruta?",
+    "route deleted": "Ruta eliminada",
+    "like removed": "Favorit eliminat",
+    "like created": "Favorit afegit"
   },
   "search": {
     "search routes": "Cerca de rutes"

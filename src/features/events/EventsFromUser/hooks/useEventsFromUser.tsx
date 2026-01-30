@@ -45,7 +45,7 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
 
       promise.then(() => {
         dispatch(deleteMyEvent(id));
-        toast.success("Route removed");
+        toast.success(t("main.route deleted"));
       }).catch((e: unknown) => {
         toast.error((e as Error).message);
       });
