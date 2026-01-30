@@ -1,22 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import type { Route } from "@/types/Route.types";
-import type { DatesSetArg, EventClickArg, EventContentArg } from "@fullcalendar/core/index.js";
+import type { DatesSetArg, EventClickArg, EventContentArg, EventDropArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
 import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
-import { getCalendarDataFrom, getDate15DaysAgo, getDate15DaysFrom } from "../helpers/utils";
+import { getCalendarDataFrom } from "../helpers/utils";
 import type { RouteEvent } from "@/types/RouteEvent.types";
-import { getEventRouteEventsByMonth, getEventRoutesByMonth } from "@/database/eventsRpc";
+import { getEventRouteEventsByMonth, getEventRoutesByMonth, setEventStartDate } from "@/database/eventsRpc";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import toast from "react-hot-toast";
 
 const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
-    (date: Date) => void, (eventContent: EventContentArg) => void ] => {
+    (date: Date) => void, (dropInfo: EventDropArg) => void, (eventContent: EventContentArg) => void ] => {
   const navigate = useNavigate();
-  const [ currentDate, setCurrentDate ] = React.useState<string>(new Date().toISOString());
-  const [ startDate, setStartDate ] = React.useState<string>(getDate15DaysAgo());
-  const [ endDate, setEndDate ] = React.useState<string>(getDate15DaysFrom());
+  const [ currentDate, setCurrentDate ] = React.useState<string | null>(null);
+  const [ startDate, setStartDate ] = React.useState<string | null>(null);
+  const [ endDate, setEndDate ] = React.useState<string | null>(null);
   const [ routes, setRoutes ] = React.useState<Array<Route>>([]);
   const [ routeEvents, setRouteEvents ] = React.useState<Array<RouteEvent>>([]);
   const [ eventRoutes, setEventRoutes ] = React.useState<Array<CalendarEventRoutes>>([]);
@@ -27,7 +27,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
   React.useEffect(() => {
     const getRoutes = async () => {
       setIsLoading(true);
-      const response = await getEventRoutesByMonth(uid!, startDate, endDate);
+      const response = await getEventRoutesByMonth(uid!, startDate!, endDate!);
 
       if (!response.error) {
         setIsLoading(false);
@@ -40,7 +40,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
 
     const getEventRoutes = async () => {
       setIsLoading(true);
-      const response = await getEventRouteEventsByMonth(uid!, startDate, endDate);
+      const response = await getEventRouteEventsByMonth(uid!, startDate!, endDate!);
 
       if (!response.error) {
         setIsLoading(false);
@@ -51,17 +51,19 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
       }
     }
 
-    getRoutes().then((routes) => {
-      setRoutes(routes);
-    }).catch((e: unknown) => {
-      toast.error((e as Error).message);
-    });
+    if (uid && startDate && endDate) {
+      getRoutes().then((routes) => {
+        setRoutes(routes);
+      }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
 
-    getEventRoutes().then((routeEvents) => {
-      setRouteEvents(routeEvents);
-    }).catch((e: unknown) => {
-      toast.error((e as Error).message);
-    });
+      getEventRoutes().then((routeEvents) => {
+        setRouteEvents(routeEvents);
+      }).catch((e: unknown) => {
+        toast.error((e as Error).message);
+      });
+    }
 
 
   }, [startDate, endDate, uid]);
@@ -94,6 +96,30 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     setCurrentDate(param.view.calendar.getDate().toISOString());
   }
 
+  const onEventDrop = (dropInfo: EventDropArg) => {
+    if (dropInfo) {
+      if (dropInfo.event.extendedProps.type !== TYPE_EVENT) {
+        dropInfo.revert();
+        toast.error("only Route events can be modified");
+      } else {
+        if (dropInfo.event.start) {
+          modifyEventStartDate(dropInfo.event.id, dropInfo.event.start.toISOString());
+          toast.success("Event modified");
+        }
+      }
+    }
+  } 
+
+  const modifyEventStartDate = async (eid: string, startDate: string) => {
+    const response = await setEventStartDate(eid!, startDate);
+
+    if (!response.error) {
+      return response;
+    } else {
+      throw new Error(`Error modifying event date: ${response.error.message}`);
+    }
+  }
+
   const renderEventContent = (eventContent: EventContentArg) => {
     const startTime = eventContent.event.start;
     return(<div className={`rounded flex flex-col ${eventContent.event.extendedProps.type === TYPE_ROUTE ? 'bg-secondary' : 'bg-primary'} p-1  `}>
@@ -107,7 +133,8 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
       </div>)
   }
 
-  return [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, onDateRangeChange, onDayClick, renderEventContent ];
+  return [ isLoading, currentDate || new Date().toISOString(), eventRoutes, eventRouteEvents,
+    onEventClick, onDateRangeChange, onDayClick, onEventDrop, renderEventContent ];
 }
 
 export default useEventsCalendar;

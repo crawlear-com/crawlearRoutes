@@ -7,13 +7,15 @@ const TodayEvents = () => {
   const [ todayEvents, onEditRouteClick ] = useTodayEvents();
   let extras = <></>;
 
-  return <div className="self-start card flex-1 container text-right p-10">
+  return <div className="container self-start card flex-1 text-right p-10">
     <h1 className="mb-4">{ t("main.today events") }</h1>
     {
       todayEvents.length === 0 ? <div className="my-5">{ t("creation.no events for today") }</div> :
       todayEvents.map((event) => {
-        if (!event.rid) {
+        if (!event.rid && !event.routeName) {
           extras = <span data-eid={ event.id } onClick={ onEditRouteClick } className="font-bold absolute top-3 right-3"> { t("creation.create route for event") } </span>;
+        } else {
+          extras = <></>;
         }
         return <RouteEventCard key={ event.id } routeEvent={ event } extras={ extras } />;
       })

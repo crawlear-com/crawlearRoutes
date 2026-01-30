@@ -6,7 +6,8 @@ type RouteEvent = {
   date: string,
   scale: number,
   rid: string | null,
-  owner: string
+  owner: string,
+  routeName?: string
 }
 
 export type { RouteEvent };

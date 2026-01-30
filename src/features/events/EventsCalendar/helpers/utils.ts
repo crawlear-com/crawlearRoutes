@@ -28,7 +28,8 @@ const getCalendarDataFrom = (array: Array<Route | RouteEvent>, type: string) => 
     const isRoute = 'created_at' in item;
     const startDate = isRoute ? (item as Route).created_at : (item as RouteEvent).date;
     
-    return { id: item.id,
+    return { 
+      id: item.id,
       title: item.name,
       start: new Date(startDate!),
       end: isRoute ? datePlusHours((item as Route).created_at!, (item as Route).durationTime! / 1000 / 60 / 60) : datePlusHours((item as RouteEvent).date, 4),

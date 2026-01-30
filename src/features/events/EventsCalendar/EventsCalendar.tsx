@@ -1,16 +1,20 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from '@fullcalendar/interaction';
 import useEventsCalendar from "./hooks/useEventsCalendar";
 import Spinner from "@/components/ui/Spinner/Spinner";
 
 import './styles/eventsCalendar.css';
 
 const EventsCalendar = () => {
-  const [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, onDateRangeChange, onDayClick,
-    renderEventContent ] = useEventsCalendar();
+  const [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, 
+    onDateRangeChange, onDayClick, onEventDrop, renderEventContent ] = useEventsCalendar();
 
-  return (<div className="card flex-1 p-10 z-10">
-      { isLoading ? <Spinner /> : <FullCalendar plugins={[ dayGridPlugin ]}
+  return (<div className="container card flex-1 p-10 z-10">
+      { isLoading ? <Spinner /> : <FullCalendar plugins={[ interactionPlugin, dayGridPlugin ]} 
+      selectable={ true }
+      editable={ true }
+      eventDrop={ onEventDrop }
       initialDate={ currentDate } eventClick={ onEventClick } navLinkDayClick={ onDayClick }
       eventContent={ renderEventContent } navLinks={ true } height="auto"
       initialView="dayGridMonth" events={ [...eventRoutes, ...eventRouteEvents] }

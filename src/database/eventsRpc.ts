@@ -2,7 +2,7 @@ import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
 const getEventRouteEventsPaginated = async (uid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
-  return await supabaseClient.rpc('events_by_owner_paginated', { 
+  return await supabaseClient.rpc('eventsByOwnerPaginated', { 
     p_uid: uid,
     p_page: page + 1,
     p_per_page: ITEMS_PAGE,
@@ -92,6 +92,19 @@ const getTodayEvents = async (uid: string) => {
   }
 }
 
+const setEventStartDate = async (eid: string, startDate: string) => {
+  const { data, error } = await supabaseClient.rpc('updateEventDate', {
+    p_eid: eid,
+    p_date: startDate
+  });
+
+  if(!error) {
+    return data;
+  } else {
+    throw new Error('Error geting today events');
+  }
+}
+
 export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
   getEventRouteEventsPaginated, deleteEventRoute,
-  getTodayEvents, assignRouteToEvent };
+  getTodayEvents, assignRouteToEvent, setEventStartDate };
