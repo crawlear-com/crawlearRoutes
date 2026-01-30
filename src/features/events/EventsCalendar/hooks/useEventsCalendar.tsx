@@ -9,11 +9,13 @@ import type { RouteEvent } from "@/types/RouteEvent.types";
 import { getEventRouteEventsByMonth, getEventRoutesByMonth, setEventStartDate } from "@/database/eventsRpc";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
     (date: Date) => void, (dropInfo: EventDropArg) => void, (eventContent: EventContentArg) => void ] => {
   const navigate = useNavigate();
+  const { t } = useTranslation(["myEvents"]);
   const [ currentDate, setCurrentDate ] = React.useState<string | null>(null);
   const [ startDate, setStartDate ] = React.useState<string | null>(null);
   const [ endDate, setEndDate ] = React.useState<string | null>(null);
@@ -34,7 +36,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
         return response;
       } else {
         setIsLoading(false);
-        throw new Error(`Error loading events (routes): ${response.error.message}`);
+        throw new Error(`${t("errors.error loading routes")}: ${response.error.message}`);
       }
     }
 
@@ -47,7 +49,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
         return response;
       } else {
         setIsLoading(false);
-        throw new Error(`Error loading events (routes): ${response.error.message}`);
+        throw new Error(`${t("errors.error loading events")}: ${response.error.message}`);
       }
     }
 
@@ -66,7 +68,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     }
 
 
-  }, [startDate, endDate, uid]);
+  }, [startDate, endDate, uid, t]);
 
   React.useEffect(() => {
     if (routes.length > 0) {
@@ -100,11 +102,11 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     if (dropInfo) {
       if (dropInfo.event.extendedProps.type !== TYPE_EVENT) {
         dropInfo.revert();
-        toast.error("only Route events can be modified");
+        toast.error(t("main.only route events drop"));
       } else {
         if (dropInfo.event.start) {
           modifyEventStartDate(dropInfo.event.id, dropInfo.event.start.toISOString());
-          toast.success("Event modified");
+          toast.success(t("main.event modified"));
         }
       }
     }
@@ -116,7 +118,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     if (!response.error) {
       return response;
     } else {
-      throw new Error(`Error modifying event date: ${response.error.message}`);
+      throw new Error(`${"error.error modify date"}: ${response.error.message}`);
     }
   }
 

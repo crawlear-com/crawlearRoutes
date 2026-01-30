@@ -1,7 +1,9 @@
 {
   "errors": {
     "error_-1": "La geolocalitzación no esta disponible",
-    "error_-2": "La geolocalitzación no se ha podido resolver"
+    "error_-2": "La geolocalitzación no se ha podido resolver",
+    "cannot record": "No se puede registrar la ruta GPX",
+    "cannot load": "No se puede leer la ruta GPX"
   },
   "main": {
     "search route": "Buscar ruta",

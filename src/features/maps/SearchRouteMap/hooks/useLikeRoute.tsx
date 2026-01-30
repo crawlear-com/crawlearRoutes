@@ -1,8 +1,11 @@
 import toast from "react-hot-toast";
 import { deleteLike, likeRoute } from "@/database/routeRpc";
+import { useTranslation } from "react-i18next";
 
 const useLikeRoute = (): [ 
   (uid: string, rid: string, liked: boolean) => React.JSX.Element ] => {
+    const { t } = useTranslation(["MyRoutes"]);
+
     const onLikeClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const isLiked = element.dataset.isliked === "true";
@@ -16,7 +19,7 @@ const useLikeRoute = (): [
         deleteLike(uid, rid).then(()=> {
           element.innerText = "♡";
           element.dataset.isliked = "false";
-          toast.success("Like removed");
+          toast.success(t("main.like removed"));
         }).catch((e: unknown) => {
           toast.error((e as Error).message);
         });
@@ -24,7 +27,7 @@ const useLikeRoute = (): [
         likeRoute(uid, rid).then(() => {
           element.innerText = "♥️";
           element.dataset.isliked = "true";
-          toast.success("Like created");
+          toast.success(t("main.like created"));
         }).catch((e: unknown) => {
           toast.error((e as Error).message);
         });

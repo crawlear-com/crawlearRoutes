@@ -73,7 +73,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
           //releaseWakeLock();
           onRouteRecorded(gpxRecorded, routePoint, gpxInfo.distance, gpxInfo.time);
         } catch(e: unknown) {
-          toast.error(`Cannot record GPX file: ${(e as Error).message}`);
+          toast.error(`${t("errors.cannot record")}: ${(e as Error).message}`);
         }
     } else if (!recordState) {
       //requestWakeLock();
@@ -122,7 +122,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
 
           new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);
         } catch(e: unknown) {
-          toast.error(`Cannot load GPX file: ${(e as Error).message}`);
+          toast.error(`${"errors.cannot load"}: ${(e as Error).message}`);
         }
       }
     } catch(e: unknown) {

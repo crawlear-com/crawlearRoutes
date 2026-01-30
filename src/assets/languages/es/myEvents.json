@@ -4,7 +4,14 @@
     "need register": "Si quieres ver éste evento, necesitas ser un usuario registrado",
     "no event specified": "No s'ha especificat l'event",
     "login": "inicia sesión",
-    "register": "regístrate"
+    "register": "regístrate",
+    "event modified": "El evento se ha modificado",
+    "only route events drop": "Tan sólo los eventos de ruta pueden ser cambiados de fecha"
+  },
+  "errors": {
+    "error loading events": "Error cargando los eventos de ruta",
+    "error loading routes": "Error cargando las rutas",
+    "error modify date": "Error modificando de fecha del evento"
   },
   "statistics": {
     "statistics": "Estadísticas",
