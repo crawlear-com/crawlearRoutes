@@ -25,9 +25,10 @@ const EventDetail = ({ eid }: EventDetailProps) => {
               <p className="flex-6 pr-5">{ event.description }</p>
             </div>
             <hr />
-            <div className="flex">
+            <span className="flex">
               <ScaleBadge className="flex-2 sm:flex-8" scale={ event.scale } />
-            </div>
+              <span>{ new Date(event.date).toLocaleDateString() }</span>
+            </span>
           </div>
           { event.rid ? 
             <>
