@@ -15,6 +15,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
   const [ name, description, rid, isLoading, scale, hour, routeOptions, point,
     onSubmitEventsForm, setName, setDescription, onHourChange,
     onRouteChange, onScaleChange, onMapClick ] = useRouteEventsDataForm(date, routeEvent);
+  const mapPoint = point ? [createMapPointFromGeoPoint(point, t("main.location"))] : undefined;
 
   return <div>
     <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitEventsForm } noValidate>
@@ -37,8 +38,8 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       <FormFeedbackElement className="routeDescription__feedback" />
 
       <div className="font-bold">{t("main.location")}:</div>
-      { isLoading ? <Spinner /> : <MapPointPicker onMapClick={ onMapClick } 
-        points={ point ? [createMapPointFromGeoPoint(point, t("main.location"))] : undefined } className="h-100" /> }
+      { isLoading ? <Spinner /> : <MapPointPicker onMapClick={ onMapClick } points={ mapPoint }
+          className="h-100" /> }
 
       <label htmlFor="routeDate" className="align-top font-bold mr-2"> { t("creation.event date") }: </label>
       <span id="routeDate">{ new Date(date).toLocaleDateString() }</span><br />

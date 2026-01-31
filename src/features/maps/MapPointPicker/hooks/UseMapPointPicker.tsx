@@ -29,12 +29,16 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void,
         }
       }
       
-      map.current = getNewMap('mappicker', mapClickHandler);
+      if (!map.current) {
+        map.current = getNewMap('mappicker', mapClickHandler);
+      }
 
       return () => {
         if (map.current) {
-          map.current.off();
-          map.current.remove();
+          //map.current.off();
+          //map.current.remove();
+          //map.current = null;
+          removePreviousMarkersFromMap(markersList.current, layerControl.current, true);
           markersList.current = getCleanMarkersList([]);
         }
       }

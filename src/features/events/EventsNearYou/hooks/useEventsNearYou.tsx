@@ -4,8 +4,10 @@ import type { RouteEvent } from "@/types/RouteEvent.types";
 import L from "leaflet";
 import React from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
+  const { t } = useTranslation("map");
   const [ location, setLocation ] = React.useState<GeolocationPosition | null>(null);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ routeEvents, setRouteEvents ] = React.useState<Array<RouteEvent>>([]);
@@ -18,9 +20,9 @@ const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
       setIsLoading(false);
     }, () => {
       setIsLoading(false);
-      throw new Error('cannot geolocate your position');
+      toast.error(t("errors.error_-1"));
     });
-  }, []);
+  }, [t]);
 
   React.useEffect(() => {
     const searchLocalEvents = async () => {

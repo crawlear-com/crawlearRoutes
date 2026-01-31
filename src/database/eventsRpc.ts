@@ -77,10 +77,9 @@ const assignRouteToEvent = async (eid: string, rid: string, owner: string) => {
     }
 }
 
-const deleteEventRoute = async (eid: string, uid: string) => {
-    const { data, error } = await supabaseClient.rpc('deleteEvent', {
-      p_eid: eid,
-      p_uid: uid
+const deleteEventRoute = async (eid: string) => {
+    const { data, error } = await supabaseClient.rpc('deleteEventById', {
+      p_id: eid
     });
 
     if(!error) {
