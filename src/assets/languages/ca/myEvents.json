@@ -5,6 +5,7 @@
     "no event specified": "No s'ha especificat l'event",
     "login": "inicía sessió",
     "register": "registra't",
+    "events near you": "Events a prop teu",
     "event modified": "El event s'ha modificat",
     "only route events drop": "Només els events de routa poden ser canviats de data"
   },

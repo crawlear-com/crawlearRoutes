@@ -10,7 +10,7 @@ const EventsCalendar = () => {
   const [ isLoading, currentDate, eventRoutes, eventRouteEvents, onEventClick, 
     onDateRangeChange, onDayClick, onEventDrop, renderEventContent ] = useEventsCalendar();
 
-  return (<div className="container card flex-1 p-10 z-10">
+  return (<div className="container card flex-1 p-10 z-10 self-start">
       { isLoading ? <Spinner /> : <FullCalendar plugins={[ interactionPlugin, dayGridPlugin ]} 
       selectable={ true }
       editable={ true }

@@ -30,7 +30,7 @@ const RouteCard = ({ route, extras }: RouteCardProps) => {
     <SimpleMap containerClassName="w-full justify-self-end row-start-1 row-end-2 col-start-1 col-end-4 z-10 mt-2" 
       className="-z-50" width="w-full" height="h-20"
       zoomScale={ 0.01 }
-      point={ route.location || { lat: 0, lon: 0} } id = {`${uuidv4()}` } />
+      point={ route.location || { lat: 0, lon: 0} } id={`${uuidv4()}` } />
     { extras }
   </div>;
 }

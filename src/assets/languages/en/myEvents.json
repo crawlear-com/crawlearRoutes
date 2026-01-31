@@ -5,6 +5,7 @@
     "no event specified": "No s'ha especificat l'event",
     "login": "login",
     "register": "register",
+    "events near you": "Events near you",
     "event modified": "The event has been modified",
     "only route events drop": "Only route events can be moved"
   },
