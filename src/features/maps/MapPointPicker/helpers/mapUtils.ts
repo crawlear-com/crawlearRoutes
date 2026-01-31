@@ -6,7 +6,7 @@ import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "@/helpers/
 import scaleBadgeImage from "@/components/ui/Badge/assets/images/scaleCar.png";
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
-const LATLON_MODIFIER = 0.05;
+const LATLON_MODIFIER = 0.005;
 const initialMarkersList = {
   selectors: [],
   marker11: [],
@@ -81,11 +81,12 @@ const addRectangleAndGetBounds = (map: L.Map, point: L.LatLng, mapBounds: L.LatL
 };
 
 const getNewMap = (mapId: string, mapClickEventHandler: (e: L.LeafletMouseEvent) => void) => {
-  const newMap = L.map(mapId).fitBounds(ARROUND_BARCELONA)
+  const newMap = L.map(mapId).fitBounds(ARROUND_BARCELONA);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
   }).addTo(newMap);
+
   newMap.on('click', (e: L.LeafletMouseEvent) => {
     mapClickEventHandler(e);
   });
@@ -118,6 +119,9 @@ const addMarkersListMapPoint = (markersList: MarkerList, mapPoint: MapPoint, ico
   } else if (scale === SCALE124) {
     markersList.marker124.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
       { icon: icon }).bindPopup(popup).openPopup());
+  } else {
+    markersList.selectors.push(L.marker([mapPoint.point.lat, mapPoint.point.lon],
+      { icon: icon }).bindPopup(popup).openPopup());
   }
 }
 
@@ -126,11 +130,23 @@ const buildAndAddLegendToMap = (map: L.Map, markersList: MarkerList) => {
   const layer2 = L.layerGroup(markersList.marker110);
   const layer3 = L.layerGroup(markersList.marker118);
   const layer4 = L.layerGroup(markersList.marker124);
+  const selectors = L.layerGroup(markersList.selectors);
 
-  map.addLayer(layer1);
-  map.addLayer(layer2);
-  map.addLayer(layer3);
-  map.addLayer(layer4);
+  if (markersList.marker11.length) {
+    map.addLayer(layer1);
+  } 
+  if (markersList.marker110.length) {
+    map.addLayer(layer2);
+  }
+  if (markersList.marker118.length) {
+    map.addLayer(layer3);
+  }
+  if (markersList.marker124.length) {
+    map.addLayer(layer4);
+  }
+  if (markersList.selectors.length) {
+    map.addLayer(selectors);
+  }
 
   const overlay = { 
     "4x4": layer1,
@@ -138,6 +154,7 @@ const buildAndAddLegendToMap = (map: L.Map, markersList: MarkerList) => {
     "1/18": layer3,
     "1/24": layer4
   }
+
   return L.control.layers({}, overlay).addTo(map);
 }
 

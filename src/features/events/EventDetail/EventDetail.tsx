@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import RouteDetail from "@/features/routes/RouteDetail/RouteDetail";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
+import SimpleMap from "@/features/maps/SimpleMap/SimpleMap";
 
 type EventDetailProps = {
   eid: string
@@ -25,10 +26,15 @@ const EventDetail = ({ eid }: EventDetailProps) => {
               <p className="flex-6 pr-5">{ event.description }</p>
             </div>
             <hr />
-            <span className="flex">
+            <span className="flex mb-4">
               <ScaleBadge className="flex-2 sm:flex-8" scale={ event.scale } />
               <span>{ new Date(event.date).toLocaleDateString() }</span>
             </span>
+            { event.location ? <>
+              { t("main.location")}:
+              <SimpleMap id="simpleMap" point={ event.location } containerClassName="w-full z-10 mt-2 h-100" 
+                zoomScale={ 0.005 } width="w-full" height="h-100" />
+              </> : <></> }
           </div>
           { event.rid ? 
             <>

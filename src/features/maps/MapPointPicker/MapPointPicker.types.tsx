@@ -1,5 +1,8 @@
 import type { MapPoint } from "../SearchRouteMap/SearchRouteMap.types"
 
+const POINT = "point";
+const AREA = "area";
+
 type MapPointPickerProps = {
     onMapClick?: (searchBounds: L.LatLngBounds) => void,
     points?: Array<MapPoint>,
@@ -14,4 +17,5 @@ type MarkerList = {
     marker124: Array<L.Layer>,
 }
 
-export type { MapPointPickerProps, MarkerList };
+export type { MapPointPickerProps, MarkerList}
+export { POINT, AREA };

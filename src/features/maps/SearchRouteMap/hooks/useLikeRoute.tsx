@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 const useLikeRoute = (): [ 
   (uid: string, rid: string, liked: boolean) => React.JSX.Element ] => {
-    const { t } = useTranslation(["MyRoutes"]);
+    const { t } = useTranslation(["myRoutes"]);
 
     const onLikeClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import type { RouteEventCardProps } from "./RouteEventCard.types";
 import ScaleBadge from "@/components/ui/Badge/ScaleBadge/ScaleBadge";
 import { useTranslation } from "react-i18next";
+import SimpleMap from "@/features/maps/SimpleMap/SimpleMap";
 
 const RouteEventCard = ({ routeEvent, extras }: RouteEventCardProps) => {
   const navigate = useNavigate();
@@ -15,6 +16,10 @@ const RouteEventCard = ({ routeEvent, extras }: RouteEventCardProps) => {
     <div className="row-start-3 row-end-4 col-start-1 col-end-2 text-xs sm:text-base max-h-5">
       <ScaleBadge scale={ routeEvent.scale } />
     </div>
+            { routeEvent.location ? <>
+              <SimpleMap id="simpleMap" point={ routeEvent.location } containerClassName="w-full z-10 mt-2 h-100" 
+                zoomScale={ 0.005 } width="w-full" height="h-100" />
+              </> : <></> }
     { extras }
   </div>
 }

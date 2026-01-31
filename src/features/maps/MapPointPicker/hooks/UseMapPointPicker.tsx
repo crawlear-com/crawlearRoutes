@@ -8,7 +8,8 @@ import { addRectangleAndGetBounds, buildAndAddLegendToMap, removePreviousMarkers
   addAllPointsToMapAndSetBounds} from '../helpers/mapUtils'
 import type { MarkerList } from '../MapPointPicker.types'
 
-const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, points?: Array<MapPoint>) => {
+const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
+  points?: Array<MapPoint>) => {
     const markersList = React.useRef<MarkerList>(initialMarkersList);
     const layerControl = React.useRef<L.Control.Layers>(null);
     const map = React.useRef<L.Map | null>(null);
@@ -32,8 +33,9 @@ const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
 
       return () => {
         if (map.current) {
-          map.current.off()
-          map.current.remove()
+          map.current.off();
+          map.current.remove();
+          markersList.current = getCleanMarkersList([]);
         }
       }
     }, [onMapClick]);

@@ -1,4 +1,5 @@
 import React from "react";
+import { LatLng, LatLngBounds } from "leaflet";
 import type { Route, SearchResultRoute } from "@/types/Route.types";
 import type { MapPoint } from "../SearchRouteMap.types";
 import { selectRouteSearchIsLoading, selectRouteSearchPage, selectRouteSearchPoints,
@@ -11,7 +12,7 @@ import useLikeRoute from "./useLikeRoute";
 import RouteCard from "@/features/routes/RouteCard/RouteCard";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
-  string, number, number, (searchBounds: L.LatLngBounds) => void,
+  string, number, number, (searchBounds: LatLngBounds | LatLng) => void,
   (query: string) => void, () => void, (page: number) => void,
   (route: Route | SearchResultRoute) => React.JSX.Element ] => {
   const [likeExtras ] = useLikeRoute();
@@ -41,8 +42,10 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
     dispatch(searchByQuery());
   }
 
-  const onMapClick = React.useCallback((searchBounds: L.LatLngBounds) => {      
-    dispatch(searchByGeo(searchBounds));
+  const onMapClick = React.useCallback((searchBounds: LatLngBounds | LatLng) => {      
+    if (searchBounds instanceof LatLngBounds) {
+      dispatch(searchByGeo(searchBounds));
+    }
   }, [dispatch]);
 
 
