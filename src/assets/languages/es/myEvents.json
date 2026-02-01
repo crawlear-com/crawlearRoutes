@@ -8,6 +8,7 @@
     "want delete event": "Estas seguro de que querer eliminar tu evento?",
     "event deleted": "El evento se ha eliminado",
     "event modified": "El evento se ha modificado",
+    "events near you": "Eventos cerca de tí",
     "only route events drop": "Tan sólo los eventos de ruta pueden ser cambiados de fecha"
   },
   "errors": {

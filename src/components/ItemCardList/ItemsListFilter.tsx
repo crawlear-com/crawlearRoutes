@@ -12,9 +12,9 @@ const ItemsListFilter = ({ query, orderDir, orderBy, onOrderByClick, onOrderDirC
   const orderDirIcon = (orderDir === ASC ? '⬆': '⬇');
 
 
-  return (<div className="container flex justify-end items-center mx-auto mb-2">
+  return (<div className="container flex justify-center items-center mx-auto mb-2 flex-wrap sm:flex-nowrap">
       <div className="button-primary w-auto text-2xl hidden sm:block" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
-      <SearchInput value={ query } className={`${isCollapsed ? "hidden" : "flex-2 justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
+      <SearchInput value={ query } className={`${isCollapsed ? "hidden" : "mb-5 sm:mb-0 basis-full justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
         placeholder="Filter routes..." onQueryChange={ onQueryChange } onSearch={ onSearch } />
 
       <span className={`${isCollapsed ? "hidden" : "button-primary w-8 mx-1 text-center"}`} onClick={onOrderDirClickHandler}>{orderDirIcon}</span>
