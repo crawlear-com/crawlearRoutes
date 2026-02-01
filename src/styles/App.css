@@ -54,5 +54,9 @@
   .container {
     @apply w-[90%] mx-auto;
   }
+
+  .button-danger {
+    @apply border border-red-500 bg-red-500 rounded-xl p-2 font-bold text-white;
+  }
 }
 

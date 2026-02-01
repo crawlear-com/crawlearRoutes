@@ -32,7 +32,7 @@ const useDifficultyValues = () => {
 const getPointsFromRoutes = (routes: Array<Route>) => {
   return routes.map((route: Route): MapPoint => {
     return {
-        point: route.location,
+        point: route.location!,
         content: {
           name: route.name,
           rid: route.id,

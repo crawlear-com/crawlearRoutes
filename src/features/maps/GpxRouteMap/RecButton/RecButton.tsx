@@ -14,7 +14,7 @@ const RecButton = ({ value, recordState, pauseState, onStartStopRecord, onPause,
             </button>
             :<></>
         }
-        <button id="recButton" className={`inline mr-2 button-primary w-auto h-10`} 
+        <button id="recButton" className={`inline mr-2 button-danger w-auto h-10`} 
             onClick={ onStartStopRecord }> { recordState ? t('main.stop') : t('main.rec') }
         </button>
         <span className=''>{ t('main.polling time') }</span>
