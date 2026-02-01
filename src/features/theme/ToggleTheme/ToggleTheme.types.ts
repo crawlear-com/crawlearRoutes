@@ -1,5 +1,6 @@
 type ToggleThemeProps = {
-  className?: string
+  className?: string,
+  children?: React.JSX.Element
 };
 
 export type { ToggleThemeProps };
