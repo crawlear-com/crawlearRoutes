@@ -9,7 +9,7 @@ import MainLayout from "@/layouts/MainLayout";
 import UserEventsStatistics from "@/features/statistics/EventsStatistics/UserEventsStatistics";
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 
-import "./styles/myRoutes.css";
+import "./styles/myEvents.css";
 import EventsNearYou from "@/features/events/EventsNearYou/EventsNearYou";
 
 const MyRoutes = () => {

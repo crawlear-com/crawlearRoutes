@@ -17,7 +17,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
     onRouteChange, onScaleChange, onMapClick ] = useRouteEventsDataForm(date, routeEvent);
   const mapPoint = point ? [createMapPointFromGeoPoint(point, t("main.location"))] : undefined;
 
-  return <div>
+  return <div className="container card z-10 relative md:max-w-[90%] m-auto text-center card p-0 sm:p-5">
     <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitEventsForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("creation.event name")}:
