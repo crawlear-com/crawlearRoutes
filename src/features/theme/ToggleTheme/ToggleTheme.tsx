@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import type { ToggleThemeProps } from "./ToggleTheme.types";
 import { setTheme } from "./store/slice/themeSlice";
 
-const ToggleTheme = ({ className }: ToggleThemeProps) => {
+const ToggleTheme = ({ className, children }: ToggleThemeProps) => {
     const [isLightTheme, setIsLightTheme] = useState(true);
     const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ const ToggleTheme = ({ className }: ToggleThemeProps) => {
     }
 
   return <strong className={ `cursor-pointer link ${className}` } onClick={ toggleTheme }>
-    ({isLightTheme ? "light" : "dark"} theme)
+    { children }
   </strong>
 }
 

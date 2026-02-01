@@ -14,7 +14,8 @@
     "join crawlear": "Uneix-te a Crawlear i comença a compartir les teves rutes avui mateix.",
     "my routes": "Les meves routes",
     "my events": "Els meus events",
-    "search route": "Cercar"
+    "search route": "Cercar",
+    "toggle theme": "Canviar el tema visual"
   },
   "login": {
     "signin": "Inicieu sessió",

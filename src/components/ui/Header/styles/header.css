@@ -1,0 +1,25 @@
+@reference "tailwindcss";
+
+@layer base {
+  header {
+    @apply backdrop-blur;
+  }
+
+  header img {
+    @apply w-8;
+  }
+
+  header img.normal {
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  header img.greyscale {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+
+  .icon {
+    @apply inline rounded
+  }
+}

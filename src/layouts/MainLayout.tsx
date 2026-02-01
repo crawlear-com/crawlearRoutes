@@ -10,7 +10,7 @@ type MainLayoutProps = {
 const MainLayout = ({ contentClassName, children }: MainLayoutProps) => {
   return (<>
     <Header />
-    <main className={ contentClassName ? contentClassName : "" }>
+    <main className={ `${contentClassName ? contentClassName : ""} sm:relative sm:-top-10` }>
       { children }
     </main>
     <Footer />

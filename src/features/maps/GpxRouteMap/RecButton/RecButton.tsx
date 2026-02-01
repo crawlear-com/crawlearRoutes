@@ -7,14 +7,14 @@ const RecButton = ({ value, recordState, pauseState, onStartStopRecord, onPause,
     const { t } = useTranslation(['map']);
     const [ readOnlyStatus, onInputValueChange ] = useRecButton(recordState, onPollingTimeChange);
 
-    return <div className="flex-2 sm:text-right mt-2 sm:mt-0">
+    return <div className="flex-2 sm:text-right mt-2 sm:mt-0 self-center">
         { recordState ? 
             <button id="pauseButton" onClick={ onPause } className={`inline mr-2 button-primary w-auto h-10`}>
                 { pauseState ? t('main.paused') : t('main.pause') }
             </button>
             :<></>
         }
-        <button id="recButton" className={`inline mr-2 button-danger w-auto h-10`} 
+        <button id="recButton" className={`mr-2 button-danger w-auto h-10`} 
             onClick={ onStartStopRecord }> { recordState ? t('main.stop') : t('main.rec') }
         </button>
         <span className=''>{ t('main.polling time') }</span>
