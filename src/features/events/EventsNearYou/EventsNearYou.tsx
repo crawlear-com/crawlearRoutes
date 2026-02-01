@@ -14,9 +14,7 @@ const EventsNearYou = () => {
   return (<div className="container card">
     <h1 className="mr-3 mb-4 text-right">{ t("main.events near you") }</h1>
     { isLoading ? <Spinner /> : 
-      <>{ routeEvents.length > 0 ? 
-          <ItemCardList<RouteEvent> items={ routeEvents } card={ routeEventCard }/> : <></> 
-      }</>
+      <>{ <ItemCardList<RouteEvent> items={ routeEvents } card={ routeEventCard }/> }</>
     }
   </div>);
 }

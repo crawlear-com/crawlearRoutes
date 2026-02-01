@@ -4,6 +4,7 @@ import * as React from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import type { UserEventsStatisticsData } from "../UserEventsStatistics.types";
+import { useTranslation } from "react-i18next";
 
 const initialUserData = {
   by_scale: {1:0, 2:0, 3:0, 4:0 },
@@ -16,6 +17,7 @@ const useUserEventsStatistics = (): [UserEventsStatisticsData, boolean] => {
   const uid = useSelector(selectUserUUID);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ data, setData ] = React.useState<UserEventsStatisticsData>(initialUserData); 
+  const { t } = useTranslation(["myEvents"]);
 
   React.useEffect(() => {
     const promise = getUserEventsStats(uid);
@@ -24,11 +26,11 @@ const useUserEventsStatistics = (): [UserEventsStatisticsData, boolean] => {
     promise.then((data) => {
       setData(data);
       setIsLoading(false);
-    }).catch((e: unknown) => {
+    }).catch(() => {
       setIsLoading(false);
-      toast.error((e as Error).message);
+      toast.error(t("errors.statistics not loaded"));
     });
-  }, [uid]);
+  }, [uid, t]);
 
   return [ data, isLoading ];
 }

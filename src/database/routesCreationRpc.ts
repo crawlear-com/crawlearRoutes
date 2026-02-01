@@ -8,8 +8,8 @@ const createRoute = async (payload: ActionPayload) => {
       p_description: payload.description,
       p_difficulty: payload.difficulty,
       p_ispublic: payload.isPublic,
-      p_lat: payload.location.lat,
-      p_lon: payload.location.lon,
+      p_lat: payload.location?.lat ?? null,
+      p_lon: payload.location?.lon ?? null,
       p_scale: payload.scale,
       p_youtubevideo: payload.youtubeVideo,
       p_gpx: payload.gpx,
@@ -21,7 +21,7 @@ const createRoute = async (payload: ActionPayload) => {
     if(!error) {
         return data;
     } else {
-      throw new Error('Error creating a route');
+      throw new Error();
     }
 }
 
@@ -44,7 +44,7 @@ const modifyRoute = async (payload: ActionPayload) => {
     if(!error) {
         return data;
     } else {
-      throw new Error('Error modifiying a route');
+      throw new Error();
     }
 }
 

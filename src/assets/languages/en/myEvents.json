@@ -2,9 +2,11 @@
   "main": {
     "my events": "My events",
     "need register": "To see the event you need to be a registered user",
-    "no event specified": "No s'ha especificat l'event",
+    "no event specified": "The event was not specified",
     "login": "login",
     "register": "register",
+    "want delete event": "Are you shure you wanna remove the event?",
+    "event deleted": "The event has been deleted",
     "events near you": "Events near you",
     "event modified": "The event has been modified",
     "only route events drop": "Only route events can be moved"
@@ -12,7 +14,11 @@
   "errors": {
     "error loading events": "Error loading event routes",
     "error loading routes": "Error loading routes",
-    "error modify date": "Error modifiying route date"
+    "error loading event": "Error loading event",
+    "event not deleted": "The event could not be deleted",
+    "error modify date": "Error modifiying route date",
+    "today events not load": "Today events could not be loaded",
+    "statistics not loaded": "Statistics data could not be loaded"
   },
   "statistics": {
     "statistics": "Statistics",

@@ -2,10 +2,12 @@ import * as React from "react";
 import { getRouteEventByIdAndOwner } from "@/database/eventsRpc";
 import toast from "react-hot-toast";
 import type { RouteEvent } from "@/types/RouteEvent.types";
+import { useTranslation } from "react-i18next";
 
 const useGetRouteEventByIdAndOwner = ( setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setData: React.Dispatch<React.SetStateAction<RouteEvent | undefined>>,
   uid: string, eid?: string,) => {
+    const { t } = useTranslation(["myEvents"]);
 
   React.useEffect(() => {
     if (eid && uid) {
@@ -15,12 +17,12 @@ const useGetRouteEventByIdAndOwner = ( setIsLoading: React.Dispatch<React.SetSta
       promise.then((routeEvent) => {
         setIsLoading(false);
         setData(routeEvent);
-      }).catch((e: unknown) => {
-          toast.error((e as Error).message);
+      }).catch(() => {
+          toast.error(t("errors.error loading event"));
           setIsLoading(false);
         });
     }
-  }, [eid, uid, setIsLoading, setData]);
+  }, [eid, uid, setIsLoading, setData, t]);
 }
 
 export default useGetRouteEventByIdAndOwner;

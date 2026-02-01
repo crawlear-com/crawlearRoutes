@@ -16,7 +16,7 @@ const createEventRoute = async (name: string, description: string, location: Geo
     if(!error) {
       return data;
     } else {
-      throw new Error('Error creating route event');
+      throw new Error();
     }
 }
 
@@ -35,7 +35,7 @@ const modifyEventRoute = async (name: string, description: string, location: Geo
     if(!error) {
       return data;
     } else {
-      throw new Error('Error modifying route event');
+      throw new Error();
     }
 }
 

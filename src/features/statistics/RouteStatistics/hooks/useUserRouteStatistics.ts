@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { getUserRouteStats } from "@/database/statisticsRpc";
 import type { UserRouteStatisticsData } from "../UserRouteStatistics.types";
 import { useDifficultyValues } from "@/helpers/utils";
+import { useTranslation } from "react-i18next";
 
 const initialUserData = {
   by_difficulty: { 1:0, 2:0, 3:0 },
@@ -16,6 +17,7 @@ const initialUserData = {
 
 const useUserRouteStatistics = (): [ UserRouteStatisticsData, string, string, string, boolean ] => {
   const uid = useSelector(selectUserUUID);
+  const { t } = useTranslation(["myRoutes"]);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ data, setData ] = React.useState<UserRouteStatisticsData>(initialUserData); 
   const [ easy, medium, difficult ] = useDifficultyValues();
@@ -27,11 +29,11 @@ const useUserRouteStatistics = (): [ UserRouteStatisticsData, string, string, st
     promise.then((data) => {
       setData(data);
       setIsLoading(false);
-    }).catch((e: unknown) => {
+    }).catch(() => {
       setIsLoading(false);
-      toast.error((e as Error).message);
+      toast.error(t("errors.statistics not loaded"));
     });
-  }, [uid]);
+  }, [uid, t]);
 
   return [ data, easy, medium, difficult, isLoading ];
 }

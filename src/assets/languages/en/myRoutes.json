@@ -13,6 +13,13 @@
   "search": {
     "search routes": "Search Routes"
   },
+  "errors": {
+    "like not removed": "Favourite could not be removed",
+    "like not added": "Favorite could not be created",
+    "not loaded": "Route could not be loaded",
+    "not removed": "Route could not be removed",
+    "statistics not loaded": "Statistics data could not be loaded"
+  },
   "statistics": {
     "statistics": "Statistics",
     "total routes": "Total routes",

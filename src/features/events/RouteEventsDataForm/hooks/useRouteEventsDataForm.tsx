@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import type { FormAction } from "@/types/Generic.types";
 import { getActionFromActionRpcType } from "../helpers/utils";
 import { LatLngBounds } from "leaflet";
+import { useNavigate } from "react-router";
 
 const getHourString = (date: string) => {
   const dateObject = new Date(date);
@@ -48,7 +49,8 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
     (searchBounds: LatLngBounds) => void
   ] => {
   const actionType: FormAction = routeEvent ? UPDATE_ACTION : CREATE_ACTION;
-  const { t } = useTranslation(["eventsCreation"]);  
+  const { t } = useTranslation(["eventsCreation"]);
+  const navigate = useNavigate();
   const [name, setName] = React.useState(routeEvent && routeEvent.name || '');
   const [ description, setDescription ] = React.useState(routeEvent && routeEvent.description || '');
   const [ hour, setHour ] = React.useState(getHourString(routeEvent ? routeEvent.date : eventDate));
@@ -76,7 +78,7 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
         return response.data;
       } else {
         setIsLoading(false);
-        throw new Error(`Error loading routes: ${response.error.message}`);
+        throw new Error(t("messages.no routes loaded"));
       }
     }
 
@@ -85,7 +87,7 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
     }).catch((e: unknown) => {
       toast.error((e as Error).message);
     });
-  }, [userId, generateRouteOptions]);
+  }, [userId, generateRouteOptions, t]);
 
   const onHourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setHour(event.target.value);
@@ -114,14 +116,15 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
       const action = getActionFromActionRpcType(actionType);
       const payload = createActionPayload({ name: name, description: description, location: point, date: eventDate, scale: scale, rid: rid, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
       const promise: Promise<RouteEvent> = action(payload.name, payload.description, payload.location, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
-      const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
-      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
+      const successMessage = actionType === CREATE_ACTION ? t("messages.event creation ok") : t("messages.event modify ok");
+      const errorMessage = () => `${actionType === CREATE_ACTION ? t("messages.event creation ko") : t("messages.event modify ko")}`;
 
       promise.then(() => {
         setIsLoading(false);
         toast.success(successMessage);
-      }).catch((e: unknown) => {
-        toast.error(errorMessage(e));
+        navigate(-1);
+      }).catch(() => {
+        toast.error(errorMessage());
         setIsLoading(false);
       });
     }

@@ -40,7 +40,7 @@ const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
           return response.data;
         } else {
           setIsLoading(false);
-          throw new Error(`Error searching routes: ${response.error.message}`);
+          throw new Error(`${response.error.message}`);
         }
       }
     }

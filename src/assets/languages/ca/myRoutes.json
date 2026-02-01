@@ -13,6 +13,13 @@
   "search": {
     "search routes": "Cerca de rutes"
   },
+  "errors": {
+    "like not removed": "El favorit no ha pogut ser eliminat",
+    "like not added": "No s'ha pogut marcar la ruta com a favorita",
+    "not loaded": "La ruta no s'ha pogut carregar",
+    "not removed": "La ruta no s'ha pogut eliminar",
+    "statistics not loaded": "No s'han pogut carregar les estadístiques"
+  },
   "statistics": {
     "statistics": "Estadístiques",
     "total routes": "Total de rutes",

@@ -28,8 +28,8 @@
   },
   "messages": {
     "route creation ok": "La ruta s'ha creat amb exit",
-    "route creation ko": "Ha hagut un error creant la ruta: ",
+    "route creation ko": "Ha hagut un error creant la ruta",
     "route modify ok": "La ruta s'ha modificat amb exit",
-    "route modify ko": "Ha hagut un error modificant la ruta: "
+    "route modify ko": "Ha hagut un error modificant la ruta"
   }
 }

@@ -8,7 +8,7 @@ const getRoute = async (rid: string) => {
     if(!error) {
       return data[0];
     } else {
-      throw new Error('Error getting the route data');
+      throw new Error();
     }
 }
 
@@ -21,7 +21,7 @@ const likeRoute = async (uid: string, rid: string) => {
     if(!error) {
       return data.like;
     } else {
-      throw new Error('Error liking route');
+      throw new Error();
     }
 }
 
@@ -34,7 +34,7 @@ const deleteLike = async (uid: string, rid: string) => {
     if(!error && data) {
         return data;
     } else {
-      throw new Error('Error deleting favorite');
+      throw new Error();
     }
 }
 

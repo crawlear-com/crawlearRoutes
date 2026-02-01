@@ -8,7 +8,7 @@ const getUserRouteStats = async (uid: string) => {
   if(!error && data) {
     return data;
   } else {
-    throw new Error('Error geting route statistics');
+    throw new Error();
   }
 }
 
@@ -20,7 +20,7 @@ const getUserEventsStats = async (uid: string) => {
   if(!error && data) {
     return data;
   } else {
-    throw new Error('Error geting events statistics');
+    throw new Error();
   }
 }
 

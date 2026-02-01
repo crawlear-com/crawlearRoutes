@@ -6,7 +6,7 @@ const ItemCardList = <T, >({ card, items }: ItemsCardListProps<T>) => {
 
   return (<div className="container text-right">
     { items.length > 0 ? items.map((item: T) => card(item)) : 
-      <div className='text-center'>{ t("main.no routes") }</div>}
+      <div className='text-right'>{ t("main.no routes") }</div>}
   </div>);
 }
 

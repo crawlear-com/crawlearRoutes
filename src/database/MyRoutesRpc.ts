@@ -38,7 +38,7 @@ const deleteRouteAndLikes = async (id: string) => {
     if(!error && data) {
         return data;
     } else {
-      throw new Error('Error deleting route');
+      throw new Error();
     }
 }
 
@@ -50,7 +50,7 @@ const getUserRouteStats = async (uid: string) => {
   if(!error && data) {
     return data;
   } else {
-    throw new Error('Error geting user statistics');
+    throw new Error();
   }
 }
 

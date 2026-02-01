@@ -20,16 +20,16 @@ const useLikeRoute = (): [
           element.innerText = "♡";
           element.dataset.isliked = "false";
           toast.success(t("main.like removed"));
-        }).catch((e: unknown) => {
-          toast.error((e as Error).message);
+        }).catch(() => {
+          toast.error(t("errors.like not removed"));
         });
       } else {
         likeRoute(uid, rid).then(() => {
           element.innerText = "♥️";
           element.dataset.isliked = "true";
           toast.success(t("main.like created"));
-        }).catch((e: unknown) => {
-          toast.error((e as Error).message);
+        }).catch(() => {
+          toast.error(t("errors.like not added"));
         });
       }
     }

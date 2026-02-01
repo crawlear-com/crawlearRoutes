@@ -14,6 +14,13 @@
   "search": {
     "search routes": "Búsqueda de rutas"
   },
+  "errors": {
+    "like not removed": "El favorito no se podido eliminar",
+    "like not added": "No se ha podido marcar la ruta como favorita",
+    "not loaded": "La ruta no se ha podido cargar",
+    "not removed": "La ruta no se ha podido eliminar",
+    "statistics not loaded": "No se han podido cargar las estadísticas"
+  },
   "statistics": {
     "statistics": "Estadísticas",
     "total routes": "Total de rutas",
