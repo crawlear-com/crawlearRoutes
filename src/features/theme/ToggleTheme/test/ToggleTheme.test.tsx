@@ -23,16 +23,16 @@ describe("ToggleTheme", () => {
   it("renders with light theme by default", () => {
     render(<ToggleTheme />);
 
-    expect(screen.getByText("(light theme)")).toBeInTheDocument();
+    expect(screen.getByTestId("light")).toBeInTheDocument();
   });
 
   it("toggles to dark theme on click", () => {
     render(<ToggleTheme />);
 
-    const toggle = screen.getByText("(light theme)");
+    const toggle = screen.getByTestId("light");
     fireEvent.click(toggle);
 
-    expect(screen.getByText("(dark theme)")).toBeInTheDocument();
+    expect(screen.getByTestId("dark")).toBeInTheDocument();
     expect(dispatchMock).toHaveBeenCalledWith(setTheme("dark"));
     expect(document.documentElement.classList.contains("dark")).toBe(true);
   });
@@ -40,12 +40,12 @@ describe("ToggleTheme", () => {
   it("toggles back to light theme on second click", () => {
     render(<ToggleTheme />);
 
-    const toggle = screen.getByText("(light theme)");
+    const toggle = screen.getByTestId("light");
 
     fireEvent.click(toggle);
-    fireEvent.click(screen.getByText("(dark theme)"));
+    fireEvent.click(screen.getByTestId("dark"));
 
-    expect(screen.getByText("(light theme)")).toBeInTheDocument();
+    expect(screen.getByTestId("light")).toBeInTheDocument();
     expect(dispatchMock).toHaveBeenLastCalledWith(setTheme("light"));
     expect(document.documentElement.classList.contains("dark")).toBe(false);
   });
@@ -53,7 +53,7 @@ describe("ToggleTheme", () => {
   it("applies custom className", () => {
     render(<ToggleTheme className="custom-class" />);
 
-    const toggle = screen.getByText("(light theme)");
+    const toggle = screen.getByTestId("light");
     expect(toggle).toHaveClass("custom-class");
   });
 });
