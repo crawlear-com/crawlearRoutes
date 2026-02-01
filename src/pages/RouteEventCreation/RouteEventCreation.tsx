@@ -8,6 +8,9 @@ import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
 import useGetRouteEventByIdAndOwner from "@/hooks/useGetRouteEventByIdAndOwner";
 import MainLayout from "@/layouts/MainLayout";
+import PageTitle from "@/components/ui/PageTitle/PageTitle";
+
+import "./styles/eventCreation.css";
 
 const RouteEventCreation = () => {
   const { t } = useTranslation(["eventsCreation"]);
@@ -21,8 +24,10 @@ const RouteEventCreation = () => {
   useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);
 
   return (
-    <MainLayout contentClassName="w-[90%] m-auto min-h-[80vh] mt-10"><>
-      <h1>{ eid ? t("creation.event update") : t("creation.event creation") }</h1>
+    <MainLayout contentClassName="min-h-[80vh]"><>
+      <PageTitle background="eventCreation--backgroud p-5">
+        <h1 className="lg:flex-5/6 sm:flex-4/6 text-right text-white mr-5">{ eid ? t("creation.event update") : t("creation.event creation") }</h1>
+      </PageTitle>
       { isLoading ? <Spinner /> : 
         routeEvent ? <RouteEventsDataForm date={ eventDate } routeEvent={ routeEvent } /> :
           <RouteEventsDataForm date={ eventDate } /> }</>

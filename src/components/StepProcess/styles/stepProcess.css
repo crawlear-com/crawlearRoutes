@@ -4,6 +4,11 @@
 
 @layer base {
   .stepButton {
-    @apply leading-1 p-5 button-primary w-auto h-10 fixed top-1/2 z-1000;
+    @apply leading-1 p-10 button-primary w-auto h-10 fixed top-1/2 z-1000;
+    @apply disabled:opacity-50;
+  }
+
+  .stepButton.next {
+    @apply animate-pulse disabled:animate-none;
   }
 }

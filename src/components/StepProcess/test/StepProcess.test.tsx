@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import StepProcess from "../StepProcess";
 import { stepDescriptions, steps, stepSelectors, stepTitles } from "./stepsData";
-import { NEXT_PAGE_ARROW, PREVIOUS_PAGE_ARROW } from "../StepProcess.types";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -44,7 +43,7 @@ describe("StepProcess", () => {
       />
     );
 
-    expect(screen.getByText("main.step 1: Title 1")).toBeInTheDocument();
+    expect(screen.getByText("main.step 1/3")).toBeInTheDocument();
     expect(screen.getByText("desc1")).toBeInTheDocument();
     expect(screen.getByText("Step 1 content")).toBeInTheDocument();
     expect(screen.getAllByTestId("step-indicator")[0]).toHaveTextContent("0");
@@ -63,9 +62,9 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
+    fireEvent.click(screen.getByText("main.next"));
 
-    expect(screen.getByText("main.step 2: Title 2")).toBeInTheDocument();
+    expect(screen.getByText("main.step 2/3")).toBeInTheDocument();
     expect(screen.getByText("Step 2 content")).toBeInTheDocument();
     expect(screen.getAllByTestId("step-indicator")[0]).toHaveTextContent("1");
     expect(screen.getAllByTestId("step-indicator")[1]).toHaveTextContent("1");
@@ -83,10 +82,10 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
-    fireEvent.click(screen.getByText(PREVIOUS_PAGE_ARROW));
+    fireEvent.click(screen.getByText("main.next"));
+    fireEvent.click(screen.getByText("main.previous"));
 
-    expect(screen.getByText("main.step 1: Title 1")).toBeInTheDocument();
+    expect(screen.getByText("main.step 1/3")).toBeInTheDocument();
   });
 
   it("disables next button when current step is not finished", () => {
@@ -101,7 +100,7 @@ describe("StepProcess", () => {
       />
     );
 
-    const nextButton = screen.getByText(NEXT_PAGE_ARROW);
+    const nextButton = screen.getByText("main.next");
     expect(nextButton).toBeDisabled();
   });
 
@@ -117,7 +116,7 @@ describe("StepProcess", () => {
       />
     );
 
-    expect(screen.queryByText(PREVIOUS_PAGE_ARROW)).toBeNull();
+    expect(screen.queryByText("main.previous")).toBeNull();
   });
 
   it("does not render next button on last step", () => {
@@ -132,9 +131,9 @@ describe("StepProcess", () => {
       />
     );
 
-    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
-    fireEvent.click(screen.getByText(NEXT_PAGE_ARROW));
+    fireEvent.click(screen.getByText("main.next"));
+    fireEvent.click(screen.getByText("main.next"));
 
-    expect(screen.queryByText(NEXT_PAGE_ARROW)).toBeNull();
+    expect(screen.queryByText("main.next")).toBeNull();
   });
 });
