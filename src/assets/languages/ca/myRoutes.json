@@ -3,7 +3,7 @@
     "my routes": "Les meves rutes",
     "favourite routes": "Rutes favorites",
     "create route": "Crear ruta",
-    "no routes": "No hi ha rutes",
+    "no routes": "No hi ha elements",
     "want delete favorite": "Estàs segur que vols eliminar el favorit?",
     "want delete route": "Estàs segur que vols eliminar la teva ruta?",
     "route deleted": "Ruta eliminada",
@@ -12,6 +12,13 @@
   },
   "search": {
     "search routes": "Cerca de rutes"
+  },
+  "errors": {
+    "like not removed": "El favorit no ha pogut ser eliminat",
+    "like not added": "No s'ha pogut marcar la ruta com a favorita",
+    "not loaded": "La ruta no s'ha pogut carregar",
+    "not removed": "La ruta no s'ha pogut eliminar",
+    "statistics not loaded": "No s'han pogut carregar les estadístiques"
   },
   "statistics": {
     "statistics": "Estadístiques",

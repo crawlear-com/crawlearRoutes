@@ -1,7 +1,8 @@
 {
   "main": {
     "today events": "Eventos de hoy",
-    "my events": "Mis eventos"
+    "my events": "Mis eventos",
+    "location": "Punto de encuentro"
   },
   "creation": {
     "event creation": "Creación de event",
@@ -17,5 +18,12 @@
     "assigned route": "Ruta asignada",
     "not assigned route": "Sin ruta",
     "no events for today": "No hay eventos hoy"
+  },
+  "messages": {
+    "event creation ok": "El evento se ha creado con éxito",
+    "event creation ko": "Ha habido un error creando el evento",
+    "event modify ok": "El evento se ha modificado con éxito",
+    "event modify ko": "Ha habido un error modificando el evento",
+    "no routes loaded": "Ha habido un error cargando las rutas"
   }
 }

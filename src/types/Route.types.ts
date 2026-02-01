@@ -9,7 +9,7 @@ type CreationRoute = {
   difficulty: number,
   isPublic: boolean,
   likes: number,
-  location: GeoPoint,
+  location: GeoPoint | null,
   scale: number,
   youtubeVideo: string | null,
   gpx: string | null,

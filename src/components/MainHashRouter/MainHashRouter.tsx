@@ -25,11 +25,11 @@ const MainHashRouter = () => {
             <Route path="/search" element={ <SearchRoute />} />
             <Route path="/event/:date/:id" element={ <RouteEventCreation />} />
             <Route path="/event/:date" element={ <RouteEventCreation />} />
+            <Route path="/showevent/:id" element={<EventPage />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/showroute/:id" element={<RoutePage />} />
-          <Route path="/showevent/:id" element={<EventPage />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
       </HashRouter>

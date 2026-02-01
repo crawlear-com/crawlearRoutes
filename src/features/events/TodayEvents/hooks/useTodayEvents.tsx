@@ -3,11 +3,13 @@ import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import type { RouteEvent } from "@/types/RouteEvent.types";
 import * as React from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 const useTodayEvents = (): [ Array<RouteEvent>, (event: React.MouseEvent<HTMLDivElement>) => void ] => {
   const [ todayEvents, setTodayEvents ] = React.useState<Array<RouteEvent>>([]);
+  const { t } = useTranslation("myEvents");
   const uid = useSelector(selectUserUUID);
   const navigate = useNavigate();
 
@@ -17,13 +19,13 @@ const useTodayEvents = (): [ Array<RouteEvent>, (event: React.MouseEvent<HTMLDiv
 
       promise.then((events: Array<RouteEvent>) => {
         setTodayEvents(events);
-      }).catch((e: unknown) => {
-          toast.error((e as Error).message);
+      }).catch(() => {
+          toast.error(t("errors.today events not load"));
       });
     }
 
     getEvents();
-  }, [uid]);
+  }, [uid, t]);
 
   const onEditRouteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const eid = (event.target as HTMLDivElement).dataset.eid;

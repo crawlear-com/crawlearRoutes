@@ -10,6 +10,7 @@ import UserEventsStatistics from "@/features/statistics/EventsStatistics/UserEve
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 
 import "./styles/myRoutes.css";
+import EventsNearYou from "@/features/events/EventsNearYou/EventsNearYou";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myEvents"]);
@@ -25,8 +26,9 @@ const MyRoutes = () => {
     </PageTitle>
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
       <div className="z-10">
-        <TodayEvents />
         <UserEventsStatistics />
+        <TodayEvents />
+        <EventsNearYou />
       </div>
       <EventsFromUser />
       <EventsCalendar />

@@ -59,8 +59,6 @@ const deleteRoute = (routes: Array<Route>, rid: string) => {
 const routeListsSlice = createSlice({
   name: 'routes',
   initialState,
-  //deleteMyRoutesRoute, setMyRoutesOrderBy, setMyRoutesOrderDir, 
-  //setMyRoutesPage, setMyRoutesQuery
   reducers: {
     setMyRoutesPage: (state, action: PayloadAction<number>) => {
       state.myRoutes.page = action.payload;

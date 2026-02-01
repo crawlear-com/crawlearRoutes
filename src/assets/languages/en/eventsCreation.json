@@ -1,7 +1,8 @@
 {
   "main": {
     "today events": "Today events",
-    "my events": "My events"
+    "my events": "My events",
+    "location": "Meeting point"
   },
   "creation": {
     "event creation": "Event creation",
@@ -17,5 +18,12 @@
     "assigned route": "Route assigned",
     "not assigned route": "No route",
     "no events for today": "No events today"
+  },
+  "messages": {
+    "event creation ok": "The event has been created",
+    "event creation ko": "There was an error creating the event",
+    "event modify ok": "The event has been modified",
+    "event modify ko": "There was an error modifying the event",
+    "no routes loaded": "There was an error loading routes"
   }
 }

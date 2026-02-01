@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAction, selectCreationRoute, selectEventId, selectRouteId } from "@/features/routeCreation/store/selectors/routeSelectors";
 import { routeFormValidates } from "../helpers/routeValidations";
-import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo, cleanRouteCreation, setAction } from "../../store/slices/routeSlice";
+import { setDifficult, setIsPublic, setScale, setName, setDescription, setYoutubeVideo, cleanRouteCreation, setAction, cleanGpx } from "../../store/slices/routeSlice";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -66,7 +66,7 @@ const useRouteDataForm = (): [
       const action = getActionFromRpcType(actionType);
       const promise: Promise<string> = action(createActionPayload(rid, creationRoute, owner));
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
-      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
+      const errorMessage = () => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}`;
 
       promise.then((newRouteId) => {
         setIsLoading(false);
@@ -75,16 +75,17 @@ const useRouteDataForm = (): [
           assignRouteToEvent(eventId, newRouteId, owner).then(() => {
             setIsLoading(false);
             toast.success(successMessage);
-            dispatch(cleanRouteCreation());
-            dispatch(setAction(CREATE_ACTION));
             navigate(-1);
-          }).catch((e: unknown) => {
-            toast.error(errorMessage(e));
+          }).catch(() => {
+            toast.error(errorMessage());
             setIsLoading(false);
           });
         }
-      }).catch((e: unknown) => {
-        toast.error(errorMessage(e));
+        dispatch(cleanRouteCreation());
+        dispatch(cleanGpx());
+        dispatch(setAction(CREATE_ACTION));
+      }).catch(() => {
+        toast.error(errorMessage());
         setIsLoading(false);
       });
     }

@@ -22,7 +22,7 @@ const getEventRoutesByMonth = async (uid: string, startDate: string, endDate: st
     if(!error) {
       return data;
     } else {
-      throw new Error('Error getting the event routes data');
+      throw new Error();
     }
 }
 
@@ -36,7 +36,7 @@ const getEventRouteEventsByMonth = async (uid: string, startDate: string, endDat
     if(!error) {
       return data;
     } else {
-      throw new Error('Error getting the event routes data');
+      throw new Error();
     }
 }
 
@@ -49,9 +49,19 @@ const getRouteEventByIdAndOwner = async (uid: string, eid: string) => {
     if(!error) {
       return data;
     } else {
-      throw new Error('Error getting the event route data');
+      throw new Error();
     }
 }
+
+const searchEventsByGeo = async (searchBounds: L.LatLngBounds) => {
+  return await supabaseClient.rpc('searchEventsByGeo', { 
+    p_min_lat: searchBounds.getNorth(),
+    p_min_lon: searchBounds.getWest(),
+    p_max_lat: searchBounds.getSouth(),
+    p_max_lon: searchBounds.getEast()
+  }); 
+}
+
 
 const assignRouteToEvent = async (eid: string, rid: string, owner: string) => {
     const { data, error } = await supabaseClient.rpc('assignEventRid', {       
@@ -63,20 +73,19 @@ const assignRouteToEvent = async (eid: string, rid: string, owner: string) => {
     if(!error) {
       return data;
     } else {
-      throw new Error('Error assigning route to event');
+      throw new Error();
     }
 }
 
-const deleteEventRoute = async (eid: string, uid: string) => {
-    const { data, error } = await supabaseClient.rpc('deleteEvent', {
-      p_eid: eid,
-      p_uid: uid
+const deleteEventRoute = async (eid: string) => {
+    const { data, error } = await supabaseClient.rpc('deleteEventById', {
+      p_id: eid
     });
 
     if(!error) {
       return data;
     } else {
-      throw new Error('Error modifying route event');
+      throw new Error();
     }
 }
 
@@ -88,7 +97,7 @@ const getTodayEvents = async (uid: string) => {
   if(!error) {
     return data;
   } else {
-    throw new Error('Error geting today events');
+    throw new Error();
   }
 }
 
@@ -101,10 +110,10 @@ const setEventStartDate = async (eid: string, startDate: string) => {
   if(!error) {
     return data;
   } else {
-    throw new Error('Error geting today events');
+    throw new Error();
   }
 }
 
 export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
-  getEventRouteEventsPaginated, deleteEventRoute,
+  getEventRouteEventsPaginated, deleteEventRoute, searchEventsByGeo,
   getTodayEvents, assignRouteToEvent, setEventStartDate };

@@ -4,11 +4,11 @@ import 'leaflet-gpx'
 import { iconRoute } from '../Icons'
 import type { GeoPoint } from '@/types/Route.types'
 
-const getBoundingBox = (lat: number, lon : number): [[number, number],[number, number]] => {
-  return [[lat - 0.01, lon - 0.01], [lat + 0.01, lon + 0.01]];
+const getBoundingBox = (zoomScale: number, lat: number, lon : number): [[number, number],[number, number]] => {
+  return [[lat - zoomScale, lon - zoomScale], [lat + zoomScale, lon + zoomScale]];
 }
 
-function useSimpleMap(id: string, point: GeoPoint): void {
+function useSimpleMap(id: string, point: GeoPoint, zoomScale: number): void {
     const map = React.useRef<L.Map | null>(null);
 
     const addPropsPoints = React.useCallback(() => {
@@ -18,7 +18,7 @@ function useSimpleMap(id: string, point: GeoPoint): void {
     }, [point]);
 
     React.useEffect(() => {
-      const newMap = L.map(`map${id}`).fitBounds(getBoundingBox(point.lat, point.lon));
+      const newMap = L.map(`map${id}`).fitBounds(getBoundingBox(zoomScale, point.lat, point.lon));
 
       newMap.zoomControl.remove();
       newMap.scrollWheelZoom.disable();

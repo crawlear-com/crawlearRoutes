@@ -54,7 +54,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
   function onError(error: number) {
-    setError(error)
+    setError(error);
     if(recordState) {
       setRecordState(false);
     }
@@ -122,7 +122,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
 
           new L.GPX(fileContents, gpxParserOptions).on('loaded', onLoadedHandler).addTo(map.current!);
         } catch(e: unknown) {
-          toast.error(`${"errors.cannot load"}: ${(e as Error).message}`);
+          toast.error(`${t("errors.cannot load")}: ${(e as Error).message}`);
         }
       }
     } catch(e: unknown) {
@@ -134,7 +134,7 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
       }
       console.error(e);
     }
-  }, [onFileResolved, setGpxInfo]);
+  }, [onFileResolved, setGpxInfo, t]);
 
   React.useEffect(() => {
     if (!map.current) {

@@ -40,7 +40,7 @@ const routeSlice = createSlice({
       state.route.gpx = action.payload;
     },
     cleanGpx: (state) => {
-        state.route.gpx = "";
+        state.route.gpx = null;
     },
     setLocation: (state, action: PayloadAction<GeoPoint>) => {
       state.route.location = action.payload;

@@ -5,13 +5,20 @@
     "no event specified": "No s'ha especificat l'event",
     "login": "inicía sessió",
     "register": "registra't",
+    "want delete event": "Estàs segur que vols eliminar el teu event?",
+    "event deleted": "El event s'ha eliminat",
+    "events near you": "Events a prop teu",
     "event modified": "El event s'ha modificat",
     "only route events drop": "Només els events de routa poden ser canviats de data"
   },
   "errors": {
     "error loading events": "Error carregant els events de ruta",
     "error loading routes": "Error carregant les rutes",
-    "error modify date": "Error modificant la data de l'event"
+    "error loading event": "Error carregant l'event",
+    "event not deleted": "El event no s'ha pogut eliminar",
+    "error modify date": "Error modificant la data de l'event",
+    "today events not load": "Els events d'avui no s'han pogut carregar",
+    "statistics not loaded": "No s'han pogut carregar les estadístiques"
   },
   "statistics": {
     "statistics": "Estadístiques",

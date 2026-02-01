@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteRouteAndLikes } from "@/database/MyRoutesRpc";
 import { deleteMyEvent, setMyEventsOrderBy, setMyEventsOrderDir, 
   setMyEventsPage, setMyEventsQuery } from "@/features/events/store/slices/eventListsSlice";
 import toast from "react-hot-toast";
@@ -12,10 +11,11 @@ import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 import type { RouteEvent } from "@/types/RouteEvent.types";
 import RouteEventCard from "@/features/events/RouteEventCard/RouteEventCard";
+import { deleteEventRoute } from "@/database/eventsRpc";
 
 const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   SetMethods, SelectMethods<RouteEvent> ] => {
-  const { t } = useTranslation(['myRoutes']);
+  const { t } = useTranslation(['myEvents']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -40,14 +40,14 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   }
 
   const deleteEventById = (id: string) => {
-    if (window.confirm(t("main.want delete route"))) {
-      const promise = deleteRouteAndLikes(id);
+    if (window.confirm(t("main.want delete event"))) {
+      const promise = deleteEventRoute(id);
 
       promise.then(() => {
         dispatch(deleteMyEvent(id));
-        toast.success(t("main.route deleted"));
-      }).catch((e: unknown) => {
-        toast.error((e as Error).message);
+        toast.success(t("errors.event deleted"));
+      }).catch(() => {
+        toast.error(t("errors.event not deleted"));
       });
     }
   }

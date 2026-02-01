@@ -3,7 +3,7 @@
     "my routes": "My routes",
     "favourite routes": "Favourite routes",
     "create route": "Create route",
-    "no routes": "There are no routes",
+    "no routes": "There are no items",
     "want delete favorite": "Do you want to delete the favorite?",
     "want delete route": "Do you want to delete the route?",
     "route deleted": "Route deleted",
@@ -12,6 +12,13 @@
   },
   "search": {
     "search routes": "Search Routes"
+  },
+  "errors": {
+    "like not removed": "Favourite could not be removed",
+    "like not added": "Favorite could not be created",
+    "not loaded": "Route could not be loaded",
+    "not removed": "Route could not be removed",
+    "statistics not loaded": "Statistics data could not be loaded"
   },
   "statistics": {
     "statistics": "Statistics",

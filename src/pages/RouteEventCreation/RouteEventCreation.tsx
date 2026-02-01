@@ -15,7 +15,7 @@ const RouteEventCreation = () => {
   const date = useParams().date;
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ routeEvent, setRouteEvent ] = React.useState<RouteEvent | undefined>(undefined);
-  const [ eventDate ] = React.useState<string>(date ? new Date(Number(date)).toISOString() : "");
+  const eventDate = date ? new Date(Number(date)).toISOString() : "";
   const uid = useSelector(selectUserUUID);
 
   useGetRouteEventByIdAndOwner(setIsLoading, setRouteEvent, uid, eid);

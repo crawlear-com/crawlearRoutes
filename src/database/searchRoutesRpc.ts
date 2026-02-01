@@ -1,6 +1,5 @@
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
-
 const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
   return await supabaseClient.rpc('searchRoutesByGeo', { 
     min_lat: searchBounds.getNorth(),

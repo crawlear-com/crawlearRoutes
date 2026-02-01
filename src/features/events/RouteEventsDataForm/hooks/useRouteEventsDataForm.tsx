@@ -1,7 +1,7 @@
 import * as React from "react";
 import { eventFormValidates } from "../helpers/eventValidations";
 import type { RouteEvent } from "@/types/RouteEvent.types";
-import type { Route } from "@/types/Route.types";
+import type { GeoPoint, Route } from "@/types/Route.types";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
@@ -10,6 +10,8 @@ import { CREATE_ACTION, UPDATE_ACTION } from "@/helpers/utils";
 import toast from "react-hot-toast";
 import type { FormAction } from "@/types/Generic.types";
 import { getActionFromActionRpcType } from "../helpers/utils";
+import { LatLngBounds } from "leaflet";
+import { useNavigate } from "react-router";
 
 const getHourString = (date: string) => {
   const dateObject = new Date(date);
@@ -28,6 +30,7 @@ const createActionPayload = (routeEvent: RouteEvent & { hour: string }) => {
       id: routeEvent.id || null,
       name: routeEvent.name,
       description: routeEvent.description,
+      location: routeEvent.location,
       date: newDate,
       scale: routeEvent.scale,
       rid: routeEvent.rid,
@@ -36,21 +39,25 @@ const createActionPayload = (routeEvent: RouteEvent & { hour: string }) => {
 }
 
 const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [ 
-    string, string, string | null, boolean, number, string, Array<React.JSX.Element>,(formData: FormData) => void,
+    string, string, string | null, boolean, number, string, Array<React.JSX.Element>,
+    GeoPoint | null, (formData: FormData) => void,
     (value: React.SetStateAction<string>) => void,
     (value: React.SetStateAction<string>) => void,
     (event: React.ChangeEvent<HTMLSelectElement>) => void,
     (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    (event: React.ChangeEvent<HTMLSelectElement>) => void
+    (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    (searchBounds: LatLngBounds) => void
   ] => {
   const actionType: FormAction = routeEvent ? UPDATE_ACTION : CREATE_ACTION;
-  const { t } = useTranslation(["eventsCreation"]);  
+  const { t } = useTranslation(["eventsCreation"]);
+  const navigate = useNavigate();
   const [name, setName] = React.useState(routeEvent && routeEvent.name || '');
   const [ description, setDescription ] = React.useState(routeEvent && routeEvent.description || '');
   const [ hour, setHour ] = React.useState(getHourString(routeEvent ? routeEvent.date : eventDate));
   const [ scale, setScale ] = React.useState(routeEvent ? routeEvent.scale : 1);
   const [ rid, setRid ] = React.useState(routeEvent?.rid || null);
-  const [ isLoading, setIsLoading ] = React.useState(false);
+  const [ point, setPoint ] = React.useState<GeoPoint | null>(routeEvent?.location || null);
+  const [ isLoading, setIsLoading ] = React.useState(true);
   const [ routeOptions, setRouteOptions ] = React.useState<Array<React.JSX.Element>>([]);
   const userId = useSelector(selectUserUUID);
   const generateRouteOptions = React.useCallback((routes: Array<Route>) => {
@@ -71,7 +78,7 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
         return response.data;
       } else {
         setIsLoading(false);
-        throw new Error(`Error loading routes: ${response.error.message}`);
+        throw new Error(t("messages.no routes loaded"));
       }
     }
 
@@ -80,7 +87,7 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
     }).catch((e: unknown) => {
       toast.error((e as Error).message);
     });
-  }, [userId, generateRouteOptions]);
+  }, [userId, generateRouteOptions, t]);
 
   const onHourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setHour(event.target.value);
@@ -96,26 +103,36 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
     setScale(Number(event.target.value));
   }
 
+  const onMapClick = (searchBounds: LatLngBounds) => {
+    const center = searchBounds.getCenter()
+    setPoint({
+      lat: center.lat,
+      lon: center.lng
+     });
+  }
+
   const onSubmitEventsForm = async(formData: FormData) => {  
     if (eventFormValidates(formData)) {
       const action = getActionFromActionRpcType(actionType);
-      const payload = createActionPayload({ name: name, description: description, date: eventDate, scale: scale, rid: rid, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
-      const promise: Promise<RouteEvent> = action(payload.name, payload.description, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
-      const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
-      const errorMessage = (e: unknown) => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}: ${(e as Error).message}`;
+      const payload = createActionPayload({ name: name, description: description, location: point, date: eventDate, scale: scale, rid: rid, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
+      const promise: Promise<RouteEvent> = action(payload.name, payload.description, payload.location, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
+      const successMessage = actionType === CREATE_ACTION ? t("messages.event creation ok") : t("messages.event modify ok");
+      const errorMessage = () => `${actionType === CREATE_ACTION ? t("messages.event creation ko") : t("messages.event modify ko")}`;
 
       promise.then(() => {
         setIsLoading(false);
         toast.success(successMessage);
-      }).catch((e: unknown) => {
-        toast.error(errorMessage(e));
+        navigate(-1);
+      }).catch(() => {
+        toast.error(errorMessage());
         setIsLoading(false);
       });
     }
   }
 
-  return [ name, description, rid, isLoading, scale, hour, routeOptions,
-    onSubmitEventsForm, setName, setDescription, onHourChange, onRouteChange, onScaleChange ];
+  return [ name, description, rid, isLoading, scale, hour, routeOptions, point,
+    onSubmitEventsForm, setName, setDescription, onHourChange, onRouteChange,
+    onScaleChange, onMapClick ];
 }
 
 export default useRouteEventsDataForm;

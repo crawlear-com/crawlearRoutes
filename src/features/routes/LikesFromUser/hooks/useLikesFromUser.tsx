@@ -35,8 +35,8 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
       promise.then(() => {
         dispatch(deleteMyFavoritesRoute(rid));
         toast.success(t("main.like removed"));
-      }).catch((e: unknown) => {
-        toast.error((e as Error).message);
+      }).catch(() => {
+        toast.error(t("errors.like not removed"));
       });
     }
   }

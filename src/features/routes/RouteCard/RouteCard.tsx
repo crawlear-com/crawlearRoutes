@@ -27,8 +27,10 @@ const RouteCard = ({ route, extras }: RouteCardProps) => {
       <LikesBadge likes={ route.likes } />  
     </div>
     
-    <SimpleMap className="w-full justify-self-end row-start-1 row-end-2 col-start-1 col-end-4 z-10 mt-2" 
-      width="w-full" height="h-20" point = { route.location || { lat: 0, lon: 0} } id = {`${uuidv4()}` } />
+    <SimpleMap containerClassName="w-full justify-self-end row-start-1 row-end-2 col-start-1 col-end-4 z-10 mt-2" 
+      className="-z-50" width="w-full" height="h-20"
+      zoomScale={ 0.01 }
+      point={ route.location || { lat: 0, lon: 0} } id={`${uuidv4()}` } />
     { extras }
   </div>;
 }

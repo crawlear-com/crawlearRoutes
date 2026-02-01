@@ -71,6 +71,7 @@ const eventRoutesListsSlice = createSlice({
     })
     .addCase(getMyRouteEventsPaginated.fulfilled, (state, action) => {
       state.events = [...action.payload.data];
+      state.totalEvents = action.payload.total_count;
       state.isLoading = false;
     })
   }
