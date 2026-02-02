@@ -5,7 +5,7 @@ function YoutubeEmbed({ url, className }: YoutubeEmbedProps) {
     const videoId = getVideoIdFromYoutubeUrl(url)
       
     return (<>
-      { videoId ? <div className={ className ? className : '' }>
+      { videoId ? <div role="video" className={ className ? className : '' }>
             <iframe src={`https://www.youtube.com/embed/${videoId}`} 
                 className="w-full min-h-96"
                 title="YouTube video player" 

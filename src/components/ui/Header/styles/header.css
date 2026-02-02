@@ -3,11 +3,17 @@
 @layer base {
   header {
     @apply backdrop-blur;
+    @apply ease-in-out transition-transform duration-500;
   }
 
   header img {
     @apply w-8;
   }
+
+  .showHide {
+    transform: translateY(-100px);
+  }
+
 
   header img.normal {
     -webkit-filter: none;
