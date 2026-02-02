@@ -2,7 +2,8 @@
   "main": {
     "today events": "Events al dia d'avui",
     "my events": "Els meus events",
-    "location": "Punt de trobada"
+    "location": "Punt de trobada",
+    "back": "Tornar"
   },
   "creation": {
     "event creation": "Creació d'event",

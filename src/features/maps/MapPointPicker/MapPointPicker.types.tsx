@@ -6,7 +6,8 @@ const AREA = "area";
 type MapPointPickerProps = {
     onMapClick?: (searchBounds: L.LatLngBounds) => void,
     points?: Array<MapPoint>,
-    className?: string
+    className?: string,
+    containerClassName?: string
 }
 
 type MarkerList = {

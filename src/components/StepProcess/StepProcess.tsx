@@ -8,7 +8,7 @@ import useStepProcess from "./hooks/useStepProcess";
 const StepProcess = ({ steps, stepDescriptions, stepTitles, stepsSelectors }: StepProcessProps) => {
   const { t } = useTranslation(["routeCreation"]);
   const [ step, isCurrentStepFinished, onNextStep, onPreviousStep] = useStepProcess(steps, stepsSelectors);
-  return <div className="md:max-w-[90%] m-auto text-center card p-0 sm:p-5 z-10 relative">
+  return <div className="max-w-[90%] m-auto text-center card p-0 sm:p-5 z-10 relative">
     <div className="">
       <h2 className="font-bold text-2xl mt-3 mb-5">{ `${t("main.step")} ${step + 1}/${steps.length}` }</h2>
       <StepIndicator stepsNumber={ steps.length } currentStep={ step } />

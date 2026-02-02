@@ -24,7 +24,8 @@
     "difficult": "Difícil",
     "name": "Nom",
     "date": "Data",
-    "likes": "Favorits"
+    "likes": "Favorits",
+    "back": "Tornar"
   },
   "messages": {
     "route creation ok": "La ruta s'ha creat amb exit",

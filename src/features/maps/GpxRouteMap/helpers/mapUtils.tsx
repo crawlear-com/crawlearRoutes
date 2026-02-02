@@ -32,12 +32,12 @@ const parseGpxString = (gpx: string): GpxData => {
 
 const getGpxInfo = (leafletEventTarget: L.GPX): GpxInfo => {
     return {
-        distance: leafletEventTarget.get_distance(),
-        time: leafletEventTarget.get_total_time(),
-        movingTime: leafletEventTarget.get_total_time(),
-        speed: leafletEventTarget.get_total_speed(),
-        elevationMin: leafletEventTarget.get_elevation_min(),
-        elevationMax: leafletEventTarget.get_elevation_max()
+        distance: leafletEventTarget.get_distance() || 0,
+        time: leafletEventTarget.get_total_time() || 0,
+        movingTime: leafletEventTarget.get_total_time() || 0,
+        speed: leafletEventTarget.get_total_speed() || 0,
+        elevationMin: leafletEventTarget.get_elevation_min() || 0,
+        elevationMax: leafletEventTarget.get_elevation_max() || 0
     }
 }
 

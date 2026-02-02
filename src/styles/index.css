@@ -7,7 +7,7 @@
   :root, :host {
     @variant dark {
   --color-background: #242424;
-  --color-primary: #e11d8a;
+  --color-primary: #39c0b4;
   --color-secondary: #353535;
   --color-terciary: oklch(92.8% 0.006 264.531);
   --color-font: oklch(92.8% 0.006 264.531);

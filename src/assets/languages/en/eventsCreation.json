@@ -2,7 +2,8 @@
   "main": {
     "today events": "Today events",
     "my events": "My events",
-    "location": "Meeting point"
+    "location": "Meeting point",
+    "back": "Back"
   },
   "creation": {
     "event creation": "Event creation",

@@ -17,8 +17,8 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
     onRouteChange, onScaleChange, onMapClick ] = useRouteEventsDataForm(date, routeEvent);
   const mapPoint = point ? [createMapPointFromGeoPoint(point, t("main.location"))] : undefined;
 
-  return <div className="container card z-10 relative md:max-w-[90%] m-auto text-center card p-0 sm:p-5">
-    <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitEventsForm } noValidate>
+  return <div className="container card z-10 relative max-w-[90%] m-auto text-center card pt-5 sm:p-5">
+    <form className="space-y-4 text-left m-auto w-4/5" action={ onSubmitEventsForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("creation.event name")}:
       </label>
@@ -33,7 +33,7 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full h-80 ml-1 mb-5 p-3 rounded-xl" 
+        className="w-full h-40 ml-1 mb-5 p-3 rounded-xl" 
         placeholder={`${t("creation.event name")}...`} value={ description } /><br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
@@ -41,19 +41,26 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       { isLoading ? <Spinner /> : <MapPointPicker onMapClick={ onMapClick } points={ mapPoint }
           className="h-100" /> }
 
-      <label htmlFor="routeDate" className="align-top font-bold mr-2"> { t("creation.event date") }: </label>
-      <span id="routeDate">{ new Date(date).toLocaleDateString() }</span><br />
-      
-      <label htmlFor="routeHour" className="font-bold mr-2"> { t("creation.event hour") } :</label>
-      <select id="routeHour" name="routeHour" 
-        className="border border-primary rounded-xl p-2 inline"
-        value={hour} onChange={ onHourChange }>
-        { generateHoursOptions() }
-      </select><br />
+      <div className="flex flex-wrap justify-center items-center w-full">
+        <span className="mb-2 mr-2">
+          <label htmlFor="routeDate" className="align-top font-bold mr-2"> { t("creation.event date") }: </label>
+          <span className="mr-4" id="routeDate">{ new Date(date).toLocaleDateString() }</span>
+          </span>
+        <span className="mb-2 mr-2">
+          <label htmlFor="routeHour" className="font-bold mr-2"> { t("creation.event hour") } :</label>
+          <select id="routeHour" name="routeHour" 
+            className="border border-primary rounded-xl p-2 inline"
+            value={hour} onChange={ onHourChange }>
+            { generateHoursOptions() }
+          </select>
+        </span>
+        <span className="mb-2">
+          <label htmlFor="routeScale" className="font-bold mr-2"> { t("creation.scale") } :</label>
+          <ScaleSelectOptions id="routeScale" value={ scale } 
+            className="border border-primary rounded-xl p-2" onScaleChange={ onScaleChange } />
+        </span>
+      </div>
 
-      <label htmlFor="routeScale" className="font-bold mr-2"> { t("creation.scale") } :</label>
-      <ScaleSelectOptions id="routeScale" value={ scale } 
-        className="border border-primary rounded-xl p-2" onScaleChange={ onScaleChange } />
 
       <div className="font-bold">
         { t("creation.routes") } : 

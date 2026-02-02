@@ -2,7 +2,8 @@
   "main": {
     "today events": "Eventos de hoy",
     "my events": "Mis eventos",
-    "location": "Punto de encuentro"
+    "location": "Punto de encuentro",
+    "back": "Volver"
   },
   "creation": {
     "event creation": "Creación de event",

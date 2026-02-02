@@ -15,7 +15,7 @@ const RouteDataForm = () => {
 
   return (<div className="mt-10">
     { eventId ? <>Ruta para el evento de hoy</> : <></> }
-    <form className="space-y-4 text-left m-auto w-4/5 sm:w-1/2" action={ onSubmitRouteForm } noValidate>
+    <form className="space-y-4 text-left m-auto w-3/4" action={ onSubmitRouteForm } noValidate>
       <label htmlFor="routeName" className="block font-bold">
         * { t("main.route name")}:
       </label>
@@ -29,26 +29,32 @@ const RouteDataForm = () => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setRouteDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full h-80 ml-1 mb-5 p-3 rounded-xl" placeholder="Route description..." value={ creationRoute.description } /> <br />
+        className="w-full h-40 ml-1 mb-5 p-3 rounded-xl" placeholder="Route description..." value={ creationRoute.description } /> <br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
-      <label htmlFor="isPublic" className="font-bold">
-        { t("main.route is plublic")}:
-      </label>
-      <input type="checkbox" id="isPublic" onChange={ onIsPublicChangeHandler }
-        className="ml-1 p-3 rounded-xl" checked={ creationRoute.isPublic } /> <br />
-
-      <label htmlFor="difficulty" className="font-bold">
-        { t("main.route difficulty")}:
-      </label>
-      <DifficultySelectOptions id="difficulty" value={ creationRoute.difficulty }
-        className="ml-1 mb-5 p-3 input" onDifficultyChange={ onDifficultyChange } /><br />
-
-      <label htmlFor="scale" className="font-bold">
-        { t("main.route scale")}:
-      </label>
-      <ScaleSelectOptions id="scale" value= { creationRoute.scale }
-        className="ml-1 mb-5 p-3 input" onScaleChange={ onScaleChange } /><br />
+      <div className="flex flex-wrap justify-center items-center w-full">
+        <span className="mb-2">
+          <label htmlFor="isPublic" className="font-bold">
+            { t("main.route is plublic")}:
+          </label>
+          <input type="checkbox" id="isPublic" onChange={ onIsPublicChangeHandler }
+            className="ml-1 p-3 rounded-xl mr-4" checked={ creationRoute.isPublic } />
+        </span>
+        <span className="mb-2">
+          <label htmlFor="difficulty" className="font-bold">
+            { t("main.route difficulty")}:
+          </label>
+          <DifficultySelectOptions id="difficulty" value={ creationRoute.difficulty }
+            className="ml-1 p-3 input mr-4" onDifficultyChange={ onDifficultyChange } />
+        </span>
+        <span className="mb-2">
+          <label htmlFor="scale" className="font-bold">
+            { t("main.route scale")}:
+          </label>
+          <ScaleSelectOptions id="scale" value= { creationRoute.scale }
+            className="ml-1 p-3 input" onScaleChange={ onScaleChange } /><br />
+        </span>
+      </div>
       <label htmlFor="youtubeVideo" className="block font-bold">
         { t("main.route video")}:
       </label>

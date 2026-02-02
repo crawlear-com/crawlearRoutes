@@ -24,7 +24,8 @@
     "difficult": "Difficult",
     "name": "Name",
     "date": "Date",
-    "likes": "Likes"
+    "likes": "Likes",
+    "back": "Back"
   },
   "messages": {
     "route creation ok": "The route was created correctly",

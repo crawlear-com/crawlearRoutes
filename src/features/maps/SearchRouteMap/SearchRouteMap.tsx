@@ -12,20 +12,19 @@ const SearchRouteMap = () => {
   const [ resultRoutes, points, isLoading, query, page, totalRoutes, 
     onMapClick, onQueryChange, onSearch, onPageClick, routesCard] = useSearchRoute();
 
-  return (<div className="flex gap-5 flex-col sm:flex-row">
-    <div className="flex-1 self-start sm:max-w-[90%] lg:max-w-1/2 mx-auto ml-10">
-      <MapPointPicker onMapClick={ onMapClick } points={ points } className="w-full h-96 sm:h-150" />
-            <label htmlFor="searchRouteInput" className="mt-56">
-        { t('main.search route') }:
-        <SearchInput value={ query } className="border-primary border h-10 p-2 ml-2 rounded"
-          onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
-      </label>
-    </div>
+  return (<div className="container card flex gap-5 flex-col sm:flex-row z-10 relative">
+    <MapPointPicker onMapClick={ onMapClick } points={ points } containerClassName="flex-1" className="container card h-96 sm:h-150" />
 
-    <div className="flex-1 card self-start sm:max-w-[90%] lg:max-w-1/2 mx-10 z-10">
-        { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
-        <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
-        <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />
+    <div className="self-start flex-1 z-10">
+      <label htmlFor="searchRouteInput" className="mt-56">
+        { t('main.search route') }:
+      </label>
+      <SearchInput value={ query } className="border-primary border h-10 p-2 mb-2 rounded"
+        onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
+
+      { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
+      <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
+      <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />
     </div>
   </div>);
 }

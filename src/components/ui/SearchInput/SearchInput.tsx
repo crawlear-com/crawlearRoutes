@@ -5,7 +5,7 @@ const SearchInput = ({ value, className, placeholder, onQueryChange, onSearch  }
   const [ onQueryChangeHandler ] = useSearchInput(onQueryChange, onSearch);
 
   return <input value={ value } className={ className } onChange={ onQueryChangeHandler }
-        placeholder={ placeholder } type="text" />
+        placeholder={ placeholder } type="text" id="searchInput" name="searchInput"  />
 }
 
 export default SearchInput;

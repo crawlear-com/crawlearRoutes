@@ -16,7 +16,7 @@ import logoWhite from '@/assets/images/logo-white.png'
 import './styles/header.css';
 
 const greyscaleIconClass = (location: string, name: string) => {
-    return location.indexOf(name) === 0 ? 'normal' : 'greyscale';
+    return location.indexOf(name) >= 0 ? 'normal' : 'greyscale';
 }
 
 const Header = () => {
@@ -43,10 +43,10 @@ const Header = () => {
                     <img title={t("main.toggle theme")} className="icon greyscale" src={themeIcon} alt="" />
                 </ToggleTheme>
                 <NavLink to="/myroutes" className="link md:inline mr-1">
-                    <img title={t("main.my routes")} className={`icon ${greyscaleIconClass(location, 'myroutes')}`} src={myroutes} />
+                    <img title={t("main.my routes")} className={`icon ${greyscaleIconClass(location, 'route')}`} src={myroutes} />
                 </NavLink>
                 <NavLink to="/myevents" className="link md:inline mr-1">
-                    <img  title={t("main.my events")} className={`icon ${greyscaleIconClass(location, 'myevents')}`} src={myevents} />
+                    <img  title={t("main.my events")} className={`icon ${greyscaleIconClass(location, 'event')}`} src={myevents} />
                 </NavLink>
                 <NavLink to="/search" className="link md:inline mr-1">
                     <img  title={t("main.search route")} className={`icon ${greyscaleIconClass(location, 'search')}`} src={search} />

@@ -42,8 +42,12 @@ const EventDetail = ({ eid }: EventDetailProps) => {
               <RouteDetail rid={ event.rid } />
             </> : <>
               <h1 className="mt-20 max-w-[90%] lg:max-w-2/3 mx-auto text-center mb-10">{ t("creation.not assigned route") }</h1>
-              <NavLink className="text-primary text-center block"
-                to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>Back</NavLink>
+              <button className="button button-primary text-white p-5 m-auto">
+                <NavLink className="text-white text-center block"
+                  to="/" onClick={(e) => { e.preventDefault(); navigate(-1)}}>
+                    { t("main.back") }
+                </NavLink>
+              </button>
             </>
             }
         </div>
