@@ -68,6 +68,9 @@ const routeSlice = createSlice({
     },
     setIsPublic: (state, action: PayloadAction<boolean>) => {
       state.route.isPublic = action.payload;
+    },
+    setIsRecording: (state, action: PayloadAction<boolean>) => {
+      state.isRecording = action.payload;
     }
   },
     extraReducers: (builder) => {
@@ -89,5 +92,5 @@ const routeSlice = createSlice({
 export { routeSlice, loadRoute };
 export const { setRouteId, setEventId, setAction, setRoute, cleanRouteCreation, setGpx, cleanGpx, 
   setLocation, setName, setDescription, setDifficult, setDistance, setDuration, setIsPublic, 
-  setScale, setYoutubeVideo } = routeSlice.actions;
+  setIsRecording, setScale, setYoutubeVideo } = routeSlice.actions;
 export default routeSlice.reducer;

@@ -8,10 +8,10 @@ import FileLoader from './FileLoader/FileLoader'
 import type { GpxRouteMapProps } from './GpxRouteMap.types'
 import GpxInfoCard from './GpxInfoCard/GpxInfoCard'
 
-const GpxRouteMap = ({ gpx, onFileResolved, onRouteRecorded, 
+const GpxRouteMap = ({ gpx, onFileResolved, onRouteRecorded, onStopRecording, onStartRecording,
   containerClassName, mapClassName }: GpxRouteMapProps): React.JSX.Element => {
   const [onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, gpxInfo, 
-    recordState, pauseState, pollingTime ] = useGpxRouteMap(onFileResolved, gpx, onRouteRecorded);
+    recordState, pauseState, pollingTime ] = useGpxRouteMap(onFileResolved, gpx, onRouteRecorded, onStopRecording, onStartRecording);
   //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
   return <div className={`${containerClassName} flex gap-5 flex-wrap flex-col sm:flex-row`}>

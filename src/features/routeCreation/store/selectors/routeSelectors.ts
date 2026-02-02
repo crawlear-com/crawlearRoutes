@@ -3,7 +3,7 @@ import type { RootState } from "@/store/store";
 
 const selectStep1IsFinished = createSelector(
   (state: RootState) => state.routeCreation,
-  (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null : false
+  (routeCreation) => routeCreation ? routeCreation.route.gpx !== null && routeCreation.route.location !== null && !routeCreation.isRecording: false
 );
 
 const selectStep2IsFinished = createSelector(

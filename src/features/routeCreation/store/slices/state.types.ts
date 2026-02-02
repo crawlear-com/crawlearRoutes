@@ -25,7 +25,9 @@ type CreationRouteState = {
   action: FormAction,
   route: CreationRoute,
   isLoading: boolean,
+  isRecording: boolean,
   error: string | null
+  
 }
 
 const routeInitialState = {
@@ -47,6 +49,7 @@ const initialState: CreationRouteState = {
   eventId: null,
   action: null,
   isLoading: false,
+  isRecording: false,
   error: null,
   route: routeInitialState
 }

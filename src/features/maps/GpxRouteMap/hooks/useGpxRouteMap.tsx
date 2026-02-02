@@ -31,8 +31,8 @@ const gpxParserOptions = {
 }
 
 const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void, 
-gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void):
-  [ (fileContents: string) => void, (event: React.MouseEvent<HTMLButtonElement>) => void, 
+  gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
+  onStopRecording?: () => void, onStartRecording?: () => void): [ (fileContents: string) => void, (event: React.MouseEvent<HTMLButtonElement>) => void, 
     (event: React.MouseEvent<HTMLButtonElement>) => void, (value: number) => void,
     GpxInfo, boolean, boolean, number ] => {
   const initialGpxInfo = {
@@ -88,15 +88,18 @@ gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, dist
   const onStartStopRecord = (event: React.MouseEvent<HTMLButtonElement>) => {
     if(!recordState) {
       setGpx("");
-      setRecordState(!recordState);
       setPauseState(false);
       if (map.current) {
         removeMarkers(map.current);
       }
-    } else {
-      setRecordState(!recordState);
     }
+    setRecordState(!recordState);
     PauseOrReanudeRecord(event);
+    if (recordState && onStopRecording) {
+       onStopRecording();
+    } else if (!recordState && onStartRecording) {
+      onStartRecording();
+    }
   }
 
   const onPollingTimeChanged = (value: number) => {

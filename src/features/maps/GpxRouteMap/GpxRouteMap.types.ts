@@ -5,7 +5,9 @@ type GpxRouteMapProps = {
   mapClassName?: string,
   containerClassName?: string,
   onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
-  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void
+  onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
+  onStopRecording?: () => void,
+  onStartRecording?: () => void
 }
 
 type GpxInfo = {
