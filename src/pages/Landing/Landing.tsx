@@ -8,6 +8,9 @@ import locationImage from './assets/images/location.png';
 import personasImage from './assets/images/personas.png';
 import mountainImage from './assets/images/mountain.png';
 import mapImage from './assets/images/mapa.png';
+import logo from '@/assets/images/logo.png';
+
+import "./styles/landing.css";
 
 const Landing = () => {
     const { t } = useTranslation(["landing"]);
@@ -18,6 +21,7 @@ const Landing = () => {
         <main className="flex flex-col items-center justify-center text-center min-h-[80vh]">
             <section className="my-10 mx-auto py-4 px-20 flex w-full justify-center flex-wrap items-center">
                 <div className="flex-2 mb-20 mx-5 lg:mx-10 min-w-2xs w-50 lg:w-80 justify-center">
+                    <img className="m-auto mb-10" src={ logo } alt="crawlear.com logo" title="crawlear.com logo" />
                     <h1 className="">{ t('main.explore routes hassle')}</h1>
                     <p className="text-left my-10 text-xl">{ t('main.plan record share') }</p>
                     <NavLink to="/login" className="button-primary max-w-50 m-auto">{ t('main.getstarted') }</NavLink>
@@ -26,7 +30,7 @@ const Landing = () => {
             </section>
             <section className="my-10 mx-auto py-4 px-20 flex w-full justify-center flex-wrap items-center">
                 <h1>{ t('main.why crawlear') }</h1>
-                <div className="flex flex-wrap" >
+                <div className="flex flex-wrap gap-5 mt-10" >
                     <div className="card landingCard">
                         <img src={locationImage} />
                         <h1>{ t('main.capture your route') }</h1>

@@ -30,8 +30,8 @@ const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
         setIsLoading(true);
         const lat = location?.coords.latitude;
         const lon = location?.coords.longitude;
-        const southWest = new L.LatLng(lat - 0.1, lon - 0.1);
-        const northEast = new L.LatLng(lat + 0.1, lon + 0.1);
+        const southWest = new L.LatLng(lat - 0.5, lon - 0.5);
+        const northEast = new L.LatLng(lat + 0.5, lon + 0.5);
         const bounds = new L.LatLngBounds(southWest, northEast);
         const response = await searchEventsByGeo(bounds);
 

@@ -11,7 +11,7 @@ const RouteEventCard = ({ routeEvent, extras }: RouteEventCardProps) => {
 
   return <div className="routeCard bg-background cursor-pointer grid relative p-5 pt-10 border-t border-primary mb-8" 
     onClick={ () => { navigate(`/showevent/${routeEvent.id}`)}}> 
-    <h2 className="row-start-1 row-end-2 col-start-1 col-end-3 sm:text-2xl">{ routeEvent.name }</h2>
+    <h2 className="font-bold row-start-1 row-end-2 col-start-1 col-end-3 sm:text-2xl">{ routeEvent.name }</h2>
     <span className="col-start-1 col-end-3">
       { routeEvent.rid && routeEvent.routeName ? <>{ routeEvent.routeName }</> : <>{ t("creation.not assigned route") }</> }
     </span>
