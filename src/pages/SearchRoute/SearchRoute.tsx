@@ -8,7 +8,7 @@ import "./styles/searchRoute.css";
 const SearchRoute = () => {
   const { t } = useTranslation("myRoutes");
   return (
-    <MainLayout contentClassName="">
+    <MainLayout>
       <><PageTitle background="search--backgroud p-10">
         <h1 className="flex-5/6 text-right text-white w-full">{ t("search.search routes") }</h1>
       </PageTitle>

@@ -29,7 +29,7 @@ const RouteDataForm = () => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setRouteDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full h-40 ml-1 mb-5 p-3 rounded-xl" placeholder="Route description..." value={ creationRoute.description } /> <br />
+        className="w-full h-20 ml-1 mb-5 p-3 rounded-xl" placeholder="Route description..." value={ creationRoute.description } /> <br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
       <div className="flex flex-wrap justify-center items-center w-full">

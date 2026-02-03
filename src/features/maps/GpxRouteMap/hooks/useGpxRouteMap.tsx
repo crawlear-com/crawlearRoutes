@@ -61,9 +61,9 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
     //releaseWakeLock();
   }
 
-  const PauseOrReanudeRecord = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const PauseOrReanudeRecord = () => {
     setError(NO_ERROR);
-    onStartStopClick(event);
+    onStartStopClick(false);
     if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && 
       (gpxRecorded.indexOf('<trkpt')>0 || gpxRecorded.indexOf('<wpt')>0)) {
         try {
@@ -80,12 +80,12 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
     }
   }
 
-  const onPause = (event: React.MouseEvent<HTMLButtonElement>) => {
-    PauseOrReanudeRecord(event);
+  const onPause = () => {
+    onStartStopClick(true);
     setPauseState(!pauseState);
   }
 
-  const onStartStopRecord = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onStartStopRecord = () => {
     if(!recordState) {
       setGpx("");
       setPauseState(false);
@@ -94,7 +94,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
       }
     }
     setRecordState(!recordState);
-    PauseOrReanudeRecord(event);
+    PauseOrReanudeRecord();
     if (recordState && onStopRecording) {
        onStopRecording();
     } else if (!recordState && onStartRecording) {

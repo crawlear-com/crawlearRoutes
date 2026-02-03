@@ -65,7 +65,7 @@ const routeSearchSlice = createSlice({
       state.error = action.error.message ? action.error.message : "Unknown Error";
     })
     .addCase(searchByGeo.fulfilled, (state, action) => {
-      const routes = [...action.payload];
+      const routes = [...action.payload.data];
       state.routes = routes;
       state.totalRoutes = action.payload.total_count;
       state.points = getPointsFromRoutes(routes) as Array<MapPoint>;

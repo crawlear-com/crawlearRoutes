@@ -14,7 +14,7 @@ const useItemsList = <T, > (
   const routes = useSelector(selectMethods.selectItems);
   const isLoading = useSelector(selectMethods.selectIsLoading);
   const currentPage = useSelector(selectMethods.selectPage);
-  const totalEventRoutes = useSelector(selectMethods.selectTotalItems);
+  const totalItems = useSelector(selectMethods.selectTotalItems) || 0;
   const query = useSelector(selectMethods.selectQuery);
   const orderBy = useSelector(selectMethods.selectOrderBy);
   const orderDir = useSelector(selectMethods.selectOrderDir);
@@ -43,7 +43,7 @@ const useItemsList = <T, > (
     dispatch(thunk());
   }, [dispatch, thunk]);
 
-  return [ currentPage, query, orderBy, orderDir, totalEventRoutes, routes, isLoading, onPageClick,
+  return [ currentPage, query, orderBy, orderDir, totalItems, routes, isLoading, onPageClick,
     onOrderByClick, onOrderDirClick, onQueryChange, onSearch ];
 }
 

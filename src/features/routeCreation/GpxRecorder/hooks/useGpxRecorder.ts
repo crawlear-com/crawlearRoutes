@@ -12,6 +12,12 @@ const useGpxRecorer = (): [
   const dispatch = useDispatch();
   const onGpxResolved = (fileContent: string, routePoint: GeoPoint, distance: number,
     duration: number) => {
+
+      console.log(fileContent);
+
+
+
+      
     try {
       dispatch(setLocation(routePoint));
       dispatch(setGpx(fileContent));
@@ -23,11 +29,9 @@ const useGpxRecorer = (): [
   }
 
   const onStartRecording = () => {
-    console.log("dispatch! start");
     dispatch(setIsRecording(true));
   }
   const onStopRecording = () => {
-    console.log("dispatch! stop");
     dispatch(setIsRecording(false));
   }
 

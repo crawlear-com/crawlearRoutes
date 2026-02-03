@@ -30,6 +30,8 @@
 - do i keep useWakeLock ??
 - Accesibilidad
 
+- Precisión de la geolocalización con datos (en lugar de GPS) y en especial con datos de altura (está mas orientado a datos horizontales)
+
 ## Install and run
 
 1. Clone this repo:
