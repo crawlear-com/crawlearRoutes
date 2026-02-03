@@ -25,7 +25,9 @@
     "name": "Nom",
     "date": "Data",
     "likes": "Favorits",
-    "back": "Tornar"
+    "back": "Tornar",
+    "filter routes": "Filtrar rutas...",
+    "youtube video url": "Youtube video url..."
   },
   "messages": {
     "route creation ok": "La ruta s'ha creat amb exit",

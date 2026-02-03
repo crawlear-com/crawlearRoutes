@@ -25,7 +25,8 @@
     "name": "Name",
     "date": "Date",
     "likes": "Likes",
-    "back": "Back"
+    "back": "Back",
+    "filter routes": "Filter routes..."
   },
   "messages": {
     "route creation ok": "The route was created correctly",

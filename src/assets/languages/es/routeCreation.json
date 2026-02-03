@@ -25,7 +25,8 @@
     "name": "Nombre",
     "date": "Fecha",
     "likes": "Favoritos",
-    "back": "Volver"
+    "back": "Volver",
+    "filter routes": "Filtrar rutas..."
   },
   "messages": {
     "route creation ok": "La ruta se ha creado con éxito",
