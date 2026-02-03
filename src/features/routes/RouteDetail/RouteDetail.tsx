@@ -43,7 +43,7 @@ const RouteDetail = ({ rid }: RouteDetailProps) => {
             containerClassName="max-w-[90%] lg:max-w-2/3 mx-auto"
             mapClassName="mt-10 w-full lg:max-w-2/3 mx-auto sm:flex-1" />
           { route.youtubeVideo ? 
-            <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto" /> :
+            <YoutubeEmbed url={ route.youtubeVideo } className="w-full lg:max-w-2/3 mx-auto mt-2" /> :
             <></> }
           <button className="button button-primary p-5 m-auto mt-5">
             <NavLink className="text-white text-center block"

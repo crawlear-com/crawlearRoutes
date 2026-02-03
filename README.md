@@ -13,6 +13,7 @@ Plan, record, and share your RC adventures like never before. CrawlearRoutes let
 ![alt routes screenshot](/etc/screenshot1.png)
 ![alt events screenshot](/etc/screenshot2.png)
 ![alt search routes screenshot](/etc/screenshot3.png)
+![alt route detail screenshot](/etc/screenshot4.png)
 
 ### Main features
  - sign in / sign up using username and password
@@ -106,7 +107,7 @@ Design patters: DRY, kiss, custom hooks, singleton, observer pattern
 
 2) **Generic lists of items**: ItemsList + ItemsCardList
 
-![alt example ItemList screenshot](/etc/screenshot4.png)
+![alt example ItemList screenshot](/etc/screenshotSmartphone.png)
 
 - Definition: **ABSTRACTION** of lists of items with search by query, order (by attribute and direction), pagination.
 

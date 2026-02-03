@@ -13,9 +13,9 @@ const ToggleTheme = ({ className, children }: ToggleThemeProps) => {
       document.documentElement.classList.toggle('dark');
     }
 
-  return <strong data-testid={isLightTheme ? "light" : "dark"} className={ `cursor-pointer link ${className}` } onClick={ toggleTheme }>
+  return <div data-testid={isLightTheme ? "light" : "dark"} className={ `cursor-pointer link ${className}` } onClick={ toggleTheme }>
     { children }
-  </strong>
+  </div>
 }
 
 export default ToggleTheme;
