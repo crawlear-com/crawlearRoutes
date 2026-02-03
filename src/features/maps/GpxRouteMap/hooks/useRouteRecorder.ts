@@ -4,7 +4,8 @@ import { getGeolocationPosition, initialGpxDataString } from '../helpers/mapUtil
 export const ERR_GEOLOCATION_NOT_AVAILABLE = -1;
 export const ERR_GEOLOCATION_NOT_RESOLVED = -2;
 
-function useRouteRecorder(pollingTime: number, onError: (error: number) => void, previousGpxData?: string): [string, React.MouseEventHandler<HTMLButtonElement>] {
+function useRouteRecorder(pollingTime: number, onError: (error: number) => void, previousGpxData?: string): 
+[string, (isPause: boolean) => void] {
   const [timer, setTimer] = React.useState(0)
   const [gpxDataString, setGpxDataString] = React.useState(previousGpxData?.replace('</trkseg></trk></gpx>','') || initialGpxDataString)
 
@@ -20,7 +21,7 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
     }
   }
 
-  function success(position: GeolocationPosition) {
+  const success = (position: GeolocationPosition) => {
     setGpxDataString((previousData) => {
       return previousData.concat(`
         <trkpt lon="${position.coords.longitude}" lat="${position.coords.latitude}">
@@ -31,11 +32,13 @@ function useRouteRecorder(pollingTime: number, onError: (error: number) => void,
     })
   }
 
-  function onStartStopClick() {
+  const onStartStopClick = (isPause: boolean) => {
     if (timer) {
       clearTimer();
     } else {
-      setGpxDataString(initialGpxDataString);
+      if (!isPause) {
+        setGpxDataString(initialGpxDataString);
+      }
       getGeolocationPosition(success, error);
       const newTimer = window.setInterval(() => {
         getGeolocationPosition(success, error);

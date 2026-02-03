@@ -21,7 +21,7 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
   const isLoading = useSelector(selectRouteSearchIsLoading);
   const query = useSelector(selectRouteSearchQuery);
   const page = useSelector(selectRouteSearchPage);
-  const totalRoutes = useSelector(selectRouteSearchTotalPages);
+  const totalRoutes = useSelector(selectRouteSearchTotalPages) || 0;
   const uid = useSelector(selectUserUUID);
   const dispatch = useDispatch<AppDispatch>();
 

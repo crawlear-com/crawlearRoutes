@@ -23,11 +23,9 @@ const useGpxRecorer = (): [
   }
 
   const onStartRecording = () => {
-    console.log("dispatch! start");
     dispatch(setIsRecording(true));
   }
   const onStopRecording = () => {
-    console.log("dispatch! stop");
     dispatch(setIsRecording(false));
   }
 

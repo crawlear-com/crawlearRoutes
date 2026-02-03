@@ -12,11 +12,11 @@ const SearchRouteMap = () => {
   const [ resultRoutes, points, isLoading, query, page, totalRoutes, 
     onMapClick, onQueryChange, onSearch, onPageClick, routesCard] = useSearchRoute();
 
-  return (<div className="container card flex gap-5 flex-col sm:flex-row z-10 relative">
+  return (<div className="container card flex gap-5 flex-col lg:flex-row z-10 relative lg:p-20">
     <MapPointPicker onMapClick={ onMapClick } points={ points } containerClassName="flex-1" className="container card h-96 sm:h-150" />
 
     <div className="self-start flex-1 z-10">
-      <label htmlFor="searchRouteInput" className="mt-56">
+      <label htmlFor="searchRouteInput" className="mr-2">
         { t('main.search route') }:
       </label>
       <SearchInput value={ query } className="border-primary border h-10 p-2 mb-2 rounded"

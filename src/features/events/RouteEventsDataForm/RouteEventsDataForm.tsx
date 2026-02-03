@@ -33,13 +33,13 @@ const RouteEventsDataForm = ({ routeEvent, date }: EventsDataFormProps) => {
       </label>
       <textarea name="routeDescription" id="routeDescription"
         onChange={ () => { setAndValidate(setDescription, 'routeDescription', descriptionSchema) }}
-        className="w-full h-40 ml-1 mb-5 p-3 rounded-xl" 
+        className="w-full h-20 ml-1 mb-5 p-3 rounded-xl" 
         placeholder={`${t("creation.event name")}...`} value={ description } /><br />
       <FormFeedbackElement className="routeDescription__feedback" />
 
       <div className="font-bold">{t("main.location")}:</div>
       { isLoading ? <Spinner /> : <MapPointPicker onMapClick={ onMapClick } points={ mapPoint }
-          className="h-100" /> }
+          className="h-40" /> }
 
       <div className="flex flex-wrap justify-center items-center w-full">
         <span className="mb-2 mr-2">
