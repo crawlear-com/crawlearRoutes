@@ -75,7 +75,7 @@ const getFitBoundsFromPosition = (point: GeolocationPosition): L.LatLngBoundsExp
 }
 
 const createMap = (id: string) => {
-  return L.map(id);
+  return L.map(id, {attributionControl: false});
 }
 
 const setMapLocation = (map: L.Map, point?: GeolocationPosition) => {

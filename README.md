@@ -2,6 +2,14 @@
 
 ## Introduction
 
+Plan, record, and share your RC adventures like never before. CrawlearRoutes lets you capture your routes directly from geolocation data or import them from your favorite GPS tracking app, automatically mapping every twist and climb. Explore public trails created by other enthusiasts, find new places to drive, and build your personal collection of routes — all from one intuitive, map-based interface designed for the RC community.
+
+ - Crawler routes repository
+ - Crawler events management for Associations and Clubs
+ - Public routes search
+ - Events discovery by location
+ - Management of favorite routes
+
 ![alt routes screenshot](/etc/screenshot1.png)
 ![alt events screenshot](/etc/screenshot2.png)
 ![alt search routes screenshot](/etc/screenshot3.png)
@@ -10,7 +18,7 @@
  - sign in / sign up using username and password
  - light / dark theme selector
  - responsive design
- - multilanguage support (en, es, cat) with [react-i18next](https://react.i18next.com/) and lazy load of language data 
+ - multilanguage support (en, es, cat) using [react-i18next](https://react.i18next.com/) and lazy loading of language data jsons
  - deploy into ghpages using routeHash and github environment variables for secret keys
  - deploy https://flatline.hopto.org/crawlearRoutes
  - toast notifications and errors [react-hot-toast](https://react-hot-toast.com/)
@@ -22,14 +30,9 @@
  - [zod](https://zod.dev/) form validations
 
 ### To-do
-- more clean architecture oriented to domain / features or use cases / infrastructure
-- toast async
 - input query validation with zod (or not?), but validation
 - zod texts into translation
 - confirms?
-- do i keep useWakeLock ??
-- Accesibilidad
-
 - Precisión de la geolocalización con datos (en lugar de GPS) y en especial con datos de altura (está mas orientado a datos horizontales)
 
 ## Install and run
@@ -104,17 +107,22 @@ Design patters: DRY, kiss, custom hooks, singleton, observer pattern
 2) **Generic lists of items**: ItemsList + ItemsCardList
 
 ![alt example ItemList screenshot](/etc/screenshot4.png)
-![alt ItemList diagram screenshot](/etc/itemListDiagram.png)
 
 - Definition: **ABSTRACTION** of lists of items with search by query, order (by attribute and direction), pagination.
 
-[put here UI of lists]
+![alt ItemList diagram screenshot](/etc/itemListDiagram.png)
 
 - Requeriments:
   - follow **DRY principle** and *reuse* the items list
   - **avoid prop drilling** (Pagination, filter by query and order by/direction): using Redux context
   - **keep abstraction**: using Typescript generics \<T>
   - to be used with **any kind of cards**: using render props in ItemsCardList
+
+## Accessibility
+
+The web page passes the WAVE Web Accessibility Evaluation Tool with 0 errors, 0 contrast errors and 0 Alerts:
+
+![alt wave web accessibility test screenshot](/etc/WebAccessibilityEvaluation.png)
 
 ## Testing
 

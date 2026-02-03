@@ -13,9 +13,9 @@ const ItemsListFilter = ({ query, orderDir, orderBy, onOrderByClick, onOrderDirC
 
 
   return (<div className="container flex justify-center items-center mx-auto mb-2 flex-wrap sm:flex-nowrap">
-      <div className="button-primary w-auto text-2xl hidden sm:block" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
-      <SearchInput value={ query } className={`${isCollapsed ? "hidden" : "mb-5 sm:mb-0 basis-full justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
-        placeholder={"main.filter routes"} onQueryChange={ onQueryChange } onSearch={ onSearch } />
+      <div className="button-primary w-auto text-2xl hidden sm:block mr-2" onClick={onCollapseClick}>{isCollapsed ? "↤" : "↦"}</div>
+      <SearchInput value={ query } labelTitle={ t("main.filter") } className={`${isCollapsed ? "hidden" : "mb-5 sm:mb-0 basis-full justify-self-start border border-gray-500 shadow mx-2 p-1 w-full"}`}
+        placeholder={t("main.filter routes")} onQueryChange={ onQueryChange } onSearch={ onSearch } />
 
       <span className={`${isCollapsed ? "hidden" : "button-primary w-8 mx-1 text-center"}`} onClick={onOrderDirClickHandler}>{orderDirIcon}</span>
 

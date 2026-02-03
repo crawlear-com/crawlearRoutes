@@ -1,5 +1,6 @@
 type SearchInputProps = {
   value?: string,
+  labelTitle?: string,
   className: string,
   placeholder: string,
   onQueryChange: (query: string) => void,

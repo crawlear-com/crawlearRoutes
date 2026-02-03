@@ -16,10 +16,7 @@ const SearchRouteMap = () => {
     <MapPointPicker onMapClick={ onMapClick } points={ points } containerClassName="flex-1" className="container card h-96 sm:h-150" />
 
     <div className="self-start flex-1 z-10">
-      <label htmlFor="searchRouteInput" className="mr-2">
-        { t('main.search route') }:
-      </label>
-      <SearchInput value={ query } className="border-primary border w-full h-10 p-2 mb-2 rounded"
+      <SearchInput value={ query } labelTitle={ t('main.search route') } className="border-primary border w-full h-10 p-2 mb-2 rounded"
         onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
 
       { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}

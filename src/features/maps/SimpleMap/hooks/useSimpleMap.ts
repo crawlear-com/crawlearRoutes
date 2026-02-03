@@ -18,7 +18,7 @@ function useSimpleMap(id: string, point: GeoPoint, zoomScale: number): void {
     }, [point]);
 
     React.useEffect(() => {
-      const newMap = L.map(`map${id}`).fitBounds(getBoundingBox(zoomScale, point.lat, point.lon));
+      const newMap = L.map(`map${id}`, {attributionControl: false}).fitBounds(getBoundingBox(zoomScale, point.lat, point.lon));
 
       newMap.zoomControl.remove();
       newMap.scrollWheelZoom.disable();

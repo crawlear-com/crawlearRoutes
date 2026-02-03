@@ -2,10 +2,10 @@
 
 @layer base {
   .button-primary.orderBy {
-    @apply w-auto mx-1 cursor-pointer no-underline;
+    @apply w-auto mx-1 cursor-pointer no-underline text-white;
   }
 
   .button-primary.orderBy.selected {
-    @apply opacity-50;
+    @apply opacity-75 text-black;
   }
 }
