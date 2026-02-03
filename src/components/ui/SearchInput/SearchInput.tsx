@@ -1,12 +1,13 @@
 import type { SearchInputProps } from "./SearchInput.types";
 import useSearchInput from "./hooks/useSearchInput";
 
-const SearchInput = ({ value, labelTitle, className, placeholder, onQueryChange, onSearch  }: SearchInputProps) => {
+const SearchInput = ({ value, labelTitle, isCollapsed, className, placeholder, onQueryChange, onSearch  }: SearchInputProps) => {
   const [ onQueryChangeHandler ] = useSearchInput(onQueryChange, onSearch);
+  const isCollapsedClass = isCollapsed ? 'hidden' : '';
 
   return <>
-    <label htmlFor="searchInput">{labelTitle}: </label>
-    <input value={ value } className={ className } onChange={ onQueryChangeHandler }
+    <label className={ isCollapsedClass } htmlFor="searchInput">{ labelTitle }: </label>
+    <input value={ value } className={ `${className} ${isCollapsedClass}` } onChange={ onQueryChangeHandler }
         placeholder={ placeholder } type="text" id="searchInput" name="searchInput"  />
   </>
 }

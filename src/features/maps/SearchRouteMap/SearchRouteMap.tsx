@@ -16,8 +16,8 @@ const SearchRouteMap = () => {
     <MapPointPicker onMapClick={ onMapClick } points={ points } containerClassName="flex-1" className="container card h-96 sm:h-150" />
 
     <div className="self-start flex-1 z-10">
-      <SearchInput value={ query } labelTitle={ t('main.search route') } className="border-primary border w-full h-10 p-2 mb-2 rounded"
-        onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
+      <b><SearchInput isCollapsed={ false } value={ query } labelTitle={ t('main.search route') } className="border-primary border w-full h-10 p-2 mb-2 rounded"
+        onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } /></b>
 
       { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
       <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />

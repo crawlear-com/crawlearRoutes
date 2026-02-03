@@ -23,29 +23,37 @@ const UserRouteStatistics = () => {
         <b>{ t("statistics.total time") }:</b> { toHours(data.total_duration_time) } { t("statistics.hours") } 
       </div>
 
-      <div className="flex flex-col justify-center mt-5 lg:w-4/6 m-auto">
-        { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
-            data = {[["Scale", "Routes per scale"],
-              [getScaleValue(1), data.by_scale[1] || 0],
-              [getScaleValue(2), data.by_scale[2] || 0],
-              [getScaleValue(3), data.by_scale[3] || 0],
-              [getScaleValue(4), data.by_scale[4] || 0]]}
-            options={{ 
-              title: t("statistics.by scale"),
-              pieHole: 0.3,
-              is3D: false,
-            }}/> }
-        { isLoading ? <Spinner /> : <Chart chartType="PieChart"
-            data = {[["Difficulty", "Routes per difficulty"],
-              [easy, data.by_difficulty[1] || 0],
-              [medium, data.by_difficulty[2] || 0],
-              [difficult, data.by_difficulty[3] || 0]]}
-          options={{ 
-              title: t("statistics.by difficult"),
-              pieHole: 0.3,
-              is3D: false
-          }}/> }
-      </div>
+      { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
+        data = {[["Scale", "Routes per scale"],
+          [getScaleValue(1), data.by_scale[1] || 0],
+          [getScaleValue(2), data.by_scale[2] || 0],
+          [getScaleValue(3), data.by_scale[3] || 0],
+          [getScaleValue(4), data.by_scale[4] || 0]]}
+        options={{ 
+          title: t("statistics.by scale"),
+          pieHole: 0.3,
+          is3D: false,
+          chartArea: {
+            width: "100%",
+            heigth: "100%"
+          }
+        }}/>
+      }
+      { isLoading ? <Spinner /> : <Chart chartType="PieChart"
+        data = {[["Difficulty", "Routes per difficulty"],
+          [easy, data.by_difficulty[1] || 0],
+          [medium, data.by_difficulty[2] || 0],
+          [difficult, data.by_difficulty[3] || 0]]}
+        options={{ 
+          title: t("statistics.by difficult"),
+          pieHole: 0.3,
+          is3D: false,
+          chartArea: {
+            width: "100%",
+            heigth: "100%"
+          }
+        }}/>
+      }
     </div>
   </div>;
 }

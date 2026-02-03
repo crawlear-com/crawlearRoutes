@@ -22,19 +22,22 @@ const UserEventsStatistics = () => {
       <b>{ t("statistics.past events") }:</b> { data.past_events } 
     </div>
 
-    <div className="flex flex-col lg:flex-row justify-center mt-5 lg:w-4/6 m-auto">
       { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
-          data = {[["Scale", "Routes per scale"],
-            [getScaleValue(1), data.by_scale[1] || 0],
-            [getScaleValue(2), data.by_scale[2] || 0],
-            [getScaleValue(3), data.by_scale[3] || 0],
-            [getScaleValue(4), data.by_scale[4] || 0]]}
-          options={{ 
-            title: t("statistics.by scale"),
-            pieHole: 0.3,
-            is3D: false,
-          }}/> }
-    </div>
+        data = {[["Scale", "Routes per scale"],
+          [getScaleValue(1), data.by_scale[1] || 0],
+          [getScaleValue(2), data.by_scale[2] || 0],
+          [getScaleValue(3), data.by_scale[3] || 0],
+          [getScaleValue(4), data.by_scale[4] || 0]]}
+        options={{ 
+          title: t("statistics.by scale"),
+          pieHole: 0.3,
+          is3D: true,
+          chartArea: {
+            width: "100%",
+            heigth: "100%"
+          }
+        }}/>
+      }
   </div>;
 }
 

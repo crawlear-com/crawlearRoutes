@@ -1,6 +1,7 @@
 type SearchInputProps = {
   value?: string,
   labelTitle?: string,
+  isCollapsed?: boolean,
   className: string,
   placeholder: string,
   onQueryChange: (query: string) => void,
