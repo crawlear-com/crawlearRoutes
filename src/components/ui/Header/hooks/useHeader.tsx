@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { cleanSession } from "@/features/users/store/slice/userSlice";
 
 const useHeader = (): [ boolean, string, string, boolean, () => void,
-  (event: React.MouseEvent<HTMLAnchorElement>) => void ] => {
+  (event: React.MouseEvent<HTMLDivElement>) => void ] => {
     const dispatch = useDispatch();
     const session = useSelector(selectUserSession);
     const isUserLogged = session !== null;
@@ -19,7 +19,7 @@ const useHeader = (): [ boolean, string, string, boolean, () => void,
     const menuOnClick = () => {
         setIsOpen(!isOpen);
     }
-    const onLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const onLogoutClick = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
 
         supabaseClient.auth.signOut();

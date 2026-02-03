@@ -81,7 +81,7 @@ const addRectangleAndGetBounds = (map: L.Map, point: L.LatLng, mapBounds: L.LatL
 };
 
 const getNewMap = (mapId: string, mapClickEventHandler: (e: L.LeafletMouseEvent) => void) => {
-  const newMap = L.map(mapId).fitBounds(ARROUND_BARCELONA);
+  const newMap = L.map(mapId, {attributionControl: false}).fitBounds(ARROUND_BARCELONA);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19

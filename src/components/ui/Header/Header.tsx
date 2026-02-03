@@ -40,18 +40,18 @@ const Header = () => {
                     <span className="font-bold">{ displayName }</span>
                 </div>
                 <ToggleTheme className="mr-1">
-                    <img title={t("main.toggle theme")} className="icon greyscale" src={themeIcon} alt="" />
+                    <img alt={t("main.toggle theme")} className="icon greyscale" src={themeIcon} />
                 </ToggleTheme>
                 <NavLink to="/myroutes" className="link md:inline mr-1">
-                    <img title={t("main.my routes")} className={`icon ${greyscaleIconClass(location, 'route')}`} src={myroutes} />
+                    <img alt={t("main.my routes")} className={`icon ${greyscaleIconClass(location, 'route')}`} src={myroutes} />
                 </NavLink>
                 <NavLink to="/myevents" className="link md:inline mr-1">
-                    <img  title={t("main.my events")} className={`icon ${greyscaleIconClass(location, 'event')}`} src={myevents} />
+                    <img  alt={t("main.my events")} className={`icon ${greyscaleIconClass(location, 'event')}`} src={myevents} />
                 </NavLink>
                 <NavLink to="/search" className="link md:inline mr-1">
-                    <img  title={t("main.search route")} className={`icon ${greyscaleIconClass(location, 'search')}`} src={search} />
+                    <img  alt={t("main.search route")} className={`icon ${greyscaleIconClass(location, 'search')}`} src={search} />
                 </NavLink>
-                <a href="/" onClick={ onLogoutClick } className="link block md:inline">{ t('login.signout') }</a>
+                <div onClick={ onLogoutClick } className="link block md:inline text-font">{ t('login.signout') }</div>
             </nav>
         </header>
     </>);
