@@ -6,7 +6,7 @@ const GpxRecorder = () => {
   return (<GpxRouteMap gpx={ gpx || "" } onFileResolved={ onGpxResolved }
     onStopRecording = { onStopRecording } onStartRecording = { onStartRecording }
     onRouteRecorded={ onGpxResolved } containerClassName="max-w-[90%] mx-auto"
-    mapClassName="mt-10 w-[90%] sm:w-[45%] mx-auto" />);
+    mapClassName="mt-10 w-[90%] sm:flex-1 mx-auto" />);
 }
 
 export default GpxRecorder;

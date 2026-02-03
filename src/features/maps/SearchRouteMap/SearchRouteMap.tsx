@@ -19,7 +19,7 @@ const SearchRouteMap = () => {
       <label htmlFor="searchRouteInput" className="mr-2">
         { t('main.search route') }:
       </label>
-      <SearchInput value={ query } className="border-primary border h-10 p-2 mb-2 rounded"
+      <SearchInput value={ query } className="border-primary border w-full h-10 p-2 mb-2 rounded"
         onQueryChange={ onQueryChange } onSearch={ onSearch } placeholder={ t('main.by title') } />
 
       { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
