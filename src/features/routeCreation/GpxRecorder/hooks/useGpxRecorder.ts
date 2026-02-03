@@ -12,12 +12,6 @@ const useGpxRecorer = (): [
   const dispatch = useDispatch();
   const onGpxResolved = (fileContent: string, routePoint: GeoPoint, distance: number,
     duration: number) => {
-
-      console.log(fileContent);
-
-
-
-      
     try {
       dispatch(setLocation(routePoint));
       dispatch(setGpx(fileContent));
