@@ -11,7 +11,7 @@ const EventsNearYou = () => {
   const routeEventCard = (event: RouteEvent) => 
     <RouteEventCard key={ event.id } routeEvent={ event } />;
 
-  return (<div className="container card">
+  return (<div>
     <h1 className="mr-3 mb-4 text-right">{ t("main.events near you") }</h1>
     { isLoading ? <Spinner /> : 
       <>{ <ItemCardList<RouteEvent> items={ routeEvents } card={ routeEventCard }/> }</>

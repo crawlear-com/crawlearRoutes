@@ -17,7 +17,7 @@
   }
 
   .card {
-    @apply rounded-2xl mb-10 content-end text-left;
+    @apply rounded-2xl content-end text-left;
     @apply min-w-60 bg-secondary text-font;
     @apply border-primary border p-6 rounded-3xl shadow-xl;
   }

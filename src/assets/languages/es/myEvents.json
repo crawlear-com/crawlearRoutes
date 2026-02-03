@@ -1,6 +1,9 @@
 {
   "main": {
     "my events": "Mis eventos",
+    "today events": "Eventos de hoy",
+    "events calendary": "Calendari de eventos",
+    "favorite events": "Eventos favoritos",
     "need register": "Si quieres ver éste evento, necesitas ser un usuario registrado",
     "no event specified": "No s'ha especificat l'event",
     "login": "inicia sesión",

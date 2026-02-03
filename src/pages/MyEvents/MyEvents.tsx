@@ -11,6 +11,7 @@ import PageTitle from "@/components/ui/PageTitle/PageTitle";
 
 import "./styles/myEvents.css";
 import EventsNearYou from "@/features/events/EventsNearYou/EventsNearYou";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
 const MyRoutes = () => {
   const { t } = useTranslation(["myEvents"]);
@@ -24,14 +25,30 @@ const MyRoutes = () => {
     <PageTitle background="myevents--backgroud p-10">
       <h1 className="sm:flex-5/6 text-right text-white w-full">{ t("main.my events") }</h1>
     </PageTitle>
-    <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
-      <div className="z-10">
-        <UserEventsStatistics />
-        <TodayEvents />
-        <EventsNearYou />
-      </div>
-      <EventsFromUser />
-      <EventsCalendar />
+    
+    <div className="flex mx-5 sm:mx-10 flex-col lg:flex-row gap-5">
+      <UserEventsStatistics />
+      <Tabs className="z-10 container card self-start">
+        <TabList className="z-10 border-b border-primary mb-10">
+          <Tab><b>{ t("main.today events") }</b></Tab>
+          <Tab><b>{ t("main.events near you") }</b></Tab>
+          <Tab><b>{ t("main.my events") }</b></Tab>
+          <Tab><b>{ t("main.events calendary") }</b></Tab>
+        </TabList>
+
+        <TabPanel className="">
+          <TodayEvents />
+        </TabPanel>
+        <TabPanel className="">
+          <EventsNearYou />
+        </TabPanel>
+        <TabPanel className="">
+          <EventsFromUser />
+        </TabPanel>
+        <TabPanel>
+          <EventsCalendar />
+        </TabPanel>
+      </Tabs>
     </div>
     </>
   </MainLayout>);

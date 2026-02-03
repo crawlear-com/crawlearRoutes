@@ -7,7 +7,7 @@ const TodayEvents = () => {
   const [ todayEvents, onEditRouteClick ] = useTodayEvents();
   let extras = <></>;
 
-  return <div className="container self-start card flex-1 text-right p-10">
+  return <div className="self-start text-right p-10">
     <h1 className="mb-4">{ t("main.today events") }</h1>
     {
       todayEvents.length === 0 ? <div className="my-5">{ t("creation.no events for today") }</div> :

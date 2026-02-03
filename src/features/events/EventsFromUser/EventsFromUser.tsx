@@ -8,7 +8,7 @@ const EventsFromUser = () => {
   const { t } = useTranslation(['eventsCreation']);
   const [ myEventsCard, setMethods, selectMethods ] = useEventsFromUser();
 
-  return <div className="card self-start container text-right sm:p-10 z-10">
+  return <div className="self-start text-right z-10">
     <ItemsList<RouteEvent> title={ t("main.my events") } card={ myEventsCard }
     getDataAsyncThunk={ getMyRouteEventsPaginated } 
     setMethods={ setMethods } selectMethods={ selectMethods }/>
