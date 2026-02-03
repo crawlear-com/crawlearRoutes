@@ -30,14 +30,14 @@ function useSimpleMap(id: string, point: GeoPoint, zoomScale: number): void {
       map.current = newMap;
       
       return () => {
-        newMap.off()
-        newMap.remove()
+        newMap.off();
+        newMap.remove();
       }
-    }, [id, point]);
+    }, [id, point, zoomScale]);
 
     React.useEffect(() => {
-      addPropsPoints()
-    }, [point, addPropsPoints])
+      addPropsPoints();
+    }, [point, addPropsPoints]);
   }
 
 export default useSimpleMap;

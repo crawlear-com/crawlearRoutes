@@ -10,7 +10,7 @@ const UserEventsStatistics = () => {
   const { t } = useTranslation(["myEvents"]);
   const [ data, isLoading ] = useUserEventsStatistics();
 
-  return <div className="container card pb-0 mb-15 sm:mx-auto p-10">
+  return <div className="container self-start card pb-0 sm:mx-auto p-10 z-10">
     <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
     <div className="justify-self-start">
       <b>{ t("statistics.total events") }:</b> { data.total_events }

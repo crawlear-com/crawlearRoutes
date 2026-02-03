@@ -10,8 +10,8 @@ const UserRouteStatistics = () => {
   const { t } = useTranslation(["myRoutes"]);
   const [ data, easy, medium, difficult, isLoading ] = useUserRouteStatistics();
 
-  return <div className="container flex-1 z-10">
-    <div className="card p-10 pb-0 mb-15 sm:mx-auto">
+  return <div className="container z-10">
+    <div className="card p-10 pb-0 sm:mx-auto">
       <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
       <div className="justify-self-start">
         <b>{ t("statistics.total routes") }:</b> { data.total_routes }

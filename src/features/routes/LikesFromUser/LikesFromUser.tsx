@@ -8,7 +8,7 @@ const LikesFromUser = () => {
   const { t } = useTranslation(['myRoutes']);
   const [ myRoutesCard, setMethods, selectMethods ] = useLikesFromUser();
 
-  return <div className="container card flex-1 text-right sm:p-10 self-start z-10">
+  return <div className="text-right px-0 pt-10 self-start">
     <ItemsList<Route> title={ t("main.favourite routes") } card={ myRoutesCard }
     getDataAsyncThunk={ getMyFavourites } setMethods={ setMethods }
     selectMethods={ selectMethods }/>
