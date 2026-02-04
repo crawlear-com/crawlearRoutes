@@ -6,26 +6,32 @@
 
 Plan, record, and share your RC adventures like never before. CrawlearRoutes lets you capture your routes directly from geolocation data or import them from your favorite GPS tracking app, automatically mapping every twist and climb. Explore public trails created by other enthusiasts, find new places to drive, and build your personal collection of routes — all from one intuitive, map-based interface designed for the RC community.
 
- - Crawler routes repository
- - Crawler events management for Associations and Clubs
- - Public routes search
- - Events discovery near you
- - Management of favorite routes
-
 ![alt routes screenshot](/etc/screenshot1.png)
 ![alt events screenshot](/etc/screenshot2.png)
 ![alt search routes screenshot](/etc/screenshot3.png)
 ![alt route detail screenshot](/etc/screenshot4.png)
+
+### Use cases:
+ - Crawler routes repository
+ - Crawler route events management for Associations and Clubs
+ - Management of favorite routes
+ - Public routes visual search using maps
+ - Public routes search using by name and description
+ - Events discovery near you
+ - Routes and route events statistics
+ - Share public routes (open to no registered users)
+ - Share route events (needs register to view route events)
 
 ### Main features
  - sign in / sign up using username and password
  - light / dark theme selector
  - responsive design
  - multilanguage support (en, es, cat)
- - shareable route URLs
+ - shareable route and route event URLs
  - manual code splitting to avoid big bundle files
  - prepared to be deployed into ghpages using routeHash and github environment variables for secret keys
  - deployed at https://flatline.hopto.org/crawlearRoutes
+ - testing of core functionalities
  
  ### 3rd party dependecies
  - [React](https://es.react.dev/)
@@ -88,41 +94,50 @@ $ npm run lint
 /src/features: main app use cases
 /src/pages: app router pages
 /src/database: supabase Rpc's
+/src/assets: generic images and language json token traductions fot i18n
+/src/hooks: generic hooks
+/src/layouts: page layout including header, main content and footer
+/src/store: redux store definition
+/src/styles: generic css
 </pre>
 
 Components are self contained, including (when needed):
-  - helpers
-  - hooks
-  - test
-  - styles
-  - assets
-  - types in separated files
-  - store:
+  - helpers: utils js for the component
+  - hooks: custom hooks that encapsulates the component logic
+  - test: vitests for the component
+  - styles: reusable tailwind css code for the component 
+  - assets: custom assets for the component
+  - types.ts files for typescript types and interfaces
+  - store: custom store code for the component
     - selectors
     - slices
 
 ## Design decisions
 
+Create a generic list of items to list routes and events (or whatever) with customizable cards, filter, order and pagination:
+
 ![alt example ItemList screenshot](/etc/screenshotSmartphone.png)
 
 **Requeriments**:
+  - no prop drilling
+  - generic for all kinds of lists
   - Custom title
   - Custom item cards
   - Filter items by string
   - order items using any data
   - change order direction
   - Automatic pagination
-  - no prop drilling
 
-**Solution**:
+### Solution:
 
 1) **keep in Redux state the shared data by the component hierarchy** to avoid prop drilling:
   - items array
   - query parameter
   - filter parameters
   - pagination parameters
+  This allows to keep the list state when navigating between pages. For instance visiting the route URL of a list and then going back to the routes list.
 
-2) **ABSTRACTION of lists of items** using TypeScript Generics <T>
+2) **ABSTRACTION of lists of items** using TypeScript Generics < T >
 3) **Any kind of item card** using **Render Props**
 
 - Implementation:
@@ -147,6 +162,17 @@ The web page passes the WAVE Web Accessibility Evaluation Tool with 0 errors, 0 
 ![alt wave web accessibility test screenshot](/etc/WebAccessibilityEvaluation.png)
 
 ## Testing
+
+As this is a limited time project with no further usage, i decided to test just core features and some use cases:
+
+ - ItemsCardList, ItemsList and SearchInput including filter and pagination functionality
+ - RouteEventsCard used in route events lists
+ - StepProcess used in route creation
+ - EventsCalendar use cases
+ - EventsFromUser to test route events list from user
+ - RouteEventsCard
+ - ToggleTheme for visual theme management 
+ - and other components like YoutubeEmbed or custom hooks like useSession (used to get user information in pages and redirect to landing if user is not logged in)
 
 ### To-do
 - input query validation with zod (or not?), but validation
