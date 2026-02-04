@@ -32,8 +32,11 @@ Plan, record, and share your RC adventures like never before. CrawlearRoutes let
  - prepared to be deployed into ghpages using routeHash and github environment variables for secret keys
  - deployed at https://flatline.hopto.org/crawlearRoutes
  - testing of core functionalities
+ - PWA able to install with caching features
  
  ### 3rd party dependecies
+ - [vite](https://es.react.dev/) project
+ - [vite PWA plugin](https://vite-pwa-org.netlify.app/) for basic pwa configuration
  - [React](https://es.react.dev/)
  - [Redux toolkit](http://redux-toolkit.js.org/) for unified state management
  - private routes using [React router v7](https://reactrouter.com/)
