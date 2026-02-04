@@ -33,7 +33,7 @@ const MyRoutes = () => {
 
     <div className="flex mx-5 sm:mx-10 mb-10 flex-col lg:flex-row gap-5">
       <UserRouteStatistics />
-      <Tabs className="z-10 container card">
+      <Tabs className="z-10 container card self-start">
         <TabList className="z-10 border-b border-primary">
           <Tab><b>{ t("main.my routes") }</b></Tab>
           <Tab><b>{ t("main.favourite routes") }</b></Tab>

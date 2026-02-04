@@ -27,6 +27,8 @@
     "total time": "Total time",
     "by scale": "Routes per scale",
     "by difficult": "Routes per difficult",
-    "hours": "hours"
+    "hours": "hours",
+    "difficult": "Difficulty",
+    "scale": "Scale"
   }
 }

@@ -27,6 +27,8 @@
     "total time": "Temps total en ruta",
     "by scale": "Rutes per escala",
     "by difficult": "Rutes per dificultat",
-    "hours": "hores"
+    "hours": "hores",
+    "difficult": "Dificultat",
+    "scale": "Escala"
   }
 }

@@ -31,6 +31,7 @@
     "scale": "Escala",
     "route events": "Events de ruta",
     "route events with route": "Events de ruta amb ruta asignada",
-    "route events without route": "Events de ruta sense ruta asignada"
+    "route events without route": "Events de ruta sense ruta asignada",
+    "there is no data": "No hi han dades"
   }
 }

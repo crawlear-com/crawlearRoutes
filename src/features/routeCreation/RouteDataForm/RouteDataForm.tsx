@@ -60,7 +60,7 @@ const RouteDataForm = () => {
       </label>
       <input type="text" name="youtubeVideo" id="youtubeVideo"
         onChange={ () => { setAndValidate(setRouteYoutubeVideo, 'youtubeVideo', youtubeSchema) }}
-        className="ml-1 mb-5 p-3 w-full rounded-xl" placeholder={t("main.youtube video url")} value={ creationRoute.youtubeVideo ? creationRoute.youtubeVideo : '' } /> <br />
+        className="ml-1 mb-5 p-3 w-full rounded-xl" placeholder={ t("main.youtube video url") } value={ creationRoute.youtubeVideo ? creationRoute.youtubeVideo : '' } /> <br />
       <FormFeedbackElement className="youtubeVideo__feedback" />
 
       <button type="submit" className="button-primary w-auto m-auto p-3">

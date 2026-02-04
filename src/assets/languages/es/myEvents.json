@@ -32,6 +32,8 @@
     "scale": "Escala",
     "route events": "Eventos de ruta",
     "route events with route": "Eventos de ruta con ruta asignada",
-    "route events without route": "Eventos de ruta sin ruta asignada"
+    "route events without route": "Eventos de ruta sin ruta asignada",
+    "there is no data": "No hay datos",
+    "difficult": "Dificultad"
   }
 }

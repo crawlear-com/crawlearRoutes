@@ -5,6 +5,7 @@ import useUserRouteStatistics from "./hooks/useUserRouteStatistics";
 import Spinner from "@/components/ui/Spinner/Spinner";
 
 import "./styles/charts.css";
+import { thereISDataByDifficulty, thereIsDataByScale } from "../helpers/utils";
 
 const UserRouteStatistics = () => {
   const { t } = useTranslation(["myRoutes"]);
@@ -23,36 +24,38 @@ const UserRouteStatistics = () => {
         <b>{ t("statistics.total time") }:</b> { toHours(data.total_duration_time) } { t("statistics.hours") } 
       </div>
 
-      { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
-        data = {[[t("statistics.scale"), t("statistics.by scale")],
-          [getScaleValue(1), data.by_scale[1] || 0],
-          [getScaleValue(2), data.by_scale[2] || 0],
-          [getScaleValue(3), data.by_scale[3] || 0],
-          [getScaleValue(4), data.by_scale[4] || 0]]}
-        options={{ 
-          title: t("statistics.by scale"),
-          pieHole: 0.3,
-          is3D: false,
-          chartArea: {
-            width: "100%",
-            heigth: "100%"
-          }
-        }}/>
+      { isLoading ? <Spinner /> : thereIsDataByScale(data) ?
+        <Chart chartType="PieChart" 
+          data = {[[t("statistics.scale"), t("statistics.by scale")],
+            [getScaleValue(1), data.by_scale[1] || 0],
+            [getScaleValue(2), data.by_scale[2] || 0],
+            [getScaleValue(3), data.by_scale[3] || 0],
+            [getScaleValue(4), data.by_scale[4] || 0]]}
+          options={{ 
+            title: t("statistics.by scale"),
+            pieHole: 0.3,
+            is3D: false,
+            chartArea: {
+              width: "100%",
+              heigth: "100%"
+            }
+          }}/> : <p className="mb-5"></p>
       }
-      { isLoading ? <Spinner /> : <Chart chartType="PieChart"
-        data = {[[t("statistics.difficulty"), t("statistics.by difficult")],
-          [easy, data.by_difficulty[1] || 0],
-          [medium, data.by_difficulty[2] || 0],
-          [difficult, data.by_difficulty[3] || 0]]}
-        options={{ 
-          title: t("statistics.by difficult"),
-          pieHole: 0.3,
-          is3D: false,
-          chartArea: {
-            width: "100%",
-            heigth: "100%"
-          }
-        }}/>
+      { isLoading ? <Spinner /> : thereISDataByDifficulty(data) ? 
+        <Chart chartType="PieChart"
+          data = {[[t("statistics.difficult"), t("statistics.by difficult")],
+            [easy, data.by_difficulty[1] || 0],
+            [medium, data.by_difficulty[2] || 0],
+            [difficult, data.by_difficulty[3] || 0]]}
+          options={{ 
+            title: t("statistics.by difficult"),
+            pieHole: 0.3,
+            is3D: false,
+            chartArea: {
+              width: "100%",
+              heigth: "100%"
+            }
+          }}/> : <p className="mb-5"></p>
       }
     </div>
   </div>;

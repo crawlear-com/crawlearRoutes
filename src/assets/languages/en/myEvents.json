@@ -31,6 +31,7 @@
     "scale": "Scale",
     "route events": "Route events",
     "route events with route": "Route events with assigned route",
-    "route events without route": "Route events without assigned route"
+    "route events without route": "Route events without assigned route",
+    "there is no data": "There is no data"
   }
 }

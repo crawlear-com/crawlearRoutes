@@ -51,7 +51,7 @@ const Header = () => {
                 <NavLink to="/search" className="link md:inline mr-1">
                     <img  alt={t("main.search route")} className={`icon ${greyscaleIconClass(location, 'search')}`} src={search} />
                 </NavLink>
-                <div onClick={ onLogoutClick } className="link block md:inline text-font">{ t('login.signout') }</div>
+                <div onClick={ onLogoutClick } className="link block md:inline text-font cursor-pointer">{ t('login.signout') }</div>
             </nav>
         </header>
     </>);

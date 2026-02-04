@@ -114,7 +114,7 @@ Components are self contained, including (when needed):
 
 ## Design decisions
 
-Create a generic list of items to list routes and events (or whatever) with customizable cards, filter, order and pagination:
+A) Create a generic list of items to list routes and events (or whatever) with customizable cards, filter, order and pagination:
 
 ![alt example ItemList screenshot](/etc/screenshotSmartphone.png)
 
@@ -135,10 +135,16 @@ Create a generic list of items to list routes and events (or whatever) with cust
   - query parameter
   - filter parameters
   - pagination parameters
+  
   This allows to keep the list state when navigating between pages. For instance visiting the route URL of a list and then going back to the routes list.
 
 2) **ABSTRACTION of lists of items** using TypeScript Generics < T >
+
+This allows reuse the ItemsList with any type of data.
+
 3) **Any kind of item card** using **Render Props**
+
+This allows to create ItemsList with any kind of data and custom visualization of the items in the list.
 
 - Implementation:
   - /components/ItemList: full list implementation including title, filter, paginator and a list of items
@@ -146,11 +152,16 @@ Create a generic list of items to list routes and events (or whatever) with cust
 
 ![alt ItemList diagram screenshot](/etc/itemListDiagram.png)
 
+B) Use clean code and solid principles:
+
+- The domain is defined in /src/types
+- The features are declared in /src/features
+- The infrastructure to database layer is defined in /src/database
+- Separate always logic from ui using custom hooks in any component. This way the component only defines UI and logic is done in a separated custom hook
+
 **Design patters**: DRY, kiss, custom hooks, singleton, observer pattern always using Clean code, SOLID and clean arquitecture principles
 
-## REDUX usage
-
-**keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
+C) REDUX usage: **keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
    - logged user data: to manage the private routes and get the user uid when needed
    - current theme: to be able to change styles on the fly
    - list data  and parameters (routes and events) to share state in filters and order components
@@ -175,9 +186,12 @@ As this is a limited time project with no further usage, i decided to test just 
  - and other components like YoutubeEmbed or custom hooks like useSession (used to get user information in pages and redirect to landing if user is not logged in)
 
 ### To-do
-- input query validation with zod (or not?), but validation
 - zod texts into translation
-- confirms?
-- Precisión de la geolocalización con datos (en lugar de GPS) y en especial con datos de altura (está mas orientado a datos horizontales)
+- input query validation in filter / search inputs
+- custom confirm ui
+- The web location API is not much accurated as needed for this king of app. To solve this problem and get more accurated GPS data it is needed to:
+   - create an hybrid app (with Cordova for example) and use native GPS hardware
+   - create a PWA for offline mode (and push notifications for future functionalities)
+   - generate leaflet offline maps https://gis.stackexchange.com/questions/329468/getting-leaflet-map-to-work-offline
 
 <br />
