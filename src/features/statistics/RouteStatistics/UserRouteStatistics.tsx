@@ -24,7 +24,7 @@ const UserRouteStatistics = () => {
       </div>
 
       { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
-        data = {[["Scale", "Routes per scale"],
+        data = {[[t("statistics.scale"), t("statistics.by scale")],
           [getScaleValue(1), data.by_scale[1] || 0],
           [getScaleValue(2), data.by_scale[2] || 0],
           [getScaleValue(3), data.by_scale[3] || 0],
@@ -40,7 +40,7 @@ const UserRouteStatistics = () => {
         }}/>
       }
       { isLoading ? <Spinner /> : <Chart chartType="PieChart"
-        data = {[["Difficulty", "Routes per difficulty"],
+        data = {[[t("statistics.difficulty"), t("statistics.by difficult")],
           [easy, data.by_difficulty[1] || 0],
           [medium, data.by_difficulty[2] || 0],
           [difficult, data.by_difficulty[3] || 0]]}

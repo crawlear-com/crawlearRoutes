@@ -23,7 +23,7 @@ const UserEventsStatistics = () => {
     </div>
 
       { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
-        data = {[["Scale", "Routes per scale"],
+        data = {[[t("statistics.scale"), t("statistics.by scale")],
           [getScaleValue(1), data.by_scale[1] || 0],
           [getScaleValue(2), data.by_scale[2] || 0],
           [getScaleValue(3), data.by_scale[3] || 0],
@@ -31,7 +31,22 @@ const UserEventsStatistics = () => {
         options={{ 
           title: t("statistics.by scale"),
           pieHole: 0.3,
-          is3D: true,
+          is3D: false,
+          chartArea: {
+            width: "100%",
+            heigth: "100%"
+          }
+        }}/>
+      }
+
+      { isLoading ? <Spinner /> : <Chart chartType="PieChart" 
+        data = {[[t("statistics.route events"), t("statistics.route events with route")],
+          [t("statistics.route events with route"), data.events_with_route || 0],
+          [t("statistics.route events without route"), data.events_without_route || 0]]}
+        options={{ 
+          title: t("statistics.by scale"),
+          pieHole: 0.3,
+          is3D: false,
           chartArea: {
             width: "100%",
             heigth: "100%"

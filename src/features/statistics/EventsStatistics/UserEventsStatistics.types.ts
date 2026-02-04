@@ -7,7 +7,9 @@ type UserEventsStatisticsData = {
   },
   future_events: number,
   past_events: number,
-  total_events: number
+  total_events: number,
+  events_with_route: number,
+  events_without_route: number
 }
 
 export type { UserEventsStatisticsData };

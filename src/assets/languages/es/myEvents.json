@@ -25,9 +25,13 @@
   },
   "statistics": {
     "statistics": "Estadísticas",
-    "total events": "Total de eventos'",
-    "by scale": "Eventos por escala",
-    "future events": "Eventos futuros",
-    "past events": "Eventos pasados"
+    "total events": "Total de eventos de ruta",
+    "by scale": "Eventos de ruta por escala",
+    "future events": "Eventos de ruta futuros",
+    "past events": "Eventos de ruta pasados",
+    "scale": "Escala",
+    "route events": "Eventos de ruta",
+    "route events with route": "Eventos de ruta con ruta asignada",
+    "route events without route": "Eventos de ruta sin ruta asignada"
   }
 }

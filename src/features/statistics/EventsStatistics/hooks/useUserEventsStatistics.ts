@@ -10,7 +10,9 @@ const initialUserData = {
   by_scale: {1:0, 2:0, 3:0, 4:0 },
   future_events: 0,
   past_events: 0,
-  total_events: 0
+  total_events: 0,
+  events_with_route: 0,
+  events_without_route: 0
 }
 
 const useUserEventsStatistics = (): [UserEventsStatisticsData, boolean] => {

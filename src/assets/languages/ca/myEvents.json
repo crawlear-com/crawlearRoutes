@@ -25,8 +25,12 @@
   "statistics": {
     "statistics": "Estadístiques",
     "total events": "Total d'events",
-    "by scale": "Events per escala",
-    "future events": "Events futurs",
-    "past events": "Events pasats"
+    "by scale": "Events de ruta per escala",
+    "future events": "Events de ruta futurs",
+    "past events": "Events de ruta pasats",
+    "scale": "Escala",
+    "route events": "Events de ruta",
+    "route events with route": "Events de ruta amb ruta asignada",
+    "route events without route": "Events de ruta sense ruta asignada"
   }
 }

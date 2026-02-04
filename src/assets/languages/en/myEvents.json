@@ -25,8 +25,12 @@
   "statistics": {
     "statistics": "Statistics",
     "total events": "Total events",
-    "by scale": "Events by scale",
-    "future events": "Future events",
-    "past events": "Past events"
+    "by scale": "Route events by scale",
+    "future events": "Future route events",
+    "past events": "Past route events",
+    "scale": "Scale",
+    "route events": "Route events",
+    "route events with route": "Route events with assigned route",
+    "route events without route": "Route events without assigned route"
   }
 }
