@@ -53,7 +53,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
       }
     }
 
-    if (uid && startDate && endDate) {
+    if (uid && startDate && endDate) {      
       getRoutes().then((routes) => {
         setRoutes(routes);
       }).catch((e: unknown) => {
