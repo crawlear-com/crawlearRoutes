@@ -53,6 +53,18 @@ const getRouteEventByIdAndOwner = async (uid: string, eid: string) => {
     }
 }
 
+const getRouteEventById = async (eid: string) => {
+    const { data, error } = await supabaseClient.rpc('getEventById', {       
+      p_eventid: eid
+    }); 
+
+    if(!error) {
+      return data;
+    } else {
+      throw new Error();
+    }
+}
+
 const searchEventsByGeo = async (searchBounds: L.LatLngBounds) => {
   return await supabaseClient.rpc('searchEventsByGeo', { 
     p_min_lat: searchBounds.getNorth(),
@@ -116,4 +128,4 @@ const setEventStartDate = async (eid: string, startDate: string) => {
 
 export { getEventRoutesByMonth, getEventRouteEventsByMonth, getRouteEventByIdAndOwner,
   getEventRouteEventsPaginated, deleteEventRoute, searchEventsByGeo,
-  getTodayEvents, assignRouteToEvent, setEventStartDate };
+  getTodayEvents, assignRouteToEvent, setEventStartDate, getRouteEventById };

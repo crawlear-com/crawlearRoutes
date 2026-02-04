@@ -52,13 +52,14 @@ const routeSearchSlice = createSlice({
       state.points = RoutesSearchInitialState.points;
       state.routes = RoutesSearchInitialState.routes;
       state.totalRoutes = RoutesSearchInitialState.totalRoutes;
-      state.page = RoutesSearchInitialState.totalRoutes;
+      state.page = 0;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(searchByGeo.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.points = [];
     })
     .addCase(searchByGeo.rejected, (state, action) => {
       state.isLoading = false;
@@ -67,7 +68,7 @@ const routeSearchSlice = createSlice({
     .addCase(searchByGeo.fulfilled, (state, action) => {
       const routes = [...action.payload.data];
       state.routes = routes;
-      state.totalRoutes = action.payload.total_count;
+      state.totalRoutes = 0;
       state.points = getPointsFromRoutes(routes) as Array<MapPoint>;
       state.isLoading = false;
       state.query = "";

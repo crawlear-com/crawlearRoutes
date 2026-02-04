@@ -1,18 +1,16 @@
-import * as React from 'react'
-import useGpxRouteMap from './hooks/useGpxRouteMap'
-//import useWakeLock from './useWakeLock'
-import RecButton from './RecButton/RecButton'
+import * as React from 'react';
+import useGpxRouteMap from './hooks/useGpxRouteMap';
+import RecButton from './RecButton/RecButton';
 
-import 'leaflet/dist/leaflet.css'
-import FileLoader from './FileLoader/FileLoader'
-import type { GpxRouteMapProps } from './GpxRouteMap.types'
-import GpxInfoCard from './GpxInfoCard/GpxInfoCard'
+import 'leaflet/dist/leaflet.css';
+import FileLoader from './FileLoader/FileLoader';
+import type { GpxRouteMapProps } from './GpxRouteMap.types';
+import GpxInfoCard from './GpxInfoCard/GpxInfoCard';
 
 const GpxRouteMap = ({ gpx, onFileResolved, onRouteRecorded, onStopRecording, onStartRecording,
   containerClassName, mapClassName }: GpxRouteMapProps): React.JSX.Element => {
   const [onFileLoaded, onStartStopRecord, onPause, onPollingTimeChanged, gpxInfo, 
     recordState, pauseState, pollingTime ] = useGpxRouteMap(onFileResolved, gpx, onRouteRecorded, onStopRecording, onStartRecording);
-  //const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
 
   return <div className={`${containerClassName} flex gap-5 flex-wrap flex-col sm:flex-row`}>
         { (onFileResolved || onRouteRecorded) && <div className="flex flex-col lg:flex-row w-full justify-center mt-5">

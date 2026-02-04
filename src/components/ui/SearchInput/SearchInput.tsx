@@ -7,7 +7,7 @@ const SearchInput = ({ value, labelTitle, isCollapsed, className, placeholder, o
 
   return <>
     <label className={ isCollapsedClass } htmlFor="searchInput">{ labelTitle }: </label>
-    <input value={ value } className={ `${className} ${isCollapsedClass}` } onChange={ onQueryChangeHandler }
+    <input value={ value } className={ `${className} ${isCollapsedClass} font-normal` } onChange={ onQueryChangeHandler }
         placeholder={ placeholder } type="text" id="searchInput" name="searchInput"  />
   </>
 }
