@@ -58,5 +58,9 @@
   .button-danger {
     @apply border border-red-500 bg-red-500 rounded-xl p-2 font-bold text-white;
   }
+
+  .tab--selected {
+   @apply bg-primary border-b-0 text-white rounded-t-xl;
+  }
 }
 

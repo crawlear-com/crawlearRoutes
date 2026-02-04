@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../styles/index.css";
+
 .myroutes--backgroud {
   background-image: url('/crawlearRoutes/backgroundRoutes.png');
 }

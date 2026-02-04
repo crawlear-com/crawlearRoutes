@@ -124,7 +124,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
 
   const renderEventContent = (eventContent: EventContentArg) => {
     const startTime = eventContent.event.start;
-    return(<div className={`rounded flex flex-col ${eventContent.event.extendedProps.type === TYPE_ROUTE ? 'bg-secondary' : 'bg-primary'} p-1 text-font`}>
+    return(<div className={`rounded flex flex-col ${eventContent.event.extendedProps.type === TYPE_ROUTE ? 'bg-secondary texr-font' : 'bg-primary text-white'} p-1`}>
         <li>
           <b>{ `${startTime!.getHours()}:${startTime!.getMinutes()}`  }</b>
         </li>

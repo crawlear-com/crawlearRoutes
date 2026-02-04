@@ -28,7 +28,7 @@ const MyRoutes = () => {
     
     <div className="flex mx-5 sm:mx-10 flex-col lg:flex-row gap-5">
       <UserEventsStatistics />
-      <Tabs className="z-10 container card self-start">
+      <Tabs className="z-10 container card self-start" selectedTabClassName="tab--selected">
         <TabList className="z-10 border-b border-primary mb-10">
           <Tab><b>{ t("main.today events") }</b></Tab>
           <Tab><b>{ t("main.events near you") }</b></Tab>
