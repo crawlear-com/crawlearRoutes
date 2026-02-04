@@ -16,7 +16,7 @@ const useItemsListFilter = (onOrderByClick: (order: string) => void,
     onOrderDirClick();
   }
   const onCollapseClick = () => {
-    setIsCollapsed(!isCollapsed);
+    setIsCollapsed(prev => !prev);
   }
 
   return [ isCollapsed, onOrderByClickHandler, onOrderDirClickHandler, onCollapseClick ]
