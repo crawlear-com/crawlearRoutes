@@ -116,7 +116,8 @@ Components are self contained, including (when needed):
 
 A) Create a generic list of items to list routes and events (or whatever) with customizable cards, filter, order and pagination:
 
-![alt example ItemList screenshot](/etc/screenshotSmartphone.png)
+![alt example ItemList screenshot](/etc/screenshotSmartphone1.png)
+![alt example ItemList screenshot](/etc/screenshotSmartphone2.png)
 
 **Requeriments**:
   - no prop drilling
