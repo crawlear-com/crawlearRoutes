@@ -15,7 +15,8 @@
     "my routes": "Mis rutas",
     "my events": "Mis eventos",
     "search route": "Buscar",
-    "toggle theme": "Cambiar el tema visual"
+    "toggle theme": "Cambiar el tema visual",
+    "offline": "En estos momentos no tienes conexión. La funcionalidad de la web es limitada."
   },
   "login": {
     "signin": "Iniciar sesión",

@@ -15,7 +15,8 @@
     "my routes": "Les meves routes",
     "my events": "Els meus events",
     "search route": "Cercar",
-    "toggle theme": "Canviar el tema visual"
+    "toggle theme": "Canviar el tema visual",
+    "offline": "En aquest moment no tens conexió. La funcionalitat de la web és limitada."
   },
   "login": {
     "signin": "Inicieu sessió",

@@ -15,7 +15,8 @@
     "my routes": "My routes",
     "my events": "My events",
     "search route": "Search",
-    "toggle theme": "Toggle theme"
+    "toggle theme": "Toggle theme",
+    "offline": "Your internet conection is offline. The web functionality is currently limited."
   },
   "login": {
     "signin": "Sign in",
