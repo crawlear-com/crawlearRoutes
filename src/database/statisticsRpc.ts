@@ -1,9 +1,10 @@
-import supabaseClient from "./supabaseClient";
+import { getDataAndCacheResponse } from "./RpcCaller";
 
 const getUserRouteStats = async (uid: string) => {
-  const { data, error } = await supabaseClient.rpc('getRoutesStats', {
+  const args = {
     p_uid: uid
-  });
+  };
+  const { data, error } = await getDataAndCacheResponse('getRoutesStats', args);
 
   if(!error && data) {
     return data;
@@ -13,9 +14,10 @@ const getUserRouteStats = async (uid: string) => {
 }
 
 const getUserEventsStats = async (uid: string) => {
-  const { data, error } = await supabaseClient.rpc('getEventsStats', {
+  const args = {
     p_uid: uid
-  });
+  };
+  const { data, error } = await getDataAndCacheResponse('getEventsStats', args);
 
   if(!error && data) {
     return data;

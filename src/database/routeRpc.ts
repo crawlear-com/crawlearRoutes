@@ -1,9 +1,11 @@
+import { getDataAndCacheResponse } from "./RpcCaller";
 import supabaseClient from "./supabaseClient";
 
 const getRoute = async (rid: string) => {
-    const { data, error } = await supabaseClient.rpc('getRouteById', { 
+    const args = { 
       p_rid: rid
-    }); 
+    };
+    const { data, error } = await getDataAndCacheResponse('getRouteById', args);
 
     if(!error) {
       return data[0];
