@@ -32,7 +32,7 @@ Plan, record, and share your RC adventures like never before. CrawlearRoutes let
  - prepared to be deployed into ghpages using routeHash and github environment variables for secret keys
  - deployed at https://flatline.hopto.org/crawlearRoutes
  - testing of core functionalities
- - PWA able to install with caching features
+ - PWA able to install, caching and offline features
  
  ### 3rd party dependecies
  - [vite](https://es.react.dev/) project
