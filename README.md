@@ -61,11 +61,11 @@ $ git clone https://github.com/crawlear-com/crawlearRoutes.git
 ```bash
 $ npm install
 ```
-3. Run in dev mode:
+3. Run in dev mode: (no PWA features)
 ```bash
 $ npm run dev
 ```
-4. Or run it on production mode:
+4. Or run it on production mode: (to get full PWA features)
 ```bash
 $ npm run build
 $ npm run preview
@@ -190,6 +190,8 @@ Features **working by offline mode**:
  Features **NOT managed by offline mode**:
  - all the ones requiring geolocation: visual search using map and events near you
  - all the ones requiring insert or modify data: create or modify a route, create or modify an event, favorite and unfavorite a route, remove route or event
+
+ ***NOTE***: in localhost the service-worker is only built in production mode using ***npm run build***
 
 ## Accessibility
 
