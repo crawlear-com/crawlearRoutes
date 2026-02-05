@@ -174,9 +174,9 @@ Components are self contained, including (when needed):
 
 The PWA is implemented using [vite PWA plugin](https://vite-pwa-org.netlify.app/) for a zero config solution. It acomplish all the requeriments of the solution with no effort (just declaring the manifest entries in vite.config.mts). 
 
-***Giving data to the user in offline mode***: as supabase is doing POST fetch requests to the database, it will not be cached at service-worker level. This way an offline mode will not get any data from database doing Offline mode useless.
+***Giving data to the user in offline mode***: as supabase is doing POST fetch requests to the database, the requests will not be cached at service-worker level. This way an offline mode will not get any data from database doing Offline mode useless.
 
-***Solution***: the web app is capable of caching Rpc calls to supabase functions using localStorage. When a getter rpc funcion is called, the result will be cached into localStorage in online mode. If the user enters offline mode and there is another Rpc call with exactly use the same parameters, it will return the cached data. That way the offline mode has some content and minimum interaction showing data to the user.
+***Solution***: the web app is capable of caching Rpc calls to supabase functions using localStorage. When a getter rpc funcion is called in online mode, the result will be cached into localStorage. If the user enters offline mode and there is a previous Rpc call cached with exactly use the same parameters, it will return the localStorage data. That way the offline mode has some content and minimum interaction showing data to the user.
 
 Features **working by offline mode**:
 - all the ones getting data from supabase not requiring geolocation:
