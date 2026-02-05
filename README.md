@@ -217,7 +217,7 @@ As this is a limited time project with no further usage, i decided to test just 
 - zod texts into translation
 - input query validation in filter / search inputs
 - custom confirm ui
-- The web location API is not much accurated as needed for this king of app. To solve this problem and get more accurated GPS data it is needed to:
+- ---> (high accurancy mode activated to solve this problem) The web location API is not much accurated as needed for this king of app. To solve this problem and get more accurated GPS data it is needed to:
    - create an hybrid app (with Cordova for example) and use native GPS hardware
    - create a PWA for offline mode (and push notifications for future functionalities)
    - generate leaflet offline maps https://gis.stackexchange.com/questions/329468/getting-leaflet-map-to-work-offline
