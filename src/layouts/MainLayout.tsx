@@ -1,7 +1,7 @@
 import type React from "react";
 import Footer from "@/components/ui/Footer/Footer";
 import Header from "@/components/ui/Header/Header";
-import Offline from "@/components/Offline/Offline";
+import OfflineBanner from "@/features/offline/OfflineBanner/OfflineBanner";
 
 type MainLayoutProps = {
   contentClassName?: string,
@@ -11,7 +11,7 @@ type MainLayoutProps = {
 const MainLayout = ({ contentClassName, children }: MainLayoutProps) => {
   return (<>
     <Header />
-    <Offline />
+    <OfflineBanner />
     <main className={ `${contentClassName ? contentClassName : ""} sm:relative sm:-top-10` }>
       { children }
     </main>
