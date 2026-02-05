@@ -83,7 +83,14 @@ const getGeolocationPosition = (okCallback: (position: GeolocationPosition) => v
     koCallback: (error: number) => void) => {
     
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(okCallback, () => { koCallback(ERR_GEOLOCATION_NOT_RESOLVED) });
+      navigator.geolocation.getCurrentPosition(
+        okCallback,
+        () => { koCallback(ERR_GEOLOCATION_NOT_RESOLVED) },
+        {
+          timeout: 2000,
+          enableHighAccuracy: true
+        }
+      );
     } else {
       koCallback(ERR_GEOLOCATION_NOT_AVAILABLE);
     }
