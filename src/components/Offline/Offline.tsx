@@ -1,4 +1,4 @@
-import { isOffline } from "@/helpers/offline";
+import { isOffline } from "@/components/Offline/helpers/offline";
 import { useTranslation } from "react-i18next";
 
 const Offline = () => {
