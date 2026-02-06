@@ -25,12 +25,17 @@ const searchByQuery = createAsyncThunk(
     const query = state.routeSearch.query;
     const page = state.routeSearch.page + 1;
     const userId = state.user.session?.user.id;
-    const response = await searchPublicRoutes(query, page, userId!);
 
-    if (!response.error) {
-      return response.data;
+    if (query.length > 0) {
+      const response = await searchPublicRoutes(query, page, userId!);
+
+      if (!response.error) {
+        return response.data;
+      } else {
+        throw new Error(`Error searching routes: ${response.error.message}`);
+      }
     } else {
-      throw new Error(`Error searching routes: ${response.error.message}`);
+      return { routes: []};
     }
   }
 );

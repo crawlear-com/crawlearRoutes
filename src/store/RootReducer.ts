@@ -6,6 +6,7 @@ import routeReducer from "@/features/routeCreation/store/slices/routeSlice";
 import routesReducer from "@/features/routes/store/slices/routeListsSlice";
 import routeSearchReducer from "@/features/maps/store/slices/routeSearchSlice";
 import eventsListReducer from "@/features/events/store/slices/eventListsSlice";
+import offlineReducer from "@/features/offline/store/slice/offlineSlice";
 
 const rootReducer = combineReducers({
   theme: themeReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   routes: routesReducer,
   routeSearch: routeSearchReducer,
   events: eventsListReducer,
+  offline: offlineReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

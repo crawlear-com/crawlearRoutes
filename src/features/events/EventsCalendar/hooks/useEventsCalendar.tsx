@@ -57,12 +57,14 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
       getRoutes().then((routes) => {
         setRoutes(routes);
       }).catch((e: unknown) => {
+        setIsLoading(false);
         toast.error((e as Error).message);
       });
 
       getEventRoutes().then((routeEvents) => {
         setRouteEvents(routeEvents);
       }).catch((e: unknown) => {
+        setIsLoading(false);
         toast.error((e as Error).message);
       });
     }

@@ -32,8 +32,11 @@ Plan, record, and share your RC adventures like never before. CrawlearRoutes let
  - prepared to be deployed into ghpages using routeHash and github environment variables for secret keys
  - deployed at https://flatline.hopto.org/crawlearRoutes
  - testing of core functionalities
+ - PWA able to install, caching and offline features
  
- ### 3rd party dependecies
+ ## 3rd party dependecies
+ - [vite](https://es.react.dev/) project
+ - [vite PWA plugin](https://vite-pwa-org.netlify.app/) for basic pwa configuration
  - [React](https://es.react.dev/)
  - [Redux toolkit](http://redux-toolkit.js.org/) for unified state management
  - private routes using [React router v7](https://reactrouter.com/)
@@ -58,11 +61,11 @@ $ git clone https://github.com/crawlear-com/crawlearRoutes.git
 ```bash
 $ npm install
 ```
-3. Run in dev mode:
+3. Run in dev mode: (no PWA features)
 ```bash
 $ npm run dev
 ```
-4. Or run it on production mode:
+4. Or run it on production mode: (to get full PWA features)
 ```bash
 $ npm run build
 $ npm run preview
@@ -85,32 +88,6 @@ $ npm run lint
 ```
 
 <br>
-
-## Project structure
-
-<pre>
-/src/components: generic components
-/src/components/ui: generic UI components
-/src/features: main app use cases
-/src/pages: app router pages
-/src/database: supabase Rpc's
-/src/assets: generic images and language json token traductions fot i18n
-/src/hooks: generic hooks
-/src/layouts: page layout including header, main content and footer
-/src/store: redux store definition
-/src/styles: generic css
-</pre>
-
-Components are self contained, including (when needed):
-  - helpers: utils js for the component
-  - hooks: custom hooks that encapsulates the component logic
-  - test: vitests for the component
-  - styles: reusable tailwind css code for the component 
-  - assets: custom assets for the component
-  - types.ts files for typescript types and interfaces
-  - store: custom store code for the component
-    - selectors
-    - slices
 
 ## Design decisions
 
@@ -167,6 +144,55 @@ C) REDUX usage: **keep in Redux state the shared data by a component hierarchy**
    - current theme: to be able to change styles on the fly
    - list data  and parameters (routes and events) to share state in filters and order components
 
+### Project structure
+
+<pre>
+/src/components: generic components
+/src/components/ui: generic UI components
+/src/features: main app use cases
+/src/pages: app router pages
+/src/database: supabase Rpc's
+/src/assets: generic images and language json token traductions fot i18n
+/src/hooks: generic hooks
+/src/layouts: page layout including header, main content and footer
+/src/store: redux store definition
+/src/styles: generic css
+</pre>
+
+Components are self contained, including (when needed):
+  - helpers: utils js for the component
+  - hooks: custom hooks that encapsulates the component logic
+  - test: vitests for the component
+  - styles: reusable tailwind css code for the component 
+  - assets: custom assets for the component
+  - types.ts files for typescript types and interfaces
+  - store: custom store code for the component
+    - selectors
+    - slices
+
+## PWA and Offline mode
+
+The PWA is implemented using [vite PWA plugin](https://vite-pwa-org.netlify.app/) for a zero config solution. It acomplish all the requeriments of the solution with no effort (just declaring the manifest entries in vite.config.mts). 
+
+***Giving data to the user in offline mode***: as supabase is doing POST fetch requests to the database, the requests will not be cached at service-worker level. This way an offline mode will not get any data from database doing Offline mode useless.
+
+***Solution***: the web app is capable of caching Rpc calls to supabase functions using localStorage. When a getter rpc funcion is called in online mode, the result will be cached into localStorage. If the user enters offline mode and there is a previous Rpc call cached with exactly use the same parameters, it will return the localStorage data. That way the offline mode has some content and minimum interaction showing data to the user.
+
+Features **working by offline mode**:
+- all the ones getting data from supabase not requiring geolocation:
+- Routes and events statistics
+   * My routes list
+   * My favorites list
+   * Today events
+   * My events
+   * Events calendar
+
+ Features **NOT managed by offline mode**:
+ - all the ones requiring geolocation: visual search using map and events near you
+ - all the ones requiring insert or modify data: create or modify a route, create or modify an event, favorite and unfavorite a route, remove route or event
+
+ ***NOTE***: in localhost the service-worker is only built in production mode using ***npm run build***
+
 ## Accessibility
 
 The web page passes the WAVE Web Accessibility Evaluation Tool with 0 errors, 0 contrast errors and 0 Alerts:
@@ -187,11 +213,11 @@ As this is a limited time project with no further usage, i decided to test just 
  - ToggleTheme for visual theme management 
  - and other components like YoutubeEmbed or custom hooks like useSession (used to get user information in pages and redirect to landing if user is not logged in)
 
-### To-do
+***To-do***
 - zod texts into translation
 - input query validation in filter / search inputs
 - custom confirm ui
-- The web location API is not much accurated as needed for this king of app. To solve this problem and get more accurated GPS data it is needed to:
+- ---> (high accurancy mode activated to solve this problem) The web location API is not much accurated as needed for this king of app. To solve this problem and get more accurated GPS data it is needed to:
    - create an hybrid app (with Cordova for example) and use native GPS hardware
    - create a PWA for offline mode (and push notifications for future functionalities)
    - generate leaflet offline maps https://gis.stackexchange.com/questions/329468/getting-leaflet-map-to-work-offline

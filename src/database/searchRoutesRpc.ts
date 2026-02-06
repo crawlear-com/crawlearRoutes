@@ -1,3 +1,4 @@
+import { getDataAndCacheResponse } from "./RpcCaller";
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
 const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
@@ -10,12 +11,13 @@ const searchRoutesByGeo = async (searchBounds: L.LatLngBounds) => {
 }
 
 const searchPublicRoutes = async (query: string, page: number, userId: string) => {
-  return await supabaseClient.rpc('searchPublicRoutes', { 
+  const args = { 
     p_q: query,
     p_user_id: userId, 
     p_page: page,
     p_per_page: ITEMS_PAGE
-  }); 
+  };
+  return await getDataAndCacheResponse('searchPublicRoutes', args); 
 }
 
 export { searchPublicRoutes, searchRoutesByGeo };

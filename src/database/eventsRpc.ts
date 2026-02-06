@@ -1,23 +1,27 @@
+import { getDataAndCacheResponse } from "./RpcCaller";
 import supabaseClient, { ITEMS_PAGE } from "./supabaseClient";
 
 const getEventRouteEventsPaginated = async (uid: string, page: number, orderBy: string,
   orderDir = 'asc', query: string) => {
-  return await supabaseClient.rpc('eventsByOwnerPaginated', { 
+  const args = { 
     p_uid: uid,
     p_page: page + 1,
     p_per_page: ITEMS_PAGE,
     p_order_by: orderBy,
     p_order_dir: orderDir,
     p_q: query
-  }); 
+  };
+
+  return getDataAndCacheResponse('eventsByOwnerPaginated',  args); 
 }
 
 const getEventRoutesByMonth = async (uid: string, startDate: string, endDate: string) => {
-    const { data, error } = await supabaseClient.rpc('getEventRoutesByUserAndMonth', { 
+  const args = { 
       p_uid: uid,
       p_start_date: startDate,
       p_end_date: endDate
-    }); 
+    };
+    const { data, error } = await getDataAndCacheResponse('getEventRoutesByUserAndMonth', args); 
 
     if(!error) {
       return data;
@@ -27,11 +31,12 @@ const getEventRoutesByMonth = async (uid: string, startDate: string, endDate: st
 }
 
 const getEventRouteEventsByMonth = async (uid: string, startDate: string, endDate: string) => {
-    const { data, error } = await supabaseClient.rpc('eventsByOwnerAndMonth', { 
+    const args = { 
       p_uid: uid,
       p_start_date: startDate,
       p_end_date: endDate
-    }); 
+    };
+    const { data, error } = await getDataAndCacheResponse('eventsByOwnerAndMonth', args); 
 
     if(!error) {
       return data;
@@ -41,10 +46,11 @@ const getEventRouteEventsByMonth = async (uid: string, startDate: string, endDat
 }
 
 const getRouteEventByIdAndOwner = async (uid: string, eid: string) => {
-    const { data, error } = await supabaseClient.rpc('getEventByIdAndOwner', {       
+  const args = {       
       p_eventid: eid,
       p_owner: uid
-    }); 
+    };
+    const { data, error } = await getDataAndCacheResponse('getEventByIdAndOwner', args); 
 
     if(!error) {
       return data;
@@ -54,9 +60,10 @@ const getRouteEventByIdAndOwner = async (uid: string, eid: string) => {
 }
 
 const getRouteEventById = async (eid: string) => {
-    const { data, error } = await supabaseClient.rpc('getEventById', {       
+  const args = {       
       p_eventid: eid
-    }); 
+    };
+    const { data, error } = await getDataAndCacheResponse('getEventById', args); 
 
     if(!error) {
       return data;
@@ -102,9 +109,10 @@ const deleteEventRoute = async (eid: string) => {
 }
 
 const getTodayEvents = async (uid: string) => {
-  const { data, error } = await supabaseClient.rpc('eventsByOwnerToday', {
+  const args = {
     p_uid: uid
-  });
+  };
+  const { data, error } = await getDataAndCacheResponse('eventsByOwnerToday', args);
 
   if(!error) {
     return data;
