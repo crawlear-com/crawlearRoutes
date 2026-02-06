@@ -14,7 +14,7 @@ const getDataAndCacheResponse = async (functionName: string, functionArgs: Funct
     if (value) {
       return JSON.parse(value);
     } else {
-      throw new Error(`Error loading routes: ${"offline error"}`);
+      throw new Error(`Error loading from cache: data not found`);
     }    
   } else {
     const response = await supabaseClient.rpc(functionName, functionArgs);
@@ -23,7 +23,7 @@ const getDataAndCacheResponse = async (functionName: string, functionArgs: Funct
       localStorage.setItem(key, JSON.stringify(response));
       return response;
     } else {
-      throw new Error(`Error loading routes: ${response.error.message}`);
+      throw new Error(`Error loading from database: ${response.error.message}`);
     }
   }
 }
