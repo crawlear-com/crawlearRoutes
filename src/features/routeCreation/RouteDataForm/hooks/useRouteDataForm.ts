@@ -12,7 +12,10 @@ import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { createActionPayload, getActionFromRpcType } from "../helpers/utils";
 import { CREATE_ACTION } from "@/helpers/utils";
 import type { FormAction } from "@/features/routeCreation/store/slices/state.types";
-import { assignRouteToEvent } from "@/database/eventsRpc";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const useRouteDataForm = (): [
   (formData: FormData) => void, CreationRoute, boolean, string | null, FormAction,
@@ -30,6 +33,10 @@ const useRouteDataForm = (): [
   const creationRoute = useSelector(selectCreationRoute);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const dispatch = useDispatch();
+  const routeRepository = new SupabaseRouteRepository();
+  const routeProvider = new RouteDataProvider(routeRepository);
+  const routeEventRepository = new SupabaseRouteEventRepository();
+  const routeEventProvider = new RouteEventDataProvider(routeEventRepository);
 
   const onIsPublicChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -63,7 +70,7 @@ const useRouteDataForm = (): [
 
   const onSubmitRouteForm = async(formData: FormData) => {  
     if (routeFormValidates(formData)) {
-      const action = getActionFromRpcType(actionType);
+      const action = getActionFromRpcType(actionType, routeProvider);
       const promise: Promise<string> = action(createActionPayload(rid, creationRoute, owner));
       const successMessage = actionType === CREATE_ACTION ? t("messages.route creation ok") : t("messages.route modify ok");
       const errorMessage = () => `${actionType === CREATE_ACTION ? t("messages.route creation ko") : t("messages.route modify ko")}`;
@@ -72,7 +79,7 @@ const useRouteDataForm = (): [
         setIsLoading(false);
         toast.success(successMessage);
         if (eventId && newRouteId) {
-          assignRouteToEvent(eventId, newRouteId, owner).then(() => {
+          routeEventProvider.assignRouteToEvent(eventId, newRouteId, owner).then(() => {
             setIsLoading(false);
             toast.success(successMessage);
             navigate(-1);

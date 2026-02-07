@@ -1,4 +1,5 @@
-import { searchEventsByGeo } from "@/database/eventsRpc";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import { getGeolocationPosition } from "@/features/maps/GpxRouteMap/helpers/mapUtils";
 import type { RouteEvent } from "@/types/RouteEvent.types";
 import L from "leaflet";
@@ -25,33 +26,22 @@ const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
   }, [t]);
 
   React.useEffect(() => {
-    const searchLocalEvents = async () => {
-      if (location) {
-        setIsLoading(true);
-        const lat = location?.coords.latitude;
-        const lon = location?.coords.longitude;
-        const southWest = new L.LatLng(lat - 0.5, lon - 0.5);
-        const northEast = new L.LatLng(lat + 0.5, lon + 0.5);
-        const bounds = new L.LatLngBounds(southWest, northEast);
-        const response = await searchEventsByGeo(bounds);
-
-        if (!response.error) {
-          setIsLoading(false);
-          return response.data;
-        } else {
-          setIsLoading(false);
-          throw new Error(`${response.error.message}`);
-        }
-      }
-    }
+    const repository = new SupabaseRouteEventRepository();
+    const provider = new RouteEventDataProvider(repository);
 
     if (location) {
-      const promise = searchLocalEvents()
-      
-      promise.then((data) => {
+      setIsLoading(true);
+      const lat = location?.coords.latitude;
+      const lon = location?.coords.longitude;
+      const southWest = new L.LatLng(lat - 0.5, lon - 0.5);
+      const northEast = new L.LatLng(lat + 0.5, lon + 0.5);
+      const bounds = new L.LatLngBounds(southWest, northEast);
+      provider.searchEventsByGeo(bounds).then((data) => {
+        setIsLoading(false);
         setRouteEvents(data);
       }).catch((e: unknown) => {
-          toast.error((e as Error).message);
+        setIsLoading(false);
+        toast.error((e as Error).message);
       });
     }
   }, [location])

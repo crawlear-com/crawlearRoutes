@@ -2,18 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState, type FormAction } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { CreationRoute, GeoPoint } from '@/types/Route.types';
-import { getRoute } from '@/database/routeRpc';
+import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
+import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';
+
+const repository = new SupabaseRouteRepository();
+const provider = new RouteDataProvider(repository);
 
 const loadRoute = createAsyncThunk(
   'route/getRoute',
   async (rid: string) => {
-    const response = await getRoute(rid);
-
-    if (!response.error) {
-      return response;
-    } else {
-      throw new Error(`Error loading favorite routes: ${response.error.message}`);
-    }
+    return provider.getRoute(rid);
   }
 );
 

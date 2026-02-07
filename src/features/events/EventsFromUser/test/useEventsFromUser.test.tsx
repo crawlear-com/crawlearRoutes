@@ -2,14 +2,31 @@ import { describe, it, beforeEach, expect, vi } from "vitest";
 import { act } from "@testing-library/react";
 import { renderHookWithProviders } from "@/test/test-utils";
 import useEventRoutesFromUser from "../hooks/useEventsFromUser";
-import * as rpc from "@/database/eventsRpc";
 import toast from "react-hot-toast";
 import * as eventSlice from "@/features/events/store/slices/eventListsSlice";
 import * as selectors from "@/features/events/store/selectors/eventsListsSelectors";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 
-vi.mock("@/database/eventsRpc", () => ({
-  deleteEventRoute: vi.fn(),
-}));
+const { mockRepoMethods } = vi.hoisted(() => {
+  return {
+    mockRepoMethods: {
+      deleteEventRoute: vi.fn(),
+    }
+  };
+});
+
+vi.mock(
+  "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository",
+  () => {
+    return {
+      default: class {
+        deleteEventRoute = mockRepoMethods.deleteEventRoute;
+      },
+    };
+  }
+);
+
+const repository = new SupabaseRouteEventRepository();
 
 vi.mock("react-hot-toast", async () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +69,7 @@ const mockEvent = {
 beforeEach(() => {
   vi.clearAllMocks();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (rpc.deleteEventRoute as any).mockResolvedValue({});
+  (repository.deleteEventRoute as any).mockResolvedValue({});
   vi.spyOn(window, "confirm").mockReturnValue(true);
 });
 
@@ -106,7 +123,7 @@ describe("useEventRoutesFromUser", () => {
       });
     });
 
-    expect(rpc.deleteEventRoute).toHaveBeenCalledWith("e1");
+    expect(repository.deleteEventRoute).toHaveBeenCalledWith("e1");
     expect(dispatchSpy).toHaveBeenCalledWith("e1");
     expect(toast.success).toHaveBeenCalled();
   });
@@ -130,12 +147,12 @@ describe("useEventRoutesFromUser", () => {
       });
     });
 
-    expect(rpc.deleteEventRoute).not.toHaveBeenCalled();
+    expect(repository.deleteEventRoute).not.toHaveBeenCalled();
   });
 
   it("shows error toast if delete fails", async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (rpc.deleteEventRoute as any).mockRejectedValue(new Error("fail"));
+    (repository.deleteEventRoute as any).mockRejectedValue(new Error("fail"));
     
     const { result } = renderHookWithProviders(() => useEventRoutesFromUser(), {
       preloadedState: baseState,

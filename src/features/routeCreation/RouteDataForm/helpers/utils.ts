@@ -1,14 +1,14 @@
-import { createRoute, modifyRoute } from "@/database/routesCreationRpc";
 import { CREATE_ACTION } from "@/helpers/utils";
 import type { CreationRoute } from "@/types/Route.types";
 import type { FormAction } from "@/features/routeCreation/store/slices/state.types";
+import type RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 
-const getActionFromRpcType = (actionType: FormAction) => {
+const getActionFromRpcType = (actionType: FormAction, provider: RouteDataProvider) => {
   if (actionType === CREATE_ACTION) {
-    return createRoute;
+    return provider.createRoute;
   }
 
-  return modifyRoute;
+  return provider.modifyRoute;
 }
 
 const createActionPayload = (rid: string | null, route: CreationRoute, owner: string) => {

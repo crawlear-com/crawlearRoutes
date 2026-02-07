@@ -2,9 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store';
-import { getMyRoutesPaginated, getLikesFromUserPaginated } from '@/database/MyRoutesRpc';
 import type { Route } from '@/types/Route.types';
 import { ASC, DESC } from '@/components/ItemCardList/types/ItemsListFilter.types';
+import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
+import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';
+
+const repository = new SupabaseRouteRepository();
+const provider = new RouteDataProvider(repository);
 
 const getMyRoutes = createAsyncThunk(
   'routes/getMyRoutes',
@@ -16,13 +20,8 @@ const getMyRoutes = createAsyncThunk(
     const orderBy = myRoutes.orderBy;
     const orderDir = myRoutes.orderDir;
     const query = myRoutes.query;
-    const response = await getMyRoutesPaginated(owner!, page, orderBy, orderDir, query);
-
-    if (!response.error) {
-      return response.data[0];
-    } else {
-      throw new Error(`Error loading routes: ${response.error.message}`);
-    }
+    
+    return provider.getMyRoutesPaginated(owner!, page, orderBy, orderDir, query);
   }
 );
 
@@ -36,13 +35,8 @@ const getMyFavourites = createAsyncThunk(
     const orderBy = myFavorites.orderBy;
     const orderDir = myFavorites.orderDir;
     const query = myFavorites.query;
-    const response = await getLikesFromUserPaginated(owner!, page, orderBy, orderDir, query);
 
-    if (!response.error) {
-      return response.data[0];
-    } else {
-      throw new Error(`Error loading favorite routes: ${response.error.message}`);
-    }
+    return provider.getLikesFromUserPaginated(owner!, page, orderBy, orderDir, query);
   }
 );
 
@@ -112,7 +106,7 @@ const routeListsSlice = createSlice({
       state.myRoutes.error = action.error.message ? action.error.message : "Unknown Error";
     })
     .addCase(getMyRoutes.fulfilled, (state, action) => {
-      state.myRoutes.routes = [...action.payload.routes];
+      state.myRoutes.routes = [...action.payload.data];
       state.myRoutes.totalRoutes = action.payload.total_count;
       state.myRoutes.isLoading = false;
     })
@@ -126,7 +120,7 @@ const routeListsSlice = createSlice({
       state.myFavorites.error = action.error.message ? action.error.message : "Unknown Error";
     })
     .addCase(getMyFavourites.fulfilled, (state, action) => {
-      state.myFavorites.routes = [...action.payload.routes];
+      state.myFavorites.routes = [...action.payload.data];
       state.myFavorites.totalRoutes = action.payload.total_count;
       state.myFavorites.isLoading = false;
     })

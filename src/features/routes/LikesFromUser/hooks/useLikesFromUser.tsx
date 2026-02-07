@@ -2,7 +2,6 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
-import { deleteLike } from "@/database/routeRpc";
 import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir,
   setMyFavouritesPage, setMyFavouritesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
@@ -12,12 +11,17 @@ import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesOrderBy
   selectMyFavoritesQuery,
   selectMyFavoritesTotalRoutes } from "@/features/routes/store/selectors/routeListsSelectors";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 
 const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
   SetMethods, SelectMethods<Route> ] => {
   const { t } = useTranslation(['myRoutes']);
   const dispatch = useDispatch();
   const uid = useSelector(selectUserUUID);
+  const repository = new SupabaseRouteRepository();
+  const provider = new RouteDataProvider(repository);
+
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const uid = element.dataset.uuid;
@@ -30,7 +34,7 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
   }
   const deleteFavoriteById = (uid: string, rid: string) => {
     if (window.confirm(t("main.want delete favorite"))) {
-      const promise = deleteLike(uid, rid);
+      const promise = provider.deleteLikeRoute(uid, rid);
 
       promise.then(() => {
         dispatch(deleteMyFavoritesRoute(rid));

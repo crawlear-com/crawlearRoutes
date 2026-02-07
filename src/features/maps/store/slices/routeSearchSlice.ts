@@ -1,20 +1,18 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { RoutesSearchInitialState } from './state.types';
-import { searchRoutesByGeo, searchPublicRoutes } from '@/database/searchRoutesRpc';
 import type { MapPoint } from '@/features/maps/SearchRouteMap/SearchRouteMap.types';
 import { getPointsFromRoutes } from '@/helpers/utils';
 import type { RootState } from '@/store/store';
+import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
+import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';
+
+const repository = new SupabaseRouteRepository();
+const provider = new RouteDataProvider(repository);
 
 const searchByGeo = createAsyncThunk(
   'routeSearch/searchByGeo',
   async (searchBounds: L.LatLngBounds) => {
-    const response = await searchRoutesByGeo(searchBounds);
-
-    if (!response.error) {
-      return response.data;
-    } else {
-      throw new Error(`Error searching routes: ${response.error.message}`);
-    }
+    return await provider.searchRoutesByGeo(searchBounds);
   }
 );
 
@@ -27,15 +25,9 @@ const searchByQuery = createAsyncThunk(
     const userId = state.user.session?.user.id;
 
     if (query.length > 0) {
-      const response = await searchPublicRoutes(query, page, userId!);
-
-      if (!response.error) {
-        return response.data;
-      } else {
-        throw new Error(`Error searching routes: ${response.error.message}`);
-      }
+      return await provider.searchPublicRoutes(query, page, userId!);
     } else {
-      return { routes: []};
+      return { data: [], total_count: 0};
     }
   }
 );
@@ -89,7 +81,7 @@ const routeSearchSlice = createSlice({
       state.error = action.error.message ? action.error.message : "Unknown Error";
     })
     .addCase(searchByQuery.fulfilled, (state, action) => {
-      const routes = [...action.payload.routes];
+      const routes = [...action.payload.data];
       state.routes = routes;
       state.totalRoutes = action.payload.total_count;
       state.points = getPointsFromRoutes(routes) as Array<MapPoint>;

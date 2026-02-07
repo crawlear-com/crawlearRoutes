@@ -1,5 +1,6 @@
 import type { ActionCreatorWithoutPayload, ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
 import type { RootState } from "@/store/store";
+import type { ItemListDTO } from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider.types";
 
 type SetMethods = {
   setPage: ActionCreatorWithPayload<number, string>,
@@ -23,7 +24,7 @@ type ItemsListProps<T> = {
   card: (item: T) => React.ReactElement,
   setMethods: SetMethods,
   selectMethods: SelectMethods<T>,
-  getDataAsyncThunk: AsyncThunk<Array<T>, void, AsyncThunkConfig>
+  getDataAsyncThunk: AsyncThunk<ItemListDTO<T>, void, AsyncThunkConfig>
 }
 
 export type { ItemsListProps, SetMethods, SelectMethods };

@@ -11,13 +11,17 @@ import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
 import type { RouteEvent } from "@/types/RouteEvent.types";
 import RouteEventCard from "@/features/events/RouteEventCard/RouteEventCard";
-import { deleteEventRoute } from "@/database/eventsRpc";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   SetMethods, SelectMethods<RouteEvent> ] => {
   const { t } = useTranslation(['myEvents']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const repository = new SupabaseRouteEventRepository();
+  const provider = new RouteEventDataProvider(repository);
+
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const eid = element.dataset.eid;
@@ -41,7 +45,7 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
 
   const deleteEventById = (id: string) => {
     if (window.confirm(t("main.want delete event"))) {
-      const promise = deleteEventRoute(id);
+      const promise = provider.deleteEventRoute(id);
 
       promise.then(() => {
         dispatch(deleteMyEvent(id));

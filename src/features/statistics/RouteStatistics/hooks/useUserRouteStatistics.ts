@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { getUserRouteStats } from "@/database/statisticsRpc";
 import type { UserRouteStatisticsData } from "../UserRouteStatistics.types";
 import { useDifficultyValues } from "@/helpers/utils";
 import { useTranslation } from "react-i18next";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 
 const initialUserData = {
   by_difficulty: { 1:0, 2:0, 3:0 },
@@ -23,7 +24,10 @@ const useUserRouteStatistics = (): [ UserRouteStatisticsData, string, string, st
   const [ easy, medium, difficult ] = useDifficultyValues();
 
   React.useEffect(() => {
-    const promise = getUserRouteStats(uid);
+    const repository = new SupabaseRouteRepository();
+    const provider = new RouteDataProvider(repository);
+
+    const promise = provider.getUserRouteStats(uid);
 
     setIsLoading(true);
     promise.then((data) => {

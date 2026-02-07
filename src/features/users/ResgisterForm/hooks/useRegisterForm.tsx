@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { registerFormValidates } from "@/features/users/helpers/registerValidations";
-import supabaseClient from "@/database/supabaseClient";
+import supabaseClient from "@/infrastructure/supabaseClient";
 import { setSession } from "@/features/users/store/slice/userSlice";
 import { setFormError } from "@/helpers/formValidations";
 

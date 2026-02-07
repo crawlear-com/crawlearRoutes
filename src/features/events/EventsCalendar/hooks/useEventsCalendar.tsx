@@ -6,14 +6,17 @@ import { useNavigate } from "react-router";
 import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
 import { getCalendarDataFrom } from "../helpers/utils";
 import type { RouteEvent } from "@/types/RouteEvent.types";
-import { getEventRouteEventsByMonth, getEventRoutesByMonth, setEventStartDate } from "@/database/eventsRpc";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     Array<CalendarEventRoutes>, (info: EventClickArg) => void, (arg: DatesSetArg) => void,
     (date: Date) => void, (dropInfo: EventDropArg) => void, (eventContent: EventContentArg) => void ] => {
+  const repository = React.useMemo(() => new SupabaseRouteEventRepository(), []);
+  const provider = React.useMemo(() => new RouteEventDataProvider(repository), [repository]);
   const navigate = useNavigate();
   const { t } = useTranslation(["myEvents"]);
   const [ currentDate, setCurrentDate ] = React.useState<string | null>(null);
@@ -27,42 +30,20 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
   const uid = useSelector(selectUserUUID);
 
   React.useEffect(() => {
-    const getRoutes = async () => {
-      setIsLoading(true);
-      const response = await getEventRoutesByMonth(uid!, startDate!, endDate!);
-
-      if (!response.error) {
-        setIsLoading(false);
-        return response;
-      } else {
-        setIsLoading(false);
-        throw new Error(`${t("errors.error loading routes")}: ${response.error.message}`);
-      }
-    }
-
-    const getEventRoutes = async () => {
-      setIsLoading(true);
-      const response = await getEventRouteEventsByMonth(uid!, startDate!, endDate!);
-
-      if (!response.error) {
-        setIsLoading(false);
-        return response;
-      } else {
-        setIsLoading(false);
-        throw new Error(`${t("errors.error loading events")}: ${response.error.message}`);
-      }
-    }
-
-    if (uid && startDate && endDate) {      
-      getRoutes().then((routes) => {
+    if (uid && startDate && endDate) {
+      setIsLoading(true);    
+      provider.getEventRoutesByMonth(uid!, startDate!, endDate!).then((routes) => {
         setRoutes(routes);
+        setIsLoading(false);
       }).catch((e: unknown) => {
         setIsLoading(false);
         toast.error((e as Error).message);
       });
 
-      getEventRoutes().then((routeEvents) => {
+      setIsLoading(true);    
+      provider.getEventRouteEventsByMonth(uid!, startDate!, endDate!).then((routeEvents) => {
         setRouteEvents(routeEvents);
+        setIsLoading(false);
       }).catch((e: unknown) => {
         setIsLoading(false);
         toast.error((e as Error).message);
@@ -70,7 +51,7 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
     }
 
 
-  }, [startDate, endDate, uid, t]);
+  }, [startDate, endDate, uid, t, provider]);
 
   React.useEffect(() => {
     if (routes.length > 0) {
@@ -115,12 +96,10 @@ const useEventsCalendar = (): [ boolean, string, Array<CalendarEventRoutes>,
   } 
 
   const modifyEventStartDate = async (eid: string, startDate: string) => {
-    const response = await setEventStartDate(eid!, startDate);
-
-    if (!response.error) {
-      return response;
-    } else {
-      throw new Error(`${"error.error modify date"}: ${response.error.message}`);
+    try {
+      provider.setEventStartDate(eid!, startDate);
+    } catch(error: unknown) {
+      throw new Error(`${"error.error modify date"}: ${(error as Error).message}`);
     }
   }
 

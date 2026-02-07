@@ -2,14 +2,33 @@ import { act, waitFor } from "@testing-library/react";
 import { describe, it, beforeEach, expect, vi } from "vitest";
 import useEventsCalendar from "../hooks/useEventsCalendar";
 import { renderHookWithProviders } from "@/test/test-utils";
-import * as rpc from "@/database/eventsRpc";
 import toast from "react-hot-toast";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 
-vi.mock("@/database/eventsRpc", () => ({
-  getEventRoutesByMonth: vi.fn(),
-  getEventRouteEventsByMonth: vi.fn(),
-  setEventStartDate: vi.fn(),
-}));
+const { mockRepoMethods } = vi.hoisted(() => {
+  return {
+    mockRepoMethods: {
+      getEventRoutesByMonth: vi.fn(),
+      getEventRouteEventsByMonth: vi.fn(),
+      setEventStartDate: vi.fn(),
+    }
+  };
+});
+
+vi.mock(
+  "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository",
+  () => {
+    return {
+      default: class {
+        getEventRoutesByMonth = mockRepoMethods.getEventRoutesByMonth;
+        getEventRouteEventsByMonth = mockRepoMethods.getEventRouteEventsByMonth;
+        setEventStartDate = mockRepoMethods.setEventStartDate;
+      },
+    };
+  }
+);
+
+const repository = new SupabaseRouteEventRepository();
 
 vi.mock("react-hot-toast", () => ({
   default: {
@@ -62,16 +81,13 @@ const baseState = {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (rpc.getEventRoutesByMonth as any).mockResolvedValue([
+  mockRepoMethods.getEventRoutesByMonth.mockResolvedValue([
     { id: "r1", name: "Route 1" },
   ]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (rpc.getEventRouteEventsByMonth as any).mockResolvedValue([
+  mockRepoMethods.getEventRouteEventsByMonth.mockResolvedValue([
     { id: "e1", name: "Event 1" },
   ]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (rpc.setEventStartDate as any).mockResolvedValue({ error: null });
+  mockRepoMethods.setEventStartDate.mockResolvedValue(null);
 });
 
 describe("useEventsCalendar", () => {
@@ -101,12 +117,12 @@ describe("useEventsCalendar", () => {
     });
 
     await waitFor(() => {
-      expect(rpc.getEventRoutesByMonth).toHaveBeenCalledWith(
+      expect(repository.getEventRoutesByMonth).toHaveBeenCalledWith(
         "user-123",
         expect.any(String),
         expect.any(String)
       );
-      expect(rpc.getEventRouteEventsByMonth).toHaveBeenCalled();
+      expect(repository.getEventRouteEventsByMonth).toHaveBeenCalled();
     });
   });
 
@@ -183,15 +199,13 @@ describe("useEventsCalendar", () => {
       } as any);
     });
 
-    expect(rpc.setEventStartDate).toHaveBeenCalled();
+    expect(repository.setEventStartDate).toHaveBeenCalled();
     expect(toast.success).toHaveBeenCalled();
   });
 
   it("shows error toast if route fetch fails", async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (rpc.getEventRoutesByMonth as any).mockResolvedValue({
-      error: { message: "DB down" },
-    });
+    (repository.getEventRoutesByMonth as any).mockRejectedValue(new Error("DB down"));;
 
     const { result } = renderHookWithProviders(() => useEventsCalendar(), {
       preloadedState: baseState,

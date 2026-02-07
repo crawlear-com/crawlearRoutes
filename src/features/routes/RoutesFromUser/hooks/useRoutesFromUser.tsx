@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteRouteAndLikes } from "@/database/MyRoutesRpc";
 import { deleteMyRoutesRoute, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
 import type { Route } from "@/types/Route.types";
@@ -9,12 +8,17 @@ import RouteCard from "@/features/routes/RouteCard/RouteCard";
 import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesOrderBy, selectMyRoutesOrderDir, selectMyRoutesPage, selectMyRoutesQuery, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
 import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 
 const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
   SetMethods, SelectMethods<Route> ] => {
   const { t } = useTranslation(['myRoutes']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const repository = new SupabaseRouteRepository();
+  const provider = new RouteDataProvider(repository);
+
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const rid = element.dataset.rid;
@@ -36,7 +40,7 @@ const useRoutesFromUser = (): [ (route: Route) => React.JSX.Element,
 
   const deleteRouteById = (id: string) => {
     if (window.confirm(t("main.want delete route"))) {
-      const promise = deleteRouteAndLikes(id);
+      const promise = provider.deleteRoute(id);
 
       promise.then(() => {
         dispatch(deleteMyRoutesRoute(id));

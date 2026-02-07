@@ -36,7 +36,6 @@ export const createTestStore = (preloadedState?: any): EnhancedStore =>
     preloadedState,
   });
 
-// ---- Custom renderHook ----
 const renderHookWithProviders = <T, P>(
   hook: (props: P) => T,
   {

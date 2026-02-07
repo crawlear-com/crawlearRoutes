@@ -1,4 +1,4 @@
-import { ITEMS_PAGE } from "@/database/supabaseClient";
+import { ITEMS_PAGE } from "@/infrastructure/supabaseClient";
 import type { ItemsPaginatorProps } from "./types/ItemsPaginator.types";
 import useItemsPaginator from "./hooks/useItemsPaginator";
 

@@ -5,13 +5,21 @@ import { renderHookWithProviders } from "@/test/test-utils";
 import { LatLngBounds } from "leaflet";
 import toast from "react-hot-toast";
 
-import * as routesRpc from "@/database/MyRoutesRpc";
 import * as validations from "../helpers/eventValidations";
 import * as actionUtils from "../helpers/utils";
 
-vi.mock("react-hot-toast", () => ({
-  default: { success: vi.fn(), error: vi.fn() },
-}));
+vi.mock("react-hot-toast", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("react-hot-toast")>();
+
+  return {
+    ...actual,
+    default: {
+      ...actual.default,
+      success: vi.fn(),
+      error: vi.fn(),
+    },
+  };
+});
 
 vi.mock("../helpers/eventValidations", () => ({
   eventFormValidates: vi.fn(),
@@ -21,15 +29,59 @@ vi.mock("../helpers/utils", () => ({
   getActionFromActionRpcType: vi.fn(),
 }));
 
-vi.mock("@/database/MyRoutesRpc", () => ({
-  getMyRoutesFull: vi.fn(),
-}));
+const { mockRepoMethods } = vi.hoisted(() => {
+  return {
+    mockRepoMethods: {
+      getRoutesByOwner: vi.fn(),
+      getMyRoutesFull: vi.fn()
+    }
+  };
+});
 
-vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (k: string) => k,
-  }),
-}));
+vi.mock(
+  "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository", () => {
+    return {
+      default: class {
+        getRoutesByOwner = mockRepoMethods.getRoutesByOwner;
+        getMyRoutesFull = mockRepoMethods.getMyRoutesFull;
+      },
+    }
+  }
+);
+
+const { mockRepoEventMethods } = vi.hoisted(() => {
+  return {
+    mockRepoEventMethods: {
+      createEventRoute: vi.fn(),
+      modifyEventRoute: vi.fn()
+    }
+  };
+});
+
+vi.mock(
+  "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository", () => {
+    return {
+      default: class {
+        createEventRoute = mockRepoEventMethods.createEventRoute;
+        modifyEventRoute = mockRepoEventMethods.modifyEventRoute;
+      },
+    }
+  }
+);
+
+vi.mock("react-i18next", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("react-i18next")>();
+  const tMock = (key: string) => key;
+
+  return {
+    ...actual, // 👈 keep initReactI18next + everything else
+    useTranslation: () => ({
+      t: tMock,
+      i18n: { changeLanguage: () => Promise.resolve() },
+    }),
+  };
+});
+
 
 const mockNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -53,11 +105,7 @@ beforeEach(() => {
 
 describe("useRouteEventsDataForm", () => {
   it("loads routes and builds route options on mount", async () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (routesRpc.getMyRoutesFull as any).mockResolvedValue({
-      data: [{ id: "r1", name: "Route 1" }],
-      error: null,
-    });
+    mockRepoMethods.getMyRoutesFull.mockResolvedValue([{ id: "r1", name: "Route 1" }]);
 
     const { result } = renderHookWithProviders(
       () => useRouteEventsDataForm("2026-01-10"),
@@ -68,12 +116,11 @@ describe("useRouteEventsDataForm", () => {
       expect(result.current[6].length).toBeGreaterThan(1); // routeOptions
     });
 
-    expect(routesRpc.getMyRoutesFull).toHaveBeenCalledWith("user-123");
+    expect(mockRepoMethods.getMyRoutesFull).toHaveBeenCalledWith("user-123");
   });
 
   it("shows toast when routes fail to load", async () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (routesRpc.getMyRoutesFull as any).mockResolvedValue({
+    mockRepoMethods.getMyRoutesFull.mockResolvedValue({
       data: null,
       error: { message: "fail" },
     });

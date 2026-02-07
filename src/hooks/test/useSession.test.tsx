@@ -6,9 +6,10 @@ import { renderWithProviders } from "../../test/test-utils";
 import TestComponent from "./testComponents/UseSessionTestComponent";
 import { setSession } from "../../features/users/store/slice/userSlice";
 import { sessionData } from "./testComponents/sessionData";
-import supabaseClient from "../../database/supabaseClient";
+import supabaseClient from "../../infrastructure/supabaseClient";
 
-vi.mock("../../database/supabaseClient", () => {
+
+vi.mock("../../infrastructure/supabaseClient", () => {
   return {
     default: {
       auth: {

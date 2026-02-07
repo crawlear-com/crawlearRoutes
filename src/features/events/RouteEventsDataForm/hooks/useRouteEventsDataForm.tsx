@@ -5,13 +5,16 @@ import type { GeoPoint, Route } from "@/types/Route.types";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
-import { getMyRoutesFull } from "@/database/MyRoutesRpc";
 import { CREATE_ACTION, UPDATE_ACTION } from "@/helpers/utils";
 import toast from "react-hot-toast";
 import type { FormAction } from "@/types/Generic.types";
 import { getActionFromActionRpcType } from "../helpers/utils";
 import { LatLngBounds } from "leaflet";
 import { useNavigate } from "react-router";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const getHourString = (date: string) => {
   const dateObject = new Date(date);
@@ -67,27 +70,21 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
 
     return [<option key="noRoute" value="">{ t("creation.no route") }</option>, ...routeOptions];
   }, [t]);
+  const routeRepository = React.useMemo(() => new SupabaseRouteRepository(), []);
+  const routeProvider = React.useMemo(() => new RouteDataProvider(routeRepository), [routeRepository]);
+  const routeEventRepository = React.useMemo(() => new SupabaseRouteEventRepository(), []);
+  const routeEventProvider = React.useMemo(() => new RouteEventDataProvider(routeEventRepository), [routeEventRepository]);  
 
   React.useEffect(() => {
-    const getRoutes = async () => {
-      setIsLoading(true);
-      const response = await getMyRoutesFull(userId!);
-
-      if (!response.error) {
-        setIsLoading(false);
-        return response.data;
-      } else {
-        setIsLoading(false);
-        throw new Error(t("messages.no routes loaded"));
-      }
-    }
-
-    getRoutes().then((routes) => {
+    setIsLoading(true);
+    routeProvider.getMyRoutesFull(userId!).then((routes) => {
+      setIsLoading(false);
       setRouteOptions(generateRouteOptions(routes));
     }).catch((e: unknown) => {
+      setIsLoading(false);
       toast.error((e as Error).message);
     });
-  }, [userId, generateRouteOptions, t]);
+  }, [userId, generateRouteOptions, t, routeProvider]);
 
   const onHourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setHour(event.target.value);
@@ -113,9 +110,9 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
 
   const onSubmitEventsForm = async(formData: FormData) => {  
     if (eventFormValidates(formData)) {
-      const action = getActionFromActionRpcType(actionType);
+      const action = getActionFromActionRpcType(actionType, routeEventProvider);
       const payload = createActionPayload({ name: name, description: description, location: point, date: eventDate, scale: scale, rid: rid, owner: userId!, id: routeEvent?.id, hour: hour } as RouteEvent & { hour: string } );
-      const promise: Promise<RouteEvent> = action(payload.name, payload.description, payload.location, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
+      const promise = action(payload.name, payload.description, payload.location, payload.date, payload.scale, payload.rid, payload.id || payload.owner);
       const successMessage = actionType === CREATE_ACTION ? t("messages.event creation ok") : t("messages.event modify ok");
       const errorMessage = () => `${actionType === CREATE_ACTION ? t("messages.event creation ko") : t("messages.event modify ko")}`;
 

@@ -1,6 +1,10 @@
 import toast from "react-hot-toast";
-import { deleteLike, likeRoute } from "@/database/routeRpc";
 import { useTranslation } from "react-i18next";
+import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
+import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
+
+const repository = new SupabaseRouteRepository();
+const provider = new RouteDataProvider(repository);
 
 const useLikeRoute = (): [ 
   (uid: string, rid: string, liked: boolean) => React.JSX.Element ] => {
@@ -16,7 +20,7 @@ const useLikeRoute = (): [
 
     if (uid && rid) {
       if (isLiked) {
-        deleteLike(uid, rid).then(()=> {
+        provider.deleteLikeRoute(uid, rid).then(()=> {
           element.innerText = "♡";
           element.dataset.isliked = "false";
           toast.success(t("main.like removed"));
@@ -24,7 +28,7 @@ const useLikeRoute = (): [
           toast.error(t("errors.like not removed"));
         });
       } else {
-        likeRoute(uid, rid).then(() => {
+        provider.likeRoute(uid, rid).then(() => {
           element.innerText = "♥️";
           element.dataset.isliked = "true";
           toast.success(t("main.like created"));

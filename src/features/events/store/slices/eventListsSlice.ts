@@ -2,9 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store';
-import { getEventRouteEventsPaginated } from '@/database/eventsRpc';
 import type { RouteEvent } from '@/types/RouteEvent.types';
 import { ASC, DESC } from '@/components/ItemCardList/types/ItemsListFilter.types';
+import RouteEventDataProvider from '@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider';
+import SupabaseRouteEventRepository from '@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository';
+
+const repository = new SupabaseRouteEventRepository();
+const provider = new RouteEventDataProvider(repository);
 
 const getMyRouteEventsPaginated = createAsyncThunk(
   'events/getMyRouteEventsPaginated',
@@ -15,13 +19,8 @@ const getMyRouteEventsPaginated = createAsyncThunk(
     const orderBy = state.events.orderBy;
     const orderDir = state.events.orderDir;
     const query = state.events.query;
-    const response = await getEventRouteEventsPaginated(uid!, page, orderBy, orderDir, query);
-
-    if (!response.error) {
-      return response.data;
-    } else {
-      throw new Error(`Error loading routes: ${response.error.message}`);
-    }
+    
+    return provider.getEventRouteEventsPaginated(uid!, page, orderBy, orderDir, query);
   }
 );
 

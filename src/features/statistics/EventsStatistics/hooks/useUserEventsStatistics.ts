@@ -1,10 +1,11 @@
-import { getUserEventsStats } from "@/database/statisticsRpc";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import type { UserEventsStatisticsData } from "../UserEventsStatistics.types";
 import { useTranslation } from "react-i18next";
+import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
+import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const initialUserData = {
   by_scale: {1:0, 2:0, 3:0, 4:0 },
@@ -22,7 +23,10 @@ const useUserEventsStatistics = (): [UserEventsStatisticsData, boolean] => {
   const { t } = useTranslation(["myEvents"]);
 
   React.useEffect(() => {
-    const promise = getUserEventsStats(uid);
+    const repository = new SupabaseRouteEventRepository();
+    const provider = new RouteEventDataProvider(repository);
+
+    const promise = provider.getUserEventsStats(uid);
 
     setIsLoading(true);
     promise.then((data) => {
