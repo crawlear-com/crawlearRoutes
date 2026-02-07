@@ -5,6 +5,10 @@ import { renderHookWithProviders } from "@/test/test-utils";
 import toast from "react-hot-toast";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 
+vi.mock('@/infrastructure/supabaseClient', () => ({
+  ITEMS_PAGE: 10
+}));
+
 const { mockRepoMethods } = vi.hoisted(() => {
   return {
     mockRepoMethods: {

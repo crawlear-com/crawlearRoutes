@@ -1,6 +1,6 @@
 import type { IRouteEventRepository } from "./RouteEventRepository.types";
 import { getDataAndCacheResponse } from "../../RpcCaller";
-import supabaseClient, { ITEMS_PAGE } from "../../supabaseClient";
+import supabaseClient, { ITEMS_PAGE } from "@/infrastructure/supabaseClient";
 import type { ItemListDTO } from "../../DataProvider/RouteDataProvider/RouteDataProvider.types";
 import type { RouteEvent } from "@/types/RouteEvent.types";
 import type { GeoPoint } from "@/types/Route.types";
