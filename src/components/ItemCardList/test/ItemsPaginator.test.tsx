@@ -4,7 +4,7 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import React, { act } from 'react'
 import ItemsPaginator from '../ItemsPaginator'
 
-vi.mock('@/database/supabaseClient', () => ({
+vi.mock('@/infrastructure/supabaseClient', () => ({
   ITEMS_PAGE: 10
 }));
 

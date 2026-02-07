@@ -7,6 +7,10 @@ import * as eventSlice from "@/features/events/store/slices/eventListsSlice";
 import * as selectors from "@/features/events/store/selectors/eventsListsSelectors";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 
+vi.mock('@/infrastructure/supabaseClient', () => ({
+  ITEMS_PAGE: 10
+}));
+
 const { mockRepoMethods } = vi.hoisted(() => {
   return {
     mockRepoMethods: {

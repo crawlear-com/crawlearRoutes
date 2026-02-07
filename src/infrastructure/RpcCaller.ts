@@ -1,5 +1,5 @@
 import { isOffline } from "@/features/offline/helpers/offline";
-import supabaseClient from "./supabaseClient";
+import supabaseClient from "@/infrastructure/supabaseClient";
 
 type FunctionArgs = {
   [key: string]: string | number | undefined
