@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import StepRouteCreation from "@/features/routeCreation/StepRouteCreation/StepRouteCreation";
 import Spinner from "@/components/ui/Spinner/Spinner";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 import useRouteCreation from "./hooks/useRouteCreation";
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 

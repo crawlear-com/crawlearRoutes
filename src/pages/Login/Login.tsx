@@ -1,6 +1,6 @@
 import LoginForm from "@/features/users/LoginForm/LoginForm";
 import useSession from "@/hooks/useSession";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 
 const Login = () => {
   useSession("/myroutes");

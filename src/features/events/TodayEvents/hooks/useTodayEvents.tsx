@@ -1,7 +1,7 @@
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";

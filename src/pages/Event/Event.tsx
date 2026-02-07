@@ -1,7 +1,7 @@
 import { NavLink, useParams } from "react-router";
 import EventDetail from "@/features/events/EventDetail/EventDetail";
 import { useTranslation } from "react-i18next";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 import { useSelector } from "react-redux";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 

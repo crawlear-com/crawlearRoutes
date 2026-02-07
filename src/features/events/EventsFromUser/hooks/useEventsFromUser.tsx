@@ -9,7 +9,7 @@ import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsOrderBy, selectM
   selectMyEventsTotalRoutes } from "@/features/events/store/selectors/eventsListsSelectors";
 import React from "react";
 import type { SelectMethods, SetMethods } from "@/components/ItemsList/ItemsList.types";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import RouteEventCard from "@/features/events/RouteEventCard/RouteEventCard";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";

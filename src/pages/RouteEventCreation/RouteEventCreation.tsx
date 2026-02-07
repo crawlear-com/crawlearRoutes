@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import RouteEventsDataForm from "@/features/events/RouteEventsDataForm/RouteEventsDataForm";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { useSelector } from "react-redux";
-import useGetRouteEventByIdAndOwner from "@/hooks/useGetRouteEventByIdAndOwner";
-import MainLayout from "@/layouts/MainLayout";
+import useGetRouteEventByIdAndOwner from "@/pages/RouteEventCreation/hooks/useGetRouteEventByIdAndOwner";
+import MainLayout from "@/pages/layouts/MainLayout";
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 
 import "./styles/eventCreation.css";

@@ -1,5 +1,5 @@
 import L from "leaflet"
-import type { GeoPoint } from "@/types/Route.types"
+import type { GeoPoint } from "@/domain/Route.types"
 import type { MarkerList } from "../MapPointPicker.types";
 import type { MapPoint } from "@/features/maps/SearchRouteMap/SearchRouteMap.types";
 import { getScaleValue, SCALE11, SCALE110, SCALE118, SCALE124 } from "@/helpers/utils";

@@ -1,7 +1,7 @@
-import type { RouteEvent } from "@/types/RouteEvent.types";
-import type { ItemListDTO } from "../../DataProvider/RouteDataProvider/RouteDataProvider.types";
-import type { GeoPoint, Route } from "@/types/Route.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
+import type { GeoPoint, Route } from "@/domain/Route.types";
 import type { UserEventsStatisticsData } from "@/features/statistics/EventsStatistics/UserEventsStatistics.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 interface IRouteEventRepository {
   getEventRouteEventsPaginated: (uid: string, page: number, orderBy: string, orderDir: string, query: string) => Promise<ItemListDTO<RouteEvent>>;

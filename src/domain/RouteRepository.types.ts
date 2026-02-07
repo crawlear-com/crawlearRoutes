@@ -1,7 +1,7 @@
-import type { Route } from "@/types/Route.types";
-import type { ItemListDTO } from "../../DataProvider/RouteDataProvider/RouteDataProvider.types";
+import type { Route } from "@/domain/Route.types";
 import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
 import type { UserRouteStatisticsData } from "@/features/statistics/RouteStatistics/UserRouteStatistics.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 interface IRouteRepository {
   getRoute: (rid: string) => Promise<Route>,

@@ -1,9 +1,9 @@
-import type { Route } from "@/types/Route.types";
-import type { IRouteRepository } from "./RouteRepository.types";
+import type { Route } from "@/domain/Route.types";
+import type { IRouteRepository } from "../../../domain/RouteRepository.types";
 import { getDataAndCacheResponse } from "../../RpcCaller";
 import supabaseClient, { ITEMS_PAGE } from "../../supabaseClient";
-import type { ItemListDTO } from "../../DataProvider/RouteDataProvider/RouteDataProvider.types";
 import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 class SupabaseRouteRepository implements IRouteRepository {
   async getRoute(rid: string): Promise<Route> {

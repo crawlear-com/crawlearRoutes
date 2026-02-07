@@ -1,12 +1,8 @@
 //import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
 import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
 import type { UserRouteStatisticsData } from "@/features/statistics/RouteStatistics/UserRouteStatistics.types";
-import type { Route } from "@/types/Route.types";
-
-type ItemListDTO<T> = {
-  data: Array<T>,
-  total_count: number
-}
+import type { Route } from "@/domain/Route.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 interface IRouteDataProvider {
   getRoute: (rid: string) => Promise<Route>;
@@ -23,4 +19,4 @@ interface IRouteDataProvider {
   getUserRouteStats: (uid: string) => Promise<UserRouteStatisticsData>;
 }
 
-export type { IRouteDataProvider, ItemListDTO };
+export type { IRouteDataProvider };

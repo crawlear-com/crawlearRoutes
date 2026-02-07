@@ -1,6 +1,6 @@
 import type { ActionCreatorWithoutPayload, ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
 import type { RootState } from "@/store/store";
-import type { ItemListDTO } from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 type SetMethods = {
   setPage: ActionCreatorWithPayload<number, string>,

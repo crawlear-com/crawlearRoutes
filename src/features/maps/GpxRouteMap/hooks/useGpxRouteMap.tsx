@@ -11,7 +11,7 @@ import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
   gpxParserOptions} from '../helpers/mapUtils'
 
 import type { GpxInfo } from '../GpxRouteMap.types'
-import type { GeoPoint } from '@/types/Route.types'
+import type { GeoPoint } from '@/domain/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
 import { setGpx } from '@/features/routeCreation/store/slices/routeSlice'
 import toast from 'react-hot-toast'

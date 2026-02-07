@@ -1,13 +1,12 @@
 import * as React from "react";
 import { eventFormValidates } from "../helpers/eventValidations";
-import type { RouteEvent } from "@/types/RouteEvent.types";
-import type { GeoPoint, Route } from "@/types/Route.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
+import type { GeoPoint, Route } from "@/domain/Route.types";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { CREATE_ACTION, UPDATE_ACTION } from "@/helpers/utils";
 import toast from "react-hot-toast";
-import type { FormAction } from "@/types/Generic.types";
 import { getActionFromActionRpcType } from "../helpers/utils";
 import { LatLngBounds } from "leaflet";
 import { useNavigate } from "react-router";
@@ -51,7 +50,7 @@ const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [
     (event: React.ChangeEvent<HTMLSelectElement>) => void,
     (searchBounds: LatLngBounds) => void
   ] => {
-  const actionType: FormAction = routeEvent ? UPDATE_ACTION : CREATE_ACTION;
+  const actionType = routeEvent ? UPDATE_ACTION : CREATE_ACTION;
   const { t } = useTranslation(["eventsCreation"]);
   const navigate = useNavigate();
   const [name, setName] = React.useState(routeEvent && routeEvent.name || '');

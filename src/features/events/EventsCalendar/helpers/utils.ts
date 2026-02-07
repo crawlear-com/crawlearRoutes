@@ -1,5 +1,5 @@
-import type { Route } from "@/types/Route.types";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { Route } from "@/domain/Route.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 
 const datePlusHours = (date: string, hours: number) => {
   const origDate = new Date(date);

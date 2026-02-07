@@ -1,6 +1,6 @@
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 import SearchRouteMap from "@/features/maps/SearchRouteMap/SearchRouteMap";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 import { useTranslation } from "react-i18next";
 
 import "./styles/searchRoute.css";

@@ -5,7 +5,7 @@ import { cleanSearchResultsAndQuery } from "@/features/maps/store/slices/routeSe
 import EventsCalendar from "@/features/events/EventsCalendar/EventsCalendar";
 import EventsFromUser from "@/features/events/EventsFromUser/EventsFromUser";
 import TodayEvents from "@/features/events/TodayEvents/TodayEvents";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 import UserEventsStatistics from "@/features/statistics/EventsStatistics/UserEventsStatistics";
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 

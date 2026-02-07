@@ -1,9 +1,9 @@
-import type { IRouteEventRepository } from "./RouteEventRepository.types";
+import type { IRouteEventRepository } from "../../../domain/RouteEventRepository.types";
 import { getDataAndCacheResponse } from "../../RpcCaller";
 import supabaseClient, { ITEMS_PAGE } from "@/infrastructure/supabaseClient";
-import type { ItemListDTO } from "../../DataProvider/RouteDataProvider/RouteDataProvider.types";
-import type { RouteEvent } from "@/types/RouteEvent.types";
-import type { GeoPoint } from "@/types/Route.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
+import type { GeoPoint } from "@/domain/Route.types";
+import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 class SupabaseRouteEventRepository implements IRouteEventRepository {
   async getEventRouteEventsPaginated(uid: string, page: number, orderBy: string,

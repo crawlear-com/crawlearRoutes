@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { deleteMyRoutesRoute, setMyRoutesOrderBy, setMyRoutesOrderDir, setMyRoutesPage, setMyRoutesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 import RouteCard from "@/features/routes/RouteCard/RouteCard";
 import { selectMyRoutes, selectMyRoutesIsLoading, selectMyRoutesOrderBy, selectMyRoutesOrderDir, selectMyRoutesPage, selectMyRoutesQuery, selectMyRoutesTotalRoutes } from "../../store/selectors/routeListsSelectors";
 import React from "react";

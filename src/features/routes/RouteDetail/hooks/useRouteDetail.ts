@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 import { useParams } from "react-router";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";

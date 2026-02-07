@@ -1,6 +1,6 @@
 import React from "react";
 import { LatLng, LatLngBounds } from "leaflet";
-import type { Route, SearchResultRoute } from "@/types/Route.types";
+import type { Route, SearchResultRoute } from "@/domain/Route.types";
 import type { MapPoint } from "../SearchRouteMap.types";
 import { selectRouteSearchIsLoading, selectRouteSearchPage, selectRouteSearchPoints,
   selectRouteSearchQuery, selectRouteSearchRoutes, selectRouteSearchTotalPages } from "@/features/maps/store/selectors/routeSearchSelectors";

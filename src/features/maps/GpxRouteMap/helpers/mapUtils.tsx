@@ -3,8 +3,8 @@ import type { GpxInfo } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
 
 import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
-import type { GpxData, GpxTrkPt } from '@/types/Gpx.types';
-import type { GeoPoint } from '@/types/Route.types';
+import type { GpxData, GpxTrkPt } from '@/features/maps/GpxRouteMap/Gpx.types';
+import type { GeoPoint } from '@/domain/Route.types';
 import { isObjectEmpty } from '@/helpers/utils';
 import { startIcon, endIcon, shadowIcon, markerIcon } from './Icons';
 

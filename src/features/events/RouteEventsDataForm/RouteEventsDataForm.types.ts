@@ -1,4 +1,4 @@
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 
 type EventsDataFormProps = {
   routeEvent?: RouteEvent,

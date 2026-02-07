@@ -1,4 +1,4 @@
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 import type { MapPoint } from "@/features/maps/SearchRouteMap/SearchRouteMap.types";
 
 type RouteSearchState = {

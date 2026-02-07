@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/store/store';
-import type { Route } from '@/types/Route.types';
+import type { Route } from '@/domain/Route.types';
 import { ASC, DESC } from '@/components/ItemCardList/types/ItemsListFilter.types';
 import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
 import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';

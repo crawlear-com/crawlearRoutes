@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectGpx } from "../../store/selectors/routeSelectors";
 import { setDistance, setDuration, setGpx, setIsRecording, setLocation } from "../../store/slices/routeSlice";
-import type { GeoPoint } from "@/types/Route.types";
+import type { GeoPoint } from "@/domain/Route.types";
 import toast from "react-hot-toast";
 
 const useGpxRecorer = (): [ 

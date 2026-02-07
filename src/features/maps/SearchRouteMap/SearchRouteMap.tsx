@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import SearchInput from "@/components/ui/SearchInput/SearchInput";
 import ItemCardList from "@/components/ItemCardList/ItemCardList";
 import ItemsPaginator from "@/components/ItemCardList/ItemsPaginator";
-import type { Route, SearchResultRoute } from "@/types/Route.types";
+import type { Route, SearchResultRoute } from "@/domain/Route.types";
 
 const SearchRouteMap = () => {
   const { t } = useTranslation(['map']);

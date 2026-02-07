@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { initialState, type FormAction } from './state.types';
+import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { CreationRoute, GeoPoint } from '@/types/Route.types';
+import type { CreationRoute, GeoPoint } from '@/domain/Route.types';
 import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
 import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';
 
@@ -22,7 +22,7 @@ const routeSlice = createSlice({
     setRouteId: ((state, action: PayloadAction<string>) => {
       state.rid = action.payload;
     }),
-    setAction: ((state, action: PayloadAction<FormAction>) => {
+    setAction: ((state, action: PayloadAction<string>) => {
       state.action = action.payload;
     }),
     setRoute: ((state, action: PayloadAction<CreationRoute>) => {

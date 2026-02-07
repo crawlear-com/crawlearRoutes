@@ -8,7 +8,7 @@ import { cleanSearchResultsAndQuery } from "@/features/maps/store/slices/routeSe
 import UserRouteStatistics from "@/features/statistics/RouteStatistics/UserRouteStatistics";
 import PageTitle from "@/components/ui/PageTitle/PageTitle";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 
 import "./styles/myRoutes.css";
 import "react-tabs/style/react-tabs.css";

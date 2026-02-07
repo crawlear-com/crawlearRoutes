@@ -1,4 +1,4 @@
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 
 type RoutesListState = {
   routes: Array<Route>,

@@ -1,5 +1,5 @@
 import Spinner from "@/components/ui/Spinner/Spinner";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import RouteEventCard from "../RouteEventCard/RouteEventCard";
 import ItemCardList from "@/components/ItemCardList/ItemCardList";
 import { useTranslation } from "react-i18next";

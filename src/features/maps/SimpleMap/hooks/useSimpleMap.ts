@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
 import { iconRoute } from '../Icons'
-import type { GeoPoint } from '@/types/Route.types'
+import type { GeoPoint } from '@/domain/Route.types'
 
 const getBoundingBox = (zoomScale: number, lat: number, lon : number): [[number, number],[number, number]] => {
   return [[lat - zoomScale, lon - zoomScale], [lat + zoomScale, lon + zoomScale]];

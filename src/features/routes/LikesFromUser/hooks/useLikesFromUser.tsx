@@ -5,7 +5,7 @@ import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir,
   setMyFavouritesPage, setMyFavouritesQuery } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 import RouteCard from "@/features/routes/RouteCard/RouteCard";
 import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesOrderBy, selectMyFavoritesOrderDir, selectMyFavoritesPage,
   selectMyFavoritesQuery,

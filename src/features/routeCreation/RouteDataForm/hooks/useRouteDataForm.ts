@@ -7,18 +7,17 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import type { CreationRoute } from "@/types/Route.types";
+import type { CreationRoute } from "@/domain/Route.types";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import { createActionPayload, getActionFromRpcType } from "../helpers/utils";
 import { CREATE_ACTION } from "@/helpers/utils";
-import type { FormAction } from "@/features/routeCreation/store/slices/state.types";
 import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
 import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
 const useRouteDataForm = (): [
-  (formData: FormData) => void, CreationRoute, boolean, string | null, FormAction,
+  (formData: FormData) => void, CreationRoute, boolean, string | null, string,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
   (event: React.ChangeEvent<HTMLSelectElement>) => void,
@@ -33,10 +32,10 @@ const useRouteDataForm = (): [
   const creationRoute = useSelector(selectCreationRoute);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const dispatch = useDispatch();
-  const routeRepository = new SupabaseRouteRepository();
-  const routeProvider = new RouteDataProvider(routeRepository);
-  const routeEventRepository = new SupabaseRouteEventRepository();
-  const routeEventProvider = new RouteEventDataProvider(routeEventRepository);
+  const routeRepository = React.useMemo(() => new SupabaseRouteRepository(), []);
+  const routeProvider = React.useMemo(() => new RouteDataProvider(routeRepository), [routeRepository]);
+  const routeEventRepository = React.useMemo(() => new SupabaseRouteEventRepository(), []);
+  const routeEventProvider = React.useMemo(() => new RouteEventDataProvider(routeEventRepository), [routeEventRepository]);  
 
   const onIsPublicChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;

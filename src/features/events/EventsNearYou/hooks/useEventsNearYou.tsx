@@ -1,7 +1,7 @@
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import { getGeolocationPosition } from "@/features/maps/GpxRouteMap/helpers/mapUtils";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import L from "leaflet";
 import React from "react";
 import toast from "react-hot-toast";

@@ -1,6 +1,6 @@
 import RegisterForm from "@/features/users/ResgisterForm/RegisterForm";
 import useSession from "@/hooks/useSession";
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from "@/pages/layouts/MainLayout";
 
 const Register = () => {
   useSession("/myroutes");

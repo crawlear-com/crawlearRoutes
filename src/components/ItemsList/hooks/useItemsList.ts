@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '@/store/store';
 import type { AsyncThunk, AsyncThunkConfig } from '@reduxjs/toolkit';
 import type { SelectMethods, SetMethods } from '@/components/ItemsList/ItemsList.types';
-import type { ItemListDTO } from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider.types';
+import type { ItemListDTO } from '@/infrastructure/ItemListDTO.types';
 
 const useItemsList = <T, > (
   thunk: AsyncThunk<ItemListDTO<T>, void, AsyncThunkConfig>,

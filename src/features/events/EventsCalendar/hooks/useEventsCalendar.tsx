@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import type { Route } from "@/types/Route.types";
+import type { Route } from "@/domain/Route.types";
 import type { DatesSetArg, EventClickArg, EventContentArg, EventDropArg } from "@fullcalendar/core/index.js";
 import { useNavigate } from "react-router";
 import { TYPE_EVENT, TYPE_ROUTE, type CalendarEventRoutes } from "../EventsCalendar.types";
 import { getCalendarDataFrom } from "../helpers/utils";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import { selectUserUUID } from "@/features/users/store/selectors/userSelectors";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";

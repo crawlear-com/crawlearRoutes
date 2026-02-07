@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { RouteEvent } from "@/types/RouteEvent.types";
+import type { RouteEvent } from "@/domain/RouteEvent.types";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
