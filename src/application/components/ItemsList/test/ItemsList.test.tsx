@@ -8,17 +8,17 @@ vi.mock('../hooks/useItemsList', () => ({
   default: () => hookMock(),
 }))
 
-vi.mock('@/application/componentsItemCardList/ItemCardList', () => ({
+vi.mock('@/application/components/ItemCardList/ItemCardList', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ items }: any) => <div data-testid="card-list">{items.length}</div>,
 }));
 
-vi.mock('@/application/componentsItemCardList/ItemsPaginator', () => ({
+vi.mock('@/application/components/ItemCardList/ItemsPaginator', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ currentPage }: any) => <div data-testid="paginator">{currentPage}</div>,
 }));
 
-vi.mock('@/application/componentsItemCardList/ItemsListFilter', () => ({
+vi.mock('@/application/components/ItemCardList/ItemsListFilter', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ query }: any) => <div data-testid="filter">{query}</div>,
 }));

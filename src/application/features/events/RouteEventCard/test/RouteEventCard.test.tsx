@@ -24,7 +24,7 @@ vi.mock("@/application/components/ui/Badge/ScaleBadge/ScaleBadge", () => ({
   default: ({ scale }: any) => <div data-testid="scale-badge">{scale}</div>,
 }));
 
-vi.mock("@/features/maps/SimpleMap/SimpleMap", () => ({
+vi.mock("@/application/features/maps/SimpleMap/SimpleMap", () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ id }: any) => <div data-testid="simple-map">{id}</div>,
 }));
