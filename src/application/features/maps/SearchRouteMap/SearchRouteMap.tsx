@@ -3,8 +3,8 @@ import Spinner from "@/application/components/ui/Spinner/Spinner";
 import useSearchRoute from "./hooks/useSearchRoute";
 import { useTranslation } from "react-i18next";
 import SearchInput from "@/application/components/ui/SearchInput/SearchInput";
-import ItemCardList from "@/application/components/ItemCardList/ItemCardList";
-import ItemsPaginator from "@/application/components/ItemCardList/ItemsPaginator";
+import ItemCardList from "@/application/components/ItemsList/ItemCardList/ItemCardList";
+import ItemListPaginator from "@/application/components/ItemsList/ItemListPaginator/ItemListPaginator";
 import type { Route, SearchResultRoute } from "@/domain/Route.types";
 
 const SearchRouteMap = () => {
@@ -22,7 +22,7 @@ const SearchRouteMap = () => {
         placeholder={ t('main.by title') } /></b>
 
       { isLoading ? <Spinner className="float-right mr-1 mt-2" /> : <></>}
-      <ItemsPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
+      <ItemListPaginator currentPage={ page } totalItems={ totalRoutes } onPageClick={ onPageClick } />
       <ItemCardList<Route | SearchResultRoute> items={ resultRoutes } card={ routesCard } />
     </div>
   </div>);

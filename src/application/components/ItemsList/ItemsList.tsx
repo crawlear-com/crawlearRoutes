@@ -1,6 +1,6 @@
-import ItemCardList from "@/application/components/ItemCardList/ItemCardList";
-import ItemsPaginator from "@/application/components/ItemCardList/ItemsPaginator";
-import ItemsListFilter from "@/application/components/ItemCardList/ItemsListFilter";
+import ItemCardList from "@/application/components/ItemsList/ItemCardList/ItemCardList";
+import ItemListPaginator from "@/application/components/ItemsList/ItemListPaginator/ItemListPaginator";
+import ItemsListFilter from "@/application/components/ItemsList/ItemListFilter/ItemsListFilter";
 import Spinner from "@/application/components/ui/Spinner/Spinner";
 import useItemsList from "./hooks/useItemsList";
 import type { ItemsListProps } from "./ItemsList.types";
@@ -14,7 +14,7 @@ const ItemsList = <T,>({ title, card, getDataAsyncThunk, setMethods, selectMetho
     <ItemsListFilter query={query} orderBy={ orderBy } orderDir={ orderDir }
       onOrderByClick= { onOrderByClick } onOrderDirClick= { onOrderDirClick }
       onQueryChange={ onQueryChange } onSearch={ onSearch }/>
-    <ItemsPaginator currentPage = { currentPage } totalItems = { totalItems } onPageClick={ onPageClick } />
+    <ItemListPaginator currentPage = { currentPage } totalItems = { totalItems } onPageClick={ onPageClick } />
     { isLoading ? <Spinner /> : <ItemCardList<T> card={ card } items={ items } /> }
   </>);
 }

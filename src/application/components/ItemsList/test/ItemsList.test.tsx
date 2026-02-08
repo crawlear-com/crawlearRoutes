@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
 import ItemsList from '../ItemsList'
+import "@/application/components/ItemsList/ItemListFilter/ItemsListFilter"
 
 const hookMock = vi.fn();
 
@@ -8,17 +9,17 @@ vi.mock('../hooks/useItemsList', () => ({
   default: () => hookMock(),
 }))
 
-vi.mock('@/application/components/ItemCardList/ItemCardList', () => ({
+vi.mock("@/application/components/ItemsList/ItemCardList/ItemCardList", () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ items }: any) => <div data-testid="card-list">{items.length}</div>,
 }));
 
-vi.mock('@/application/components/ItemCardList/ItemsPaginator', () => ({
+vi.mock("@/application/components/ItemsList/ItemListPaginator/ItemListPaginator", () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ currentPage }: any) => <div data-testid="paginator">{currentPage}</div>,
 }));
 
-vi.mock('@/application/components/ItemCardList/ItemsListFilter', () => ({
+vi.mock("@/application/components/ItemsList/ItemListFilter/ItemsListFilter", () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default: ({ query }: any) => <div data-testid="filter">{query}</div>,
 }));

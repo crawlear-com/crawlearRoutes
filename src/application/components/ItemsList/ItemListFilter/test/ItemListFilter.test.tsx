@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, act } from '@testing-library/react';
-import ItemsListFilter from '../ItemsListFilter';
-import { ASC } from '../types/ItemsListFilter.types'
+import ItemsListFilter from '../../ItemListFilter/ItemsListFilter';
+import { ASC } from '../../ItemListFilter/ItemsListFilter.types'
 
 
 vi.mock('react-i18next', () => ({

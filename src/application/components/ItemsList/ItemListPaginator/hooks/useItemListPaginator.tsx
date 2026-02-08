@@ -1,5 +1,5 @@
 
-const useItemsPaginator = (totalItems: number, itemsPerPage: number,
+const ItemListPaginator = (totalItems: number, itemsPerPage: number,
   currentPage: number, onPageClick: (page: number) => void): [ Array<React.JSX.Element>,
     number, (e: React.MouseEvent) => void ] => {
   const pages: Array<React.JSX.Element> = [];
@@ -20,4 +20,4 @@ const useItemsPaginator = (totalItems: number, itemsPerPage: number,
 
 }
 
-export default useItemsPaginator;
+export default ItemListPaginator;
