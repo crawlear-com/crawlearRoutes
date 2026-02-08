@@ -2,14 +2,13 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
 import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
-
-const repository = new SupabaseRouteRepository();
-const provider = new RouteDataProvider(repository);
+import * as React from "react";
 
 const useLikeRoute = (): [ 
   (uid: string, rid: string, liked: boolean) => React.JSX.Element ] => {
     const { t } = useTranslation(["myRoutes"]);
-
+    const repository = React.useMemo(() => new SupabaseRouteRepository(), []);
+    const provider = React.useMemo(() => new RouteDataProvider(repository), [repository]);
     const onLikeClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
     const isLiked = element.dataset.isliked === "true";

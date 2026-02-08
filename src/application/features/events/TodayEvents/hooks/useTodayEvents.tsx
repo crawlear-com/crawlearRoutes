@@ -8,14 +8,13 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
-const repository = new SupabaseRouteEventRepository();
-const provider = new RouteEventDataProvider(repository);
-
 const useTodayEvents = (): [ Array<RouteEvent>, (event: React.MouseEvent<HTMLDivElement>) => void ] => {
   const [ todayEvents, setTodayEvents ] = React.useState<Array<RouteEvent>>([]);
   const { t } = useTranslation("myEvents");
   const uid = useSelector(selectUserUUID);
   const navigate = useNavigate();
+  const repository = React.useMemo(() => new SupabaseRouteEventRepository(), []);
+  const provider = React.useMemo(() => new RouteEventDataProvider(repository), [repository]);
 
   React.useEffect(() => {
     const getEvents = async () => {
@@ -29,7 +28,7 @@ const useTodayEvents = (): [ Array<RouteEvent>, (event: React.MouseEvent<HTMLDiv
     }
 
     getEvents();
-  }, [uid, t]);
+  }, [uid, t, provider]);
 
   const onEditRouteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const eid = (event.target as HTMLDivElement).dataset.eid;

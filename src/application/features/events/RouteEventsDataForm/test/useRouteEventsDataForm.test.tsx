@@ -27,6 +27,17 @@ vi.mock("../helpers/eventValidations", () => ({
 
 vi.mock("../helpers/utils", () => ({
   getActionFromActionRpcType: vi.fn(),
+  getHourString: vi.fn(),
+  createActionPayload: vi.fn().mockResolvedValue({
+      id: "id",
+      name: "name",
+      description: "description",
+      location: { lat: 0, lon: 99},
+      date: new Date(),
+      scale: 1,
+      rid: "rid",
+      owner: "owner"
+    })
 }));
 
 const { mockRepoMethods } = vi.hoisted(() => {

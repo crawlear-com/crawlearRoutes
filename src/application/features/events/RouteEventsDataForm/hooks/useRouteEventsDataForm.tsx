@@ -7,38 +7,13 @@ import { useTranslation } from "react-i18next";
 import { selectUserUUID } from "@/application/features/users/store/selectors/userSelectors";
 import { CREATE_ACTION, UPDATE_ACTION } from "@/application/helpers/utils";
 import toast from "react-hot-toast";
-import { getActionFromActionRpcType } from "../helpers/utils";
+import { createActionPayload, getActionFromActionRpcType, getHourString } from "../helpers/utils";
 import { LatLngBounds } from "leaflet";
 import { useNavigate } from "react-router";
 import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
 import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
-
-const getHourString = (date: string) => {
-  const dateObject = new Date(date);
-  const hoursValue = dateObject.getHours().toString().padStart(2, '0');
-  const minutesValue = dateObject.getMinutes() === 0 ? '00h' : '30h';
-
-  return `${hoursValue}:${minutesValue}`;
-}
-
-const createActionPayload = (routeEvent: RouteEvent & { hour: string }) => {
-  const newDate = new Date(routeEvent.date);
-  
-  newDate.setHours(routeEvent.hour ? Number(routeEvent.hour.split(':')[0]) : 0);
-  newDate.setMinutes(routeEvent.hour ? Number(routeEvent.hour.split(':')[1].replace('h', '')) : 0);
-    return {
-      id: routeEvent.id || null,
-      name: routeEvent.name,
-      description: routeEvent.description,
-      location: routeEvent.location,
-      date: newDate,
-      scale: routeEvent.scale,
-      rid: routeEvent.rid,
-      owner: routeEvent.owner
-    }
-}
 
 const useRouteEventsDataForm = (eventDate: string, routeEvent?: RouteEvent): [ 
     string, string, string | null, boolean, number, string, Array<React.JSX.Element>,

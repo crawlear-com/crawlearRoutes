@@ -19,8 +19,8 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
   const { t } = useTranslation(['myRoutes']);
   const dispatch = useDispatch();
   const uid = useSelector(selectUserUUID);
-  const repository = new SupabaseRouteRepository();
-  const provider = new RouteDataProvider(repository);
+  const repository = React.useMemo(() => new SupabaseRouteRepository(), []);
+  const provider = React.useMemo(() => new RouteDataProvider(repository), [repository]);
 
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;

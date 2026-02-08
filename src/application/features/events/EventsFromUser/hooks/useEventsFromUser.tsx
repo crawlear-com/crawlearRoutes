@@ -19,8 +19,8 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
   const { t } = useTranslation(['myEvents']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const repository = new SupabaseRouteEventRepository();
-  const provider = new RouteEventDataProvider(repository);
+  const repository = React.useMemo(() => new SupabaseRouteEventRepository(), []);
+  const provider = React.useMemo(() => new RouteEventDataProvider(repository), [repository]);
 
   const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;

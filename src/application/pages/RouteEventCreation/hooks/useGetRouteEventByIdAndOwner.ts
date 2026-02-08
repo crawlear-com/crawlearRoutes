@@ -5,15 +5,15 @@ import { useTranslation } from "react-i18next";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
-const repository = new SupabaseRouteEventRepository();
-const provider = new RouteEventDataProvider(repository);
-
 const useGetRouteEventByIdAndOwner = ( setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setData: React.Dispatch<React.SetStateAction<RouteEvent | undefined>>,
   uid: string, eid?: string,) => {
   const { t } = useTranslation(["myEvents"]);
 
   React.useEffect(() => {
+    const repository = new SupabaseRouteEventRepository();
+    const provider = new RouteEventDataProvider(repository);
+    
     if (eid && uid) {
       setIsLoading(true);
       const promise = provider.getRouteEventByIdAndOwner(uid, eid)

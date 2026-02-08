@@ -1,4 +1,3 @@
-//import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
 import type { ActionPayload } from "@/application/features/routeCreation/store/slices/state.types";
 import type { UserRouteStatisticsData } from "@/application/features/statistics/RouteStatistics/UserRouteStatistics.types";
 import type { Route } from "@/domain/Route.types";
