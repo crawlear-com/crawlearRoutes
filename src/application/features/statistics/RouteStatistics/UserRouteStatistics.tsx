@@ -1,0 +1,64 @@
+import { Chart } from "react-google-charts";
+import { getScaleValue, toHours, toKm } from "@/application/helpers/utils";
+import { useTranslation } from "react-i18next";
+import useUserRouteStatistics from "./hooks/useUserRouteStatistics";
+import Spinner from "@/application/components/ui/Spinner/Spinner";
+
+import "./styles/charts.css";
+import { thereISDataByDifficulty, thereIsDataByScale } from "../helpers/utils";
+
+const UserRouteStatistics = () => {
+  const { t } = useTranslation(["myRoutes"]);
+  const [ data, easy, medium, difficult, isLoading ] = useUserRouteStatistics();
+
+  return <div className="container z-10">
+    <div className="card p-10 pb-0 sm:mx-auto">
+      <h1 className="text-right mb-5">{ t("statistics.statistics") }</h1>
+      <div className="justify-self-start">
+        <b>{ t("statistics.total routes") }:</b> { data.total_routes }
+      </div>
+      <div className="justify-self-start">
+        <b>{ t("statistics.total distance") }:</b> { toKm(data.total_distance) } km
+      </div>
+      <div className="justify-self-start">
+        <b>{ t("statistics.total time") }:</b> { toHours(data.total_duration_time) } { t("statistics.hours") } 
+      </div>
+
+      { isLoading ? <Spinner /> : thereIsDataByScale(data) ?
+        <Chart chartType="PieChart" 
+          data = {[[t("statistics.scale"), t("statistics.by scale")],
+            [getScaleValue(1), data.by_scale[1] || 0],
+            [getScaleValue(2), data.by_scale[2] || 0],
+            [getScaleValue(3), data.by_scale[3] || 0],
+            [getScaleValue(4), data.by_scale[4] || 0]]}
+          options={{ 
+            title: t("statistics.by scale"),
+            pieHole: 0.3,
+            is3D: false,
+            chartArea: {
+              width: "100%",
+              heigth: "100%"
+            }
+          }}/> : <p className="mb-5"></p>
+      }
+      { isLoading ? <Spinner /> : thereISDataByDifficulty(data) ? 
+        <Chart chartType="PieChart"
+          data = {[[t("statistics.difficult"), t("statistics.by difficult")],
+            [easy, data.by_difficulty[1] || 0],
+            [medium, data.by_difficulty[2] || 0],
+            [difficult, data.by_difficulty[3] || 0]]}
+          options={{ 
+            title: t("statistics.by difficult"),
+            pieHole: 0.3,
+            is3D: false,
+            chartArea: {
+              width: "100%",
+              heigth: "100%"
+            }
+          }}/> : <p className="mb-5"></p>
+      }
+    </div>
+  </div>;
+}
+
+export default UserRouteStatistics;

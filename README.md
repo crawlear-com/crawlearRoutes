@@ -130,19 +130,19 @@ This allows to create ItemsList with any kind of data and custom visualization o
 
 ![alt ItemList diagram screenshot](/etc/itemListDiagram.png)
 
-B) Use clean code and solid principles:
-
-- The domain is defined in /src/types
-- The features are declared in /src/features
-- The infrastructure to database layer is defined in /src/database
-- Separate always logic from ui using custom hooks in any component. This way the component only defines UI and logic is done in a separated custom hook
-
-**Design patters**: DRY, kiss, custom hooks, singleton, observer pattern always using Clean code, SOLID and clean arquitecture principles
-
-C) REDUX usage: **keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
+B) REDUX usage: **keep in Redux state the shared data by a component hierarchy** to avoid prop drilling and avoid pollute Redux state:
    - logged user data: to manage the private routes and get the user uid when needed
    - current theme: to be able to change styles on the fly
    - list data  and parameters (routes and events) to share state in filters and order components
+
+C) Use clean code and solid principles:
+
+- The domain is defined in /src/domain
+- The features are declared in /src/features
+- The infrastructure to database layer is defined in /src/infrastructure usinf providers and repositoies aproach (pots and adapters pattern)
+- Separate always logic from ui using custom hooks in any component. This way the component only defines UI and logic is done in a separated custom hook
+
+**Design patters**: DRY, kiss, custom hooks, singleton, observer, ports and adapters patterns always using Clean code, SOLID and clean arquitecture principles
 
 ### Project structure
 
@@ -151,15 +151,16 @@ C) REDUX usage: **keep in Redux state the shared data by a component hierarchy**
 /src/components/ui: generic UI components
 /src/features: main app use cases
 /src/pages: app router pages
-/src/database: supabase Rpc's
+/src/infrastructure: implementation details about persistance of domain entities
 /src/assets: generic images and language json token traductions fot i18n
 /src/hooks: generic hooks
 /src/layouts: page layout including header, main content and footer
 /src/store: redux store definition
 /src/styles: generic css
+/src/domain: domain entities and repositories definition
 </pre>
 
-Components are self contained, including (when needed):
+At React level, components are self contained, including (when needed):
   - helpers: utils js for the component
   - hooks: custom hooks that encapsulates the component logic
   - test: vitests for the component
