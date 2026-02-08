@@ -102,4 +102,15 @@ describe('useItemsList hook', () => {
 
     expect(dispatchMock).toHaveBeenCalledWith(thunkMock())
   })
+
+  it('onSearch resets to page 0', () => {
+    const { result } = renderHook(() =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      useItemsList(thunkMock as any, setMethods as any, selectMethods as any)
+    )
+
+    act(() => result.current[11]())
+
+    expect(dispatchMock).toHaveBeenCalledWith(setMethods.setPage(0))
+  })
 })

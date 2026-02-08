@@ -37,6 +37,7 @@ const useItemsList = <T, > (
   };
 
   const onSearch = () => {
+      dispatch(setMethods.setPage(0));
       dispatch(thunk());
   }
 
