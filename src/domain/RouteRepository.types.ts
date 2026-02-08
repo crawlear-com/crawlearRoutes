@@ -1,6 +1,6 @@
 import type { Route } from "@/domain/Route.types";
-import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
-import type { UserRouteStatisticsData } from "@/features/statistics/RouteStatistics/UserRouteStatistics.types";
+import type { ActionPayload } from "@/application/features/routeCreation/store/slices/state.types";
+import type { UserRouteStatisticsData } from "@/application/features/statistics/RouteStatistics/UserRouteStatistics.types";
 import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 interface IRouteRepository {

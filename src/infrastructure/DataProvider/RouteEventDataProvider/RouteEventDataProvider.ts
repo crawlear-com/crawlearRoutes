@@ -2,7 +2,7 @@ import type { IRouteEventDataProvider } from "./RouteEventDataProvider.types";
 import type { IRouteEventRepository } from "../../../domain/RouteEventRepository.types";
 import type { RouteEvent } from "@/domain/RouteEvent.types";
 import type { GeoPoint, Route } from "@/domain/Route.types";
-import type { UserEventsStatisticsData } from "@/features/statistics/EventsStatistics/UserEventsStatistics.types";
+import type { UserEventsStatisticsData } from "@/application/features/statistics/EventsStatistics/UserEventsStatistics.types";
 import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 class RouteEventDataProvider implements IRouteEventDataProvider {

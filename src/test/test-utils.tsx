@@ -3,9 +3,9 @@ import { render, renderHook } from '@testing-library/react'
 import type { RenderHookOptions, RenderOptions } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
-import type { AppStore, AppState } from '../store/store'
-import { setupStore } from '../store/store';
-import rootReducer from '@/store/RootReducer'
+import type { AppStore, AppState } from '../application/store/store'
+import { setupStore } from '../application/store/store';
+import rootReducer from '@/application/store/RootReducer'
 import { configureStore, type EnhancedStore } from '@reduxjs/toolkit'
 import { AllProviders } from './testProviders'
 

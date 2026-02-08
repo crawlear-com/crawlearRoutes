@@ -2,7 +2,7 @@
 import type { Route } from "@/domain/Route.types";
 import type { IRouteDataProvider } from "./RouteDataProvider.types";
 import type { IRouteRepository } from "../../../domain/RouteRepository.types";
-import type { ActionPayload } from "@/features/routeCreation/store/slices/state.types";
+import type { ActionPayload } from "@/application/features/routeCreation/store/slices/state.types";
 import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
 class RouteDataProvider implements IRouteDataProvider {

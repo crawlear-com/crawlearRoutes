@@ -1,9 +1,9 @@
-import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
+import ErrorBoundary from "@/application/components/ErrorBoundary/ErrorBoundary";
 import { Toaster } from 'react-hot-toast';
-import MainHashRouter from "@/components/MainHashRouter/MainHashRouter";
-import useOffline from "./features/offline/hooks/useOffline";
+import MainHashRouter from "@/application/components/MainHashRouter/MainHashRouter";
+import useOffline from "./application/features/offline/hooks/useOffline";
 
-import '@/styles/App.css';
+import '@/application/styles/App.css';
 
 const App = () => {
   useOffline();

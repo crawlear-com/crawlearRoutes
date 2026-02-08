@@ -1,4 +1,4 @@
-import { isOffline } from "@/features/offline/helpers/offline";
+import { isOffline } from "@/application/features/offline/helpers/offline";
 import supabaseClient from "@/infrastructure/supabaseClient";
 
 type FunctionArgs = {
