@@ -3,7 +3,7 @@ import { initialState } from './state.types';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/application/store/store';
 import type { Route } from '@/domain/Route.types';
-import { ASC, DESC } from '@/application/components/ItemCardList/types/ItemsListFilter.types';
+import { ASC, DESC } from '@/application/components/ItemsList/ItemListFilter/ItemsListFilter.types';
 import SupabaseRouteRepository from '@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository';
 import RouteDataProvider from '@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider';
 

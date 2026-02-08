@@ -1,9 +1,9 @@
 import { ITEMS_PAGE } from "@/infrastructure/supabaseClient";
-import type { ItemsPaginatorProps } from "./types/ItemsPaginator.types";
-import useItemsPaginator from "./hooks/useItemsPaginator";
+import type { ItemListPaginatorProps } from "./ItemListPaginator.types";
+import useItemListPaginator from "./hooks/useItemListPaginator";
 
-const ItemsPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: ItemsPaginatorProps) => {
-  const [ pages, totalPages, onPageEventHandler ] = useItemsPaginator(totalItems, itemsPerPage, currentPage, onPageClick);
+const ItemListPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, onPageClick }: ItemListPaginatorProps) => {
+  const [ pages, totalPages, onPageEventHandler ] = useItemListPaginator(totalItems, itemsPerPage, currentPage, onPageClick);
   return (<div className="flex container mb-5"> 
     { totalItems > 0 ? <span className="flex-2 text-left mx-auto">Total: { totalItems }</span> : <></> }
     <span className="flex-2 text-right">
@@ -14,4 +14,4 @@ const ItemsPaginator = ({ currentPage, totalItems, itemsPerPage = ITEMS_PAGE, on
   </div>);
 }
 
-export default ItemsPaginator;
+export default ItemListPaginator;

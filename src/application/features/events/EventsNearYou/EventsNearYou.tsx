@@ -1,7 +1,7 @@
 import Spinner from "@/application/components/ui/Spinner/Spinner";
 import type { RouteEvent } from "@/domain/RouteEvent.types";
 import RouteEventCard from "../RouteEventCard/RouteEventCard";
-import ItemCardList from "@/application/components/ItemCardList/ItemCardList";
+import ItemCardList from "@/application/components/ItemsList/ItemCardList/ItemCardList";
 import { useTranslation } from "react-i18next";
 import useEventsNearYou from "./hooks/useEventsNearYou";
 

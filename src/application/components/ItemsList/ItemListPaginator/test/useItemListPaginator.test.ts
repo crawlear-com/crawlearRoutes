@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import useItemsPaginator from '../hooks/useItemsPaginator';
+import useItemsPaginator from '../hooks/useItemListPaginator';
 
 describe('useItemsPaginator', () => {
   it('calculates totalPages correctly', () => {

@@ -1,4 +1,4 @@
-import type { ItemsCardListProps } from './types/ItemCardList.types';
+import type { ItemsCardListProps } from './ItemCardList.types';
 import { useTranslation } from 'react-i18next';
 
 const ItemCardList = <T, >({ card, items }: ItemsCardListProps<T>) => {

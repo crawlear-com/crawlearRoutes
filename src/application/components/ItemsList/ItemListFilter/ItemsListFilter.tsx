@@ -1,9 +1,9 @@
 import useItemsListFilter from "./hooks/useItemsListFilter";
 import SearchInput from "@/application/components/ui/SearchInput/SearchInput";
-import { ASC, type ItemsListFilterProps } from "./types/ItemsListFilter.types";
+import { ASC, type ItemsListFilterProps } from "./ItemsListFilter.types";
 import { useTranslation } from "react-i18next";
 
-import './styles/routerListFilter.css';
+import './styles/itemListFilter.css';
 
 const ItemsListFilter = ({ query, orderDir, orderBy, onOrderByClick, onOrderDirClick, onQueryChange, onSearch }: ItemsListFilterProps) => {
   const [isCollapsed, onOrderByClickHandler, onOrderDirClickHandler,
