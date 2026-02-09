@@ -2,14 +2,9 @@ import * as React from 'react'
 import * as L from 'leaflet'
 import 'leaflet-gpx'
 
-import { parseGpxString, getGpxInfo, getRoutePoint, getGeolocationPosition,
-  setMapLocation, createMap, removeMarkers, getGeolocationPositionFromGeoPoint,
-  gpxHasPoints, 
-  getElevationMapData,
-  initialGpxInfo,
-  NO_ERROR,
-  gpxParserOptions} from '../helpers/mapUtils'
-
+import { parseGpxString, getGpxInfo, getRoutePoint, setMapLocation, createMap, removeMarkers,
+  getGeolocationPositionFromGeoPoint, gpxHasPoints,  getElevationMapData, initialGpxInfo,
+  NO_ERROR, gpxParserOptions} from '../helpers/mapUtils'
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '@/domain/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
@@ -17,6 +12,8 @@ import { setGpx } from '@/application/features/routeCreation/store/slices/routeS
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next';
 import useWakeLock from './useWakeLock';
+import GeolocationRespository from '@/infrastructure/Repository/GeolocationRespository/GeolocationRespository'
+import GeolocationProvider from '@/infrastructure/GeolocationProvider/GeolocationProvider'
 
 const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void, 
   gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
@@ -32,6 +29,8 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
   const [ gpxInfo, setGpxInfo ] = React.useState<GpxInfo>(initialGpxInfo);
   const [ gpxRecorded, onStartStopClick ] = useRouteRecorder(pollingTime, onError, gpx);
   const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
+  const locationRepository = React.useMemo(() => new GeolocationRespository(), []);
+  const locationProvider = React.useMemo(() => new GeolocationProvider(locationRepository), [locationRepository]);
 
   function onError(error: number) {
     setError(error);
@@ -124,7 +123,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
       map.current = createMap('map');
     }
     if (!gpxHasPoints(gpxRecorded)) {
-      getGeolocationPosition((point: GeolocationPosition) => setMapLocation(map.current!, point), 
+      locationProvider.getGeolocation((point: GeolocationPosition) => setMapLocation(map.current!, point), 
         () => { 
           setError(ERR_GEOLOCATION_NOT_RESOLVED);
           setMapLocation(map.current!);
@@ -137,7 +136,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
       map.current?.remove();
       map.current = null;
     }
-  }, [gpxRecorded]);
+  }, [gpxRecorded, locationProvider]);
 
   React.useEffect(() => {
     if (gpxHasPoints(gpxRecorded)) {
