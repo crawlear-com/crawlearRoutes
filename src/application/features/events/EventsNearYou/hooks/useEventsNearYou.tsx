@@ -1,11 +1,12 @@
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
-import { getGeolocationPosition } from "@/application/features/maps/GpxRouteMap/helpers/mapUtils";
 import type { RouteEvent } from "@/domain/RouteEvent.types";
 import L from "leaflet";
 import React from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import GeolocationRespository from "@/infrastructure/Repository/GeolocationRespository/GeolocationRespository";
+import GeolocationProvider from "@/infrastructure/GeolocationProvider/GeolocationProvider";
 
 const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
   const { t } = useTranslation("map");
@@ -14,9 +15,12 @@ const useEventsNearYou = (): [ boolean, Array<RouteEvent> ] => {
   const [ routeEvents, setRouteEvents ] = React.useState<Array<RouteEvent>>([]);
   
   React.useEffect(() => {
+    const locationRepository = new GeolocationRespository();
+    const locationProvider = new GeolocationProvider(locationRepository);
+
     setIsLoading(true);
 
-    getGeolocationPosition((data) => {
+    locationProvider.getGeolocation((data) => {
       setLocation(data);
       setIsLoading(false);
     }, () => {

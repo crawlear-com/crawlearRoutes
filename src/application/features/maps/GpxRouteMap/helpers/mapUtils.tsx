@@ -1,12 +1,10 @@
 import { XMLParser } from 'fast-xml-parser'
-import type { GpxInfo } from '../GpxRouteMap.types';
 import * as L from 'leaflet'
-
-import { ERR_GEOLOCATION_NOT_AVAILABLE, ERR_GEOLOCATION_NOT_RESOLVED } from '../hooks/useRouteRecorder';
-import type { GpxData, GpxTrkPt } from '@/application/features/maps/GpxRouteMap/Gpx.types';
-import type { GeoPoint } from '@/domain/Route.types';
 import { isObjectEmpty } from '@/application/helpers/utils';
 import { startIcon, endIcon, shadowIcon, markerIcon } from './Icons';
+import type { GpxInfo } from '../GpxRouteMap.types';
+import type { GpxData, GpxTrkPt } from '@/application/features/maps/GpxRouteMap/Gpx.types';
+import type { GeoPoint } from '@/domain/Route.types';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
 const NO_ERROR = 0;
@@ -78,23 +76,6 @@ const getRoutePoint = (jObj: GpxData): GeoPoint => {
         lon: lon,
       }
 }
-
-const getGeolocationPosition = (okCallback: (position: GeolocationPosition) => void, 
-    koCallback: (error: number) => void) => {
-    
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        okCallback,
-        () => { koCallback(ERR_GEOLOCATION_NOT_RESOLVED) },
-        {
-          timeout: 2000,
-          enableHighAccuracy: true
-        }
-      );
-    } else {
-      koCallback(ERR_GEOLOCATION_NOT_AVAILABLE);
-    }
-  }
 
 const getFitBoundsFromPosition = (point: GeolocationPosition): L.LatLngBoundsExpression => {
     const coords = point.coords;
@@ -175,6 +156,6 @@ const initialGpxDataString = `<?xml version="1.0" encoding="UTF-8" standalone="n
 
 
 export { NO_ERROR, initialGpxInfo, gpxParserOptions, parseGpxString, getGpxInfo,
-  getRoutePoint, getGeolocationPosition, getGeolocationPositionFromGeoPoint,
+  getRoutePoint, getGeolocationPositionFromGeoPoint,
   getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, gpxHasPoints,
   getElevationMapData, initialGpxDataString };
