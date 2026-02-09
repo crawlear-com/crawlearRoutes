@@ -142,7 +142,7 @@ C) Use clean code and solid principles:
 - The infrastructure to database layer is defined in /src/infrastructure usinf providers and repositoies aproach (pots and adapters pattern)
 - Separate always logic from ui using custom hooks in any component. This way the component only defines UI and logic is done in a separated custom hook
 
-**Design patters**: DRY, kiss, custom hooks, singleton, observer, ports and adapters patterns always using Clean code, SOLID and clean arquitecture principles
+**Design patters**: DRY, kiss, custom hooks, render props, singleton, observer, ports and adapters patterns always using Clean code, SOLID and clean arquitecture principles
 
 ### Project structure
 
