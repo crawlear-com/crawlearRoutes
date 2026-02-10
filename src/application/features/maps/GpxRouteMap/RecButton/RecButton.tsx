@@ -18,7 +18,7 @@ const RecButton = ({ value, recordState, pauseState, onStartStopRecord, onPause,
             onClick={ onStartStopRecord }> { recordState ? t('main.stop') : t('main.rec') }
         </button>
         <span className=''>{ t('main.polling time') }</span>
-        <input className='m-auto text-right mx-1' type="number" min="14" max="120"
+        <input className='m-auto text-right mx-1' type="number" min="5" max="120"
             { ...readOnlyStatus } value={ value } onChange={ onInputValueChange } />
         <span className='m-auto'>{ t('main.secs') }</span>
     </div>

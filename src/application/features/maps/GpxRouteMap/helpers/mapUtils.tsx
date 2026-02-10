@@ -80,7 +80,7 @@ const getRoutePoint = (jObj: GpxData): GeoPoint => {
 const getFitBoundsFromPosition = (point: GeolocationPosition): L.LatLngBoundsExpression => {
     const coords = point.coords;
 
-    return [[coords.latitude - 0.005, coords.longitude - 0.005],[coords.latitude + 0.005, coords.longitude + 0.005]];
+    return [[coords.latitude - 0.0005, coords.longitude - 0.0005],[coords.latitude + 0.0005, coords.longitude + 0.0005]];
 }
 
 const createMap = (id: string) => {
@@ -143,7 +143,7 @@ const getElevationMapData = (gpx: string): Array<Array<number>> => {
 
       if (sections) {
         sections.forEach((element, index) => {
-            data.push([index, element.ele]);
+            data.push([index, Number(element.ele.toFixed(3))]);
         })
       }
     }

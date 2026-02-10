@@ -16,6 +16,10 @@
     @apply text-red-600;
   }
 
+  button:active {
+    @apply scale-110;
+  }
+
   .card {
     @apply rounded-2xl content-end text-left;
     @apply min-w-60 bg-secondary text-font;

@@ -5,7 +5,7 @@ import ElevationChart from "@/application/features/routes/RouteDetail/ElevationC
 
 const GpxInfoCard = ({ gpxInfo, className }: GpxInfoCardProps) => {
     const { t } = useTranslation(["map"]);
-    
+
     return <div className={`card ${ className ? className : '' }`}>
         <div className={`grid grid-cols-1 sm:grid-cols-3 `}>
             <span><b>{ t('main.distance') }</b>{`: ${toKm(gpxInfo.distance)} km`}</span>
