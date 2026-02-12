@@ -143,7 +143,7 @@ const getElevationMapData = (gpx: string): Array<Array<number>> => {
 
       if (sections) {
         sections.forEach((element, index) => {
-            data.push([index, Number(element.ele.toFixed(3))]);
+            data.push([index, Number(element.ele.toFixed(1))]);
         })
       }
     }

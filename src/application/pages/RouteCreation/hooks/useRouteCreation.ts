@@ -1,5 +1,5 @@
-import { loadRoute, setAction, setEventId, setRouteId } from "@/application/features/routeCreation/store/slices/routeSlice";
-import { selectIsLoading } from "@/application/features/users/store/selectors/userSelectors";
+import { cleanRouteCreation, loadRoute, setAction, setEventId, setRouteId } from "@/application/features/routeCreation/store/slices/routeSlice";
+import { selectIsLoading } from "@/application/features/routeCreation/store/selectors/routeSelectors";
 import { CREATE_ACTION, UPDATE_ACTION } from "@/application/helpers/utils";
 import type { AppDispatch } from "@/application/store/store";
 import * as React from "react";
@@ -13,6 +13,8 @@ const useRouteCreation = (): [ boolean, string | undefined, string | undefined ]
   const isLoading = useSelector(selectIsLoading);
 
   React.useEffect(() => {
+    dispatch(cleanRouteCreation());
+
     if (eid) {
       dispatch(setEventId(eid));
       dispatch(setAction(CREATE_ACTION));
@@ -20,10 +22,10 @@ const useRouteCreation = (): [ boolean, string | undefined, string | undefined ]
 
     if (rid) {
       dispatch(setRouteId(rid));
-      dispatch(setAction(UPDATE_ACTION))
+      dispatch(setAction(UPDATE_ACTION));
       dispatch(loadRoute(rid));
     } else {
-      dispatch(setAction(CREATE_ACTION))
+      dispatch(setAction(CREATE_ACTION));
     }
   }, [rid, eid, dispatch]);
 

@@ -27,7 +27,8 @@
     "likes": "Likes",
     "back": "Back",
     "filter": "Filter",
-    "filter routes": "Filter routes..."
+    "filter routes": "Filter routes...",
+    "youtube video url": "Youtube video url..."
   },
   "messages": {
     "route creation ok": "The route was created correctly",
