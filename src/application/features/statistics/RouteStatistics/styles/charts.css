@@ -7,6 +7,10 @@
   }
 
   text {
+    @apply fill-white;
+  }
+
+  g > text:first-child {
     @apply fill-(--color-font);
   }
 }

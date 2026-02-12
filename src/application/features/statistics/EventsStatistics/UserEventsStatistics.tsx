@@ -23,6 +23,7 @@ const UserEventsStatistics = () => {
 
     { isLoading ? <Spinner /> : 
       thereIsDataByScale(data) ? <Chart chartType="PieChart" 
+      style={{ fill: "#fff !important" }}
       data = {[[t("statistics.scale"), t("statistics.by scale")],
         [getScaleValue(1), data.by_scale[1] || 0],
         [getScaleValue(2), data.by_scale[2] || 0],

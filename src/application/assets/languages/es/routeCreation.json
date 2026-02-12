@@ -27,7 +27,8 @@
     "likes": "Favoritos",
     "back": "Volver",
     "filter": "Filtrar",
-    "filter routes": "Filtrar rutas..."
+    "filter routes": "Filtrar rutas...",
+    "youtube video url": "Youtube video url..."
   },
   "messages": {
     "route creation ok": "La ruta se ha creado con éxito",
