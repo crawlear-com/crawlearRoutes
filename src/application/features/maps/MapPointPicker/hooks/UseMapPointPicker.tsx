@@ -7,12 +7,14 @@ import { addRectangleAndGetBounds, buildAndAddLegendToMap, removePreviousMarkers
   getCleanMarkersList, getNewMap, initialMarkersList, 
   addAllPointsToMapAndSetBounds} from '../helpers/mapUtils'
 import type { MarkerList } from '../MapPointPicker.types'
+import useCssLoad from '../../hooks/usCssLoad'
 
 const useMapPointPicker = (onMapClick?: (searchBounds: L.LatLngBounds) => void, 
   points?: Array<MapPoint>) => {
     const markersList = React.useRef<MarkerList>(initialMarkersList);
     const layerControl = React.useRef<L.Control.Layers>(null);
     const map = React.useRef<L.Map | null>(null);
+    useCssLoad();
 
     React.useEffect(() => {
       const mapClickHandler = (e: L.LeafletMouseEvent) => {

@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import useWakeLock from './useWakeLock';
 import GeolocationRespository from '@/infrastructure/Repository/GeolocationRespository/GeolocationRespository'
 import GeolocationProvider from '@/infrastructure/GeolocationProvider/GeolocationProvider'
+import useCssLoad from '../../hooks/usCssLoad'
 
 const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void, 
   gpx?: string, onRouteRecorded?: (fileContent: string, routePoint: GeoPoint, distance: number, duration: number) => void,
@@ -31,6 +32,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
   const [requestWakeLock, releaseWakeLock] = useWakeLock(onError);
   const locationRepository = React.useMemo(() => new GeolocationRespository(), []);
   const locationProvider = React.useMemo(() => new GeolocationProvider(locationRepository), [locationRepository]);
+  useCssLoad();
 
   function onError(error: number) {
     setError(error);

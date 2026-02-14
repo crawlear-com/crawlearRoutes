@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths({ logFile: true }), VitePWA({
+      injectRegister: "script-defer",
       manifest: {
         name: 'CrawlearRoutes (Crawlear.com)',
         short_name: 'CrawlearRoutes',
@@ -27,7 +28,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
-      }
+      },
     })],
   base: "/crawlearRoutes/",
   build: {

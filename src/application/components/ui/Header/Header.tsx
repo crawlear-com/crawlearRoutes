@@ -6,12 +6,12 @@ import { selectTheme } from "@/application/features/theme/ToggleTheme/store/sele
 import { useTranslation } from "react-i18next";
 import useShowHide from "@/application/hooks/useShowHide";
 
-import logo from '@/application/assets/images/logo.png';
+import logo from '@/application/assets/images/logo.webp';
 import themeIcon from '@/application/components/ui/Header/assets/image/theme.png';
 import myroutes from '@/application/components/ui/Header/assets/image/myroutes.png';
 import myevents from '@/application/components/ui/Header/assets/image/myevents.png';
 import search from '@/application/components/ui/Header/assets/image/search.png';
-import logoWhite from '@/application/assets/images/logo-white.png'
+import logoWhite from '@/application/assets/images/logo-white.webp'
 
 import './styles/header.css';
 
@@ -30,9 +30,9 @@ const Header = () => {
     return (<>
         <header className={`${showClassName} grid items-center align-start grid-rows-auto grid-cols-[5%_95%] px-4 py-4 sticky top-0 left-0 w-full z-1000 backdrop-blur`}>
             <a href="/" className="row-start-1 col-start-1 justify-self-start">
-                <img className="min-w-10 max-h-10" src={ theme === "light" ? logo : logoWhite } alt="Crawlear.com logo" />
+                <img src={ theme === "light" ? logo : logoWhite } alt="Crawlear.com logo" width="40" height="28" />
             </a>
-            <button onClick={ menuOnClick } className="text-font text-2xl justify-self-end max-h-5 md:hidden leading-1.5">{ 
+            <button aria-label="burger menu" onClick={ menuOnClick } className="text-font text-2xl justify-self-end max-h-5 md:hidden leading-1.5">{ 
                 isUserLogged ? (isOpen ? "x" : "☰") : "" 
             }</button>
             <nav className={ contentClass }>
