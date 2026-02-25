@@ -7,7 +7,6 @@ import type { GpxData, GpxTrkPt } from '@/application/features/maps/GpxRouteMap/
 import type { GeoPoint } from '@/domain/Route.types';
 
 const ARROUND_BARCELONA: L.LatLngBoundsExpression = [[41.29, 1.70], [41.79, 2.30]]
-const NO_ERROR = 0;
 
 const gpxParserOptions = {
     async: true,
@@ -155,7 +154,7 @@ const initialGpxDataString = `<?xml version="1.0" encoding="UTF-8" standalone="n
   <trk><trkseg>`;
 
 
-export { NO_ERROR, initialGpxInfo, gpxParserOptions, parseGpxString, getGpxInfo,
+export { initialGpxInfo, gpxParserOptions, parseGpxString, getGpxInfo,
   getRoutePoint, getGeolocationPositionFromGeoPoint,
   getFitBoundsFromPosition, createMap, setMapLocation, removeMarkers, gpxHasPoints,
   getElevationMapData, initialGpxDataString };

@@ -4,7 +4,7 @@ import 'leaflet-gpx'
 
 import { parseGpxString, getGpxInfo, getRoutePoint, setMapLocation, createMap, removeMarkers,
   getGeolocationPositionFromGeoPoint, gpxHasPoints,  getElevationMapData, initialGpxInfo,
-  NO_ERROR, gpxParserOptions} from '../helpers/mapUtils'
+  gpxParserOptions} from '../helpers/mapUtils'
 import type { GpxInfo } from '../GpxRouteMap.types'
 import type { GeoPoint } from '@/domain/Route.types'
 import useRouteRecorder, { ERR_GEOLOCATION_NOT_RESOLVED } from './useRouteRecorder'
@@ -43,7 +43,7 @@ const useGpxRouteMap = (onFileResolved?: (fileContent: string, routePoint: GeoPo
   }
 
   const PauseOrReanudeRecord = () => {
-    setError(NO_ERROR);
+    setError(0);
     onStartStopClick(false);
     if(recordState && onRouteRecorded && gpxRecorded && gpxRecorded.length && 
       (gpxRecorded.indexOf('<trkpt') > 0 || gpxRecorded.indexOf('<wpt') > 0)) {
