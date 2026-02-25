@@ -10,6 +10,7 @@ import type { AppDispatch } from "@/application/store/store";
 import { selectUserUUID } from "@/application/features/users/store/selectors/userSelectors";
 import useLikeRoute from "./useLikeRoute";
 import RouteCard from "@/application/features/routes/RouteCard/RouteCard";
+import useCssLoad from "../../hooks/usCssLoad";
 
 const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean, 
   string, number, number, (searchBounds: LatLngBounds | LatLng) => void,
@@ -24,6 +25,7 @@ const useSearchRoute = (): [ Array<Route>, Array<MapPoint>, boolean,
   const totalRoutes = useSelector(selectRouteSearchTotalPages) || 0;
   const uid = useSelector(selectUserUUID);
   const dispatch = useDispatch<AppDispatch>();
+  useCssLoad();
 
   const routesCard = (route: Route | SearchResultRoute) => 
     <RouteCard key={ route.id } route={ route } 

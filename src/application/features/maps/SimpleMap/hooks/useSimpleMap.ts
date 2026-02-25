@@ -3,6 +3,7 @@ import * as L from 'leaflet'
 import 'leaflet-gpx'
 import { iconRoute } from '../Icons'
 import type { GeoPoint } from '@/domain/Route.types'
+import useCssLoad from '../../hooks/usCssLoad'
 
 const getBoundingBox = (zoomScale: number, lat: number, lon : number): [[number, number],[number, number]] => {
   return [[lat - zoomScale, lon - zoomScale], [lat + zoomScale, lon + zoomScale]];
@@ -10,6 +11,7 @@ const getBoundingBox = (zoomScale: number, lat: number, lon : number): [[number,
 
 function useSimpleMap(id: string, point: GeoPoint, zoomScale: number): void {
     const map = React.useRef<L.Map | null>(null);
+    useCssLoad();
 
     const addPropsPoints = React.useCallback(() => {
       if (point) {
