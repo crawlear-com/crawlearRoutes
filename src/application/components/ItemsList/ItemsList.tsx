@@ -1,21 +1,22 @@
-import ItemCardList from "@/application/components/ItemsList/ItemCardList/ItemCardList";
 import ItemListPaginator from "@/application/components/ItemsList/ItemListPaginator/ItemListPaginator";
 import ItemsListFilter from "@/application/components/ItemsList/ItemListFilter/ItemsListFilter";
 import Spinner from "@/application/components/ui/Spinner/Spinner";
-import useItemsList from "./hooks/useItemsList";
 import type { ItemsListProps } from "./ItemsList.types";
+import ItemCardList from "./ItemCardList/ItemCardList";
 
-const ItemsList = <T,>({ title, card, getDataAsyncThunk, setMethods, selectMethods }: ItemsListProps<T>) => {
-  const [ currentPage, query, orderBy, orderDir, totalItems, items, isLoading, onPageClick,
-    onOrderByClick, onOrderDirClick, onQueryChange, onSearch ] = useItemsList<T>(getDataAsyncThunk, setMethods, selectMethods);
+const ItemsList = <T,>(props: ItemsListProps<T>) => {
+  const { children, card, items, listStatus, eventHandlers } = props;
 
+  if (!items || !listStatus || !eventHandlers) {
+    return null;
+  }
   return (<>
-    { title ? <h1 className="mr-3 inline-block mb-4">{ title }</h1> : <></>}
-    <ItemsListFilter query={query} orderBy={ orderBy } orderDir={ orderDir }
-      onOrderByClick= { onOrderByClick } onOrderDirClick= { onOrderDirClick }
-      onQueryChange={ onQueryChange } onSearch={ onSearch }/>
-    <ItemListPaginator currentPage = { currentPage } totalItems = { totalItems } onPageClick={ onPageClick } />
-    { isLoading ? <Spinner /> : <ItemCardList<T> card={ card } items={ items } /> }
+    { children }
+    <ItemsListFilter query={ listStatus.query } orderBy={ listStatus.orderBy } orderDir={ listStatus.orderDir }
+      onOrderByClick= { eventHandlers.onOrderByClick } onOrderDirClick= { eventHandlers.onOrderDirClick }
+      onQueryChange={ eventHandlers.onQueryChange } onSearch={ eventHandlers.onSearch }/>
+    <ItemListPaginator currentPage = { listStatus.currentPage } totalItems = { listStatus.totalItems } onPageClick={ eventHandlers.onPageClick } />
+    { listStatus.isLoading ? <Spinner /> : <ItemCardList<T> card={ card } items={ items } /> }
   </>);
 }
 

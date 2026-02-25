@@ -1,30 +1,34 @@
-import type { ActionCreatorWithoutPayload, ActionCreatorWithPayload, AsyncThunk, AsyncThunkConfig } from "@reduxjs/toolkit";
-import type { RootState } from "@/application/store/store";
-import type { ItemListDTO } from "@/infrastructure/ItemListDTO.types";
 
-type SetMethods = {
-  setPage: ActionCreatorWithPayload<number, string>,
-  setOrderBy: ActionCreatorWithPayload<string, string>,
-  setOrderDir: ActionCreatorWithoutPayload<string>,
-  setQuery: ActionCreatorWithPayload<string, string>
+type ItemListStatus = {
+  isLoading: boolean,
+  currentPage: number,
+  totalItems: number,
+  query: string,
+  orderBy: string,
+  orderDir: string
 }
 
-type SelectMethods<T> = {
-  selectItems: (state: RootState) => Array<T>,
-  selectIsLoading: (state: RootState) => boolean,
-  selectPage: (state: RootState) => number,
-  selectTotalItems: (state: RootState) => number,
-  selectQuery: (state: RootState) => string,
-  selectOrderBy: (state: RootState) => string,
-  selectOrderDir: (state: RootState) => string,
+type ItemListEventHandlers = {
+  onPageClick: (page: number) => void,
+  onOrderDirClick: (direction: string) => void,
+  onOrderByClick: (order: string) => void,
+  onQueryChange: (query: string) => void,
+  onSearch: () => void
 }
 
-type ItemsListProps<T> = {
-  title?: string,
-  card: (item: T) => React.ReactElement,
-  setMethods: SetMethods,
-  selectMethods: SelectMethods<T>,
-  getDataAsyncThunk: AsyncThunk<ItemListDTO<T>, void, AsyncThunkConfig>
+
+export type InjectedItemsListProps<T> = {
+  items: Array<T>,
+  listStatus: ItemListStatus;
+  eventHandlers: ItemListEventHandlers;
 }
 
-export type { ItemsListProps, SetMethods, SelectMethods };
+export type ItemsListOwnProps<T> = {
+  children?: React.JSX.Element;
+  card: (item: T) => React.JSX.Element;
+
+}
+
+type ItemsListProps<T> = ItemsListOwnProps<T> & Partial<InjectedItemsListProps<T>>;
+
+export type { ItemsListProps, ItemListStatus, ItemListEventHandlers };

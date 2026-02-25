@@ -2,20 +2,14 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserUUID } from "@/application/features/users/store/selectors/userSelectors";
-import { deleteMyFavoritesRoute, setMyFavouritesOrderBy, setMyFavouritesOrderDir,
-  setMyFavouritesPage, setMyFavouritesQuery } from "../../store/slices/routeListsSlice";
+import { deleteMyFavoritesRoute } from "../../store/slices/routeListsSlice";
 import toast from "react-hot-toast";
 import type { Route } from "@/domain/Route.types";
 import RouteCard from "@/application/features/routes/RouteCard/RouteCard";
-import { selectMyFavorites, selectMyFavoritesIsLoading, selectMyFavoritesOrderBy, selectMyFavoritesOrderDir, selectMyFavoritesPage,
-  selectMyFavoritesQuery,
-  selectMyFavoritesTotalRoutes } from "@/application/features/routes/store/selectors/routeListsSelectors";
-import type { SelectMethods, SetMethods } from "@/application/components/ItemsList/ItemsList.types";
 import SupabaseRouteRepository from "@/infrastructure/Repository/RouteRepository/SupabaseRouteRepository";
 import RouteDataProvider from "@/infrastructure/DataProvider/RouteDataProvider/RouteDataProvider";
 
-const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
-  SetMethods, SelectMethods<Route> ] => {
+const useLikesFromUser = (): [ (route: Route) => React.JSX.Element ] => {
   const { t } = useTranslation(['myRoutes']);
   const dispatch = useDispatch();
   const uid = useSelector(selectUserUUID);
@@ -48,23 +42,8 @@ const useLikesFromUser = (): [ (route: Route) => React.JSX.Element,
   const likeExtras = (uid: string, rid: string) => <div data-uuid={ uid } data-rid={ rid }
     className="absolute top-3 right-3" onClick={ onDeleteClick }>♥️</div>
   const myRoutesCard = (route: Route) => <RouteCard key={ route.id } route={ route } extras={ likeExtras(uid, route.id) } />;
-  const setMethods = {
-    setPage: setMyFavouritesPage,
-    setOrderBy: setMyFavouritesOrderBy,
-    setOrderDir: setMyFavouritesOrderDir,
-    setQuery: setMyFavouritesQuery
-  };
-  const selectMethods: SelectMethods<Route> = {
-    selectItems: selectMyFavorites,
-    selectIsLoading: selectMyFavoritesIsLoading,
-    selectPage: selectMyFavoritesPage,
-    selectTotalItems: selectMyFavoritesTotalRoutes,
-    selectOrderBy: selectMyFavoritesOrderBy,
-    selectOrderDir: selectMyFavoritesOrderDir,
-    selectQuery: selectMyFavoritesQuery
-  };
 
-  return [ myRoutesCard, setMethods, selectMethods ]
+  return [ myRoutesCard ]
 }
 
 export default useLikesFromUser;

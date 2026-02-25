@@ -1,21 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteMyEvent, setMyEventsOrderBy, setMyEventsOrderDir, 
-  setMyEventsPage, setMyEventsQuery } from "@/application/features/events/store/slices/eventListsSlice";
+import { deleteMyEvent } from "@/application/features/events/store/slices/eventListsSlice";
 import toast from "react-hot-toast";
-import { selectMyEvents, selectMyEventsIsLoading, selectMyEventsOrderBy, selectMyEventsOrderDir, selectMyEventsPage, 
-  selectMyEventsQuery, 
-  selectMyEventsTotalRoutes } from "@/application/features/events/store/selectors/eventsListsSelectors";
 import React from "react";
-import type { SelectMethods, SetMethods } from "@/application/components/ItemsList/ItemsList.types";
 import type { RouteEvent } from "@/domain/RouteEvent.types";
 import RouteEventCard from "@/application/features/events/RouteEventCard/RouteEventCard";
 import SupabaseRouteEventRepository from "@/infrastructure/Repository/RouteEventRepository/SupabaseRouteEventRepository";
 import RouteEventDataProvider from "@/infrastructure/DataProvider/RouteEventDataProvider/RouteEventDataProvider";
 
-const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
-  SetMethods, SelectMethods<RouteEvent> ] => {
+const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element ] => {
   const { t } = useTranslation(['myEvents']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -65,23 +59,8 @@ const useEventRoutesFromUser = (): [ (route: RouteEvent) => React.JSX.Element,
     return <RouteEventCard key={ event.id } routeEvent={ event } 
       extras={ eventExtras(event.id, event.date.toString()) } />;
   }
-  const setMethods: SetMethods = {
-    setPage: setMyEventsPage,
-    setOrderBy: setMyEventsOrderBy,
-    setOrderDir: setMyEventsOrderDir,
-    setQuery: setMyEventsQuery
-  };
-  const selectMethods = {
-    selectItems: selectMyEvents,
-    selectIsLoading: selectMyEventsIsLoading,
-    selectPage: selectMyEventsPage,
-    selectTotalItems: selectMyEventsTotalRoutes,
-    selectOrderBy: selectMyEventsOrderBy,
-    selectOrderDir: selectMyEventsOrderDir,
-    selectQuery: selectMyEventsQuery,
-  };
 
-  return [ myRouteEventsCard, setMethods, selectMethods ];
+  return [ myRouteEventsCard ];
 }
 
 export default useEventRoutesFromUser;
