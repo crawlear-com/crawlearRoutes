@@ -29,7 +29,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
       },
-    })],
+    }),
+],
   base: "/crawlearRoutes/",
   build: {
     rollupOptions: {

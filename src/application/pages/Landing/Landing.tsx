@@ -26,23 +26,23 @@ const Landing = () => {
                     <p className="text-left my-10 text-xl">{ t('main.plan record share') }</p>
                     <NavLink to="/login" className="button-primary max-w-50 m-auto">{ t('main.getstarted') }</NavLink>
                 </div>
-                <img width="240" height="462" className="flex-1 max-w-60 w-50" src={ mapImage } alt="image showing a route in a map" />
+                <img loading="lazy" width="240" height="462" className="flex-1 max-w-60 w-50" src={ mapImage } alt="image showing a route in a map" />
             </section>
             <section className="my-10 mx-auto py-4 px-20 flex w-full justify-center flex-wrap items-center">
                 <h1>{ t('main.why crawlear') }</h1>
                 <div className="flex flex-wrap gap-5 mt-10" >
                     <div className="card landingCard">
-                        <img src={locationImage} width="103" height="96" alt="icon referring to capture a route functionality" />
+                        <img loading="lazy" src={locationImage} width="103" height="96" alt="icon referring to capture a route functionality" />
                         <h1 className="mb-5">{ t('main.capture your route') }</h1>
                         <p className="text-xl">{ t('main.log your routes') }</p>
                     </div>
                     <div className="card landingCard">
-                        <img src={personasImage} width="103" height="96" alt="icon referring to find new routes functionality" />
+                        <img loading="lazy" src={personasImage} width="103" height="96" alt="icon referring to find new routes functionality" />
                         <h1 className="mb-5">{ t('main.find new trails') }</h1>
                         <p className="text-xl">{ t('main.browse public routes') }</p>
                     </div>
                     <div className="card landingCard">
-                        <img src={mountainImage} width="103" height="96" alt="icon referring to sahre your routes feature" />
+                        <img loading="lazy" src={mountainImage} width="103" height="96" alt="icon referring to sahre your routes feature" />
                         <h1 className="mb-5">{ t('main.share with others') }</h1>
                         <p className="text-xl">{ t('main.share favourites') }</p>
                     </div>
